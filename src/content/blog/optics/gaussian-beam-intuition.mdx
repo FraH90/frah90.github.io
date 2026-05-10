@@ -1,0 +1,35 @@
+---
+title: Gaussian Beam Intuition — Waist, Rayleigh Range, and Divergence
+date: 2026-05-10
+category: optics
+description: The three numbers that define a Gaussian beam and why you can't minimize all three simultaneously.
+tags: [optics, laser, gaussian-beam, photonics]
+draft: false
+---
+
+Every single-mode laser beam is a Gaussian beam. Three numbers fully characterize it:
+
+1. **Beam waist** $w_0$ — the minimum spot radius (at the focal plane)
+2. **Rayleigh range** $z_R$ — the distance at which the beam area doubles
+3. **Far-field divergence angle** $\theta$
+
+These three are not independent:
+
+$$z_R = \frac{\pi w_0^2}{\lambda}, \qquad \theta \approx \frac{\lambda}{\pi w_0}$$
+
+## The Fundamental Trade-off
+
+$w_0 \cdot \theta = \lambda / \pi$ is a constant. This is the diffraction limit:
+**smaller focus → faster divergence, always**.
+
+There is no way around this. It is a consequence of the wave nature of light,
+not a limitation of lens quality.
+
+## Beam Evolution
+
+$$w(z) = w_0 \sqrt{1 + \left(\frac{z}{z_R}\right)^2}$$
+
+For $|z| \ll z_R$: beam is approximately collimated.
+For $|z| \gg z_R$: beam diverges linearly with angle $\theta$.
+
+The [Gaussian Beam Demo](/demos/gaussian-beam-demo) lets you sweep $w_0$ and $\lambda$ and watch the envelope evolve.

@@ -1,0 +1,33 @@
+---
+title: Phased Array Basics — From Array Factor to Beam Steering
+date: 2026-05-10
+category: antennas
+description: A first-principles walkthrough of the array factor and how progressive phase shifts steer a beam without moving parts.
+tags: [antennas, phased-array, beamforming]
+draft: false
+---
+
+A phased array antenna achieves beam steering by exploiting constructive and destructive interference between multiple radiating elements.
+Each element transmits (or receives) the same signal, but with a controlled phase offset applied between adjacent elements.
+
+## The Array Factor
+
+For a uniform linear array of $N$ elements with spacing $d$ and progressive phase shift $\beta$:
+
+$$AF(\theta) = \frac{1}{N} \sum_{n=0}^{N-1} e^{\,j n \psi}, \quad \psi = kd\cos\theta + \beta$$
+
+where $k = 2\pi/\lambda$ is the wavenumber.
+
+The main lobe points in the direction $\theta_0$ where $\psi = 0$:
+
+$$\theta_0 = \arccos\!\left(-\frac{\beta}{kd}\right)$$
+
+## Key Trade-offs
+
+| Parameter | Effect |
+|---|---|
+| Increase N | Narrower beam, lower sidelobes |
+| Increase d beyond λ/2 | Grating lobes appear |
+| Increase \|β\| | Beam steers toward endfire |
+
+The interactive demo on this site lets you explore these relationships in real time.

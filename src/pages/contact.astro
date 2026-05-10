@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contact — frah90" description="Get in touch.">
+  <div class="max-w-2xl mx-auto px-4 py-16">
+    <h1 class="text-3xl font-bold text-zinc-50 mb-4">Contact</h1>
+    <p class="text-zinc-400 mb-10">
+      Best way to reach me is via GitHub or email.
+    </p>
+    <div class="space-y-4">
+      <a
+        href="https://github.com/FraH90"
+        target="_blank"
+        rel="noopener"
+        class="flex items-center gap-4 border border-zinc-800 rounded-lg p-5 hover:border-zinc-600 transition-colors group"
+      >
+        <span class="text-zinc-500 font-mono text-sm w-20">GitHub</span>
+        <span class="text-zinc-300 group-hover:text-emerald-400 transition-colors">github.com/FraH90</span>
+      </a>
+      <a
+        href="mailto:frah.221190@gmail.com"
+        class="flex items-center gap-4 border border-zinc-800 rounded-lg p-5 hover:border-zinc-600 transition-colors group"
+      >
+        <span class="text-zinc-500 font-mono text-sm w-20">Email</span>
+        <span class="text-zinc-300 group-hover:text-emerald-400 transition-colors">frah.221190@gmail.com</span>
+      </a>
+      <a
+        href="/cv.pdf"
+        target="_blank"
+        class="flex items-center gap-4 border border-zinc-800 rounded-lg p-5 hover:border-zinc-600 transition-colors group"
+      >
+        <span class="text-zinc-500 font-mono text-sm w-20">CV</span>
+        <span class="text-zinc-300 group-hover:text-emerald-400 transition-colors">Download PDF</span>
+      </a>
+    </div>
+  </div>
+</BaseLayout>

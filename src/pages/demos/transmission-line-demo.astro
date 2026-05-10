@@ -1,0 +1,50 @@
+---
+import DemoPageLayout from '../../layouts/DemoPageLayout.astro';
+import TransmissionLineDemo from '../../components/demos/TransmissionLineDemo';
+import KatexEq from '../../components/ui/KatexEq';
+---
+
+<DemoPageLayout
+  title="Transmission Line Demo"
+  domain="rf"
+  difficulty="intermediate"
+  description="Visualize standing waves, reflection coefficient, and impedance along a lossless transmission line."
+>
+  <div slot="intro">
+    <p>
+      A transmission line connects a source to a load. When the load impedance Z&#8343; does not match
+      the characteristic impedance Z&#8320; of the line, part of the incident wave is reflected back.
+      The superposition of incident and reflected waves creates a <strong>standing wave pattern</strong>.
+    </p>
+    <p>
+      The Voltage Standing Wave Ratio (VSWR) quantifies how much mismatch exists.
+      A VSWR of 1 means perfect match; higher values indicate increasing reflection.
+    </p>
+  </div>
+
+  <div slot="equations">
+    <KatexEq display={true} client:only="react">
+      {"\\Gamma_L = \\frac{Z_L - Z_0}{Z_L + Z_0}"}
+    </KatexEq>
+    <KatexEq display={true} client:only="react">
+      {"V(z) = V^+ \\left( e^{-j\\beta z} + \\Gamma_L\\, e^{+j\\beta z} \\right)"}
+    </KatexEq>
+    <KatexEq display={true} client:only="react">
+      {"\\text{VSWR} = \\frac{1 + |\\Gamma_L|}{1 - |\\Gamma_L|}"}
+    </KatexEq>
+  </div>
+
+  <TransmissionLineDemo client:only="react" />
+
+  <div slot="interpretation">
+    <p>
+      <strong>Voltage maxima</strong> occur where incident and reflected waves add in phase;
+      <strong>minima</strong> where they cancel. Adjacent minima are separated by &lambda;/2.
+    </p>
+    <p>
+      Z&#8343; = Z&#8320; (matched): |&Gamma;| = 0, no standing waves.
+      Z&#8343; = 0 (short circuit): |&Gamma;| = 1, voltage null at the load.
+      Z&#8343; = &infin; (open circuit): |&Gamma;| = 1, voltage maximum at the load.
+    </p>
+  </div>
+</DemoPageLayout>

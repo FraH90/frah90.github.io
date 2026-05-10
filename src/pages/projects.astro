@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const projects: { title: string; description: string; tags: string[]; link?: string }[] = [
+  // Add your real projects here
+];
+---
+
+<BaseLayout title="Projects — frah90" description="Technical projects in antennas, RF, photonics, and signal processing.">
+  <div class="max-w-5xl mx-auto px-4 py-16">
+    <h1 class="text-3xl font-bold text-zinc-50 mb-4">Projects</h1>
+    <p class="text-zinc-400 mb-10">Technical projects — simulations, designs, research work.</p>
+
+    {projects.length === 0 ? (
+      <div class="border border-dashed border-zinc-800 rounded-lg p-12 text-center">
+        <p class="text-zinc-500 font-mono text-sm">Projects coming soon.</p>
+      </div>
+    ) : (
+      <div class="grid sm:grid-cols-2 gap-5">
+        {projects.map(p => (
+          <div class="border border-zinc-800 rounded-lg p-5">
+            <h2 class="text-lg font-semibold text-zinc-100 mb-2">{p.title}</h2>
+            <p class="text-sm text-zinc-400 mb-3">{p.description}</p>
+            <div class="flex flex-wrap gap-1.5">
+              {p.tags.map(tag => (
+                <span class="text-[10px] font-mono text-zinc-500 bg-zinc-800 px-1.5 py-0.5 rounded">{tag}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</BaseLayout>

@@ -1,0 +1,40 @@
+---
+const navLinks = [
+  { href: '/',        label: 'Home'    },
+  { href: '/about',   label: 'About'   },
+  { href: '/skills',  label: 'Skills'  },
+  { href: '/projects',label: 'Projects'},
+  { href: '/demos',   label: 'Demos'   },
+  { href: '/blog',    label: 'Blog'    },
+  { href: '/contact', label: 'Contact' },
+];
+
+const current = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-50 border-b border-zinc-800 bg-zinc-950/90 backdrop-blur">
+  <nav class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
+    <a href="/" class="font-mono text-sm font-semibold text-zinc-100 hover:text-emerald-400 transition-colors">
+      frah90<span class="text-emerald-400">.github.io</span>
+    </a>
+    <ul class="hidden sm:flex items-center gap-1">
+      {navLinks.map(({ href, label }) => (
+        <li>
+          <a
+            href={href}
+            class:list={[
+              'px-3 py-1.5 rounded text-sm transition-colors font-mono',
+              current === href || (href !== '/' && current.startsWith(href))
+                ? 'text-emerald-400 bg-emerald-400/10'
+                : 'text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800',
+            ]}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <!-- Mobile: just show a link to home for now; a real menu can come later -->
+    <div class="sm:hidden text-zinc-400 text-xs font-mono">menu</div>
+  </nav>
+</header>

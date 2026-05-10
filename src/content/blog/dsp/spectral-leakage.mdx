@@ -1,0 +1,37 @@
+---
+title: Spectral Leakage and Why Windowing Helps
+date: 2026-05-10
+category: dsp
+description: What spectral leakage is, why it happens in the DFT, and how window functions reduce it at the cost of frequency resolution.
+tags: [dsp, fft, windowing, spectral-leakage]
+draft: false
+---
+
+The DFT assumes the $N$-point signal is one period of an infinitely periodic sequence.
+When the signal frequency is not an integer multiple of $\Delta f = f_s / N$, the assumption is violated
+and energy "leaks" from the true frequency bin into neighboring bins. This is **spectral leakage**.
+
+## Why It Happens
+
+Multiplying a signal by a rectangular window (selecting $N$ samples) is equivalent to convolving the
+spectrum with a sinc function:
+
+$$W_{\text{rect}}(f) = \frac{\sin(\pi f N / f_s)}{\sin(\pi f / f_s)}$$
+
+The sinc has high sidelobes (−13 dB first sidelobe). Any spectral component leaks into adjacent bins
+via these sidelobes.
+
+## Windowing as the Fix
+
+A window function $w[n]$ tapers the signal to zero at the edges before taking the DFT:
+
+| Window | 1st Sidelobe | Main Lobe Width |
+|---|---|---|
+| Rectangular | −13 dB | $2/N$ |
+| Hann | −32 dB | $4/N$ |
+| Hamming | −43 dB | $4/N$ |
+| Blackman | −58 dB | $6/N$ |
+
+The trade-off: better sidelobe suppression always comes with a wider main lobe (lower frequency resolution).
+
+Try the [Fourier Transform Demo](/demos/fourier-transform-demo) to see this effect live.

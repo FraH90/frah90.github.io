@@ -1,0 +1,65 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  date: Date;
+  category: string;
+  description: string;
+  tags: string[];
+}
+
+const { title, date, category, description, tags } = Astro.props;
+
+const formatted = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric', month: 'long', day: 'numeric',
+}).format(date);
+
+const categoryColors: Record<string, string> = {
+  antennas: 'bg-emerald-400/10 text-emerald-400',
+  ml:       'bg-violet-400/10 text-violet-400',
+  rf:       'bg-sky-400/10 text-sky-400',
+  optics:   'bg-amber-400/10 text-amber-400',
+  dsp:      'bg-rose-400/10 text-rose-400',
+  misc:     'bg-zinc-400/10 text-zinc-400',
+};
+---
+
+<BaseLayout title={`${title} — frah90`} description={description}>
+  <article class="max-w-3xl mx-auto px-4 py-16">
+    <header class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <a
+          href={`/blog/${category}`}
+          class:list={['text-xs font-mono px-2 py-0.5 rounded', categoryColors[category] ?? categoryColors.misc]}
+        >
+          {category}
+        </a>
+        <time class="text-xs text-zinc-500 font-mono">{formatted}</time>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-bold text-zinc-50 leading-tight mb-4">{title}</h1>
+      <p class="text-zinc-400 text-lg">{description}</p>
+      {tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mt-4">
+          {tags.map(tag => (
+            <span class="text-xs font-mono text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded">#{tag}</span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <div class="prose prose-invert prose-zinc max-w-none
+      prose-headings:font-mono prose-headings:text-zinc-100
+      prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:underline
+      prose-code:text-emerald-300 prose-code:bg-zinc-800 prose-code:px-1 prose-code:rounded
+      prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-zinc-800">
+      <slot />
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-zinc-800">
+      <a href="/blog" class="text-sm font-mono text-zinc-500 hover:text-emerald-400 transition-colors">
+        ← back to blog
+      </a>
+    </div>
+  </article>
+</BaseLayout>

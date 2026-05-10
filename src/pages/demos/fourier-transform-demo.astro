@@ -1,0 +1,47 @@
+---
+import DemoPageLayout from '../../layouts/DemoPageLayout.astro';
+import FourierTransformDemo from '../../components/demos/FourierTransformDemo';
+import KatexEq from '../../components/ui/KatexEq';
+---
+
+<DemoPageLayout
+  title="Fourier Transform Demo"
+  domain="signal-processing"
+  difficulty="beginner"
+  description="Explore the DFT: build a signal from sinusoids and see its spectrum. Visualize windowing, aliasing, and spectral leakage."
+>
+  <div slot="intro">
+    <p>
+      The Discrete Fourier Transform (DFT) decomposes a finite-length time-domain signal into
+      its frequency components. It is the mathematical foundation of virtually every signal
+      processing system &mdash; from audio codecs to radar receivers.
+    </p>
+    <p>
+      This demo lets you compose a signal from up to three sinusoidal components and observe
+      the resulting spectrum. Apply a window function to see how spectral leakage is reduced.
+    </p>
+  </div>
+
+  <div slot="equations">
+    <KatexEq display={true} client:only="react">
+      {"X[k] = \\sum_{n=0}^{N-1} x[n]\\, e^{-j 2\\pi kn / N}"}
+    </KatexEq>
+    <KatexEq display={true} client:only="react">
+      {"x[n] = \\sum_{i} A_i \\sin\\!\\left(2\\pi f_i n / f_s\\right)"}
+    </KatexEq>
+  </div>
+
+  <FourierTransformDemo client:only="react" />
+
+  <div slot="interpretation">
+    <p>
+      Each sinusoidal component appears as a peak at its frequency. When the signal frequency is not
+      an exact integer multiple of &Delta;f = f&#8337;/N, energy spreads into neighboring bins &mdash;
+      this is <strong>spectral leakage</strong>.
+    </p>
+    <p>
+      Applying a window (Hann, Hamming, Blackman) tapers the signal edges to zero, reducing leakage
+      at the cost of slightly wider peaks (lower frequency resolution).
+    </p>
+  </div>
+</DemoPageLayout>

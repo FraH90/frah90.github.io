@@ -1,0 +1,41 @@
+---
+title: Machine Learning on Signal Data — What Actually Works
+date: 2026-05-10
+category: ml
+description: Practical notes on applying ML to RF and sensor signal data — feature engineering, model selection, and common pitfalls.
+tags: [ml, signal-processing, feature-engineering, pytorch]
+draft: false
+---
+
+Applying machine learning to signal data is different from applying it to images or text.
+Raw signal data is high-dimensional, highly correlated in time, and usually small-dataset.
+Here are things that actually matter in practice.
+
+## Feature Engineering Still Wins
+
+For classification and regression on RF signals, hand-crafted features often outperform
+end-to-end deep learning when data is limited:
+
+- **Spectral features**: FFT magnitude, spectral centroid, bandwidth, peak frequency
+- **Statistical moments**: mean, variance, skewness, kurtosis (in both time and frequency)
+- **Time-frequency**: STFT, Mel spectrogram, wavelet coefficients
+- **Domain-specific**: VSWR, envelope, instantaneous phase/frequency (AM/FM demodulation)
+
+## When Deep Learning Makes Sense
+
+Deep learning works when:
+
+1. You have thousands of labeled examples
+2. The relevant features are hard to specify manually
+3. You can augment data (time shifts, noise injection, frequency jitter)
+
+For modulation classification (AMC), CNNs on IQ data or spectrograms perform well.
+For anomaly detection in RF environments, autoencoders are effective.
+
+## Pitfalls
+
+- **Data leakage through time**: splitting time-series data randomly instead of sequentially
+- **Overfitting to hardware fingerprints**: model learns transmitter quirks, not modulation
+- **Class imbalance**: rare events (interference, jamming) underrepresented in training
+
+Always validate on data collected from a different session or different hardware than training.

@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getAllDemos } from '../../lib/demos';
+
+const demos = await getAllDemos();
+
+const difficultyColors: Record<string, string> = {
+  beginner:     'text-emerald-400',
+  intermediate: 'text-amber-400',
+  advanced:     'text-rose-400',
+};
+---
+
+<BaseLayout title="Interactive Demos — frah90" description="Interactive engineering demos for antennas, RF, photonics, and signal processing.">
+  <div class="max-w-5xl mx-auto px-4 py-16">
+    <h1 class="text-3xl font-bold text-zinc-50 mb-4">Interactive Demos</h1>
+    <p class="text-zinc-400 mb-10">
+      Browser-based simulations with real-time parameter control. All computation runs client-side.
+    </p>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {demos.map(demo => (
+        <a
+          href={`/demos/${demo.id}`}
+          class="border border-zinc-800 rounded-lg p-5 hover:border-zinc-600 transition-colors group flex flex-col gap-3"
+        >
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-mono text-zinc-500">{demo.data.domain}</span>
+            <span class:list={['text-xs font-mono', difficultyColors[demo.data.difficulty] ?? 'text-zinc-400']}>
+              {demo.data.difficulty}
+            </span>
+          </div>
+          <h2 class="text-sm font-semibold text-zinc-200 group-hover:text-emerald-400 transition-colors">
+            {demo.data.title}
+          </h2>
+          <p class="text-xs text-zinc-500 flex-1">{demo.data.description}</p>
+          {demo.data.techStack.length > 0 && (
+            <div class="flex flex-wrap gap-1">
+              {demo.data.techStack.map(t => (
+                <span class="text-[10px] font-mono text-zinc-600 bg-zinc-800 px-1.5 py-0.5 rounded">{t}</span>
+              ))}
+            </div>
+          )}
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

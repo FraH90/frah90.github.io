@@ -1,0 +1,50 @@
+---
+import DemoPageLayout from '../../layouts/DemoPageLayout.astro';
+import ArrayFactorDemo from '../../components/demos/ArrayFactorDemo';
+import KatexEq from '../../components/ui/KatexEq';
+---
+
+<DemoPageLayout
+  title="Array Factor Demo"
+  domain="antennas"
+  difficulty="intermediate"
+  description="Visualize how a linear phased array steers its beam by controlling element count, spacing, and progressive phase shift."
+>
+  <div slot="intro">
+    <p>
+      A phased array antenna consists of N radiating elements arranged in a line with spacing d.
+      By applying a progressive phase shift &beta; between adjacent elements, the beam can be steered
+      electronically &mdash; no mechanical movement required.
+    </p>
+    <p>
+      The <strong>Array Factor</strong> (AF) describes the combined radiation pattern of the array
+      as a function of observation angle &theta;. It depends only on the geometry and phase &mdash; not
+      on the element type itself.
+    </p>
+  </div>
+
+  <div slot="equations">
+    <KatexEq display={true} client:only="react">
+      {"AF(\\theta) = \\frac{1}{N} \\sum_{n=0}^{N-1} e^{\\,j n \\psi}"}
+    </KatexEq>
+    <KatexEq display={true} client:only="react">
+      {"\\psi = kd\\cos\\theta + \\beta, \\qquad k = \\frac{2\\pi}{\\lambda}"}
+    </KatexEq>
+  </div>
+
+  <ArrayFactorDemo client:only="react" dataUrl="/data/array-factor/default.json" />
+
+  <div slot="interpretation">
+    <p>
+      <strong>Increasing N</strong> narrows the main lobe (higher directivity) and reduces sidelobe levels.
+    </p>
+    <p>
+      <strong>Increasing d beyond &lambda;/2</strong> causes grating lobes &mdash; additional main lobes
+      where phase accumulation completes a full 2&pi; cycle.
+    </p>
+    <p>
+      <strong>Phase shift &beta;</strong> steers the main lobe: &beta; = &minus;kd&middot;cos(&theta;&#8320;)
+      points the beam at &theta;&#8320;.
+    </p>
+  </div>
+</DemoPageLayout>

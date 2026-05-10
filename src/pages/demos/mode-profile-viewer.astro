@@ -1,0 +1,47 @@
+---
+import DemoPageLayout from '../../layouts/DemoPageLayout.astro';
+import ModeProfileViewer from '../../components/demos/ModeProfileViewer';
+import KatexEq from '../../components/ui/KatexEq';
+---
+
+<DemoPageLayout
+  title="Optical Mode Profile Viewer"
+  domain="optics"
+  difficulty="advanced"
+  description="Visualize LP mode field distributions in a step-index optical fiber as a function of V-number and mode order."
+>
+  <div slot="intro">
+    <p>
+      Optical fibers guide light through total internal reflection. In a step-index fiber,
+      the guided modes are <strong>LP (Linearly Polarized) modes</strong> &mdash; solutions to the
+      scalar wave equation in cylindrical geometry.
+    </p>
+    <p>
+      The number of guided modes depends on the <strong>V-number</strong> (normalized frequency):
+      V &lt; 2.405 &rarr; single-mode (only LP&#8320;&#8321;). Each mode has a characteristic field
+      distribution described by Bessel functions.
+    </p>
+  </div>
+
+  <div slot="equations">
+    <KatexEq display={true} client:only="react">
+      {"V = \\frac{2\\pi a}{\\lambda} \\sqrt{n_1^2 - n_2^2} = \\frac{2\\pi a}{\\lambda}\\, \\text{NA}"}
+    </KatexEq>
+    <KatexEq display={true} client:only="react">
+      {"E(r) \\propto J_l(u\\,r/a), \\; r \\leq a \\qquad E(r) \\propto K_l(w\\,r/a), \\; r > a"}
+    </KatexEq>
+  </div>
+
+  <ModeProfileViewer client:only="react" />
+
+  <div slot="interpretation">
+    <p>
+      The <strong>LP&#8320;&#8321; mode</strong> (fundamental) has a Gaussian-like intensity profile
+      and exists for all V &gt; 0. Higher-order modes cut in at specific V values.
+    </p>
+    <p>
+      <strong>Single-mode operation</strong> (V &lt; 2.405) eliminates intermodal dispersion &mdash;
+      essential for long-distance telecommunications.
+    </p>
+  </div>
+</DemoPageLayout>

@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About — frah90" description="About FraH — electronics and photonics engineer.">
+  <div class="max-w-3xl mx-auto px-4 py-16">
+    <h1 class="text-3xl font-bold text-zinc-50 mb-8">About</h1>
+
+    <div class="prose prose-invert prose-zinc max-w-none
+      prose-headings:font-mono prose-headings:text-zinc-300
+      prose-p:text-zinc-400 prose-a:text-emerald-400">
+      <p>
+        I'm an engineer working in electronics, photonics, and RF systems.
+        My background spans antenna design and simulation, optical system modeling,
+        transmission line theory, and signal processing.
+      </p>
+      <p>
+        This site is a living document of things I actually understand — not a CV.
+        Each demo and article represents something I've worked through from first principles.
+      </p>
+      <h2>What I do</h2>
+      <ul>
+        <li>Antenna array design and phased array simulation</li>
+        <li>RF circuit analysis and transmission line modeling</li>
+        <li>Photonic and optical system simulation</li>
+        <li>Signal processing, DSP, and spectral analysis</li>
+        <li>Python-based numerical simulation and data pipelines</li>
+      </ul>
+      <h2>Tools I use regularly</h2>
+      <ul>
+        <li>Python (NumPy, SciPy, Matplotlib, Plotly)</li>
+        <li>MATLAB / Octave</li>
+        <li>CST Studio, HFSS</li>
+        <li>LTspice</li>
+        <li>Jupyter notebooks for exploratory analysis</li>
+      </ul>
+    </div>
+
+    <div class="mt-10 flex gap-4">
+      <a href="/cv.pdf" target="_blank" class="text-sm font-mono text-emerald-400 border border-emerald-400/30 px-4 py-2 rounded hover:bg-emerald-400/10 transition-colors">
+        Download CV
+      </a>
+      <a href="https://github.com/FraH90" target="_blank" rel="noopener" class="text-sm font-mono text-zinc-400 border border-zinc-700 px-4 py-2 rounded hover:border-zinc-500 transition-colors">
+        GitHub
+      </a>
+    </div>
+  </div>
+</BaseLayout>
