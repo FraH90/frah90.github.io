@@ -8,6 +8,7 @@ draft: false
 ---
 
 import TransmissionLineDemo from '../../../components/demos/TransmissionLineDemo';
+import InteractiveFrame from '../../../components/ui/InteractiveFrame';
 
 When a transmission line is terminated in a load impedance $Z_L \neq Z_0$, not all the incident
 power is absorbed. The remainder reflects back toward the source, creating a **standing wave** pattern.
@@ -34,7 +35,9 @@ VSWR = 1 means perfect match. VSWR = ∞ means total reflection.
 
 Change the load impedance and line length. Watch the standing wave pattern shift and the VSWR readout update:
 
-<TransmissionLineDemo client:only="react" />
+<InteractiveFrame client:only="react" label="Transmission Line">
+  <TransmissionLineDemo />
+</InteractiveFrame>
 
 ## Special cases
 

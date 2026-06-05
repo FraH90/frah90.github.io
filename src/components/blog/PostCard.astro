@@ -5,10 +5,9 @@ interface Props {
   category: string;
   description: string;
   slug: string;
-  tags: string[];
 }
 
-const { title, date, category, description, slug, tags } = Astro.props;
+const { title, date, category, description, slug } = Astro.props;
 
 const formatted = new Intl.DateTimeFormat('en-US', {
   year: 'numeric', month: 'short', day: 'numeric',
@@ -25,7 +24,7 @@ const categoryColors: Record<string, string> = {
 ---
 
 <article class="border border-zinc-800 rounded-lg p-5 hover:border-zinc-600 transition-colors group">
-  <div class="flex items-center gap-3 mb-2">
+  <div class="flex items-center gap-3 mb-3">
     <a
       href={`/blog/${category}`}
       class:list={['text-xs font-mono hover:underline', categoryColors[category] ?? 'text-zinc-400']}
@@ -34,15 +33,8 @@ const categoryColors: Record<string, string> = {
     </a>
     <time class="text-xs font-mono text-zinc-600">{formatted}</time>
   </div>
-  <h2 class="text-lg font-semibold text-zinc-100 mb-1 group-hover:text-emerald-400 transition-colors">
+  <h2 class="text-base font-semibold text-zinc-100 mb-2 group-hover:text-emerald-400 transition-colors leading-snug">
     <a href={`/blog/${slug}`}>{title}</a>
   </h2>
-  <p class="text-sm text-zinc-400 mb-3">{description}</p>
-  {tags.length > 0 && (
-    <div class="flex flex-wrap gap-1.5">
-      {tags.map(tag => (
-        <span class="text-[10px] font-mono text-zinc-600 bg-zinc-800 px-1.5 py-0.5 rounded">#{tag}</span>
-      ))}
-    </div>
-  )}
+  <p class="text-sm text-zinc-500">{description}</p>
 </article>

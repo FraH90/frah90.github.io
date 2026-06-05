@@ -7,15 +7,25 @@ interface Props {
   onChange: (v: number) => void;
   unit?: string;
   decimals?: number;
+  // Override the displayed min/max labels (e.g. '-π' instead of '-3.14159...')
+  minLabel?: string;
+  maxLabel?: string;
 }
 
-export default function Slider({ label, min, max, step, value, onChange, unit = '', decimals = 2 }: Props) {
+function fmt(v: number, decimals: number, unit: string) {
+  return v.toFixed(decimals) + unit;
+}
+
+export default function Slider({
+  label, min, max, step, value, onChange,
+  unit = '', decimals = 2, minLabel, maxLabel,
+}: Props) {
   return (
     <div className="flex flex-col gap-1">
       <div className="flex justify-between items-baseline">
         <label className="text-xs font-mono text-zinc-400">{label}</label>
         <span className="text-xs font-mono text-emerald-400">
-          {value.toFixed(decimals)}{unit}
+          {fmt(value, decimals, unit)}
         </span>
       </div>
       <input
@@ -33,8 +43,8 @@ export default function Slider({ label, min, max, step, value, onChange, unit = 
           [&::-webkit-slider-thumb]:bg-emerald-400"
       />
       <div className="flex justify-between text-[10px] font-mono text-zinc-600">
-        <span>{min}{unit}</span>
-        <span>{max}{unit}</span>
+        <span>{minLabel ?? fmt(min, decimals, unit)}</span>
+        <span>{maxLabel ?? fmt(max, decimals, unit)}</span>
       </div>
     </div>
   );

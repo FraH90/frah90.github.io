@@ -52,7 +52,8 @@ export default function ArrayFactorDemo({ dataUrl }: Props) {
         <Slider label="Spacing d/λ" min={0.1} max={2.0} step={0.05}
                 value={d} onChange={setD} unit="λ" />
         <Slider label="Phase shift β" min={-Math.PI} max={Math.PI} step={0.05}
-                value={beta} onChange={setBeta} unit=" rad" />
+                value={beta} onChange={setBeta} unit=" rad"
+                minLabel="-π" maxLabel="π" />
       </div>
 
       {/* Info row */}

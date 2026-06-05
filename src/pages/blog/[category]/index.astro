@@ -13,18 +13,36 @@ export async function getStaticPaths() {
 }
 
 const { posts, category } = Astro.props;
+const allCategories = await getAllCategories();
 ---
 
 <BaseLayout
-  title={`${category} — Blog — frah90`}
+  title={`${category} — Writing — frah90`}
   description={`Articles about ${category}.`}
 >
-  <div class="max-w-5xl mx-auto px-4 py-16">
-    <div class="mb-8">
-      <a href="/blog" class="text-xs font-mono text-zinc-500 hover:text-emerald-400 transition-colors">← blog</a>
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <h1 class="text-2xl font-bold text-zinc-50 mb-8">Writing</h1>
+
+    <!-- Category filters with current active -->
+    <div class="flex flex-wrap gap-2 mb-8">
+      <a href="/blog"
+         class="text-xs font-mono px-3 py-1 rounded border border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-zinc-200 transition-colors">
+        all
+      </a>
+      {allCategories.map(cat => (
+        <a
+          href={`/blog/${cat}`}
+          class:list={[
+            'text-xs font-mono px-3 py-1 rounded border transition-colors',
+            cat === category
+              ? 'border-emerald-400/40 bg-emerald-400/10 text-emerald-400'
+              : 'border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-zinc-200',
+          ]}
+        >
+          {cat}
+        </a>
+      ))}
     </div>
-    <h1 class="text-3xl font-bold text-zinc-50 mb-2 font-mono">{category}</h1>
-    <p class="text-zinc-400 mb-10">{posts.length} article{posts.length !== 1 ? 's' : ''}</p>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {posts.map(post => (
@@ -34,7 +52,6 @@ const { posts, category } = Astro.props;
           category={post.data.category}
           description={post.data.description}
           slug={post.id}
-          tags={post.data.tags}
         />
       ))}
     </div>

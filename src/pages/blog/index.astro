@@ -7,21 +7,21 @@ const posts = await getAllPosts();
 const categories = await getAllCategories();
 ---
 
-<BaseLayout title="Blog — frah90" description="Technical articles on antennas, RF, photonics, signal processing, and ML.">
-  <div class="max-w-5xl mx-auto px-4 py-16">
-    <h1 class="text-3xl font-bold text-zinc-50 mb-4">Blog</h1>
-    <p class="text-zinc-400 mb-8">Technical writing on things I actually work with.</p>
+<BaseLayout title="Writing — frah90" description="Technical articles on antennas, RF, photonics, signal processing, and ML.">
+  <div class="max-w-5xl mx-auto px-4 py-12">
+    <h1 class="text-2xl font-bold text-zinc-50 mb-8">Writing</h1>
 
     <!-- Category filters -->
     {categories.length > 0 && (
-      <div class="flex flex-wrap gap-2 mb-10">
-        <a href="/blog" class="text-xs font-mono px-3 py-1 rounded bg-zinc-800 text-zinc-300 hover:bg-zinc-700 transition-colors">
+      <div class="flex flex-wrap gap-2 mb-8">
+        <a href="/blog"
+           class="text-xs font-mono px-3 py-1 rounded border border-emerald-400/40 bg-emerald-400/10 text-emerald-400 transition-colors">
           all
         </a>
         {categories.map(cat => (
           <a
             href={`/blog/${cat}`}
-            class="text-xs font-mono px-3 py-1 rounded bg-zinc-800 text-zinc-400 hover:bg-zinc-700 hover:text-zinc-200 transition-colors"
+            class="text-xs font-mono px-3 py-1 rounded border border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-zinc-200 transition-colors"
           >
             {cat}
           </a>
@@ -42,7 +42,6 @@ const categories = await getAllCategories();
             category={post.data.category}
             description={post.data.description}
             slug={post.id}
-            tags={post.data.tags}
           />
         ))}
       </div>

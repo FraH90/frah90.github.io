@@ -8,6 +8,7 @@ draft: false
 ---
 
 import GaussianBeamDemo from '../../../components/demos/GaussianBeamDemo';
+import InteractiveFrame from '../../../components/ui/InteractiveFrame';
 
 Every single-mode laser beam is a Gaussian beam. Three numbers fully characterize it:
 
@@ -35,7 +36,9 @@ For $|z| \ll z_R$ the beam is approximately collimated. For $|z| \gg z_R$ it div
 
 Sweep $w_0$ and $\lambda$ and watch the beam envelope evolve. Notice how tightening the waist immediately increases divergence:
 
-<GaussianBeamDemo client:only="react" />
+<InteractiveFrame client:only="react" label="Gaussian Beam">
+  <GaussianBeamDemo />
+</InteractiveFrame>
 
 ## Physical intuition
 
