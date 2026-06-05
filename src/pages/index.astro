@@ -8,26 +8,25 @@ const recentPosts = (await getAllPosts()).slice(0, 3);
 const domains = ['Antennas & Arrays', 'Photonics & Optics', 'RF & Transmission Lines', 'Signal Processing & DSP'];
 ---
 
-<BaseLayout title="frah90 — Engineering Portfolio">
+<BaseLayout title="frah90.github.io" description="RF & Photonics Engineer. Technical writing on antennas, RF, optical systems, and signal processing.">
   <div class="max-w-5xl mx-auto px-4">
 
-    <!-- Hero — compact -->
+    <!-- Hero -->
     <section class="pt-14 pb-10">
-      <p class="text-emerald-400 font-mono text-sm mb-2">hi, I'm FraH</p>
-      <h1 class="text-3xl sm:text-5xl font-bold text-zinc-50 leading-tight mb-3">
-        Electronics & Photonics Engineer
+      <h1 class="text-xl sm:text-2xl font-semibold text-zinc-200 mb-1">
+        RF & Photonics Engineer
       </h1>
-      <p class="text-zinc-400 max-w-2xl mb-5">
-        Antennas, RF, photonics, signal processing.
-        Technical articles with embedded interactive simulations.
+      <p class="text-zinc-500 text-sm mb-5">
+        I build things that deal with waves.
       </p>
-      <!-- Domains inline, very subtle -->
-      <div class="flex flex-wrap gap-2">
-        {domains.map(d => (
-          <span class="text-[11px] font-mono text-zinc-600 border border-zinc-800 px-2 py-0.5 rounded">
-            {d}
-          </span>
-        ))}
+      <div class="flex flex-wrap gap-x-4 gap-y-1 text-[11px] font-mono text-zinc-600">
+        <span>Antennas</span>
+        <span>·</span>
+        <span>RF</span>
+        <span>·</span>
+        <span>Photonics</span>
+        <span>·</span>
+        <span>Signal Processing</span>
       </div>
     </section>
 
