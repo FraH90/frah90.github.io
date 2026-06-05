@@ -1,11 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getAllPosts } from '../lib/posts';
-import { getAllDemos } from '../lib/demos';
 import PostCard from '../components/blog/PostCard.astro';
 
 const recentPosts = (await getAllPosts()).slice(0, 3);
-const demos = await getAllDemos();
 
 const domains = ['Antennas & Arrays', 'Photonics & Optics', 'RF & Transmission Lines', 'Signal Processing & DSP'];
 ---
@@ -19,11 +17,11 @@ const domains = ['Antennas & Arrays', 'Photonics & Optics', 'RF & Transmission L
     </h1>
     <p class="text-zinc-400 text-lg max-w-2xl mb-8">
       I work at the intersection of antenna systems, RF engineering, photonics, and signal processing.
-      This site is where I document what I know through interactive demos and technical writing.
+      This site is where I document what I know through interactive technical articles.
     </p>
     <div class="flex flex-wrap gap-3">
-      <a href="/demos" class="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-semibold rounded transition-colors text-sm">
-        Explore Demos
+      <a href="/blog" class="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-semibold rounded transition-colors text-sm">
+        Read Articles
       </a>
       <a href="/about" class="px-5 py-2.5 border border-zinc-700 hover:border-zinc-500 text-zinc-300 hover:text-zinc-100 rounded transition-colors text-sm">
         About Me
@@ -43,35 +41,11 @@ const domains = ['Antennas & Arrays', 'Photonics & Optics', 'RF & Transmission L
     </div>
   </section>
 
-  <!-- Featured Demos -->
-  {demos.length > 0 && (
-    <section class="max-w-5xl mx-auto px-4 py-12 border-t border-zinc-800">
-      <div class="flex items-center justify-between mb-6">
-        <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-500">Interactive Demos</h2>
-        <a href="/demos" class="text-xs font-mono text-emerald-400 hover:underline">view all →</a>
-      </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {demos.slice(0, 3).map(demo => (
-          <a
-            href={`/demos/${demo.id}`}
-            class="border border-zinc-800 rounded-lg p-5 hover:border-zinc-600 transition-colors group"
-          >
-            <span class="text-xs font-mono text-zinc-500 mb-2 block">{demo.data.domain}</span>
-            <h3 class="text-sm font-semibold text-zinc-200 group-hover:text-emerald-400 transition-colors mb-1">
-              {demo.data.title}
-            </h3>
-            <p class="text-xs text-zinc-500">{demo.data.description}</p>
-          </a>
-        ))}
-      </div>
-    </section>
-  )}
-
   <!-- Recent Posts -->
   {recentPosts.length > 0 && (
     <section class="max-w-5xl mx-auto px-4 py-12 border-t border-zinc-800">
       <div class="flex items-center justify-between mb-6">
-        <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-500">Recent Posts</h2>
+        <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-500">Recent Articles</h2>
         <a href="/blog" class="text-xs font-mono text-emerald-400 hover:underline">view all →</a>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
