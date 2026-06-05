@@ -22,20 +22,12 @@ const domains = ['Antennas & Arrays', 'Photonics & Optics', 'RF & Transmission L
         Technical articles with embedded interactive simulations.
       </p>
       <!-- Domains inline, very subtle -->
-      <div class="flex flex-wrap gap-2 mb-5">
+      <div class="flex flex-wrap gap-2">
         {domains.map(d => (
           <span class="text-[11px] font-mono text-zinc-600 border border-zinc-800 px-2 py-0.5 rounded">
             {d}
           </span>
         ))}
-      </div>
-      <div class="flex flex-wrap gap-3">
-        <a href="/blog" class="px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-semibold rounded transition-colors text-sm">
-          Read Articles
-        </a>
-        <a href="/about" class="px-4 py-2 border border-zinc-700 hover:border-zinc-500 text-zinc-400 hover:text-zinc-100 rounded transition-colors text-sm">
-          About
-        </a>
       </div>
     </section>
 
