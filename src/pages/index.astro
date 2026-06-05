@@ -9,57 +9,57 @@ const domains = ['Antennas & Arrays', 'Photonics & Optics', 'RF & Transmission L
 ---
 
 <BaseLayout title="frah90 — Engineering Portfolio">
-  <!-- Hero -->
-  <section class="max-w-5xl mx-auto px-4 pt-20 pb-16">
-    <p class="text-emerald-400 font-mono text-sm mb-3">hi, I'm FraH</p>
-    <h1 class="text-4xl sm:text-6xl font-bold text-zinc-50 leading-tight mb-6">
-      Electronics &<br />Photonics Engineer
-    </h1>
-    <p class="text-zinc-400 text-lg max-w-2xl mb-8">
-      I work at the intersection of antenna systems, RF engineering, photonics, and signal processing.
-      This site is where I document what I know through interactive technical articles.
-    </p>
-    <div class="flex flex-wrap gap-3">
-      <a href="/blog" class="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-semibold rounded transition-colors text-sm">
-        Read Articles
-      </a>
-      <a href="/about" class="px-5 py-2.5 border border-zinc-700 hover:border-zinc-500 text-zinc-300 hover:text-zinc-100 rounded transition-colors text-sm">
-        About Me
-      </a>
-    </div>
-  </section>
+  <div class="max-w-5xl mx-auto px-4">
 
-  <!-- Domains -->
-  <section class="max-w-5xl mx-auto px-4 py-12 border-t border-zinc-800">
-    <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-6">Domains</h2>
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-      {domains.map(d => (
-        <div class="border border-zinc-800 rounded-lg p-4 text-sm text-zinc-300 font-mono hover:border-zinc-600 transition-colors">
-          {d}
-        </div>
-      ))}
-    </div>
-  </section>
-
-  <!-- Recent Posts -->
-  {recentPosts.length > 0 && (
-    <section class="max-w-5xl mx-auto px-4 py-12 border-t border-zinc-800">
-      <div class="flex items-center justify-between mb-6">
-        <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-500">Recent Articles</h2>
-        <a href="/blog" class="text-xs font-mono text-emerald-400 hover:underline">view all →</a>
-      </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {recentPosts.map(post => (
-          <PostCard
-            title={post.data.title}
-            date={post.data.date}
-            category={post.data.category}
-            description={post.data.description}
-            slug={post.id}
-            tags={post.data.tags}
-          />
+    <!-- Hero — compact -->
+    <section class="pt-14 pb-10">
+      <p class="text-emerald-400 font-mono text-sm mb-2">hi, I'm FraH</p>
+      <h1 class="text-3xl sm:text-5xl font-bold text-zinc-50 leading-tight mb-3">
+        Electronics & Photonics Engineer
+      </h1>
+      <p class="text-zinc-400 max-w-2xl mb-5">
+        Antennas, RF, photonics, signal processing.
+        Technical articles with embedded interactive simulations.
+      </p>
+      <!-- Domains inline, very subtle -->
+      <div class="flex flex-wrap gap-2 mb-5">
+        {domains.map(d => (
+          <span class="text-[11px] font-mono text-zinc-600 border border-zinc-800 px-2 py-0.5 rounded">
+            {d}
+          </span>
         ))}
       </div>
+      <div class="flex flex-wrap gap-3">
+        <a href="/blog" class="px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-semibold rounded transition-colors text-sm">
+          Read Articles
+        </a>
+        <a href="/about" class="px-4 py-2 border border-zinc-700 hover:border-zinc-500 text-zinc-400 hover:text-zinc-100 rounded transition-colors text-sm">
+          About
+        </a>
+      </div>
     </section>
-  )}
+
+    <!-- Recent Articles -->
+    {recentPosts.length > 0 && (
+      <section class="border-t border-zinc-800 pt-10 pb-16">
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-500">Recent Articles</h2>
+          <a href="/blog" class="text-xs font-mono text-emerald-400 hover:underline">view all →</a>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {recentPosts.map(post => (
+            <PostCard
+              title={post.data.title}
+              date={post.data.date}
+              category={post.data.category}
+              description={post.data.description}
+              slug={post.id}
+              tags={post.data.tags}
+            />
+          ))}
+        </div>
+      </section>
+    )}
+
+  </div>
 </BaseLayout>
