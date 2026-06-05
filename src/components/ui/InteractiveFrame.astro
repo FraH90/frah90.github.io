@@ -1,0 +1,16 @@
+---
+interface Props {
+  label?: string;
+}
+const { label = 'Interactive' } = Astro.props;
+---
+
+<div class="not-prose my-8 rounded-xl border border-zinc-800 bg-zinc-900/60 overflow-hidden">
+  <div class="border-b border-zinc-800 px-4 py-2 flex items-center gap-2">
+    <span class="w-2 h-2 rounded-full bg-emerald-400/60"></span>
+    <span class="text-[11px] font-mono text-zinc-500 uppercase tracking-widest">{label}</span>
+  </div>
+  <div class="p-5">
+    <slot />
+  </div>
+</div>

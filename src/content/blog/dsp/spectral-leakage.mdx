@@ -8,7 +8,7 @@ draft: false
 ---
 
 import FourierTransformDemo from '../../../components/demos/FourierTransformDemo';
-import InteractiveFrame from '../../../components/ui/InteractiveFrame';
+import InteractiveFrame from '../../../components/ui/InteractiveFrame.astro';
 
 The DFT assumes the $N$-point signal is one period of an infinitely periodic sequence.
 When the signal frequency is not an exact integer multiple of $\Delta f = f_s / N$,
@@ -29,8 +29,8 @@ adjacent bins through these sidelobes.
 
 Set three sinusoidal components and switch between window types. Notice how the rectangular window leaks badly when a frequency sits between bins, and how Hann/Blackman suppresses the sidelobes at the cost of wider peaks:
 
-<InteractiveFrame client:only="react" label="Fourier Transform">
-  <FourierTransformDemo />
+<InteractiveFrame label="Fourier Transform">
+  <FourierTransformDemo client:only="react" />
 </InteractiveFrame>
 
 ## The window trade-off

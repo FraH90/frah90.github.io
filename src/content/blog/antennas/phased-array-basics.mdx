@@ -8,7 +8,7 @@ draft: false
 ---
 
 import ArrayFactorDemo from '../../../components/demos/ArrayFactorDemo';
-import InteractiveFrame from '../../../components/ui/InteractiveFrame';
+import InteractiveFrame from '../../../components/ui/InteractiveFrame.astro';
 
 A phased array antenna achieves beam steering by exploiting constructive and destructive
 interference between multiple radiating elements. Each element transmits (or receives) the
@@ -29,8 +29,8 @@ $$\theta_0 = \arccos\!\left(-\frac{\beta}{kd}\right)$$
 
 Try changing $N$, spacing $d/\lambda$, and phase shift $\beta$ below and watch how the pattern responds:
 
-<InteractiveFrame client:only="react" label="Array Factor">
-  <ArrayFactorDemo />
+<InteractiveFrame label="Array Factor">
+  <ArrayFactorDemo client:only="react" />
 </InteractiveFrame>
 
 ## What to observe
