@@ -7,27 +7,41 @@ tags: [antennas, phased-array, beamforming]
 draft: false
 ---
 
-A phased array antenna achieves beam steering by exploiting constructive and destructive interference between multiple radiating elements.
-Each element transmits (or receives) the same signal, but with a controlled phase offset applied between adjacent elements.
+import ArrayFactorDemo from '../../../components/demos/ArrayFactorDemo';
+
+A phased array antenna achieves beam steering by exploiting constructive and destructive
+interference between multiple radiating elements. Each element transmits (or receives) the
+same signal, but with a controlled phase offset applied between adjacent elements.
 
 ## The Array Factor
 
-For a uniform linear array of $N$ elements with spacing $d$ and progressive phase shift $\beta$:
+For a uniform linear array of $N$ elements with spacing $d$ and progressive phase shift $\beta$,
+the combined radiation pattern is:
 
 $$AF(\theta) = \frac{1}{N} \sum_{n=0}^{N-1} e^{\,j n \psi}, \quad \psi = kd\cos\theta + \beta$$
 
-where $k = 2\pi/\lambda$ is the wavenumber.
-
-The main lobe points in the direction $\theta_0$ where $\psi = 0$:
+where $k = 2\pi/\lambda$ is the wavenumber. The main lobe points at the angle $\theta_0$ where $\psi = 0$:
 
 $$\theta_0 = \arccos\!\left(-\frac{\beta}{kd}\right)$$
 
-## Key Trade-offs
+## Play with it
+
+Try changing $N$, spacing $d/\lambda$, and phase shift $\beta$ below and watch how the pattern responds:
+
+<ArrayFactorDemo client:only="react" />
+
+## What to observe
+
+**Element count $N$** — more elements means a narrower main lobe and lower sidelobes. The 3 dB beamwidth scales roughly as $102° / (N \cdot d/\lambda)$.
+
+**Spacing $d > \lambda/2$** — grating lobes appear. These are full-strength secondary beams at other angles, a fundamental consequence of spatial aliasing. In most systems you want $d \leq \lambda/2$.
+
+**Phase shift $\beta$** — this is beam steering. Setting $\beta = -kd\cos\theta_0$ points the main lobe at $\theta_0$. At $d = \lambda/2$, you can steer across the full visible range without grating lobes.
+
+## Key trade-offs
 
 | Parameter | Effect |
 |---|---|
-| Increase N | Narrower beam, lower sidelobes |
-| Increase d beyond λ/2 | Grating lobes appear |
-| Increase \|β\| | Beam steers toward endfire |
-
-The interactive demo on this site lets you explore these relationships in real time.
+| Increase $N$ | Narrower beam, lower sidelobes, more hardware |
+| Increase $d$ beyond $\lambda/2$ | Grating lobes appear |
+| Increase $\|\beta\|$ | Beam steers toward endfire ($\theta = 0°$ or $180°$) |

@@ -7,6 +7,8 @@ tags: [optics, laser, gaussian-beam, photonics]
 draft: false
 ---
 
+import GaussianBeamDemo from '../../../components/demos/GaussianBeamDemo';
+
 Every single-mode laser beam is a Gaussian beam. Three numbers fully characterize it:
 
 1. **Beam waist** $w_0$ — the minimum spot radius (at the focal plane)
@@ -19,17 +21,24 @@ $$z_R = \frac{\pi w_0^2}{\lambda}, \qquad \theta \approx \frac{\lambda}{\pi w_0}
 
 ## The Fundamental Trade-off
 
-$w_0 \cdot \theta = \lambda / \pi$ is a constant. This is the diffraction limit:
-**smaller focus → faster divergence, always**.
-
-There is no way around this. It is a consequence of the wave nature of light,
-not a limitation of lens quality.
+$w_0 \cdot \theta = \lambda / \pi$ is a constant — the diffraction limit. **Smaller focus → faster divergence, always.** This is a consequence of the wave nature of light, not a limitation of lens quality.
 
 ## Beam Evolution
 
+The beam radius at any point along the propagation axis is:
+
 $$w(z) = w_0 \sqrt{1 + \left(\frac{z}{z_R}\right)^2}$$
 
-For $|z| \ll z_R$: beam is approximately collimated.
-For $|z| \gg z_R$: beam diverges linearly with angle $\theta$.
+For $|z| \ll z_R$ the beam is approximately collimated. For $|z| \gg z_R$ it diverges linearly at angle $\theta$.
 
-The [Gaussian Beam Demo](/demos/gaussian-beam-demo) lets you sweep $w_0$ and $\lambda$ and watch the envelope evolve.
+## Play with it
+
+Sweep $w_0$ and $\lambda$ and watch the beam envelope evolve. Notice how tightening the waist immediately increases divergence:
+
+<GaussianBeamDemo client:only="react" />
+
+## Physical intuition
+
+The Rayleigh range $z_R$ is the key quantity to internalize. It tells you how long your beam stays "focused" before it starts spreading significantly. A short-wavelength, large-waist beam has a long $z_R$ — this is why collimated laser beams at 532 nm can travel meters before visibly spreading.
+
+For fiber coupling, the waist must match the fiber mode field diameter (~5–10 µm for SMF-28), which sets a tight constraint on the focusing optics and alignment tolerances.

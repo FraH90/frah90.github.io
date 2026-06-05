@@ -7,16 +7,22 @@ tags: [rf, transmission-line, impedance, vswr]
 draft: false
 ---
 
-When a transmission line is terminated in a load impedance $Z_L \neq Z_0$, not all the incident power is absorbed by the load.
-The remainder is reflected back toward the source, creating a **standing wave** along the line.
+import TransmissionLineDemo from '../../../components/demos/TransmissionLineDemo';
+
+When a transmission line is terminated in a load impedance $Z_L \neq Z_0$, not all the incident
+power is absorbed. The remainder reflects back toward the source, creating a **standing wave** pattern.
 
 ## Reflection Coefficient
 
-The voltage reflection coefficient at the load is:
+The voltage reflection coefficient at the load:
 
 $$\Gamma_L = \frac{Z_L - Z_0}{Z_L + Z_0}$$
 
 $|\Gamma_L|$ ranges from 0 (perfect match) to 1 (total reflection — short or open circuit).
+
+The voltage along the line is the superposition of incident and reflected waves:
+
+$$V(z) = V^+\!\left(e^{-j\beta z} + \Gamma_L\, e^{+j\beta z}\right)$$
 
 ## Voltage Standing Wave Ratio
 
@@ -24,10 +30,17 @@ $$\text{VSWR} = \frac{1 + |\Gamma_L|}{1 - |\Gamma_L|}$$
 
 VSWR = 1 means perfect match. VSWR = ∞ means total reflection.
 
-## Special Cases
+## Play with it
 
-- **Matched load** ($Z_L = Z_0$): $\Gamma = 0$, no standing waves, all power delivered.
-- **Short circuit** ($Z_L = 0$): $\Gamma = -1$, voltage null at the load.
-- **Open circuit** ($Z_L \to \infty$): $\Gamma = +1$, voltage maximum at the load.
+Change the load impedance and line length. Watch the standing wave pattern shift and the VSWR readout update:
 
-Use the [Transmission Line Demo](/demos/transmission-line-demo) to see these patterns interactively.
+<TransmissionLineDemo client:only="react" />
+
+## Special cases
+
+- **Matched** ($Z_L = Z_0$): $\Gamma = 0$, flat voltage profile, all power delivered.
+- **Short circuit** ($Z_L = 0$): $\Gamma = -1$, voltage null at the load, current maximum.
+- **Open circuit** ($Z_L \to \infty$): $\Gamma = +1$, voltage maximum at the load, current null.
+
+The distance between adjacent voltage minima is always $\lambda/2$, regardless of load.
+A voltage minimum is located $\lambda/4$ from a short-circuit termination — this is the basis of the quarter-wave transformer.

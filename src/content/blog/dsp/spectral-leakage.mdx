@@ -7,31 +7,40 @@ tags: [dsp, fft, windowing, spectral-leakage]
 draft: false
 ---
 
+import FourierTransformDemo from '../../../components/demos/FourierTransformDemo';
+
 The DFT assumes the $N$-point signal is one period of an infinitely periodic sequence.
-When the signal frequency is not an integer multiple of $\Delta f = f_s / N$, the assumption is violated
-and energy "leaks" from the true frequency bin into neighboring bins. This is **spectral leakage**.
+When the signal frequency is not an exact integer multiple of $\Delta f = f_s / N$,
+this assumption is violated and energy "leaks" from the true frequency bin into neighboring bins.
+This is **spectral leakage**.
 
 ## Why It Happens
 
-Multiplying a signal by a rectangular window (selecting $N$ samples) is equivalent to convolving the
-spectrum with a sinc function:
+Selecting $N$ samples is equivalent to multiplying an infinite signal by a rectangular window.
+In the frequency domain, multiplication becomes convolution with the window's spectrum — a sinc function:
 
-$$W_{\text{rect}}(f) = \frac{\sin(\pi f N / f_s)}{\sin(\pi f / f_s)}$$
+$$W_\text{rect}(f) = \frac{\sin(\pi f N / f_s)}{\sin(\pi f / f_s)}$$
 
-The sinc has high sidelobes (−13 dB first sidelobe). Any spectral component leaks into adjacent bins
-via these sidelobes.
+The sinc has high sidelobes (first sidelobe at −13 dB). Any spectral component leaks into
+adjacent bins through these sidelobes.
 
-## Windowing as the Fix
+## Play with it
 
-A window function $w[n]$ tapers the signal to zero at the edges before taking the DFT:
+Set three sinusoidal components and switch between window types. Notice how the rectangular window leaks badly when a frequency sits between bins, and how Hann/Blackman suppresses the sidelobes at the cost of wider peaks:
 
-| Window | 1st Sidelobe | Main Lobe Width |
+<FourierTransformDemo client:only="react" />
+
+## The window trade-off
+
+| Window | First sidelobe | Main lobe width |
 |---|---|---|
 | Rectangular | −13 dB | $2/N$ |
 | Hann | −32 dB | $4/N$ |
 | Hamming | −43 dB | $4/N$ |
 | Blackman | −58 dB | $6/N$ |
 
-The trade-off: better sidelobe suppression always comes with a wider main lobe (lower frequency resolution).
+Better sidelobe suppression always costs main lobe width — you cannot have both. Choose based on whether you care more about resolving closely-spaced frequencies (use rectangular or Hann) or detecting weak signals next to strong ones (use Blackman).
 
-Try the [Fourier Transform Demo](/demos/fourier-transform-demo) to see this effect live.
+## Practical rule
+
+If your signal frequency is known to sit exactly on a DFT bin, windowing adds nothing. In practice it rarely does, so windowing is almost always worth it. Hann is the default choice for most applications.
