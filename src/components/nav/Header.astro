@@ -2,7 +2,7 @@
 const navLinks = [
   { href: '/',         label: 'Home'     },
   { href: '/projects', label: 'Projects' },
-  { href: '/blog',     label: 'Writing'  },
+  { href: '/blog',     label: 'Blog'     },
   { href: '/about',    label: 'About'    },
 ];
 
@@ -12,10 +12,7 @@ const isActive = (href: string) =>
 ---
 
 <header class="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur border-b border-zinc-900">
-  <nav class="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
-    <a href="/" class="text-sm text-zinc-400 hover:text-zinc-100 transition-colors" style="font-family: 'Lora', Georgia, serif; font-style: italic;">
-      fh
-    </a>
+  <nav class="max-w-4xl mx-auto px-6 h-14 flex items-center">
     <ul class="hidden sm:flex items-center gap-6">
       {navLinks.map(({ href, label }) => (
         <li>
