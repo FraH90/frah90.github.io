@@ -14,11 +14,11 @@ const categoryColors: Record<string, string> = {
 };
 
 const fmt = (date: Date) =>
-  new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(date);
+  new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short' }).format(date);
 ---
 
 <BaseLayout title="frah90" description="RF & Photonics Engineer. Technical writing on antennas, RF, optical systems, and signal processing.">
-  <div class="max-w-3xl mx-auto px-6">
+  <div class="max-w-4xl mx-auto px-6">
 
     <!-- Hero -->
     <section class="pt-12 pb-10 border-b border-zinc-900">
@@ -37,19 +37,19 @@ const fmt = (date: Date) =>
         <ul class="space-y-0">
           {recentPosts.map((post, i) => (
             <li class={i > 0 ? 'border-t border-zinc-900' : ''}>
-              <a href={`/blog/${post.id}`} class="group flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-6 py-6">
-                <div class="flex-1 min-w-0">
-                  <h2 class="text-xl text-zinc-200 group-hover:text-zinc-50 transition-colors leading-snug mb-1.5"
+              <a href={`/blog/${post.id}`} class="group flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 sm:gap-12 py-5">
+                <div class="min-w-0 max-w-xl">
+                  <h2 class="text-lg text-zinc-200 group-hover:text-zinc-50 transition-colors leading-snug mb-1.5"
                     style="font-family: 'Lora', Georgia, serif; font-weight: 400;">
                     {post.data.title}
                   </h2>
                   <p class="text-sm text-zinc-600 leading-relaxed">{post.data.description}</p>
                 </div>
                 <div class="flex sm:flex-col items-center sm:items-end gap-3 sm:gap-1 shrink-0">
-                  <span class:list={['text-xs font-mono', categoryColors[post.data.category] ?? 'text-zinc-500']}>
+                  <span class:list={['text-xs font-mono text-zinc-400', categoryColors[post.data.category] ?? 'text-zinc-400']}>
                     {post.data.category}
                   </span>
-                  <time class="text-xs text-zinc-700 tabular-nums">{fmt(post.data.date)}</time>
+                  <time class="text-xs text-zinc-600 tabular-nums">{fmt(post.data.date)}</time>
                 </div>
               </a>
             </li>
