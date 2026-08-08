@@ -26,42 +26,42 @@ const categoryColors: Record<string, string> = {
 ---
 
 <BaseLayout title={`${title} — frah90`} description={description}>
-  <article class="max-w-3xl mx-auto px-4 py-12">
-    <header class="mb-10 pb-8 border-b border-zinc-800/60">
-      <div class="flex items-center gap-2 mb-3">
+  <article class="max-w-3xl mx-auto px-6 py-16">
+    <header class="mb-12 pb-10 border-b border-zinc-900">
+      <div class="flex items-center gap-3 mb-6">
         <a
           href={`/blog/${category}`}
-          class:list={['text-[11px] font-mono px-1.5 py-0.5 rounded', categoryColors[category] ?? categoryColors.misc]}
+          class:list={['text-xs font-mono', categoryColors[category] ?? categoryColors.misc]}
         >
           {category}
         </a>
-        <span class="text-zinc-700">·</span>
-        <time class="text-[11px] text-zinc-600 font-mono">{formatted}</time>
+        <span class="text-zinc-800">·</span>
+        <time class="text-xs text-zinc-600">{formatted}</time>
       </div>
-      <h1 class="text-2xl sm:text-3xl font-bold text-zinc-50 leading-snug mb-2">{title}</h1>
-      <p class="text-sm text-zinc-500 leading-relaxed border-l-2 border-zinc-700 pl-3 italic">
+      <h1 class="text-3xl sm:text-4xl text-zinc-100 leading-tight mb-4"
+        style="font-family: 'Lora', Georgia, serif; font-weight: 400;">
+        {title}
+      </h1>
+      <p class="text-base text-zinc-500 leading-relaxed" style="font-family: 'Lora', Georgia, serif; font-style: italic;">
         {description}
       </p>
-      {tags.length > 0 && (
-        <div class="flex flex-wrap gap-1.5 mt-4">
-          {tags.map(tag => (
-            <span class="text-[10px] font-mono text-zinc-700 px-1.5 py-0.5 rounded border border-zinc-800">#{tag}</span>
-          ))}
-        </div>
-      )}
     </header>
 
     <div class="prose prose-invert prose-zinc max-w-none
-      prose-headings:font-mono prose-headings:text-zinc-100
+      prose-headings:text-zinc-100
+      prose-p:text-zinc-300 prose-p:leading-relaxed
       prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:underline
-      prose-code:text-emerald-300 prose-code:bg-zinc-800 prose-code:px-1 prose-code:rounded
-      prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-zinc-800">
+      prose-code:text-emerald-300 prose-code:bg-zinc-800/80 prose-code:px-1.5 prose-code:rounded prose-code:text-sm
+      prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-zinc-800
+      prose-strong:text-zinc-200
+      prose-li:text-zinc-300"
+      style="font-family: 'Lora', Georgia, serif;">
       <slot />
     </div>
 
-    <div class="mt-12 pt-8 border-t border-zinc-800">
-      <a href="/blog" class="text-sm font-mono text-zinc-500 hover:text-emerald-400 transition-colors">
-        ← back to blog
+    <div class="mt-16 pt-8 border-t border-zinc-900">
+      <a href="/blog" class="text-sm text-zinc-500 hover:text-zinc-200 transition-colors">
+        ← Writing
       </a>
     </div>
   </article>

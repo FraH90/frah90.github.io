@@ -1,53 +1,60 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getAllPosts } from '../lib/posts';
-import PostCard from '../components/blog/PostCard.astro';
 
-const recentPosts = (await getAllPosts()).slice(0, 3);
+const recentPosts = (await getAllPosts()).slice(0, 5);
 
-const domains = ['Antennas & Arrays', 'Photonics & Optics', 'RF & Transmission Lines', 'Signal Processing & DSP'];
+const categoryColors: Record<string, string> = {
+  antennas: 'text-zinc-500',
+  ml:       'text-zinc-500',
+  rf:       'text-zinc-500',
+  optics:   'text-zinc-500',
+  dsp:      'text-zinc-500',
+  misc:     'text-zinc-500',
+};
+
+const fmt = (date: Date) =>
+  new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(date);
 ---
 
-<BaseLayout title="frah90.github.io" description="RF & Photonics Engineer. Technical writing on antennas, RF, optical systems, and signal processing.">
-  <div class="max-w-5xl mx-auto px-4">
+<BaseLayout title="frah90" description="RF & Photonics Engineer. Technical writing on antennas, RF, optical systems, and signal processing.">
+  <div class="max-w-3xl mx-auto px-6">
 
     <!-- Hero -->
-    <section class="pt-14 pb-10">
-      <h1 class="text-xl sm:text-2xl font-semibold text-zinc-200 mb-1">
-        RF & Photonics Engineer
-      </h1>
-      <p class="text-zinc-500 text-sm mb-5">
-        Building and experimenting with things that deal with waves.
-      </p>
-      <div class="flex flex-wrap gap-x-4 gap-y-1 text-[11px] font-mono text-zinc-600">
-        <span>Antennas</span>
-        <span>·</span>
-        <span>RF</span>
-        <span>·</span>
-        <span>Photonics</span>
-        <span>·</span>
-        <span>Signal Processing</span>
-      </div>
+    <section class="pt-12 pb-10 border-b border-zinc-900">
+      <p class="text-sm text-zinc-300 mb-1">RF &amp; Photonics Engineer</p>
+      <p class="text-sm text-zinc-600">Antennas · RF · Photonics · Signal Processing</p>
     </section>
 
-    <!-- Recent Articles -->
+    <!-- Recent Writing -->
     {recentPosts.length > 0 && (
-      <section class="border-t border-zinc-800 pt-10 pb-16">
-        <div class="flex items-center justify-between mb-6">
-          <h2 class="text-xs font-mono uppercase tracking-widest text-zinc-500">Recent Articles</h2>
-          <a href="/blog" class="text-xs font-mono text-emerald-400 hover:underline">view all →</a>
+      <section class="py-14">
+        <div class="flex items-center justify-between mb-8">
+          <span class="text-xs uppercase tracking-widest text-zinc-600" style="letter-spacing: 0.12em;">Recent</span>
+          <a href="/blog" class="text-sm text-zinc-500 hover:text-zinc-200 transition-colors">All writing →</a>
         </div>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {recentPosts.map(post => (
-            <PostCard
-              title={post.data.title}
-              date={post.data.date}
-              category={post.data.category}
-              description={post.data.description}
-              slug={post.id}
-            />
+
+        <ul class="space-y-0">
+          {recentPosts.map((post, i) => (
+            <li class={i > 0 ? 'border-t border-zinc-900' : ''}>
+              <a href={`/blog/${post.id}`} class="group flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-6 py-6">
+                <div class="flex-1 min-w-0">
+                  <h2 class="text-xl text-zinc-200 group-hover:text-zinc-50 transition-colors leading-snug mb-1.5"
+                    style="font-family: 'Lora', Georgia, serif; font-weight: 400;">
+                    {post.data.title}
+                  </h2>
+                  <p class="text-sm text-zinc-600 leading-relaxed">{post.data.description}</p>
+                </div>
+                <div class="flex sm:flex-col items-center sm:items-end gap-3 sm:gap-1 shrink-0">
+                  <span class:list={['text-xs font-mono', categoryColors[post.data.category] ?? 'text-zinc-500']}>
+                    {post.data.category}
+                  </span>
+                  <time class="text-xs text-zinc-700 tabular-nums">{fmt(post.data.date)}</time>
+                </div>
+              </a>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
     )}
 

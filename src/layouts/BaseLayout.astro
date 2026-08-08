@@ -34,11 +34,14 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <title>{title}</title>
   </head>
-  <body class="bg-zinc-950 text-zinc-100 min-h-screen flex flex-col">
+  <body class="bg-zinc-950 text-zinc-100 min-h-screen flex flex-col" style="font-family: 'Inter', system-ui, sans-serif;">
     <Header />
     <main class="flex-1">
       <slot />
