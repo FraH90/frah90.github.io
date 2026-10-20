@@ -1,0 +1,342 @@
+{
+  "$schema": "../../schema/roadmap.v2.json",
+  "version": 2,
+  "kind": "roadmap",
+  "order": 0,
+  "id": "r-261020-01-scientific-blog-foundation",
+  "title": "Scientific blog foundation and professional reading experience",
+  "why": "Create a content-first scientific and technical blog with consistent navigation, rigorous figures and articles, accessible reading, discovery, and an honest interdisciplinary author profile.",
+  "from_idea": "i-261020-01-content-first-scientific-blog",
+  "status": "active",
+  "primary": true,
+  "done_when": "All phases meet their acceptance criteria, publishing outputs exclude drafts, existing article links remain valid, and representative articles pass desktop/mobile, keyboard, theme, and scientific-content checks.",
+  "success_metrics": [
+    "One shared topic vocabulary and consistent listing/navigation behavior across the site.",
+    "Representative articles support figures, math, collapsed contents, both themes, and useful failure behavior on mobile and desktop.",
+    "Search, RSS, related reading, and sitemap expose only eligible published content.",
+    "About communicates confirmed background and interests without fabricated expertise; no missing public asset links remain."
+  ],
+  "kill_conditions": [
+    "Stop and revise an implementation that hides the writing behind a portfolio presentation or invents professional experience.",
+    "Re-scope if a feature requires infrastructure beyond static GitHub Pages without a demonstrated need."
+  ],
+  "created_at": "2026-10-20",
+  "closed_at": null,
+  "phases": [
+    {
+      "id": "r-261020-01-scientific-blog-foundation-p0",
+      "title": "Project contract and structured planning",
+      "status": "done",
+      "useful_alone": "Future work follows one documented direction and a compatible LifeOS ledger.",
+      "done_when": "Mirrored instruction files, architecture/editorial guidance, interest notes, and schema-valid ledger bundles exist and are readable by LifeOS.",
+      "closed_at": "2026-10-20",
+      "depends_on": [],
+      "items": [
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p0-1",
+          "text": "Record the owner decisions, boundaries, and scientific editorial standard.",
+          "status": "done",
+          "kind": "decision",
+          "closed_at": "2026-10-20",
+          "evidence": [
+            {
+              "kind": "document",
+              "value": "CLAUDE.md and AGENTS.md; docs/architecture.md; docs/editorial.md; .work/README.md; research/README.md. Ledger schema/reader validation is recorded in Working notes."
+            },
+            {
+              "kind": "observation",
+              "value": "2026-10-20: all 7 ledger JSON data files passed vendored JSON Schema validation; LifeOS read/validate and next-item selection passed; JSON format, source provenance, 11 relative Markdown links, and identical CLAUDE.md/AGENTS.md passed checks."
+            }
+          ]
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p0-2",
+          "text": "Adopt ledger v2, capture deferred ideas/proposals, and separate unpublished research interests.",
+          "status": "done",
+          "kind": "decision",
+          "closed_at": "2026-10-20",
+          "evidence": [
+            {
+              "kind": "document",
+              "value": "CLAUDE.md and AGENTS.md; docs/architecture.md; docs/editorial.md; .work/README.md; research/README.md. Ledger schema/reader validation is recorded in Working notes."
+            },
+            {
+              "kind": "observation",
+              "value": "2026-10-20: all 7 ledger JSON data files passed vendored JSON Schema validation; LifeOS read/validate and next-item selection passed; JSON format, source provenance, 11 relative Markdown links, and identical CLAUDE.md/AGENTS.md passed checks."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "r-261020-01-scientific-blog-foundation-p1",
+      "title": "Consistent topics and usable navigation",
+      "status": "todo",
+      "useful_alone": "Readers can understand topics and navigate on mobile without broken destinations.",
+      "done_when": "One topic registry drives schema and presentation; writing/topic pages share chrome; mobile and keyboard navigation work; missing asset links are resolved or hidden; existing article URLs remain valid.",
+      "depends_on": [],
+      "items": [
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p1-1",
+          "text": "Inspect current route/link behavior and settle the writing-led entry route and initial topic labels.",
+          "status": "todo",
+          "kind": "decision",
+          "evidence": []
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p1-2",
+          "text": "Introduce shared topic metadata and publication eligibility; replace duplicated category maps and inconsistent list/filter layouts.",
+          "status": "todo",
+          "kind": "build",
+          "evidence": []
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p1-3",
+          "text": "Add clear site/home identity, accessible current-page state, and usable mobile navigation; remove empty destinations and conditionally hide missing CV links.",
+          "status": "todo",
+          "kind": "build",
+          "evidence": []
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p1-4",
+          "text": "Resolve missing social preview assets and make card click targets match their interaction treatment.",
+          "status": "todo",
+          "kind": "build",
+          "evidence": []
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p1-5",
+          "text": "Verify routes, draft exclusion, filters, link targets, narrow-screen layout, and keyboard navigation.",
+          "status": "todo",
+          "kind": "validation",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "r-261020-01-scientific-blog-foundation-p2",
+      "title": "Readable design and theme choice",
+      "status": "todo",
+      "useful_alone": "Articles and figures are comfortable to read in either theme.",
+      "done_when": "Dark is initial default; explicit light/dark choice persists without a flash; typography, contrast, figures, equations, code, and controls work across themes and screen sizes.",
+      "depends_on": [
+        "r-261020-01-scientific-blog-foundation-p1"
+      ],
+      "items": [
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p2-1",
+          "text": "Create shared color/type/spacing/width tokens and harmonize site/list/article layouts.",
+          "status": "todo",
+          "kind": "build",
+          "evidence": []
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p2-2",
+          "text": "Implement an accessible persisted theme switch with early initialization and theme-aware scientific visualizations.",
+          "status": "todo",
+          "kind": "build",
+          "evidence": []
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p2-3",
+          "text": "Check contrast, focus visibility, controls, long titles, prose widths, and figure/table/math overflow in both themes on mobile and desktop.",
+          "status": "todo",
+          "kind": "validation",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "r-261020-01-scientific-blog-foundation-p3",
+      "title": "Scientific article structure and authoring",
+      "status": "todo",
+      "useful_alone": "A real article can explain its purpose, assumptions, figures, and sources without layout workarounds.",
+      "done_when": "Article template supports learning statements, prerequisites, published date only, collapsed contents, scientific figures/captions/references, and linked supporting material; README matches real authoring paths.",
+      "depends_on": [
+        "r-261020-01-scientific-blog-foundation-p1"
+      ],
+      "items": [
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p3-1",
+          "text": "Extend typed content metadata deliberately for learning statements/prerequisites and supported related material; keep publishing date display only.",
+          "status": "todo",
+          "kind": "build",
+          "evidence": []
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p3-2",
+          "text": "Add heading anchors and collapsed-by-default contents with click/tap/keyboard operation and no permanent sidebar.",
+          "status": "todo",
+          "kind": "build",
+          "evidence": []
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p3-3",
+          "text": "Build reusable scientific figure/caption/reference patterns, accessible descriptions, and wide-figure behavior with provenance and units.",
+          "status": "todo",
+          "kind": "build",
+          "evidence": []
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p3-4",
+          "text": "Add related reading/project links using shared eligible-content rules and honest empty states.",
+          "status": "todo",
+          "kind": "build",
+          "evidence": []
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p3-5",
+          "text": "Correct README architecture, imports, URLs, and publishing instructions; add a usable article starting template.",
+          "status": "todo",
+          "kind": "build",
+          "evidence": []
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p3-6",
+          "text": "Verify one representative article with math, figures, tables/code, prerequisites, contents, links, and both themes.",
+          "status": "todo",
+          "kind": "validation",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "r-261020-01-scientific-blog-foundation-p4",
+      "title": "Search and RSS",
+      "status": "todo",
+      "useful_alone": "Readers can find and follow published writing as the archive grows.",
+      "done_when": "Static search and RSS work for anonymous readers; draft fixtures never appear in search/feed/related content/sitemap; keyboard and mobile discovery are usable.",
+      "depends_on": [
+        "r-261020-01-scientific-blog-foundation-p1",
+        "r-261020-01-scientific-blog-foundation-p3"
+      ],
+      "items": [
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p4-1",
+          "text": "Compare static search approaches with a small index/payload/accuracy experiment before selecting a dependency.",
+          "status": "todo",
+          "kind": "research",
+          "evidence": []
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p4-2",
+          "text": "Implement search with accessible opening, focus handling, keyboard controls, results, and no-results state; index only published content.",
+          "status": "todo",
+          "kind": "build",
+          "evidence": []
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p4-3",
+          "text": "Generate RSS from published content with stable absolute URLs and discoverable feed links.",
+          "status": "todo",
+          "kind": "build",
+          "evidence": []
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p4-4",
+          "text": "Check known queries, draft exclusion across every output, feed validity, and mobile/keyboard discovery.",
+          "status": "todo",
+          "kind": "validation",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "r-261020-01-scientific-blog-foundation-p5",
+      "title": "Reliable scientific demos",
+      "status": "todo",
+      "useful_alone": "Interactive articles remain informative when code is slow or unavailable.",
+      "done_when": "Demos provide loading/error/static alternatives, accessible controls, correct documented boundaries, plot cleanup, and measured loading behavior; normal article/list pages avoid unnecessary visualization payload.",
+      "depends_on": [
+        "r-261020-01-scientific-blog-foundation-p2",
+        "r-261020-01-scientific-blog-foundation-p3"
+      ],
+      "items": [
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p5-1",
+          "text": "Measure current visualization transfer/hydration cost and define a practical budget before selecting optimization work.",
+          "status": "todo",
+          "kind": "research",
+          "evidence": []
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p5-2",
+          "text": "Add loading, error, and meaningful static alternatives; label controls; handle imports, plot lifecycle, and theme changes.",
+          "status": "todo",
+          "kind": "build",
+          "evidence": []
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p5-3",
+          "text": "Correct and independently verify representative numerical/boundary behavior, including infinite VSWR and scientific statements that contradict the models.",
+          "status": "todo",
+          "kind": "build",
+          "evidence": []
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p5-4",
+          "text": "Reduce unnecessary eager visualization loading or replace heavyweight plotting where the measured tradeoff justifies it.",
+          "status": "todo",
+          "kind": "build",
+          "evidence": []
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p5-5",
+          "text": "Check offline/import failure, JavaScript disabled, keyboard controls, resize/theme behavior, boundary values, and measured payload against the agreed budget.",
+          "status": "todo",
+          "kind": "validation",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "r-261020-01-scientific-blog-foundation-p6",
+      "title": "Author context and publication readiness",
+      "status": "todo",
+      "useful_alone": "Readers can understand who writes the site and assess actual work.",
+      "done_when": "About uses owner-confirmed facts and working contact links; public trial content has an explicit disposition; at least one owner-approved article demonstrates the editorial/figure standard without invented evidence.",
+      "depends_on": [
+        "r-261020-01-scientific-blog-foundation-p3",
+        "r-261020-01-scientific-blog-foundation-p4",
+        "r-261020-01-scientific-blog-foundation-p5"
+      ],
+      "items": [
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p6-1",
+          "text": "Gather confirmed background/public name and available work; write an honest interdisciplinary About page linked to relevant articles and contact.",
+          "status": "todo",
+          "kind": "decision",
+          "evidence": []
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p6-2",
+          "text": "Decide the disposition of each trial article and review any retained text and model assumptions before publication.",
+          "status": "todo",
+          "kind": "decision",
+          "evidence": []
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p6-3",
+          "text": "Prepare one real article with the owner using available scientific figures/data/code; distinguish tutorial, simulation, measurement, and exploration.",
+          "status": "todo",
+          "kind": "build",
+          "evidence": []
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p6-4",
+          "text": "Run production build and review representative navigation, article, About, discovery, links, and failure states on desktop/mobile in both themes.",
+          "status": "todo",
+          "kind": "validation",
+          "evidence": []
+        }
+      ]
+    }
+  ],
+  "open_questions": [
+    "Public author/site display name and confirmed background for About.",
+    "Canonical entry route while preserving /blog and existing article links.",
+    "Disposition of the five trial articles: correct and retain, replace, or retire.",
+    "Which real figures, projects, and reproducible datasets are ready for publication.",
+    "CV source repository, intended public artifact, and publication mechanism are deferred."
+  ]
+}

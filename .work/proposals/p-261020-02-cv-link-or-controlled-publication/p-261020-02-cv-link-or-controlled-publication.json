@@ -1,0 +1,15 @@
+{
+  "$schema": "../../schema/proposal.v2.json",
+  "version": 2,
+  "kind": "proposal",
+  "order": 1,
+  "id": "p-261020-02-cv-link-or-controlled-publication",
+  "title": "CV link versus controlled artifact publication",
+  "status": "draft",
+  "created_at": "2026-10-20",
+  "updated_at": "2026-10-20",
+  "idea_ids": [
+    "i-261020-02-cv-publication-from-source-repository"
+  ],
+  "roadmaps": []
+}

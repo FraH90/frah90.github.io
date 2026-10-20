@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://life-os.dev/schema/roadmap.v2.json",
+  "title": "Work ledger roadmap v2",
+  "description": "Executable state for one roadmap. Rationale, research, decisions and risks live in the paired Markdown file.",
+  "type": "object",
+  "required": ["version", "kind", "order", "id", "title", "why", "status", "primary", "done_when", "created_at", "closed_at", "phases"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "const": 2 },
+    "kind": { "const": "roadmap" },
+    "order": { "type": "integer", "minimum": 0 },
+    "id": { "$ref": "#/$defs/roadmapId" },
+    "title": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "why": { "type": "string", "minLength": 1, "maxLength": 2000 },
+    "from_proposal": { "type": "string", "maxLength": 64, "pattern": "^p-[0-9]{6}-[0-9]{2,}-[a-z0-9][a-z0-9-]*$" },
+    "from_idea": { "oneOf": [{ "$ref": "#/$defs/ideaId" }, { "type": "null" }] },
+    "status": { "enum": ["active", "paused", "done", "declined"] },
+    "primary": { "type": "boolean" },
+    "done_when": { "type": ["string", "null"], "maxLength": 500 },
+    "success_metrics": { "type": "array", "maxItems": 10, "items": { "type": "string", "minLength": 1, "maxLength": 500 } },
+    "kill_conditions": { "type": "array", "maxItems": 10, "items": { "type": "string", "minLength": 1, "maxLength": 500 } },
+    "created_at": { "$ref": "#/$defs/date" },
+    "closed_at": { "$ref": "#/$defs/date" },
+    "archived_at": { "type": "string", "format": "date-time" },
+    "open_questions": { "type": "array", "items": { "type": "string", "maxLength": 500 } },
+    "phases": { "type": "array", "items": { "$ref": "#/$defs/phase" } }
+  },
+  "allOf": [{
+    "if": { "properties": { "status": { "const": "active" } }, "required": ["status"] },
+    "then": { "properties": { "done_when": { "type": "string", "minLength": 1 } } }
+  }],
+  "$defs": {
+    "ideaId": { "type": "string", "maxLength": 64, "pattern": "^i-[0-9]{6}-[0-9]{2,}-[a-z0-9][a-z0-9-]*$" },
+    "roadmapId": { "type": "string", "maxLength": 64, "pattern": "^r-[0-9]{6}-[0-9]{2,}-[a-z0-9][a-z0-9-]*$" },
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{0,63}$" },
+    "date": { "type": ["string", "null"], "pattern": "^\\d{4}-\\d{2}-\\d{2}" },
+    "phase": {
+      "type": "object",
+      "required": ["id", "title", "status", "useful_alone", "items"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "title": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "status": { "enum": ["todo", "active", "done", "declined"] },
+        "useful_alone": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "done_when": { "type": ["string", "null"], "maxLength": 500 },
+        "closed_at": { "$ref": "#/$defs/date" },
+        "depends_on": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/id" } },
+        "items": { "type": "array", "items": { "$ref": "#/$defs/item" } }
+      }
+    },
+    "item": {
+      "type": "object",
+      "required": ["id", "text", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "text": { "type": "string", "minLength": 1, "maxLength": 1000 },
+        "status": { "enum": ["todo", "active", "done", "declined"] },
+        "kind": { "enum": ["research", "decision", "build", "migration", "validation"] },
+        "commits": { "type": "array", "items": { "type": "string", "pattern": "^[0-9a-f]{7,40}$" } },
+        "evidence": { "type": "array", "maxItems": 20, "items": { "$ref": "#/$defs/evidence" } },
+        "closed_at": { "$ref": "#/$defs/date" }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["kind", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "enum": ["measurement", "document", "decision", "observation"] },
+        "value": { "type": "string", "minLength": 1, "maxLength": 1000 }
+      }
+    }
+  }
+}

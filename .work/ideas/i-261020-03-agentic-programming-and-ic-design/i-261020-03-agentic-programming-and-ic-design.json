@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schema/idea.v2.json",
+  "version": 2,
+  "kind": "idea",
+  "order": 2,
+  "id": "i-261020-03-agentic-programming-and-ic-design",
+  "title": "Agentic programming and integrated circuit design",
+  "status": "elaborated",
+  "captured_at": "2026-10-20",
+  "source": "chat",
+  "roadmaps": []
+}

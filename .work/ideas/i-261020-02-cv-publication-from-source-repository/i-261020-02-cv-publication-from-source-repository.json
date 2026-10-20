@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schema/idea.v2.json",
+  "version": 2,
+  "kind": "idea",
+  "order": 1,
+  "id": "i-261020-02-cv-publication-from-source-repository",
+  "title": "Publish a CV from its source repository",
+  "status": "elaborated",
+  "captured_at": "2026-10-20",
+  "source": "chat",
+  "roadmaps": []
+}

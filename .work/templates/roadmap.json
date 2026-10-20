@@ -1,0 +1,30 @@
+{
+  "$schema": "../../schema/roadmap.v2.json",
+  "version": 2,
+  "kind": "roadmap",
+  "order": 0,
+  "id": "r-260921-01-human-readable-title",
+  "title": "Roadmap title",
+  "why": "The outcome this roadmap exists to create.",
+  "status": "active",
+  "primary": false,
+  "done_when": "Observable evidence that proves the roadmap is complete.",
+  "success_metrics": ["A measurable outcome, with baseline and target when known."],
+  "kill_conditions": ["Evidence that should stop this roadmap instead of automatically continuing."],
+  "created_at": "2026-09-21",
+  "closed_at": null,
+  "phases": [
+    {
+      "id": "r-260921-01-human-readable-title-p1",
+      "title": "First independently useful phase",
+      "status": "todo",
+      "useful_alone": "The value delivered even if later phases never happen.",
+      "done_when": "Observable evidence that proves this phase is complete.",
+      "depends_on": [],
+      "items": [
+        { "id": "r-260921-01-human-readable-title-p1-1", "text": "One verifiable unit of work", "status": "todo", "kind": "build", "evidence": [] }
+      ]
+    }
+  ],
+  "open_questions": []
+}

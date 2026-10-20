@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://life-os.dev/schema/ledger.v2.json",
+  "title": "Work ledger manifest v2",
+  "description": "Repository identity only. Ideas and roadmaps are self-contained directory bundles.",
+  "type": "object",
+  "required": ["version", "repo"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "const": 2 },
+    "repo": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "updated_at": { "type": ["string", "null"], "pattern": "^\\d{4}-\\d{2}-\\d{2}" }
+  }
+}

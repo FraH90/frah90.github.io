@@ -7,6 +7,19 @@ Topics: antennas & phased arrays, RF & transmission lines, photonics & optics, s
 
 ---
 
+## Project direction and planning
+
+This is a content-first scientific and technical blog with a professional author profile. The agreed direction and implementation plan are recorded in:
+
+- [Working contract](CLAUDE.md) and its identical [Codex entry point](AGENTS.md).
+- [Architecture](docs/architecture.md) and [editorial guide](docs/editorial.md).
+- [Work ledger and roadmap](.work/README.md).
+- [Unpublished research interests](research/README.md), including agentic programming and integrated circuit design.
+
+The roadmap distinguishes completed planning from pending site implementation. Some older architecture and authoring examples below are stale; use the current source and the editorial guide for accurate paths until the roadmap's README revision lands.
+
+---
+
 ## Technology Rationale
 
 | Layer | Choice | Why |

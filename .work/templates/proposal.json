@@ -1,0 +1,13 @@
+{
+  "$schema": "../../schema/proposal.v2.json",
+  "version": 2,
+  "kind": "proposal",
+  "order": 0,
+  "id": "p-261016-01-human-readable-title",
+  "title": "Proposal title",
+  "status": "draft",
+  "created_at": "2026-10-16",
+  "updated_at": "2026-10-16",
+  "idea_ids": [],
+  "roadmaps": []
+}

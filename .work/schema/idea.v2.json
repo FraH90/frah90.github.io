@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://life-os.dev/schema/idea.v2.json",
+  "title": "Work ledger idea v2",
+  "description": "Lifecycle metadata for one idea. Its original words and working prose live in the paired Markdown file.",
+  "type": "object",
+  "required": ["version", "kind", "order", "id", "title", "status", "captured_at", "roadmaps"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "const": 2 },
+    "kind": { "const": "idea" },
+    "order": { "type": "integer", "minimum": 0 },
+    "id": { "$ref": "#/$defs/ideaId" },
+    "title": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "lang": { "type": "string", "maxLength": 12 },
+    "status": { "enum": ["raw", "elaborated", "archived", "declined"] },
+    "captured_at": { "$ref": "#/$defs/date" },
+    "archived_at": { "type": "string", "format": "date-time" },
+    "source": { "enum": ["realtime", "chat", "manual"] },
+    "roadmaps": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/roadmapId" } }
+  },
+  "$defs": {
+    "ideaId": { "type": "string", "maxLength": 64, "pattern": "^i-[0-9]{6}-[0-9]{2,}-[a-z0-9][a-z0-9-]*$" },
+    "roadmapId": { "type": "string", "maxLength": 64, "pattern": "^r-[0-9]{6}-[0-9]{2,}-[a-z0-9][a-z0-9-]*$" },
+    "date": { "type": ["string", "null"], "pattern": "^\\d{4}-\\d{2}-\\d{2}" }
+  }
+}

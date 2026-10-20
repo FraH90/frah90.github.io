@@ -1,0 +1,15 @@
+{
+  "$schema": "../../schema/proposal.v2.json",
+  "version": 2,
+  "kind": "proposal",
+  "order": 0,
+  "id": "p-261020-01-writing-led-navigation-and-topic-system",
+  "title": "Writing-led navigation and a shared topic system",
+  "status": "draft",
+  "created_at": "2026-10-20",
+  "updated_at": "2026-10-20",
+  "idea_ids": [
+    "i-261020-01-content-first-scientific-blog"
+  ],
+  "roadmaps": []
+}

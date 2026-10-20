@@ -1,0 +1,14 @@
+{
+  "$schema": "../../schema/idea.v2.json",
+  "version": 2,
+  "kind": "idea",
+  "order": 0,
+  "id": "i-261020-01-content-first-scientific-blog",
+  "title": "A content-first scientific and technical blog",
+  "status": "elaborated",
+  "captured_at": "2026-10-20",
+  "source": "chat",
+  "roadmaps": [
+    "r-261020-01-scientific-blog-foundation"
+  ]
+}

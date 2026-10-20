@@ -1,0 +1,12 @@
+{
+  "$schema": "../../schema/idea.v2.json",
+  "version": 2,
+  "kind": "idea",
+  "order": 0,
+  "id": "i-260921-01-human-readable-title",
+  "title": "Idea title",
+  "status": "raw",
+  "captured_at": "2026-09-21",
+  "source": "manual",
+  "roadmaps": []
+}
