@@ -87,7 +87,10 @@
               "value": "Retain / -> /blog as the writing-first entry and preserve category/article URLs. Use existing FraH90 identity, Writing/About navigation, and stable slug labels/order in src/lib/topics.ts. Redirect empty /projects to /blog; CV links depend on a real public PDF."
             }
           ],
-          "closed_at": "2026-10-20"
+          "closed_at": "2026-10-20",
+          "commits": [
+            "fe021f4234b382875a4064ae13ef8ada42fb9654"
+          ]
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p1-2",
@@ -100,7 +103,10 @@
               "value": "src/lib/topics.ts is shared by the collection schema, topic filters, routes and article labels. src/lib/posts.ts owns draft eligibility. PostListing.astro shares archive/category layout."
             }
           ],
-          "closed_at": "2026-10-20"
+          "closed_at": "2026-10-20",
+          "commits": [
+            "fe021f4234b382875a4064ae13ef8ada42fb9654"
+          ]
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p1-3",
@@ -113,7 +119,10 @@
               "value": "Chromium passed visible navigation, active state, keyboard skip/focus, and no page overflow at 320/390/768/1440px. Root and Projects aliases lead to Writing. CV links are absent without the PDF; presence/absence eligibility also passed an isolated temporary-directory check."
             }
           ],
-          "closed_at": "2026-10-20"
+          "closed_at": "2026-10-20",
+          "commits": [
+            "fe021f4234b382875a4064ae13ef8ada42fb9654"
+          ]
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p1-4",
@@ -126,7 +135,10 @@
               "value": "public/og-default.png and editable public/branding/social-card.svg replace the missing preview target; Open Graph image URLs are absolute. Whole-card links passed non-title-area pointer and keyboard-focus checks."
             }
           ],
-          "closed_at": "2026-10-20"
+          "closed_at": "2026-10-20",
+          "commits": [
+            "fe021f4234b382875a4064ae13ef8ada42fb9654"
+          ]
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p1-5",
@@ -139,7 +151,10 @@
               "value": "Final npm run build and npm run check:build passed (14 pages). Chromium checked writing, topic, About and an interactive article at 320/390/768/1440px, keyboard focus/skip, card targets, aliases and no-JS reading. A temporary draft fixture stayed out of routes/listings/topics/sitemap and was removed before the final build. The site remains dark; light mode belongs to Phase 2."
             }
           ],
-          "closed_at": "2026-10-20"
+          "closed_at": "2026-10-20",
+          "commits": [
+            "fe021f4234b382875a4064ae13ef8ada42fb9654"
+          ]
         }
       ],
       "closed_at": "2026-10-20"
@@ -226,7 +241,10 @@
               "value": "README.md now describes actual routes, topic registry, draft eligibility, current MDX imports, CV behavior, deployment/build checks, and explicitly pending features. Completed during Phase 1."
             }
           ],
-          "closed_at": "2026-10-20"
+          "closed_at": "2026-10-20",
+          "commits": [
+            "fe021f4234b382875a4064ae13ef8ada42fb9654"
+          ]
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p3-7",

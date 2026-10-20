@@ -82,19 +82,19 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
 **Depends on:** none
 
 - ✅ **done** · **decision** — Inspect current route/link behavior and settle the writing-led entry route and initial topic labels.
-  - ID `r-261020-01-scientific-blog-foundation-p1-1` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p1-1` · closed 2026-10-20 · commits `fe021f4234b382875a4064ae13ef8ada42fb9654`
   - Evidence (decision): Retain / -> /blog as the writing-first entry and preserve category/article URLs. Use existing FraH90 identity, Writing/About navigation, and stable slug labels/order in src/lib/topics.ts. Redirect empty /projects to /blog; CV links depend on a real public PDF.
 - ✅ **done** · **build** — Introduce shared topic metadata and publication eligibility; replace duplicated category maps and inconsistent list/filter layouts.
-  - ID `r-261020-01-scientific-blog-foundation-p1-2` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p1-2` · closed 2026-10-20 · commits `fe021f4234b382875a4064ae13ef8ada42fb9654`
   - Evidence (document): src/lib/topics.ts is shared by the collection schema, topic filters, routes and article labels. src/lib/posts.ts owns draft eligibility. PostListing.astro shares archive/category layout.
 - ✅ **done** · **build** — Add clear site/home identity, accessible current-page state, and usable mobile navigation; remove empty destinations and conditionally hide missing CV links.
-  - ID `r-261020-01-scientific-blog-foundation-p1-3` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p1-3` · closed 2026-10-20 · commits `fe021f4234b382875a4064ae13ef8ada42fb9654`
   - Evidence (observation): Chromium passed visible navigation, active state, keyboard skip/focus, and no page overflow at 320/390/768/1440px. Root and Projects aliases lead to Writing. CV links are absent without the PDF; presence/absence eligibility also passed an isolated temporary-directory check.
 - ✅ **done** · **build** — Resolve missing social preview assets and make card click targets match their interaction treatment.
-  - ID `r-261020-01-scientific-blog-foundation-p1-4` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p1-4` · closed 2026-10-20 · commits `fe021f4234b382875a4064ae13ef8ada42fb9654`
   - Evidence (document): public/og-default.png and editable public/branding/social-card.svg replace the missing preview target; Open Graph image URLs are absolute. Whole-card links passed non-title-area pointer and keyboard-focus checks.
 - ✅ **done** · **validation** — Verify routes, draft exclusion, filters, link targets, narrow-screen layout, and keyboard navigation.
-  - ID `r-261020-01-scientific-blog-foundation-p1-5` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p1-5` · closed 2026-10-20 · commits `fe021f4234b382875a4064ae13ef8ada42fb9654`
   - Evidence (observation): Final npm run build and npm run check:build passed (14 pages). Chromium checked writing, topic, About and an interactive article at 320/390/768/1440px, keyboard focus/skip, card targets, aliases and no-JS reading. A temporary draft fixture stayed out of routes/listings/topics/sitemap and was removed before the final build. The site remains dark; light mode belongs to Phase 2.
 
 ### Phase 2 — Readable design and theme choice
@@ -133,7 +133,7 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
 - ⬜ **todo** · **build** — Add related reading/project links using shared eligible-content rules and honest empty states.
   - ID `r-261020-01-scientific-blog-foundation-p3-4`
 - ✅ **done** · **build** — Correct README architecture, imports, URLs, and publishing instructions.
-  - ID `r-261020-01-scientific-blog-foundation-p3-5` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p3-5` · closed 2026-10-20 · commits `fe021f4234b382875a4064ae13ef8ada42fb9654`
   - Evidence (document): README.md now describes actual routes, topic registry, draft eligibility, current MDX imports, CV behavior, deployment/build checks, and explicitly pending features. Completed during Phase 1.
 - ⬜ **todo** · **build** — Add a usable article starting template with the enhanced article metadata once that schema lands.
   - ID `r-261020-01-scientific-blog-foundation-p3-7`
