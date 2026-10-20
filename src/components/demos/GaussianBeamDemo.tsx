@@ -28,19 +28,19 @@ export default function GaussianBeamDemo() {
       </div>
 
       <div className="flex flex-wrap gap-6 text-xs font-mono">
-        <span className="text-zinc-400">Rayleigh range z_R = <span className="text-emerald-400">{zR.toFixed(2)} mm</span></span>
-        <span className="text-zinc-400">Divergence θ ≈ <span className="text-emerald-400">{divergenceDeg.toFixed(2)}°</span></span>
-        <span className="text-zinc-400">w(z_R) = <span className="text-emerald-400">{(w0um * Math.SQRT2).toFixed(2)} µm</span></span>
+        <span className="text-muted">Rayleigh range z_R = <span className="text-accent">{zR.toFixed(2)} mm</span></span>
+        <span className="text-muted">Divergence θ ≈ <span className="text-accent">{divergenceDeg.toFixed(2)}°</span></span>
+        <span className="text-muted">w(z_R) = <span className="text-accent">{(w0um * Math.SQRT2).toFixed(2)} µm</span></span>
       </div>
 
       <PlotlyChart
         data={[
-          { x: z, y: w,  type: 'scatter', mode: 'lines', line: { color: '#fb923c', width: 2 }, name: '+w(z)', fill: 'none' },
-          { x: z, y: w.map(v => -v), type: 'scatter', mode: 'lines', line: { color: '#fb923c', width: 2 }, name: '-w(z)', fill: 'tonexty', fillcolor: 'rgba(251,146,60,0.08)' },
+          { x: z, y: w,  type: 'scatter', mode: 'lines', line: { color: 'var(--plot-orange)', width: 2 }, name: '+w(z)', fill: 'none' },
+          { x: z, y: w.map(v => -v), type: 'scatter', mode: 'lines', line: { color: 'var(--plot-orange)', width: 2 }, name: '-w(z)', fill: 'tonexty', fillcolor: 'var(--plot-fill)' },
         ]}
         layout={{
           title: { text: 'Gaussian Beam Envelope w(z)', font: { size: 13 } },
-          xaxis: { title: 'z (mm)', zeroline: true, zerolinecolor: '#3f3f46' },
+          xaxis: { title: 'z (mm)', zeroline: true, zerolinecolor: 'var(--rule-strong)' },
           yaxis: { title: 'beam radius (µm)' },
           showlegend: false,
         }}

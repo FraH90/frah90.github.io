@@ -20,16 +20,16 @@ const description = topic
 ---
 
 <BaseLayout title={`${heading} — ${siteName}`} description={description}>
-  <div class="max-w-4xl mx-auto px-6 py-12 sm:py-16">
+  <div class="site-shell py-12 sm:py-16">
     <header class="mb-8">
-      {topic && <a href="/blog" class="inline-flex min-h-11 items-center text-sm text-zinc-400 hover:text-zinc-100 mb-3">← All writing</a>}
-      <h1 class="text-3xl sm:text-4xl text-zinc-100 mb-4" style="font-family: 'Lora', Georgia, serif;">{heading}</h1>
-      <p class="max-w-2xl text-base text-zinc-400 leading-relaxed">{description}</p>
-      {!topic && <a href="/about" class="inline-flex min-h-11 items-center text-sm text-zinc-300 underline underline-offset-4 decoration-zinc-600 hover:decoration-zinc-300 mt-2">About the author <span aria-hidden="true" class="ml-2">→</span></a>}
+      {topic && <a href="/blog" class="inline-flex min-h-11 items-center text-sm text-muted hover:text-ink mb-3">← All writing</a>}
+      <h1 class="text-3xl sm:text-4xl text-ink mb-4" style="font-family: 'Lora', Georgia, serif;">{heading}</h1>
+      <p class="max-w-2xl text-base text-muted leading-relaxed">{description}</p>
+      {!topic && <a href="/about" class="inline-flex min-h-11 items-center text-sm text-body underline underline-offset-4 decoration-rule-strong hover:decoration-rule-strong mt-2">About the author <span aria-hidden="true" class="ml-2">→</span></a>}
     </header>
 
     {categories.length > 0 && (
-      <nav aria-label="Article topics" class="mb-8 border-y border-zinc-800 py-4">
+      <nav aria-label="Article topics" class="mb-8 border-y border-rule py-4">
         <ul class="flex flex-wrap gap-2">
           <li><a href="/blog" aria-current={!category ? 'page' : undefined}
             class:list={['topic-filter', !category && 'topic-filter-active']}>All topics</a></li>
@@ -43,9 +43,9 @@ const description = topic
       </nav>
     )}
 
-    <p class="text-sm text-zinc-400 mb-5">{posts.length} {posts.length === 1 ? 'article' : 'articles'}{topic ? ` in ${topic.label}` : ''}</p>
+    <p class="text-sm text-muted mb-5">{posts.length} {posts.length === 1 ? 'article' : 'articles'}{topic ? ` in ${topic.label}` : ''}</p>
     {posts.length === 0 ? (
-      <p class="text-zinc-400">No articles published yet.</p>
+      <p class="text-muted">No articles published yet.</p>
     ) : (
       <div class="grid sm:grid-cols-2 gap-5" aria-label="Articles">
         {posts.map(post => <PostCard title={post.data.title} date={post.data.date} category={post.data.category}

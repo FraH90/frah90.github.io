@@ -17,6 +17,10 @@ export default defineConfig({
   })],
 
   markdown: {
+    shikiConfig: {
+      themes: { light: 'github-light-default', dark: 'github-dark-default' },
+      defaultColor: false,
+    },
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex],
   },

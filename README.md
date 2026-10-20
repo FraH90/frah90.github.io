@@ -10,7 +10,7 @@ A content-first engineering blog built with Astro and MDX, hosted at **https://f
 - [Work ledger, proposals, and roadmap](.work/README.md).
 - [Unpublished research notebook](research/README.md).
 
-The ledger records what is implemented. Light/dark switching, collapsed contents, enhanced article metadata, related reading, search, and RSS are planned work, not current capabilities.
+The ledger records what is implemented. Light/dark switching is implemented. Collapsed contents, enhanced article metadata, related reading, search, and RSS remain planned work.
 
 ## Local development
 
@@ -66,6 +66,12 @@ research/interests/            Unpublished interests and investigations
 
 Redirect aliases are excluded from the sitemap. The mobile header retains the same Writing/About destinations as desktop. The site's existing FraH90 handle remains the public identity until the author chooses another name.
 
+## Reading themes
+
+Dark is the initial default, independently of the browser's system preference. The header button switches to light or dark and stores the explicit choice under `frah90-theme` in local storage. It applies before body rendering, persists across page loads, and synchronizes between tabs. If storage is blocked, the switch still works for the current page; if JavaScript is disabled, the site stays readable in dark mode and hides the unavailable switch.
+
+Semantic color and layout tokens live in `src/styles/global.css`. Article prose has a narrower reading measure than figures and interactive demos. Wide equations, code, and tables scroll locally and receive keyboard focus when they overflow. Shiki emits both code palettes at build time. Plotly resolves shared CSS color tokens and updates axes, labels, and traces while preserving reader zoom; range controls use native theme-aware styling and associated labels.
+
 ## Write an article
 
 Create `src/content/blog/rf/my-article.mdx` with explicit draft status:
@@ -104,7 +110,7 @@ import InteractiveFrame from '../../../components/ui/InteractiveFrame.astro';
 </InteractiveFrame>
 ```
 
-KaTeX renders MDX math at build time. Browser-only visualization code belongs in React islands, with browser-safe imports. Existing demos use `client:only="react"`; loading/error/static alternatives are pending roadmap work. Raw Astro templates do not run through the Markdown math pipeline.
+KaTeX renders MDX math at build time. Browser-only visualization code belongs in React islands, with browser-safe imports. Existing demos use `client:only="react"`; the chart wrapper handles import/render failure with a message, but meaningful static alternatives and complete demo loading/failure behavior remain pending roadmap work. Raw Astro templates do not run through the Markdown math pipeline.
 
 Review scientific claims, assumptions, figures/captions, units, references, links, and browser behavior before changing `draft` to false. Published articles appear automatically in their listing and topic route. Drafts are excluded through `src/lib/posts.ts`, including article-route generation. Future discovery outputs must use the same eligibility rule.
 

@@ -84,11 +84,11 @@ export default function ModeProfileViewer() {
       </div>
 
       <div className="flex flex-wrap gap-4 text-xs font-mono items-center">
-        <span className="text-zinc-400">Mode: <span className="text-emerald-400">{modeName}</span></span>
-        <span className={`px-2 py-0.5 rounded text-xs font-mono ${isSingleMode ? 'bg-emerald-400/10 text-emerald-400' : 'bg-amber-400/10 text-amber-400'}`}>
+        <span className="text-muted">Mode: <span className="text-accent">{modeName}</span></span>
+        <span className={`px-2 py-0.5 rounded text-xs font-mono ${isSingleMode ? 'bg-accent/10 text-accent' : 'bg-topic-optics/10 text-topic-optics'}`}>
           {isSingleMode ? 'single-mode' : 'multi-mode'}
         </span>
-        <span className="text-zinc-400">cutoff V ≈ <span className="text-zinc-300">{lMode === 0 ? '0' : (lMode === 1 ? '2.405' : `${(lMode + 2 * (mMode - 1)) * 1.2}.xx`)}</span></span>
+        <span className="text-muted">cutoff V ≈ <span className="text-body">{lMode === 0 ? '0' : (lMode === 1 ? '2.405' : `${(lMode + 2 * (mMode - 1)) * 1.2}.xx`)}</span></span>
       </div>
 
       <PlotlyChart
@@ -98,7 +98,7 @@ export default function ModeProfileViewer() {
             y: field.map(f => f * f),
             type: 'scatter',
             mode: 'lines',
-            line: { color: '#a78bfa', width: 2 },
+            line: { color: 'var(--plot-purple)', width: 2 },
             name: 'intensity |E|²',
           },
           {
@@ -106,7 +106,7 @@ export default function ModeProfileViewer() {
             y: field,
             type: 'scatter',
             mode: 'lines',
-            line: { color: '#a78bfa', width: 1, dash: 'dot' },
+            line: { color: 'var(--plot-purple)', width: 1, dash: 'dot' },
             name: 'field E',
             opacity: 0.5,
           },
@@ -119,19 +119,19 @@ export default function ModeProfileViewer() {
             {
               type: 'rect',
               x0: 0, x1: coreEnd, y0: -1.1, y1: 1.1,
-              fillcolor: 'rgba(251,146,60,0.05)',
+              fillcolor: 'var(--plot-fill)',
               line: { width: 0 },
               layer: 'below',
             },
             {
               type: 'line',
               x0: coreEnd, x1: coreEnd, y0: -1.1, y1: 1.1,
-              line: { color: '#fb923c', width: 1, dash: 'dot' },
+              line: { color: 'var(--plot-orange)', width: 1, dash: 'dot' },
             },
           ],
           annotations: [
-            { x: 0.5, y: 1.05, text: 'core', font: { size: 10, color: '#fb923c' }, showarrow: false },
-            { x: 1.5, y: 1.05, text: 'cladding', font: { size: 10, color: '#71717a' }, showarrow: false },
+            { x: 0.5, y: 1.05, text: 'core', font: { size: 10, color: 'var(--plot-orange)' }, showarrow: false },
+            { x: 1.5, y: 1.05, text: 'cladding', font: { size: 10, color: 'var(--muted)' }, showarrow: false },
           ],
         }}
       />

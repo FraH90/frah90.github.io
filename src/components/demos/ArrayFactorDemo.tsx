@@ -57,12 +57,12 @@ export default function ArrayFactorDemo({ dataUrl }: Props) {
       </div>
 
       {/* Info row */}
-      <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-zinc-500">
-        <span>steering angle ≈ <span className="text-emerald-400">{steeringAngle}°</span></span>
-        <span>3dB beamwidth ≈ <span className="text-emerald-400">{(102 / (N * d)).toFixed(1)}°</span></span>
-        <label className="flex items-center gap-2 cursor-pointer ml-auto">
+      <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-muted">
+        <span>steering angle ≈ <span className="text-accent">{steeringAngle}°</span></span>
+        <span>3dB beamwidth ≈ <span className="text-accent">{(102 / (N * d)).toFixed(1)}°</span></span>
+        <label className="flex items-center gap-2 min-h-11 cursor-pointer ml-auto">
           <input type="checkbox" checked={showdB} onChange={e => setShowdB(e.target.checked)}
-                 className="accent-emerald-400" />
+                 className="accent-accent" />
           <span>dB scale</span>
         </label>
       </div>
@@ -74,7 +74,7 @@ export default function ArrayFactorDemo({ dataUrl }: Props) {
           y: yData,
           type: 'scatter',
           mode: 'lines',
-          line: { color: '#34d399', width: 1.5 },
+          line: { color: 'var(--plot-green)', width: 1.5 },
           name: yLabel,
         }]}
         layout={{

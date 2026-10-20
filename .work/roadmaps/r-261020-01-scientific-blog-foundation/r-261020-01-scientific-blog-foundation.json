@@ -162,7 +162,7 @@
     {
       "id": "r-261020-01-scientific-blog-foundation-p2",
       "title": "Readable design and theme choice",
-      "status": "todo",
+      "status": "done",
       "useful_alone": "Articles and figures are comfortable to read in either theme.",
       "done_when": "Dark is initial default; explicit light/dark choice persists without a flash; typography, contrast, figures, equations, code, and controls work across themes and screen sizes.",
       "depends_on": [
@@ -172,25 +172,44 @@
         {
           "id": "r-261020-01-scientific-blog-foundation-p2-1",
           "text": "Create shared color/type/spacing/width tokens and harmonize site/list/article layouts.",
-          "status": "todo",
+          "status": "done",
           "kind": "build",
-          "evidence": []
+          "evidence": [
+            {
+              "kind": "document",
+              "value": "src/styles/global.css provides semantic colors, readable prose/figure widths, theme-aware typography and syntax colors, local overflow, and focus styling. Layouts, cards, topics, About and demos now consume those tokens."
+            }
+          ],
+          "closed_at": "2026-10-20"
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p2-2",
           "text": "Implement an accessible persisted theme switch with early initialization and theme-aware scientific visualizations.",
-          "status": "todo",
+          "status": "done",
           "kind": "build",
-          "evidence": []
+          "evidence": [
+            {
+              "kind": "observation",
+              "value": "Chromium verified initial dark default regardless of system preference; explicit light/dark persistence across reload/navigation and cross-tab sync; saved light applied by the head script without the toggle module; invalid/blocked storage; keyboard toggle; chart font/trace changes with preserved zoom; labeled keyboard range inputs."
+            }
+          ],
+          "closed_at": "2026-10-20"
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p2-3",
           "text": "Check contrast, focus visibility, controls, long titles, prose widths, and figure/table/math overflow in both themes on mobile and desktop.",
-          "status": "todo",
+          "status": "done",
           "kind": "validation",
-          "evidence": []
+          "evidence": [
+            {
+              "kind": "observation",
+              "value": "Final production build and check:build passed for 14 pages. Both themes passed responsive checks at 320/390/768/1440px across writing/topic/About and four live demos; axe contrast, label, button/link-name checks passed at 390/1440px. Temporary long-title/code/math/table/figure fixture passed localized keyboard scroll and width checks and was removed before final build. No-JS reading and plot-import error handling passed."
+            }
+          ],
+          "closed_at": "2026-10-20"
         }
-      ]
+      ],
+      "closed_at": "2026-10-20"
     },
     {
       "id": "r-261020-01-scientific-blog-foundation-p3",
@@ -323,10 +342,23 @@
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p5-2",
-          "text": "Add loading, error, and meaningful static alternatives; label controls; handle imports, plot lifecycle, and theme changes.",
+          "text": "Add meaningful static alternatives and complete loading/error behavior around browser-only demos; verify fallback content and import failure beyond the existing chart error message.",
           "status": "todo",
           "kind": "build",
           "evidence": []
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p5-6",
+          "text": "Make plots and range controls theme-aware, preserve plot zoom, clean up plot/theme listeners, associate slider labels, and handle plot import/render rejection.",
+          "status": "done",
+          "kind": "build",
+          "closed_at": "2026-10-20",
+          "evidence": [
+            {
+              "kind": "observation",
+              "value": "Completed during Phase 2: live charts render in development and production, change axis/trace colors, preserve a real drag-zoom, and still respond to keyboard slider input. Blocked plot import produced a readable error message without an unhandled page error. Full scientific/static fallbacks remain p5-2."
+            }
+          ]
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p5-3",
@@ -389,6 +421,32 @@
           "text": "Run production build and review representative navigation, article, About, discovery, links, and failure states on desktop/mobile in both themes.",
           "status": "todo",
           "kind": "validation",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "r-261020-01-scientific-blog-foundation-p7",
+      "title": "Workflow permissions and automated deployment checks",
+      "status": "todo",
+      "useful_alone": "Broken public links and assets can stop deployment automatically instead of relying on a local check.",
+      "done_when": "Workflow-file edits are authorized through the integration, npm run check:build runs after the production build and before upload, and a successful workflow run verifies the gate.",
+      "depends_on": [
+        "r-261020-01-scientific-blog-foundation-p6"
+      ],
+      "items": [
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p7-1",
+          "text": "Resolve the GitHub integration workflows permission using the supported LifeOS/GitHub configuration; do not add credentials to this repository.",
+          "status": "todo",
+          "kind": "decision",
+          "evidence": []
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p7-2",
+          "text": "Add npm run check:build after the Astro build and before GitHub Pages artifact upload; verify the check blocks broken output and a valid deployment passes.",
+          "status": "todo",
+          "kind": "build",
           "evidence": []
         }
       ]

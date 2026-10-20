@@ -56,33 +56,34 @@ export default function FourierTransformDemo() {
   return (
     <div className="flex flex-col gap-6">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="flex flex-col gap-3 border border-zinc-800 rounded p-3">
-          <span className="text-xs font-mono text-zinc-400 uppercase">Component 1</span>
+        <div className="flex flex-col gap-3 border border-rule rounded p-3">
+          <span className="text-xs font-mono text-muted uppercase">Component 1</span>
           <Slider label="f₁ (Hz)" min={10} max={450} step={5} value={f1} onChange={setF1} decimals={0} unit=" Hz" />
           <Slider label="A₁" min={0} max={2} step={0.1} value={a1} onChange={setA1} />
         </div>
-        <div className="flex flex-col gap-3 border border-zinc-800 rounded p-3">
-          <span className="text-xs font-mono text-zinc-400 uppercase">Component 2</span>
+        <div className="flex flex-col gap-3 border border-rule rounded p-3">
+          <span className="text-xs font-mono text-muted uppercase">Component 2</span>
           <Slider label="f₂ (Hz)" min={10} max={450} step={5} value={f2} onChange={setF2} decimals={0} unit=" Hz" />
           <Slider label="A₂" min={0} max={2} step={0.1} value={a2} onChange={setA2} />
         </div>
-        <div className="flex flex-col gap-3 border border-zinc-800 rounded p-3">
-          <span className="text-xs font-mono text-zinc-400 uppercase">Component 3</span>
+        <div className="flex flex-col gap-3 border border-rule rounded p-3">
+          <span className="text-xs font-mono text-muted uppercase">Component 3</span>
           <Slider label="f₃ (Hz)" min={10} max={450} step={5} value={f3} onChange={setF3} decimals={0} unit=" Hz" />
           <Slider label="A₃" min={0} max={2} step={0.1} value={a3} onChange={setA3} />
         </div>
       </div>
 
-      <div className="flex items-center gap-3">
-        <span className="text-xs font-mono text-zinc-500">Window:</span>
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="text-xs font-mono text-muted">Window:</span>
         {(['rectangular', 'hann', 'hamming', 'blackman'] as WindowType[]).map(w => (
           <button
             key={w}
             onClick={() => setWindow(w)}
-            className={`text-xs font-mono px-2.5 py-1 rounded transition-colors ${
+            aria-pressed={window === w}
+            className={`text-xs font-mono min-h-11 px-3 py-2 rounded transition-colors ${
               window === w
-                ? 'bg-emerald-400/20 text-emerald-400'
-                : 'bg-zinc-800 text-zinc-400 hover:text-zinc-200'
+                ? 'bg-accent/20 text-accent'
+                : 'bg-elevated text-muted hover:text-ink'
             }`}
           >
             {w}
@@ -92,14 +93,14 @@ export default function FourierTransformDemo() {
 
       <PlotlyChart
         data={[{ x: t.slice(0, 200), y: timeSig.slice(0, 200), type: 'scatter', mode: 'lines',
-                 line: { color: '#34d399', width: 1 }, name: 'signal' }]}
+                 line: { color: 'var(--plot-green)', width: 1 }, name: 'signal' }]}
         layout={{ title: { text: 'Time Domain', font: { size: 12 } },
                   xaxis: { title: 'time (s)' }, yaxis: { title: 'amplitude' } }}
         className="w-full h-48"
       />
 
       <PlotlyChart
-        data={[{ x: freqs, y: mag, type: 'bar', marker: { color: '#818cf8' }, name: '|X[f]|' }]}
+        data={[{ x: freqs, y: mag, type: 'bar', marker: { color: 'var(--plot-purple)' }, name: '|X[f]|' }]}
         layout={{ title: { text: 'Magnitude Spectrum', font: { size: 12 } },
                   xaxis: { title: 'frequency (Hz)', range: [0, 500] },
                   yaxis: { title: '|X[f]|' },

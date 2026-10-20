@@ -41,10 +41,10 @@ export default function TransmissionLineDemo() {
       </div>
 
       <div className="flex flex-wrap gap-6 text-xs font-mono">
-        <span className="text-zinc-400">|Γ| = <span className="text-emerald-400">{gamma.toFixed(3)}</span></span>
-        <span className="text-zinc-400">VSWR = <span className="text-emerald-400">{vswr.toFixed(2)}</span></span>
-        <span className="text-zinc-400">
-          Return loss = <span className="text-emerald-400">
+        <span className="text-muted">|Γ| = <span className="text-accent">{gamma.toFixed(3)}</span></span>
+        <span className="text-muted">VSWR = <span className="text-accent">{vswr.toFixed(2)}</span></span>
+        <span className="text-muted">
+          Return loss = <span className="text-accent">
             {gamma > 0 ? (-20 * Math.log10(gamma)).toFixed(1) : '∞'} dB
           </span>
         </span>
@@ -56,7 +56,7 @@ export default function TransmissionLineDemo() {
           y: V,
           type: 'scatter',
           mode: 'lines',
-          line: { color: '#38bdf8', width: 1.5 },
+          line: { color: 'var(--plot-blue)', width: 1.5 },
           name: '|V(z)|',
         }]}
         layout={{
@@ -64,8 +64,8 @@ export default function TransmissionLineDemo() {
           xaxis: { title: 'position (λ)', zeroline: false },
           yaxis: { title: '|V| (normalized)', rangemode: 'tozero' },
           shapes: [{ type: 'line', x0: 0, x1: 0, y0: 0, y1: 2,
-                     line: { color: '#71717a', width: 1, dash: 'dot' } }],
-          annotations: [{ x: 0, y: 1.95, text: 'load', font: { size: 10, color: '#71717a' },
+                     line: { color: 'var(--muted)', width: 1, dash: 'dot' } }],
+          annotations: [{ x: 0, y: 1.95, text: 'load', font: { size: 10, color: 'var(--muted)' },
                           showarrow: false }],
         }}
       />

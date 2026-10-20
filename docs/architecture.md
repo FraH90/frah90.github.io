@@ -10,7 +10,7 @@ A content-first scientific and technical publication with a visible author. Read
 
 Astro generates static pages for GitHub Pages. MDX files under `src/content/blog/` form the `blog` collection defined in `src/content.config.ts`. The root currently redirects to `/blog`. Routes include article and category pages and About. The former empty Projects route now redirects to writing. React islands host analytical demos; KaTeX renders MDX math at build time. Plotly is dynamically imported by its wrapper. GitHub Actions builds and deploys pushes to `main`.
 
-Phase 1 now shares topic metadata and listing components, keeps navigation visible at mobile sizes, gates CV links on the presence of the PDF, and supplies a real social preview asset. Root and Projects redirect aliases are excluded from the sitemap. Later reading and publishing features remain roadmap work.
+Phase 1 now shares topic metadata and listing components, keeps navigation visible at mobile sizes, gates CV links on the presence of the PDF, and supplies a real social preview asset. Root and Projects redirect aliases are excluded from the sitemap. Phase 2 adds shared reading/theme tokens, a persisted light option, and theme-aware scientific plots. Enhanced article structure and discovery remain roadmap work.
 
 ## Target information architecture
 
@@ -45,7 +45,11 @@ The collection schema, topic filters, article labels, and category routes consum
 
 ## Reading and interaction
 
-Use shared design tokens for both themes. Dark is the initial default; a reader's explicit choice persists. Theme initialization belongs in the shell, with accessible toggle semantics and chart updates. Keep prose comfortably narrow and accommodate wide technical figures without horizontal page overflow. A collapsed contents disclosure uses heading anchors and works with keyboard/touch; no permanent sidebar is required.
+`src/styles/global.css` owns semantic colors, topic/plot colors, shared page gutters, a 64rem site shell, and a 46rem prose measure. Dark is the initial default. `BaseLayout.astro` applies a validated `frah90-theme` preference inline before the body can paint; `ThemeToggle.astro` provides the accessible action, persistence, cross-tab synchronization, and browser-history restoration. Blocked storage does not break the current-page action; no-JavaScript pages remain dark with the unavailable button hidden.
+
+Article prose stays narrower than figures and interactive frames. Long words wrap; wide tables, code, and equations scroll inside their own containers and become keyboard-focusable when needed. Both syntax palettes are emitted through [Astro's Shiki configuration](https://docs.astro.build/en/guides/syntax-highlighting/). KaTeX follows the surrounding text color. `PlotlyChart.tsx` resolves CSS variables into colors understood by Plotly and uses [Plotly.react](https://plotly.com/javascript/plotlyjs-function-reference/) with stable UI revision to preserve reader zoom while changing theme. Axis settings merge with shared defaults instead of replacing their grid/text colors. Plot instances and theme listeners are cleaned up on unmount; scientific model calculations are unaffected.
+
+A collapsed contents disclosure remains Phase 3 work: heading anchors, click/touch/keyboard operation, and no permanent sidebar.
 
 Search should fit the static hosting model. Select an implementation after testing indexing, math/code handling, payload, keyboard/mobile UI, and draft exclusion. RSS is generated from eligible published content. Do not introduce a server solely for either feature.
 

@@ -1,34 +1,168 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @import "katex/dist/katex.min.css";
-/* Shared navigation and listing interactions; full theme tokens follow in Phase 2. */
-:where(a, button, input, summary):focus-visible {
-  outline: 2px solid #6ee7b7;
+
+/* Semantic colors are shared by Tailwind, prose, controls, and Plotly. */
+@theme inline {
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-elevated: var(--elevated);
+  --color-ink: var(--ink);
+  --color-body: var(--body);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-accent: var(--accent);
+  --color-topic-antennas: var(--plot-green);
+  --color-topic-rf: var(--plot-blue);
+  --color-topic-optics: var(--plot-orange);
+  --color-topic-dsp: var(--plot-rose);
+  --color-topic-ml: var(--plot-purple);
+}
+
+:root {
+  color-scheme: dark;
+  --page: #101417;
+  --surface: #181e23;
+  --elevated: #242d35;
+  --ink: #f0f3f5;
+  --body: #cbd3da;
+  --muted: #a0adb8;
+  --rule: #36434e;
+  --rule-strong: #758491;
+  --accent: #8ad6b5;
+  --plot-green: #8ad6b5;
+  --plot-blue: #8cc8ee;
+  --plot-orange: #edc17e;
+  --plot-rose: #e9a5b7;
+  --plot-purple: #c3b0ec;
+  --plot-fill: rgba(237, 193, 126, 0.12);
+  --selection: #294d43;
+  --reading-width: 46rem;
+  --layout-width: 64rem;
+  --page-gutter: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --page: #fafaf7;
+  --surface: #f1f3f1;
+  --elevated: #e5eae7;
+  --ink: #1a282d;
+  --body: #34454e;
+  --muted: #52656e;
+  --rule: #c8d2d2;
+  --rule-strong: #71838a;
+  --accent: #226849;
+  --plot-green: #226849;
+  --plot-blue: #1c6090;
+  --plot-orange: #855817;
+  --plot-rose: #964258;
+  --plot-purple: #6b489d;
+  --plot-fill: rgba(133, 88, 23, 0.09);
+  --selection: #d2e9de;
+}
+
+html { background: var(--page); scroll-padding-top: 7rem; }
+body { font-family: 'Inter', system-ui, sans-serif; }
+::selection { background: var(--selection); color: var(--ink); }
+:where(a, button, input, summary, [tabindex="0"]):focus-visible {
+  outline: 2px solid var(--accent);
   outline-offset: 5px;
 }
+:where(button, input) { accent-color: var(--accent); }
+:where(button, a) { -webkit-tap-highlight-color: transparent; }
+
+.site-shell {
+  width: min(calc(100% - var(--page-gutter) * 2), var(--layout-width));
+  margin-inline: auto;
+}
+.reading-width { max-width: var(--reading-width); margin-inline: auto; }
+.post-card { overflow-wrap: anywhere; }
+.page-title { overflow-wrap: anywhere; font-family: 'Lora', Georgia, serif; font-weight: 400; text-wrap: balance; }
 
 .topic-filter {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
   padding: 0.5rem 0.875rem;
-  border: 1px solid #3f3f46;
+  border: 1px solid var(--rule-strong);
   border-radius: 999px;
-  color: #a1a1aa;
+  color: var(--muted);
   font-size: 0.8125rem;
   line-height: 1.4;
   transition: border-color 150ms, color 150ms, background-color 150ms;
 }
+.topic-filter:hover { background: var(--surface); color: var(--ink); }
+.topic-filter-active { background: var(--elevated); border-color: var(--accent); color: var(--ink); }
 
-.topic-filter:hover {
-  border-color: #71717a;
-  color: #fafafa;
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  min-width: 44px;
+  padding-inline: 0.75rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 0.5rem;
+  color: var(--body);
+  cursor: pointer;
+  font-size: 0.8125rem;
 }
+.theme-toggle[hidden] { display: none; }
+.theme-toggle:hover { background: var(--elevated); color: var(--ink); }
+.theme-toggle .moon-icon { display: none; }
+[data-theme="light"] .theme-toggle .sun-icon { display: none; }
+[data-theme="light"] .theme-toggle .moon-icon { display: block; }
+@media (max-width: 359px) { .theme-toggle-label { display: none; } }
 
-.topic-filter-active {
-  background: #27272a;
-  border-color: #71717a;
-  color: #fafafa;
+.prose {
+  --tw-prose-body: var(--body);
+  --tw-prose-headings: var(--ink);
+  --tw-prose-lead: var(--muted);
+  --tw-prose-links: var(--accent);
+  --tw-prose-bold: var(--ink);
+  --tw-prose-counters: var(--muted);
+  --tw-prose-bullets: var(--muted);
+  --tw-prose-hr: var(--rule);
+  --tw-prose-quotes: var(--body);
+  --tw-prose-quote-borders: var(--rule-strong);
+  --tw-prose-captions: var(--muted);
+  --tw-prose-code: var(--ink);
+  --tw-prose-pre-code: var(--body);
+  --tw-prose-pre-bg: var(--surface);
+  --tw-prose-th-borders: var(--rule-strong);
+  --tw-prose-td-borders: var(--rule);
+  max-width: var(--reading-width);
+  overflow-wrap: break-word;
+}
+.article-content {
+  max-width: none;
+  font-family: 'Lora', Georgia, serif;
+  font-size: clamp(1.0625rem, 1rem + 0.2vw, 1.1875rem);
+  line-height: 1.85;
+}
+.article-content > * { max-width: var(--reading-width); margin-inline: auto; }
+.article-content > :is(.not-prose, figure) { max-width: none; }
+.article-content :where(h2, h3, h4) { font-weight: 600; line-height: 1.35; text-wrap: balance; }
+.prose :where(a) { text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+.prose :where(a):hover { text-decoration-thickness: 2px; }
+.prose :where(code):not(:where(pre code)) { background: var(--elevated); border-radius: 0.25rem; padding: 0.1em 0.3em; }
+.prose :where(pre) { max-width: 100%; border: 1px solid var(--rule); border-radius: 0.5rem; overflow-x: auto; }
+.prose :where(table) { display: block; width: 100%; overflow-x: auto; font-family: 'Inter', system-ui, sans-serif; font-size: 0.875rem; }
+.prose :where(th, td) { min-width: 7rem; }
+.prose :where(img, svg):not(:where(.not-prose, .not-prose *)) { max-width: 100%; height: auto; }
+.prose :where(figcaption) { color: var(--muted); font-family: 'Inter', system-ui, sans-serif; font-size: 0.875rem; }
+.katex-display { max-width: 100%; overflow-x: auto; overflow-y: hidden; padding-block: 0.25em; }
+.not-prose { font-family: 'Inter', system-ui, sans-serif; }
+.not-prose :where(.grid > *, .flex > *) { min-width: 0; }
+
+/* Shiki emits both palettes at build time; the explicit reader choice wins. */
+.astro-code, .astro-code span { color: var(--shiki-dark); background-color: var(--shiki-dark-bg); }
+[data-theme="light"] .astro-code, [data-theme="light"] .astro-code span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
 }
 
 .skip-link {
@@ -38,11 +172,10 @@
   z-index: 100;
   padding: 0.75rem 1rem;
   border-radius: 0.25rem;
-  background: #fafafa;
-  color: #09090b;
+  background: var(--ink);
+  color: var(--page);
   transform: translateY(-200%);
 }
-
 .skip-link:focus { transform: translateY(0); }
 
 @media (prefers-reduced-motion: reduce) {

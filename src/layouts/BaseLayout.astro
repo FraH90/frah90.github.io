@@ -19,9 +19,17 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
+    <!-- Apply the explicit preference before CSS or body content can paint. -->
+    <script is:inline>
+      try {
+        document.documentElement.dataset.theme = localStorage.getItem('frah90-theme') === 'light' ? 'light' : 'dark';
+      } catch {
+        document.documentElement.dataset.theme = 'dark';
+      }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
@@ -42,19 +50,19 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
     <title>{title}</title>
   </head>
-  <body class="bg-zinc-950 text-zinc-100 min-h-screen flex flex-col" style="font-family: 'Inter', system-ui, sans-serif;">
+  <body class="bg-page text-ink min-h-screen flex flex-col">
     <a href="#main-content" class="skip-link">Skip to content</a>
     <Header />
     <main id="main-content" tabindex="-1" class="flex-1 min-w-0">
       <slot />
     </main>
-    <footer class="border-t border-zinc-800 py-8 mt-16">
-      <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-zinc-400">
+    <footer class="border-t border-rule py-8 mt-16">
+      <div class="site-shell flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted">
         <span>&copy; {new Date().getFullYear()} {siteName}</span>
         <div class="flex flex-wrap justify-center gap-6">
-          <a href="https://github.com/FraH90" target="_blank" rel="noopener" class="hover:text-zinc-200 transition-colors">GitHub</a>
-          <a href="/about" class="hover:text-zinc-200 transition-colors">About</a>
-          {cvUrl && <a href={cvUrl} target="_blank" rel="noopener" class="hover:text-zinc-200 transition-colors">CV</a>}
+          <a href="https://github.com/FraH90" target="_blank" rel="noopener" class="hover:text-ink transition-colors">GitHub</a>
+          <a href="/about" class="hover:text-ink transition-colors">About</a>
+          {cvUrl && <a href={cvUrl} target="_blank" rel="noopener" class="hover:text-ink transition-colors">CV</a>}
         </div>
       </div>
     </footer>

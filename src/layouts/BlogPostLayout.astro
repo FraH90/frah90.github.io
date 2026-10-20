@@ -21,8 +21,8 @@ const formatted = new Intl.DateTimeFormat('en-US', {
 ---
 
 <BaseLayout title={`${title} — ${siteName}`} description={description}>
-  <article class="max-w-4xl mx-auto px-6 py-16">
-    <header class="mb-12 pb-10 border-b border-zinc-900">
+  <article class="site-shell py-16">
+    <header class="reading-width mb-12 pb-10 border-b border-rule">
       <div class="flex flex-wrap items-center gap-x-3 gap-y-1 mb-6">
         <a
           href={`/blog/${category}`}
@@ -30,34 +30,52 @@ const formatted = new Intl.DateTimeFormat('en-US', {
         >
           {topic.label}
         </a>
-        <span class="text-zinc-800">·</span>
-        <time datetime={date.toISOString()} class="text-sm text-zinc-400">{formatted}</time>
+        <span class="text-muted">·</span>
+        <time datetime={date.toISOString()} class="text-sm text-muted">{formatted}</time>
       </div>
-      <h1 class="text-3xl sm:text-4xl text-zinc-100 leading-tight mb-4"
+      <h1 class="page-title text-3xl sm:text-4xl text-ink leading-tight mb-4"
         style="font-family: 'Lora', Georgia, serif; font-weight: 400;">
         {title}
       </h1>
-      <p class="text-base text-zinc-500 leading-relaxed" style="font-family: 'Lora', Georgia, serif; font-style: italic;">
+      <p class="text-base text-muted leading-relaxed" style="font-family: 'Lora', Georgia, serif; font-style: italic;">
         {description}
       </p>
     </header>
 
-    <div class="prose prose-invert prose-zinc max-w-none
-      prose-headings:text-zinc-100
-      prose-p:text-zinc-300 prose-p:leading-relaxed
-      prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:underline
-      prose-code:text-emerald-300 prose-code:bg-zinc-800/80 prose-code:px-1.5 prose-code:rounded prose-code:text-sm
-      prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-zinc-800
-      prose-strong:text-zinc-200
-      prose-li:text-zinc-300"
-      style="font-family: 'Lora', Georgia, serif;">
+    <div class="prose article-content">
       <slot />
     </div>
 
-    <div class="mt-16 pt-8 border-t border-zinc-900">
-      <a href="/blog" class="text-sm text-zinc-500 hover:text-zinc-200 transition-colors">
+    <div class="reading-width mt-16 pt-8 border-t border-rule">
+      <a href="/blog" class="text-sm text-muted hover:text-ink transition-colors">
         ← All writing
       </a>
     </div>
   </article>
 </BaseLayout>
+
+<script>
+  // Wide scientific material scrolls locally and remains reachable by keyboard.
+  for (const [selector, label] of [['pre', 'Code block'], ['table', 'Table'], ['.katex-display', 'Equation']]) {
+    for (const element of document.querySelectorAll<HTMLElement>(`.article-content ${selector}`)) {
+      if (element.hasAttribute('tabindex')) continue;
+      const originalLabel = element.getAttribute('aria-label');
+      const originalRole = element.getAttribute('role');
+      const update = () => {
+        const overflowing = element.scrollWidth > element.clientWidth;
+        if (overflowing) {
+          element.tabIndex = 0;
+          if (originalLabel === null) element.setAttribute('aria-label', `${label} — scroll horizontally`);
+          if (selector !== 'table' && originalRole === null) element.setAttribute('role', 'region');
+        } else {
+          element.removeAttribute('tabindex');
+          if (originalLabel === null) element.removeAttribute('aria-label');
+          if (selector !== 'table' && originalRole === null) element.removeAttribute('role');
+        }
+      };
+      const observer = new ResizeObserver(update);
+      observer.observe(element);
+      update();
+    }
+  }
+</script>

@@ -99,7 +99,7 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
 
 ### Phase 2 — Readable design and theme choice
 
-**Status:** todo · **ID:** `r-261020-01-scientific-blog-foundation-p2`
+**Status:** done · **ID:** `r-261020-01-scientific-blog-foundation-p2`
 
 **Useful alone:** Articles and figures are comfortable to read in either theme.
 
@@ -107,12 +107,15 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
 
 **Depends on:** `r-261020-01-scientific-blog-foundation-p1`
 
-- ⬜ **todo** · **build** — Create shared color/type/spacing/width tokens and harmonize site/list/article layouts.
-  - ID `r-261020-01-scientific-blog-foundation-p2-1`
-- ⬜ **todo** · **build** — Implement an accessible persisted theme switch with early initialization and theme-aware scientific visualizations.
-  - ID `r-261020-01-scientific-blog-foundation-p2-2`
-- ⬜ **todo** · **validation** — Check contrast, focus visibility, controls, long titles, prose widths, and figure/table/math overflow in both themes on mobile and desktop.
-  - ID `r-261020-01-scientific-blog-foundation-p2-3`
+- ✅ **done** · **build** — Create shared color/type/spacing/width tokens and harmonize site/list/article layouts.
+  - ID `r-261020-01-scientific-blog-foundation-p2-1` · closed 2026-10-20
+  - Evidence (document): src/styles/global.css provides semantic colors, readable prose/figure widths, theme-aware typography and syntax colors, local overflow, and focus styling. Layouts, cards, topics, About and demos now consume those tokens.
+- ✅ **done** · **build** — Implement an accessible persisted theme switch with early initialization and theme-aware scientific visualizations.
+  - ID `r-261020-01-scientific-blog-foundation-p2-2` · closed 2026-10-20
+  - Evidence (observation): Chromium verified initial dark default regardless of system preference; explicit light/dark persistence across reload/navigation and cross-tab sync; saved light applied by the head script without the toggle module; invalid/blocked storage; keyboard toggle; chart font/trace changes with preserved zoom; labeled keyboard range inputs.
+- ✅ **done** · **validation** — Check contrast, focus visibility, controls, long titles, prose widths, and figure/table/math overflow in both themes on mobile and desktop.
+  - ID `r-261020-01-scientific-blog-foundation-p2-3` · closed 2026-10-20
+  - Evidence (observation): Final production build and check:build passed for 14 pages. Both themes passed responsive checks at 320/390/768/1440px across writing/topic/About and four live demos; axe contrast, label, button/link-name checks passed at 390/1440px. Temporary long-title/code/math/table/figure fixture passed localized keyboard scroll and width checks and was removed before final build. No-JS reading and plot-import error handling passed.
 
 ### Phase 3 — Scientific article structure and authoring
 
@@ -171,8 +174,11 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
 
 - ⬜ **todo** · **research** — Measure current visualization transfer/hydration cost and define a practical budget before selecting optimization work.
   - ID `r-261020-01-scientific-blog-foundation-p5-1`
-- ⬜ **todo** · **build** — Add loading, error, and meaningful static alternatives; label controls; handle imports, plot lifecycle, and theme changes.
+- ⬜ **todo** · **build** — Add meaningful static alternatives and complete loading/error behavior around browser-only demos; verify fallback content and import failure beyond the existing chart error message.
   - ID `r-261020-01-scientific-blog-foundation-p5-2`
+- ✅ **done** · **build** — Make plots and range controls theme-aware, preserve plot zoom, clean up plot/theme listeners, associate slider labels, and handle plot import/render rejection.
+  - ID `r-261020-01-scientific-blog-foundation-p5-6` · closed 2026-10-20
+  - Evidence (observation): Completed during Phase 2: live charts render in development and production, change axis/trace colors, preserve a real drag-zoom, and still respond to keyboard slider input. Blocked plot import produced a readable error message without an unhandled page error. Full scientific/static fallbacks remain p5-2.
 - ⬜ **todo** · **build** — Correct and independently verify representative numerical/boundary behavior, including infinite VSWR and scientific statements that contradict the models.
   - ID `r-261020-01-scientific-blog-foundation-p5-3`
 - ⬜ **todo** · **build** — Reduce unnecessary eager visualization loading or replace heavyweight plotting where the measured tradeoff justifies it.
@@ -198,6 +204,21 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
   - ID `r-261020-01-scientific-blog-foundation-p6-3`
 - ⬜ **todo** · **validation** — Run production build and review representative navigation, article, About, discovery, links, and failure states on desktop/mobile in both themes.
   - ID `r-261020-01-scientific-blog-foundation-p6-4`
+
+### Phase 7 — Workflow permissions and automated deployment checks
+
+**Status:** todo · **ID:** `r-261020-01-scientific-blog-foundation-p7`
+
+**Useful alone:** Broken public links and assets can stop deployment automatically instead of relying on a local check.
+
+**Done when:** Workflow-file edits are authorized through the integration, npm run check:build runs after the production build and before upload, and a successful workflow run verifies the gate.
+
+**Depends on:** `r-261020-01-scientific-blog-foundation-p6`
+
+- ⬜ **todo** · **decision** — Resolve the GitHub integration workflows permission using the supported LifeOS/GitHub configuration; do not add credentials to this repository.
+  - ID `r-261020-01-scientific-blog-foundation-p7-1`
+- ⬜ **todo** · **build** — Add npm run check:build after the Astro build and before GitHub Pages artifact upload; verify the check blocks broken output and a valid deployment passes.
+  - ID `r-261020-01-scientific-blog-foundation-p7-2`
 <!-- ledger-phases:end -->
 
 ## Risks
@@ -214,7 +235,7 @@ Overstating expertise; treating placeholder text as reviewed science; exposing d
 
 ## Working notes
 
-Phases 0 and 1 are complete. Phase 1 retains the writing-first entry, unifies taxonomy/listings, fixes mobile navigation and broken destinations, supplies the social card, and adds local build-output checks. Later phases remain pending, except the README correction was completed ahead of its Phase 3 article-template remainder. CV publication has its own idea/proposal and no implementation phase yet. Research notes under research/interests/ are not published by Astro. Validation on 2026-10-20 passed for all 7 JSON data files against vendored schemas; the LifeOS read/validate API and next-item selection; canonical JSON formatting; normalized source-message equality; 11 relative Markdown links; identical agent instruction files; and whitespace checks. Only documentation/planning files changed, so no new UI runtime or build claim is made. Commit evidence is the Git commit containing this Phase 0 record; no future SHA is invented.
+Phases 0, 1, and 2 are complete. Phase 1 retains the writing-first entry, unifies taxonomy/listings, fixes mobile navigation and broken destinations, supplies the social card, and adds local build-output checks. Later phases remain pending, except the README correction and plot/control theme/lifecycle slice completed ahead of their explicit article-template and static-demo remainders. CV publication has its own idea/proposal and no implementation phase yet. Research notes under research/interests/ are not published by Astro. Validation on 2026-10-20 passed for all 7 JSON data files against vendored schemas; the LifeOS read/validate API and next-item selection; canonical JSON formatting; normalized source-message equality; 11 relative Markdown links; identical agent instruction files; and whitespace checks. Only documentation/planning files changed, so no new UI runtime or build claim is made. Commit evidence is the Git commit containing this Phase 0 record; no future SHA is invented.
 
 
 ### Phase 1 verification — 2026-10-20
@@ -222,3 +243,19 @@ Phases 0 and 1 are complete. Phase 1 retains the writing-first entry, unifies ta
 Production build and `npm run check:build` passed for 14 pages. Chromium was made usable through temporary user-space system libraries; the LifeOS checkout was not changed. Browser checks passed for Writing, Antennas & Arrays, About, and the transmission-line article at 320, 390, 768, and 1440 pixels, including no horizontal page overflow, consistent topic order/layout, semantic active states, full-card click targets, keyboard focus, skip-to-content, and redirect aliases. Navigation and reading also passed without JavaScript under dark and light system preferences; explicit light-theme UI is still Phase 2. No page errors occurred during the checked routes.
 
 A temporary draft with a unique sentinel and otherwise empty `misc` category was excluded from generated content, article routes, filters, and sitemap. It was removed before the final production build. CV eligibility passed for both missing and present PDF files in an isolated temporary directory; no CV fixture was published. Shared output checks run via `npm run check:build`. Adding them to deployment CI was deferred because the GitHub App rejected workflow changes without workflows permission; the existing deployment workflow is retained. Screenshots were captured for desktop/mobile writing, topic, About, and article pages; the desktop/mobile writing listings and social card were visually reviewed. Numerical demo correctness, broader scientific review, and demo fallbacks remain pending phases.
+
+
+### Deferred workflow follow-up — 2026-10-20
+
+The owner said: “we'l deal with those permission shit later, add it at the end of roadmap maybe.” Phase 7 now records the permission decision and CI build-output gate after the publication work. No workflow file or GitHub permission is changed by Phase 2.
+
+
+### Phase 2 verification — 2026-10-20
+
+Shared semantic colors replace hard-coded dark-only utilities across the shell, lists, article chrome, About, controls, and plots. Prose is limited to 46rem inside a 64rem shell while figures and demos can use the wider area. Long titles wrap and oversized equations/code/tables scroll locally, with focus and accessible names when they overflow. Shiki emits light/dark palettes at build time, and KaTeX inherits the theme. No numerical model or article claim was changed in this phase.
+
+The theme is dark initially, including under a light OS preference. An early inline head script reads a validated local preference before body paint; the header button persists the explicit choice and synchronizes it between tabs. Browser checks passed for reload/navigation persistence, invalid preferences, denied storage, saved light before the toggle module executes, keyboard actions, and no-JavaScript reading. The button is hidden when scripting is unavailable. Denied storage permits switching on the current page without pretending that the preference can persist.
+
+Chromium checked Writing, a topic view, About, and the array-factor, Fourier, Gaussian-beam, and transmission-line articles in both themes at 320, 390, 768, and 1440 pixels. There was no horizontal page overflow. Selected axe rules (contrast, labels, button names, link names) passed at 390/1440 pixels. Representative dark/light article and listing screenshots were visually reviewed. Chart theme updates preserved real drag-zoom and keyboard slider changes continued to work. A blocked plotting import showed the explicit chart error message without an unhandled page error; complete static/demo failure alternatives remain Phase 5.
+
+A temporary published layout fixture exercised a long title, prose/link/quotation/list, syntax-highlighted code, a long equation, a wide table, and a wide non-data figure. Both palettes passed contrast checks. Local keyboard scrolling and ARIA/scroll-region checks passed for code/table/math; figure width exceeded the prose measure on desktop. The fixture and its otherwise empty topic were removed before the final production build. `npm run build` and `npm run check:build` passed for the final 14-page output, and fixture text/routes were absent. Numerical accuracy, static scientific fallback design, and manual assistive-technology testing were not claimed by these UI checks.
