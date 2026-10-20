@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Header from '../components/nav/Header.astro';
+import { cvUrl, siteName, siteDescription } from '../lib/site';
 
 interface Props {
   title: string;
@@ -10,7 +11,7 @@ interface Props {
 
 const {
   title,
-  description = 'Engineering portfolio — electronics, photonics, antennas, RF, signal processing.',
+  description = siteDescription,
   ogImage = '/og-default.png',
 } = Astro.props;
 
@@ -28,7 +29,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:type" content="website" />
 
@@ -42,17 +43,18 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
   </head>
   <body class="bg-zinc-950 text-zinc-100 min-h-screen flex flex-col" style="font-family: 'Inter', system-ui, sans-serif;">
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <Header />
-    <main class="flex-1">
+    <main id="main-content" tabindex="-1" class="flex-1 min-w-0">
       <slot />
     </main>
     <footer class="border-t border-zinc-800 py-8 mt-16">
-      <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-zinc-500">
-        <span>&copy; {new Date().getFullYear()} FraH90</span>
-        <div class="flex gap-6">
+      <div class="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-zinc-400">
+        <span>&copy; {new Date().getFullYear()} {siteName}</span>
+        <div class="flex flex-wrap justify-center gap-6">
           <a href="https://github.com/FraH90" target="_blank" rel="noopener" class="hover:text-zinc-200 transition-colors">GitHub</a>
           <a href="/about" class="hover:text-zinc-200 transition-colors">About</a>
-          <a href="/cv.pdf" target="_blank" class="hover:text-zinc-200 transition-colors">CV</a>
+          {cvUrl && <a href={cvUrl} target="_blank" rel="noopener" class="hover:text-zinc-200 transition-colors">CV</a>}
         </div>
       </div>
     </footer>

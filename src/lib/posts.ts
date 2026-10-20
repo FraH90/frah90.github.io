@@ -1,16 +1,23 @@
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { topics } from './topics';
+
+/** Shared eligibility for routes and every published-content discovery surface. */
+export function isPublishedPost(post: Pick<CollectionEntry<'blog'>, 'data'>) {
+  return !post.data.draft;
+}
 
 export async function getAllPosts() {
-  const posts = await getCollection('blog', ({ data }) => !data.draft);
-  return posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  const posts = await getCollection('blog', isPublishedPost);
+  return posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf() || a.id.localeCompare(b.id));
 }
 
 export async function getPostsByCategory(category: string) {
   const all = await getAllPosts();
-  return all.filter(p => p.data.category === category);
+  return all.filter(post => post.data.category === category);
 }
 
-export async function getAllCategories(): Promise<string[]> {
+export async function getAllCategories() {
   const posts = await getAllPosts();
-  return [...new Set(posts.map(p => p.data.category))];
+  const populated = new Set(posts.map(post => post.data.category));
+  return topics.filter(topic => populated.has(topic.slug));
 }

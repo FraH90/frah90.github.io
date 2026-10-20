@@ -11,7 +11,10 @@ export default defineConfig({
   output: 'static',
   site: 'https://frah90.github.io',
 
-  integrations: [react(), mdx(), sitemap()],
+  integrations: [react(), mdx(), sitemap({
+    // Redirect aliases are useful inbound links, not canonical content.
+    filter: page => !['/', '/projects', '/projects/'].includes(new URL(page).pathname),
+  })],
 
   markdown: {
     remarkPlugins: [remarkMath],

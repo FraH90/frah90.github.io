@@ -8,13 +8,13 @@ A content-first scientific and technical publication with a visible author. Read
 
 ## Existing implementation
 
-Astro generates static pages for GitHub Pages. MDX files under `src/content/blog/` form the `blog` collection defined in `src/content.config.ts`. The root currently redirects to `/blog`. Routes include article and category pages, About, and an empty Projects page. React islands host analytical demos; KaTeX renders MDX math at build time. Plotly is dynamically imported by its wrapper. GitHub Actions builds and deploys pushes to `main`.
+Astro generates static pages for GitHub Pages. MDX files under `src/content/blog/` form the `blog` collection defined in `src/content.config.ts`. The root currently redirects to `/blog`. Routes include article and category pages and About. The former empty Projects route now redirects to writing. React islands host analytical demos; KaTeX renders MDX math at build time. Plotly is dynamically imported by its wrapper. GitHub Actions builds and deploys pushes to `main`.
 
-These facts describe the baseline, not the target. Navigation disappears below the small-screen breakpoint; CV and social preview assets are missing; topic styling is duplicated; authoring documentation is stale. The earlier build passed but visual browser verification was blocked by missing Chromium system dependencies.
+Phase 1 now shares topic metadata and listing components, keeps navigation visible at mobile sizes, gates CV links on the presence of the PDF, and supplies a real social preview asset. Root and Projects redirect aliases are excluded from the sitemap. Later reading and publishing features remain roadmap work.
 
 ## Target information architecture
 
-- A writing-led entry page: selected/latest articles, meaningful scientific figures, clear topic access, and a compact author link. Exact root-versus-`/blog` routing remains in the navigation proposal; do not migrate URLs silently.
+- A writing-led entry page: selected/latest articles, meaningful scientific figures, clear topic access, and a compact author link. Phase 1 retains `/` → `/blog` and existing article URLs; no URL migration is needed.
 - A consistent writing index and topic views using the same layout and controls.
 - An article template optimized for prose, equations, figures, and optional interactions.
 - About for background, interdisciplinary interests, links to demonstrated work, contact, and eventually CV.
@@ -39,9 +39,9 @@ These facts describe the baseline, not the target. Navigation disappears below t
 
 ## Content and taxonomy
 
-Introduce one topic registry, preferably `src/lib/topics.ts`, with stable machine slugs, human labels, order, and presentation metadata. Retain existing slugs unless a deliberate migration is necessary. Suggested labels for current slugs: Antennas & Arrays (`antennas`), RF & Microwave (`rf`), Optics & Photonics (`optics`), Signal Processing (`dsp`), Machine Learning (`ml`), and Other Topics (`misc`). Labels and order are a proposal; new interests do not automatically become empty public categories.
+The shared topic registry at `src/lib/topics.ts` is implemented, with stable machine slugs, human labels, order, and presentation metadata. Existing slugs are retained; future changes need a deliberate migration. Current labels for stable slugs: Antennas & Arrays (`antennas`), RF & Microwave (`rf`), Optics & Photonics (`optics`), Signal Processing (`dsp`), Machine Learning (`ml`), and Other Topics (`misc`). The registry defines display order; new interests do not automatically become empty public categories.
 
-The collection schema, topic filters, badges, metadata, related reading, and future search/RSS must share this vocabulary. Publication queries must share draft eligibility. Prefer a single validated publication helper rather than separately implemented filtering in each feature.
+The collection schema, topic filters, article labels, and category routes consume this vocabulary. `src/lib/posts.ts` provides shared publication eligibility for listings and article routes. Future related reading, search, and RSS must use these same helpers.
 
 ## Reading and interaction
 

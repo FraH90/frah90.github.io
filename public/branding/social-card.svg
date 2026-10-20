@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<title>FraH90 — scientific and technical writing</title>
+<rect width="1200" height="630" fill="#09090b"/>
+<rect x="80" y="80" width="64" height="5" fill="#6ee7b7"/>
+<text x="80" y="170" fill="#a1a1aa" font-family="sans-serif" font-size="30">FraH90</text>
+<text x="80" y="290" fill="#fafafa" font-family="serif" font-size="68">Scientific &amp;</text>
+<text x="80" y="375" fill="#fafafa" font-family="serif" font-size="68">technical writing.</text>
+<text x="80" y="485" fill="#a1a1aa" font-family="sans-serif" font-size="28">Waves, signals &amp; computational engineering</text>
+<line x1="80" y1="550" x2="1120" y2="550" stroke="#3f3f46"/>
+</svg>

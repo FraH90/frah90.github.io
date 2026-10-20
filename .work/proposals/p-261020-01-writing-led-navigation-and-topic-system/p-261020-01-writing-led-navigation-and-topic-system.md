@@ -25,9 +25,9 @@ Route duplication, inconsistent active states, mobile crowding, accidental URL b
 
 ## Open questions
 
-- Which entry-route option best preserves existing links and clarity?
+- Resolved in Phase 1: retain `/` → `/blog` and existing article URLs.
 - What public site name and author display name should be used?
-- Confirm topic display labels/order during implementation.
+- Resolved in Phase 1: use the ordered registry at `src/lib/topics.ts`; labels match the readable names above.
 
 ## Status boundary
 

@@ -24,7 +24,7 @@ Explain what changing each control demonstrates. Label controls programmatically
 
 Create MDX under `src/content/blog/<category>/`. The current schema requires `title`, `date`, `category`, and `description`; tags are optional and `draft` currently defaults to false, so always set `draft: true` explicitly while writing. Learning statements/prerequisites, figure components, related reading, RSS, and search support are planned additions, not existing frontmatter promises.
 
-Use existing stable category slugs until the shared topic registry lands. Current article URLs include the category, for example `/blog/rf/transmission-line-theory`; the old README's category-free example is inaccurate. From an article in a category subdirectory, component imports currently use `../../../components/...`.
+Choose stable category slugs from `src/lib/topics.ts`; only topics with published content appear in public filters. Article URLs include the category, for example `/blog/rf/transmission-line-theory`. From an article in a category subdirectory, component imports currently use `../../../components/...`.
 
 Before publishing: review mathematical/scientific accuracy and citations; run the production build; check equations, figures, tables, code, links, interactive behavior, and mobile reading. Once discovery features exist, verify draft exclusion from every index and feed. Set a genuine publication date and remove draft status only when the piece is ready.
 

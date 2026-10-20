@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { cvUrl, siteName } from '../lib/site';
 
 const skillGroups = [
   {
@@ -29,8 +30,8 @@ const skillGroups = [
 ];
 ---
 
-<BaseLayout title="About — frah90" description="About FraH — electronics and photonics engineer.">
-  <div class="max-w-4xl mx-auto px-4 py-16">
+<BaseLayout title={`About — ${siteName}`} description="About FraH — electronics and photonics engineer.">
+  <div class="max-w-4xl mx-auto px-6 py-16">
     <h1 class="text-3xl font-bold text-zinc-50 mb-8">About</h1>
 
     <div class="prose prose-invert prose-zinc max-w-none
@@ -70,26 +71,29 @@ const skillGroups = [
         href="https://github.com/FraH90"
         target="_blank"
         rel="noopener"
-        class="flex items-center gap-4 border border-zinc-800 rounded-lg p-4 hover:border-zinc-600 transition-colors group"
+        class="flex flex-wrap items-center gap-4 border border-zinc-800 rounded-lg p-4 hover:border-zinc-600 transition-colors group"
       >
         <span class="text-zinc-500 font-mono text-sm w-16">GitHub</span>
-        <span class="text-zinc-300 group-hover:text-emerald-400 transition-colors">github.com/FraH90</span>
+        <span class="text-zinc-300 break-all group-hover:text-emerald-400 transition-colors">github.com/FraH90</span>
       </a>
       <a
         href="mailto:frah.221190@gmail.com"
-        class="flex items-center gap-4 border border-zinc-800 rounded-lg p-4 hover:border-zinc-600 transition-colors group"
+        class="flex flex-wrap items-center gap-4 border border-zinc-800 rounded-lg p-4 hover:border-zinc-600 transition-colors group"
       >
         <span class="text-zinc-500 font-mono text-sm w-16">Email</span>
-        <span class="text-zinc-300 group-hover:text-emerald-400 transition-colors">frah.221190@gmail.com</span>
+        <span class="text-zinc-300 break-all group-hover:text-emerald-400 transition-colors">frah.221190@gmail.com</span>
       </a>
-      <a
-        href="/cv.pdf"
-        target="_blank"
-        class="flex items-center gap-4 border border-zinc-800 rounded-lg p-4 hover:border-zinc-600 transition-colors group"
-      >
-        <span class="text-zinc-500 font-mono text-sm w-16">CV</span>
-        <span class="text-zinc-300 group-hover:text-emerald-400 transition-colors">Download PDF</span>
-      </a>
+      {cvUrl && (
+        <a
+          href={cvUrl}
+          target="_blank"
+          rel="noopener"
+          class="flex flex-wrap items-center gap-4 border border-zinc-800 rounded-lg p-4 hover:border-zinc-600 transition-colors group"
+        >
+          <span class="text-zinc-500 font-mono text-sm w-16">CV</span>
+          <span class="text-zinc-300 break-all group-hover:text-emerald-400 transition-colors">Download PDF</span>
+        </a>
+      )}
     </div>
   </div>
 </BaseLayout>

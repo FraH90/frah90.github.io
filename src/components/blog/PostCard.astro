@@ -1,41 +1,30 @@
 ---
+import { getTopic, type TopicSlug } from '../../lib/topics';
+
 interface Props {
   title: string;
   date: Date;
-  category: string;
+  category: TopicSlug;
   description: string;
   slug: string;
 }
-
 const { title, date, category, description, slug } = Astro.props;
-
+const topic = getTopic(category);
 const formatted = new Intl.DateTimeFormat('en-US', {
-  year: 'numeric', month: 'short', day: 'numeric',
+  year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC',
 }).format(date);
-
-const categoryColors: Record<string, string> = {
-  antennas: 'text-emerald-400',
-  ml:       'text-violet-400',
-  rf:       'text-sky-400',
-  optics:   'text-amber-400',
-  dsp:      'text-rose-400',
-  misc:     'text-zinc-400',
-};
 ---
 
-<article class="border border-zinc-800 rounded-lg p-5 hover:border-zinc-600 transition-colors group">
-  <div class="flex items-center gap-3 mb-3">
-    <a
-      href={`/blog/${category}`}
-      class:list={['text-xs font-mono hover:underline', categoryColors[category] ?? 'text-zinc-400']}
-    >
-      {category}
-    </a>
-    <time class="text-xs font-mono text-zinc-600">{formatted}</time>
-  </div>
-  <h2 class="text-base text-zinc-100 mb-2 group-hover:text-zinc-50 transition-colors leading-snug"
-    style="font-family: 'Lora', Georgia, serif; font-weight: 400;">
-    <a href={`/blog/${slug}`}>{title}</a>
-  </h2>
-  <p class="text-sm text-zinc-500">{description}</p>
+<article class="min-w-0 h-full">
+  <a href={`/blog/${slug}`} class="post-card group block h-full rounded-lg border border-zinc-800 p-6 hover:border-zinc-500 hover:bg-zinc-900/40 transition-colors">
+    <div class="flex flex-wrap items-center gap-x-3 gap-y-2 mb-4 text-xs">
+      <span class:list={['font-medium', topic.color]}>{topic.label}</span>
+      <time datetime={date.toISOString()} class="text-zinc-400">{formatted}</time>
+    </div>
+    <h2 class="text-xl text-zinc-100 mb-3 leading-snug group-hover:underline decoration-zinc-500 underline-offset-4" style="font-family: 'Lora', Georgia, serif;">
+      {title}
+    </h2>
+    <p class="text-sm leading-relaxed text-zinc-400">{description}</p>
+    <span class="mt-5 inline-block text-sm text-zinc-300" aria-hidden="true">Read article <span class="ml-1">→</span></span>
+  </a>
 </article>

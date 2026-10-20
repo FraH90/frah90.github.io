@@ -1,0 +1,56 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from './PostCard.astro';
+import { getTopic, type TopicSlug } from '../../lib/topics';
+import { getAllCategories } from '../../lib/posts';
+import { siteName } from '../../lib/site';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+  category?: TopicSlug;
+}
+const { posts, category } = Astro.props;
+const categories = await getAllCategories();
+const topic = category ? getTopic(category) : undefined;
+const heading = topic?.label ?? 'Writing';
+const description = topic
+  ? `Scientific and technical articles on ${topic.label.toLowerCase()}.`
+  : 'Notes, explanations, and interactive explorations of waves, signals, and computational engineering.';
+---
+
+<BaseLayout title={`${heading} — ${siteName}`} description={description}>
+  <div class="max-w-4xl mx-auto px-6 py-12 sm:py-16">
+    <header class="mb-8">
+      {topic && <a href="/blog" class="inline-flex min-h-11 items-center text-sm text-zinc-400 hover:text-zinc-100 mb-3">← All writing</a>}
+      <h1 class="text-3xl sm:text-4xl text-zinc-100 mb-4" style="font-family: 'Lora', Georgia, serif;">{heading}</h1>
+      <p class="max-w-2xl text-base text-zinc-400 leading-relaxed">{description}</p>
+      {!topic && <a href="/about" class="inline-flex min-h-11 items-center text-sm text-zinc-300 underline underline-offset-4 decoration-zinc-600 hover:decoration-zinc-300 mt-2">About the author <span aria-hidden="true" class="ml-2">→</span></a>}
+    </header>
+
+    {categories.length > 0 && (
+      <nav aria-label="Article topics" class="mb-8 border-y border-zinc-800 py-4">
+        <ul class="flex flex-wrap gap-2">
+          <li><a href="/blog" aria-current={!category ? 'page' : undefined}
+            class:list={['topic-filter', !category && 'topic-filter-active']}>All topics</a></li>
+          {categories.map(item => (
+            <li><a href={`/blog/${item.slug}`} aria-current={category === item.slug ? 'page' : undefined}
+              class:list={['topic-filter', category === item.slug && 'topic-filter-active']}>
+              {item.label}
+            </a></li>
+          ))}
+        </ul>
+      </nav>
+    )}
+
+    <p class="text-sm text-zinc-400 mb-5">{posts.length} {posts.length === 1 ? 'article' : 'articles'}{topic ? ` in ${topic.label}` : ''}</p>
+    {posts.length === 0 ? (
+      <p class="text-zinc-400">No articles published yet.</p>
+    ) : (
+      <div class="grid sm:grid-cols-2 gap-5" aria-label="Articles">
+        {posts.map(post => <PostCard title={post.data.title} date={post.data.date} category={post.data.category}
+          description={post.data.description} slug={post.id} />)}
+      </div>
+    )}
+  </div>
+</BaseLayout>

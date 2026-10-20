@@ -73,7 +73,7 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
 
 ### Phase 1 — Consistent topics and usable navigation
 
-**Status:** todo · **ID:** `r-261020-01-scientific-blog-foundation-p1`
+**Status:** done · **ID:** `r-261020-01-scientific-blog-foundation-p1`
 
 **Useful alone:** Readers can understand topics and navigate on mobile without broken destinations.
 
@@ -81,16 +81,21 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
 
 **Depends on:** none
 
-- ⬜ **todo** · **decision** — Inspect current route/link behavior and settle the writing-led entry route and initial topic labels.
-  - ID `r-261020-01-scientific-blog-foundation-p1-1`
-- ⬜ **todo** · **build** — Introduce shared topic metadata and publication eligibility; replace duplicated category maps and inconsistent list/filter layouts.
-  - ID `r-261020-01-scientific-blog-foundation-p1-2`
-- ⬜ **todo** · **build** — Add clear site/home identity, accessible current-page state, and usable mobile navigation; remove empty destinations and conditionally hide missing CV links.
-  - ID `r-261020-01-scientific-blog-foundation-p1-3`
-- ⬜ **todo** · **build** — Resolve missing social preview assets and make card click targets match their interaction treatment.
-  - ID `r-261020-01-scientific-blog-foundation-p1-4`
-- ⬜ **todo** · **validation** — Verify routes, draft exclusion, filters, link targets, narrow-screen layout, and keyboard navigation.
-  - ID `r-261020-01-scientific-blog-foundation-p1-5`
+- ✅ **done** · **decision** — Inspect current route/link behavior and settle the writing-led entry route and initial topic labels.
+  - ID `r-261020-01-scientific-blog-foundation-p1-1` · closed 2026-10-20
+  - Evidence (decision): Retain / -> /blog as the writing-first entry and preserve category/article URLs. Use existing FraH90 identity, Writing/About navigation, and stable slug labels/order in src/lib/topics.ts. Redirect empty /projects to /blog; CV links depend on a real public PDF.
+- ✅ **done** · **build** — Introduce shared topic metadata and publication eligibility; replace duplicated category maps and inconsistent list/filter layouts.
+  - ID `r-261020-01-scientific-blog-foundation-p1-2` · closed 2026-10-20
+  - Evidence (document): src/lib/topics.ts is shared by the collection schema, topic filters, routes and article labels. src/lib/posts.ts owns draft eligibility. PostListing.astro shares archive/category layout.
+- ✅ **done** · **build** — Add clear site/home identity, accessible current-page state, and usable mobile navigation; remove empty destinations and conditionally hide missing CV links.
+  - ID `r-261020-01-scientific-blog-foundation-p1-3` · closed 2026-10-20
+  - Evidence (observation): Chromium passed visible navigation, active state, keyboard skip/focus, and no page overflow at 320/390/768/1440px. Root and Projects aliases lead to Writing. CV links are absent without the PDF; presence/absence eligibility also passed an isolated temporary-directory check.
+- ✅ **done** · **build** — Resolve missing social preview assets and make card click targets match their interaction treatment.
+  - ID `r-261020-01-scientific-blog-foundation-p1-4` · closed 2026-10-20
+  - Evidence (document): public/og-default.png and editable public/branding/social-card.svg replace the missing preview target; Open Graph image URLs are absolute. Whole-card links passed non-title-area pointer and keyboard-focus checks.
+- ✅ **done** · **validation** — Verify routes, draft exclusion, filters, link targets, narrow-screen layout, and keyboard navigation.
+  - ID `r-261020-01-scientific-blog-foundation-p1-5` · closed 2026-10-20
+  - Evidence (observation): Final npm run build and npm run check:build passed (14 pages). Chromium checked writing, topic, About and an interactive article at 320/390/768/1440px, keyboard focus/skip, card targets, aliases and no-JS reading. A temporary draft fixture stayed out of routes/listings/topics/sitemap and was removed before the final build. The site remains dark; light mode belongs to Phase 2.
 
 ### Phase 2 — Readable design and theme choice
 
@@ -127,8 +132,11 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
   - ID `r-261020-01-scientific-blog-foundation-p3-3`
 - ⬜ **todo** · **build** — Add related reading/project links using shared eligible-content rules and honest empty states.
   - ID `r-261020-01-scientific-blog-foundation-p3-4`
-- ⬜ **todo** · **build** — Correct README architecture, imports, URLs, and publishing instructions; add a usable article starting template.
-  - ID `r-261020-01-scientific-blog-foundation-p3-5`
+- ✅ **done** · **build** — Correct README architecture, imports, URLs, and publishing instructions.
+  - ID `r-261020-01-scientific-blog-foundation-p3-5` · closed 2026-10-20
+  - Evidence (document): README.md now describes actual routes, topic registry, draft eligibility, current MDX imports, CV behavior, deployment/build checks, and explicitly pending features. Completed during Phase 1.
+- ⬜ **todo** · **build** — Add a usable article starting template with the enhanced article metadata once that schema lands.
+  - ID `r-261020-01-scientific-blog-foundation-p3-7`
 - ⬜ **todo** · **validation** — Verify one representative article with math, figures, tables/code, prerequisites, contents, links, and both themes.
   - ID `r-261020-01-scientific-blog-foundation-p3-6`
 
@@ -206,4 +214,11 @@ Overstating expertise; treating placeholder text as reviewed science; exposing d
 
 ## Working notes
 
-Planning and documentation are the completed Phase 0 slice; website behavior is unchanged by this setup. All later phases remain todo. CV publication has its own idea/proposal and no implementation phase yet. Research notes under research/interests/ are not published by Astro. Validation on 2026-10-20 passed for all 7 JSON data files against vendored schemas; the LifeOS read/validate API and next-item selection; canonical JSON formatting; normalized source-message equality; 11 relative Markdown links; identical agent instruction files; and whitespace checks. Only documentation/planning files changed, so no new UI runtime or build claim is made. Commit evidence is the Git commit containing this Phase 0 record; no future SHA is invented.
+Phases 0 and 1 are complete. Phase 1 retains the writing-first entry, unifies taxonomy/listings, fixes mobile navigation and broken destinations, supplies the social card, and adds local build-output checks. Later phases remain pending, except the README correction was completed ahead of its Phase 3 article-template remainder. CV publication has its own idea/proposal and no implementation phase yet. Research notes under research/interests/ are not published by Astro. Validation on 2026-10-20 passed for all 7 JSON data files against vendored schemas; the LifeOS read/validate API and next-item selection; canonical JSON formatting; normalized source-message equality; 11 relative Markdown links; identical agent instruction files; and whitespace checks. Only documentation/planning files changed, so no new UI runtime or build claim is made. Commit evidence is the Git commit containing this Phase 0 record; no future SHA is invented.
+
+
+### Phase 1 verification — 2026-10-20
+
+Production build and `npm run check:build` passed for 14 pages. Chromium was made usable through temporary user-space system libraries; the LifeOS checkout was not changed. Browser checks passed for Writing, Antennas & Arrays, About, and the transmission-line article at 320, 390, 768, and 1440 pixels, including no horizontal page overflow, consistent topic order/layout, semantic active states, full-card click targets, keyboard focus, skip-to-content, and redirect aliases. Navigation and reading also passed without JavaScript under dark and light system preferences; explicit light-theme UI is still Phase 2. No page errors occurred during the checked routes.
+
+A temporary draft with a unique sentinel and otherwise empty `misc` category was excluded from generated content, article routes, filters, and sitemap. It was removed before the final production build. CV eligibility passed for both missing and present PDF files in an isolated temporary directory; no CV fixture was published. Shared output checks run via `npm run check:build`. Adding them to deployment CI was deferred because the GitHub App rejected workflow changes without workflows permission; the existing deployment workflow is retained. Screenshots were captured for desktop/mobile writing, topic, About, and article pages; the desktop/mobile writing listings and social card were visually reviewed. Numerical demo correctness, broader scientific review, and demo fallbacks remain pending phases.

@@ -1,42 +1,37 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import { getTopic, type TopicSlug } from '../lib/topics';
+import { siteName } from '../lib/site';
 
 interface Props {
   title: string;
   date: Date;
-  category: string;
+  category: TopicSlug;
   description: string;
   tags: string[];
 }
 
-const { title, date, category, description, tags } = Astro.props;
+const { title, date, category, description } = Astro.props;
+const topic = getTopic(category);
 
 const formatted = new Intl.DateTimeFormat('en-US', {
-  year: 'numeric', month: 'long', day: 'numeric',
+  year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC',
 }).format(date);
 
-const categoryColors: Record<string, string> = {
-  antennas: 'bg-emerald-400/10 text-emerald-400',
-  ml:       'bg-violet-400/10 text-violet-400',
-  rf:       'bg-sky-400/10 text-sky-400',
-  optics:   'bg-amber-400/10 text-amber-400',
-  dsp:      'bg-rose-400/10 text-rose-400',
-  misc:     'bg-zinc-400/10 text-zinc-400',
-};
 ---
 
-<BaseLayout title={`${title} — frah90`} description={description}>
+<BaseLayout title={`${title} — ${siteName}`} description={description}>
   <article class="max-w-4xl mx-auto px-6 py-16">
     <header class="mb-12 pb-10 border-b border-zinc-900">
-      <div class="flex items-center gap-3 mb-6">
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-1 mb-6">
         <a
           href={`/blog/${category}`}
-          class:list={['text-xs font-mono', categoryColors[category] ?? categoryColors.misc]}
+          class:list={['inline-flex min-h-11 items-center text-sm hover:underline underline-offset-4', topic.color]}
         >
-          {category}
+          {topic.label}
         </a>
         <span class="text-zinc-800">·</span>
-        <time class="text-xs text-zinc-600">{formatted}</time>
+        <time datetime={date.toISOString()} class="text-sm text-zinc-400">{formatted}</time>
       </div>
       <h1 class="text-3xl sm:text-4xl text-zinc-100 leading-tight mb-4"
         style="font-family: 'Lora', Georgia, serif; font-weight: 400;">
@@ -61,7 +56,7 @@ const categoryColors: Record<string, string> = {
 
     <div class="mt-16 pt-8 border-t border-zinc-900">
       <a href="/blog" class="text-sm text-zinc-500 hover:text-zinc-200 transition-colors">
-        ← Blog
+        ← All writing
       </a>
     </div>
   </article>

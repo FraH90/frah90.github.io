@@ -1,410 +1,123 @@
-# frah90.github.io
+# FraH90 — scientific and technical writing
 
-Technical portfolio and interactive engineering blog.
-Live at **https://frah90.github.io**
+A content-first engineering blog built with Astro and MDX, hosted at **https://frah90.github.io**. Articles explore antennas, RF, optics, signal processing, machine learning, and computational engineering. About provides author context; research interests are not claims of specialist experience.
 
-Topics: antennas & phased arrays, RF & transmission lines, photonics & optics, signal processing, DSP, machine learning on signal data.
+## Project guidance
 
----
+- [Working contract](CLAUDE.md) and identical [Codex instructions](AGENTS.md).
+- [Architecture and boundaries](docs/architecture.md).
+- [Editorial and scientific figure standard](docs/editorial.md).
+- [Work ledger, proposals, and roadmap](.work/README.md).
+- [Unpublished research notebook](research/README.md).
 
-## Project direction and planning
+The ledger records what is implemented. Light/dark switching, collapsed contents, enhanced article metadata, related reading, search, and RSS are planned work, not current capabilities.
 
-This is a content-first scientific and technical blog with a professional author profile. The agreed direction and implementation plan are recorded in:
+## Local development
 
-- [Working contract](CLAUDE.md) and its identical [Codex entry point](AGENTS.md).
-- [Architecture](docs/architecture.md) and [editorial guide](docs/editorial.md).
-- [Work ledger and roadmap](.work/README.md).
-- [Unpublished research interests](research/README.md), including agentic programming and integrated circuit design.
-
-The roadmap distinguishes completed planning from pending site implementation. Some older architecture and authoring examples below are stale; use the current source and the editorial guide for accurate paths until the roadmap's README revision lands.
-
----
-
-## Technology Rationale
-
-| Layer | Choice | Why |
-|---|---|---|
-| Site framework | **Astro** (static output) | Islands architecture — static HTML by default, React hydrates only where needed |
-| UI components | **React** (islands only) | Interactive demos, sliders, plots. Never a full SPA — Astro handles routing |
-| Styling | **Tailwind CSS v4** | `@tailwindcss/vite` integration, no config file needed, utility-first |
-| Articles | **MDX** | Markdown with embedded React components — write prose, drop in live demos |
-| Math | **KaTeX** via `remark-math` + `rehype-katex` | Renders at build time → no runtime JS loading, fast, small CSS |
-| Plots | **Plotly.js** (primary), D3, Three.js, p5.js | Per-demo choice. Plotly via dynamic `import()` inside `useEffect` to avoid SSR crash |
-| Content typing | **Astro Content Collections + Zod** | Type-safe frontmatter, categories enforced at build time |
-| Hosting | **GitHub Pages** (user site) | Free, version-controlled, no base path needed |
-| Deploy | **GitHub Actions** `deploy-pages@v4` | Auto-deploy on push to `main` |
-
-### Key architectural decisions
-
-**Why `client:only="react"` for demo components** — Plotly, Three.js, and p5.js access `window`/`document` at module scope. Astro's build-time SSR would crash on this. `client:only` skips server-side rendering entirely for those components, running them only in the browser.
-
-**Why dynamic `import()` for Plotly inside `useEffect`** — even with `client:only`, Plotly is ~3 MB. A dynamic import means it is loaded only when the component mounts, not blocking the initial page render.
-
-**Why precomputed JSON instead of server-side computation** — GitHub Pages is static-only. Heavy numerical work (antenna sweeps, mode solving) runs locally in Python, outputs JSON, and the JSON is committed to the repo. The browser loads the JSON for the initial render; sliders drive fast client-side recomputation for interactivity.
-
----
-
-## Architecture
-
-```
-frah90.github.io/
-├── .github/workflows/deploy.yml     # GitHub Actions CI/CD
-├── public/
-│   ├── favicon.svg
-│   ├── cv.pdf
-│   └── data/                        # precomputed JSON — served verbatim
-│       ├── array-factor/default.json
-│       └── gaussian-beam/default.json
-├── scripts/                         # Python scripts that generate public/data/**
-│   ├── generate_array_factor.py
-│   ├── generate_gaussian_beam.py
-│   └── README.md
-├── src/
-│   ├── content/
-│   │   ├── config.ts                # Zod schemas for blog + demos collections
-│   │   ├── blog/                    # .md and .mdx articles (subfolder = category)
-│   │   │   ├── antennas/
-│   │   │   ├── ml/
-│   │   │   ├── rf/
-│   │   │   ├── optics/
-│   │   │   ├── dsp/
-│   │   │   └── misc/
-│   │   └── demos/                   # metadata stubs for each demo
-│   ├── layouts/
-│   │   ├── BaseLayout.astro         # HTML shell, nav, footer
-│   │   ├── BlogPostLayout.astro     # article chrome (title, date, category, tags, prose)
-│   │   └── DemoPageLayout.astro     # named slots: intro, equations, demo, interpretation
-│   ├── components/
-│   │   ├── nav/Header.astro
-│   │   ├── blog/PostCard.astro
-│   │   ├── demos/                   # React islands (client:only="react")
-│   │   │   ├── ArrayFactorDemo.tsx
-│   │   │   ├── FourierTransformDemo.tsx
-│   │   │   ├── TransmissionLineDemo.tsx
-│   │   │   ├── GaussianBeamDemo.tsx
-│   │   │   └── ModeProfileViewer.tsx
-│   │   └── ui/
-│   │       ├── Slider.tsx           # reusable controlled range input
-│   │       └── PlotlyChart.tsx      # dynamic-import Plotly wrapper
-│   ├── pages/
-│   │   ├── index.astro
-│   │   ├── about.astro
-│   │   ├── skills.astro
-│   │   ├── projects.astro
-│   │   ├── contact.astro
-│   │   ├── blog/
-│   │   │   ├── index.astro
-│   │   │   ├── [slug].astro         # getStaticPaths from blog collection
-│   │   │   └── [category]/index.astro
-│   │   └── demos/
-│   │       ├── index.astro
-│   │       ├── array-factor-demo.astro
-│   │       ├── fourier-transform-demo.astro
-│   │       ├── transmission-line-demo.astro
-│   │       ├── gaussian-beam-demo.astro
-│   │       └── mode-profile-viewer.astro
-│   ├── lib/
-│   │   ├── posts.ts                 # getCollection helpers for blog
-│   │   └── demos.ts                 # getCollection helpers for demos
-│   └── styles/global.css            # Tailwind + KaTeX CSS import
-├── astro.config.mjs
-├── tsconfig.json
-└── package.json
-```
-
-**Build pipeline:**
-```
-src/ + public/  →  npm run build  →  dist/  →  GitHub Actions  →  GitHub Pages
-```
-
----
-
-## Local Development
-
-**Prerequisites:** Node >= 20, npm >= 9
+Use Node **22.12 or newer** (CI uses Node 24).
 
 ```bash
-# Install dependencies
-npm install
-
-# Start dev server (hot reload)
+npm ci
 npm run dev
-# -> http://localhost:4321
+```
 
-# Production build
+Production verification:
+
+```bash
 npm run build
-
-# Preview production build locally
+npm run check:build
 npm run preview
 ```
 
----
+`check:build` checks generated pages, internal links/assets, missing CV links, social-image targets, navigation, sitemap destinations, and separation of planning/research files from public output. It requires a completed build. Browser checks remain necessary for responsive layouts, keyboard interactions, and demos.
 
-## How to Add a Blog Post
+## Structure
 
-1. Create a `.mdx` file in `src/content/blog/<category>/`:
-   ```
-   src/content/blog/rf/my-new-article.mdx
-   ```
-
-2. Add frontmatter (all fields required unless marked optional):
-   ```yaml
-   ---
-   title: My Article Title
-   date: 2026-06-01
-   category: rf              # must match enum in config.ts
-   description: One sentence.
-   tags: [tag1, tag2]        # optional
-   draft: false              # set true to hide from production
-   coverImage: /images/cover.png  # optional
-   ---
-   ```
-
-3. Write content in Markdown + MDX:
-
-   **Math (KaTeX):**
-   ```mdx
-   Inline: $E = mc^2$
-
-   Display block:
-   $$
-   \nabla \times \mathbf{B} = \mu_0 \mathbf{J}
-   $$
-   ```
-
-   **Embed a Plotly chart:**
-   ```mdx
-   import PlotlyChart from '../../components/ui/PlotlyChart';
-
-   <PlotlyChart
-     client:only="react"
-     data={[{ x: [1,2,3], y: [4,5,6], type: 'scatter' }]}
-     layout={{ title: 'My Chart' }}
-   />
-   ```
-
-   **Embed a Three.js animation:**
-   ```mdx
-   import MyAnimation from '../../components/demos/MyAnimation';
-   <MyAnimation client:only="react" />
-   ```
-
-4. The article is automatically available at `/blog/my-new-article`.
-
-**Draft mode:** set `draft: true` in frontmatter to exclude from all collection queries.
-
----
-
-## How to Add a New Blog Category
-
-1. Add the new string to the `category` enum in `src/content/config.ts`:
-   ```ts
-   category: z.enum(['antennas', 'ml', 'rf', 'optics', 'dsp', 'misc', 'new-category']),
-   ```
-2. Create the folder: `src/content/blog/new-category/`
-3. The `/blog/new-category` route is generated automatically by `[category]/index.astro`.
-4. The category appears in the blog listing filter automatically.
-
----
-
-## How to Add a Demo
-
-1. **Create the React component** in `src/components/demos/MyDemo.tsx`:
-   - Use `useState` for slider values
-   - Use `useMemo` for recomputed data
-   - Use `<Slider>` from `../ui/Slider`
-   - Use `<PlotlyChart>` from `../ui/PlotlyChart`
-
-2. **Create the demo page** in `src/pages/demos/my-demo.astro`:
-   ```astro
-   ---
-   import DemoPageLayout from '../../layouts/DemoPageLayout.astro';
-   import MyDemo from '../../components/demos/MyDemo';
-   ---
-   <DemoPageLayout title="..." domain="rf" difficulty="intermediate" description="...">
-     <div slot="intro">Concept explanation here.</div>
-     <div slot="equations">$$your = equation$$</div>
-     <MyDemo client:only="react" />
-     <div slot="interpretation">Physical meaning here.</div>
-   </DemoPageLayout>
-   ```
-
-3. **Create the metadata stub** in `src/content/demos/my-demo.md`:
-   ```yaml
-   ---
-   title: My Demo
-   domain: rf
-   difficulty: intermediate
-   description: One sentence.
-   techStack: [Plotly.js, React]
-   ---
-   ```
-
-4. The demo appears automatically in `/demos` listing.
-
----
-
-## Precomputed Data Workflow
-
-For demos where browser-side computation would be too slow:
-
-1. Write a Python script in `scripts/`:
-   ```python
-   # scripts/generate_my_demo.py
-   import json, pathlib
-   OUTPUT = pathlib.Path("public/data/my-demo/default.json")
-   data = { ... }  # your simulation
-   OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-   OUTPUT.write_text(json.dumps(data))
-   ```
-
-2. Run it locally:
-   ```bash
-   python scripts/generate_my_demo.py
-   ```
-
-3. Commit the output JSON:
-   ```bash
-   git add public/data/my-demo/
-   ```
-
-4. In your React component, fetch the data on mount:
-   ```tsx
-   useEffect(() => {
-     fetch('/data/my-demo/default.json')
-       .then(r => r.json())
-       .then(setPrecomputed);
-   }, []);
-   ```
-
-**When to precompute vs compute in browser:**
-
-| Precompute (Python) | Compute in browser (JS) |
-|---|---|
-| Electromagnetic field solvers | Array factor, Gaussian beam |
-| Large parameter sweeps (>100ms) | Real-time slider response |
-| Results from CST / HFSS / other tools | Simple analytical formulas |
-| Jupyter notebook outputs | DFT (<=512 points) |
-
----
-
-## Jupyter Notebook Integration
-
-Three options — choose based on what you need:
-
-### Option A: Export Plotly as self-contained HTML (recommended)
-```python
-import plotly.io as pio
-pio.write_html(fig, "public/notebook-outputs/my-plot.html", full_html=False)
+```text
+src/
+  content/blog/<topic>/*.mdx    Articles and drafts
+  content.config.ts            Typed article schema
+  lib/topics.ts                Stable slugs, display labels, colors, and order
+  lib/posts.ts                 Shared publication eligibility and queries
+  lib/site.ts                  Public identity and build-time CV eligibility
+  pages/                       Static routes
+  layouts/                     Site shell and article layout
+  components/blog/             Shared listing and article cards
+  components/nav/              Persistent navigation
+  components/demos/            React interactive examples
+  components/ui/               Chart, slider, equation, and demo wrappers
+  styles/global.css            Tailwind, KaTeX, shared interaction styles
+public/                        Deliberately public assets and datasets
+scripts/                       Dataset generation and build-output checks
+docs/                          Architecture and editorial guidance
+.work/                         LifeOS-compatible planning ledger
+research/interests/            Unpublished interests and investigations
 ```
-Then in your MDX article:
+
+`docs/`, `.work/`, and `research/` are outside the published content loaders. They are absent from the built website; files committed to a public repository are still publicly readable on GitHub.
+
+## Routes and navigation
+
+- `/` redirects to `/blog`, keeping writing first.
+- `/blog` lists published articles; `/blog/<topic>` filters the same listing by topic.
+- `/blog/<topic>/<article>` is the article URL, for example `/blog/rf/transmission-line-theory`.
+- `/about` provides author context and contact.
+- `/projects` redirects to writing until actual case studies are available.
+
+Redirect aliases are excluded from the sitemap. The mobile header retains the same Writing/About destinations as desktop. The site's existing FraH90 handle remains the public identity until the author chooses another name.
+
+## Write an article
+
+Create `src/content/blog/rf/my-article.mdx` with explicit draft status:
+
+```yaml
+---
+title: A concrete engineering question
+date: 2026-10-20
+category: rf
+description: A concise description of the question and what the article explains.
+tags: [transmission-lines]
+draft: true
+---
+```
+
+Required fields: `title`, `date`, `category`, and `description`. Optional fields: `tags`, `draft`, and `coverImage`. The current schema defaults `draft` to false, so always start with `draft: true`. `coverImage` is metadata only until figure/cover rendering lands. The current trial articles remain subject to editorial review.
+
+Write prose and math in MDX:
+
 ```mdx
-<iframe src="/notebook-outputs/my-plot.html" width="100%" height="500" frameborder="0" />
-```
-Works for any Plotly figure. Fully interactive. No style conflicts.
+The reflection coefficient is $\Gamma = (Z_L-Z_0)/(Z_L+Z_0)$.
 
-### Option B: Export figure as JSON, render with PlotlyChart
-```python
-import json
-with open("public/data/my-notebook/figure.json", "w") as f:
-    f.write(fig.to_json())
-```
-Then load and render it in a React component — full control over styling.
-
-### Option C: nbviewer iframe
-```mdx
-<iframe
-  src="https://nbviewer.org/github/FraH90/frah90.github.io/blob/main/notebooks/my-notebook.ipynb"
-  width="100%" height="600"
-/>
-```
-Simplest option. Less control over style.
-
----
-
-## Math Equations
-
-KaTeX renders at **build time** via `remark-math` + `rehype-katex`.
-
-**In `.mdx` files** (works automatically):
-```mdx
-Inline: $\psi = kd\cos\theta + \beta$
-
-Display:
 $$
-AF(\theta) = \frac{1}{N} \sum_{n=0}^{N-1} e^{jn\psi}
+\mathrm{VSWR} = \frac{1+|\Gamma|}{1-|\Gamma|}
 $$
 ```
 
-**In `.astro` files** — this is a known gotcha. KaTeX only runs inside the MD/MDX pipeline. Raw `.astro` template slots are processed by esbuild/Vite as JSX, which chokes on `$$...$$` delimiters (it parses `$` as a JS expression). Do not write `$$` in `.astro` files directly.
+For an existing interactive example, import from a category-level article:
 
-The solution used in this project: a `KatexEq` React component at `src/components/ui/KatexEq.tsx` that calls `katex.renderToString()` at runtime:
+```mdx
+import TransmissionLineDemo from '../../../components/demos/TransmissionLineDemo';
+import InteractiveFrame from '../../../components/ui/InteractiveFrame.astro';
 
-```astro
----
-import KatexEq from '../../components/ui/KatexEq';
----
-<KatexEq display={true} client:only="react">
-  {"AF(\\theta) = \\frac{1}{N} \\sum_{n=0}^{N-1} e^{jn\\psi}"}
-</KatexEq>
+<InteractiveFrame label="Transmission line">
+  <TransmissionLineDemo client:only="react" />
+</InteractiveFrame>
 ```
 
-Pass the LaTeX string as a JS string literal (double-escape backslashes: `\\frac`, `\\sum`, etc.).
-Use `display={true}` for block equations, omit or `display={false}` for inline.
+KaTeX renders MDX math at build time. Browser-only visualization code belongs in React islands, with browser-safe imports. Existing demos use `client:only="react"`; loading/error/static alternatives are pending roadmap work. Raw Astro templates do not run through the Markdown math pipeline.
 
-Alternative if you want zero JS at runtime: write the equations slot content in a `.mdx` file and import it as a component — the MDX pipeline runs KaTeX at build time. But `KatexEq` is simpler for demo pages.
+Review scientific claims, assumptions, figures/captions, units, references, links, and browser behavior before changing `draft` to false. Published articles appear automatically in their listing and topic route. Drafts are excluded through `src/lib/posts.ts`, including article-route generation. Future discovery outputs must use the same eligibility rule.
 
----
+## Topics
 
-## Client Directives Reference
+Edit `src/lib/topics.ts` to manage the taxonomy. The schema, filters, article labels, and ordering consume this registry. Current route slugs are `antennas`, `rf`, `optics`, `dsp`, `ml`, and `misc`. Only topics containing published articles receive public filter links and category pages. Use readable display labels without changing stable slugs. Treat slug changes as URL migrations.
 
-| Directive | When to use |
-|---|---|
-| `client:only="react"` | Plotly, Three.js, p5.js — anything that accesses `window` at module scope |
-| `client:load` | Components with meaningful static HTML that also need hydration |
-| `client:visible` | Components below the fold — hydrate only when they scroll into view |
-| `client:idle` | Non-critical widgets — hydrate when browser is idle |
+## Assets and CV
 
-All demo components in this project use `client:only="react"`.
+Put intentional public assets in `public/`; store reproducible data-generation scripts in `scripts/`. Existing generated datasets are under `public/data/`. The default social preview is `public/og-default.png`, with its editable vector source at `public/branding/social-card.svg`. It is a typographic site card, not scientific evidence.
 
----
+CV links appear only if `public/cv.pdf` exists when the site builds. CV publication from its source repository is deferred; do not commit private source or credentials to make the link appear. See the ledger proposal before choosing automation.
 
 ## Deployment
 
-GitHub Actions builds and deploys automatically on push to `main`.
-
-**Required one-time GitHub UI setup:**
-1. Go to your repo on GitHub
-2. Settings -> Pages -> Source: select **"GitHub Actions"** (not "Deploy from a branch")
-3. Done — the workflow in `.github/workflows/deploy.yml` handles everything else
-
-**Manual deploy:** Actions tab -> select workflow -> "Run workflow"
-
----
-
-## Adding Dependencies
-
-```bash
-# Visualization libraries (import dynamically inside useEffect)
-npm install <library>
-
-# Astro integrations (also patches astro.config.mjs automatically)
-npx astro add <integration>
-
-# TypeScript types
-npm install --save-dev @types/<library>
-```
-
-When adding a visualization library that accesses `window` (Three.js, p5.js, etc.):
-- Import it only inside `useEffect` with dynamic `import()`
-- Use `client:only="react"` on the component in `.astro` files
-- Never import at module scope in any file Astro might SSR
-
----
-
-## Scripts Reference
-
-| Script | Purpose | Output | Run |
-|---|---|---|---|
-| `generate_array_factor.py` | Precompute array factor parameter sweep | `public/data/array-factor/default.json` | `python scripts/generate_array_factor.py` |
-| `generate_gaussian_beam.py` | Precompute Gaussian beam propagation | `public/data/gaussian-beam/default.json` | `python scripts/generate_gaussian_beam.py` |
+`.github/workflows/deploy.yml` installs dependencies, builds, uploads `dist/`, and deploys to GitHub Pages on pushes to `main` or manual workflow dispatch. GitHub Pages must use **GitHub Actions** as its publishing source. Environment-specific commit/push instructions are in `CLAUDE.md` and `AGENTS.md`.
