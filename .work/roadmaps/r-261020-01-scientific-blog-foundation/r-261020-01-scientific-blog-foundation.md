@@ -108,13 +108,13 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
 **Depends on:** `r-261020-01-scientific-blog-foundation-p1`
 
 - ✅ **done** · **build** — Create shared color/type/spacing/width tokens and harmonize site/list/article layouts.
-  - ID `r-261020-01-scientific-blog-foundation-p2-1` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p2-1` · closed 2026-10-20 · commits `1843f4a049cce9450db2813058dd00c488bf5b82`
   - Evidence (document): src/styles/global.css provides semantic colors, readable prose/figure widths, theme-aware typography and syntax colors, local overflow, and focus styling. Layouts, cards, topics, About and demos now consume those tokens.
 - ✅ **done** · **build** — Implement an accessible persisted theme switch with early initialization and theme-aware scientific visualizations.
-  - ID `r-261020-01-scientific-blog-foundation-p2-2` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p2-2` · closed 2026-10-20 · commits `1843f4a049cce9450db2813058dd00c488bf5b82`
   - Evidence (observation): Chromium verified initial dark default regardless of system preference; explicit light/dark persistence across reload/navigation and cross-tab sync; saved light applied by the head script without the toggle module; invalid/blocked storage; keyboard toggle; chart font/trace changes with preserved zoom; labeled keyboard range inputs.
 - ✅ **done** · **validation** — Check contrast, focus visibility, controls, long titles, prose widths, and figure/table/math overflow in both themes on mobile and desktop.
-  - ID `r-261020-01-scientific-blog-foundation-p2-3` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p2-3` · closed 2026-10-20 · commits `1843f4a049cce9450db2813058dd00c488bf5b82`
   - Evidence (observation): Final production build and check:build passed for 14 pages. Both themes passed responsive checks at 320/390/768/1440px across writing/topic/About and four live demos; axe contrast, label, button/link-name checks passed at 390/1440px. Temporary long-title/code/math/table/figure fixture passed localized keyboard scroll and width checks and was removed before final build. No-JS reading and plot-import error handling passed.
 
 ### Phase 3 — Scientific article structure and authoring
@@ -177,7 +177,7 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
 - ⬜ **todo** · **build** — Add meaningful static alternatives and complete loading/error behavior around browser-only demos; verify fallback content and import failure beyond the existing chart error message.
   - ID `r-261020-01-scientific-blog-foundation-p5-2`
 - ✅ **done** · **build** — Make plots and range controls theme-aware, preserve plot zoom, clean up plot/theme listeners, associate slider labels, and handle plot import/render rejection.
-  - ID `r-261020-01-scientific-blog-foundation-p5-6` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p5-6` · closed 2026-10-20 · commits `1843f4a049cce9450db2813058dd00c488bf5b82`
   - Evidence (observation): Completed during Phase 2: live charts render in development and production, change axis/trace colors, preserve a real drag-zoom, and still respond to keyboard slider input. Blocked plot import produced a readable error message without an unhandled page error. Full scientific/static fallbacks remain p5-2.
 - ⬜ **todo** · **build** — Correct and independently verify representative numerical/boundary behavior, including infinite VSWR and scientific statements that contradict the models.
   - ID `r-261020-01-scientific-blog-foundation-p5-3`
