@@ -18,14 +18,31 @@ function assertTarget(url, source) {
   assert.ok(path === output || path.startsWith(`${output}/`), `Invalid path in ${source}`);
   assert.ok(existsSync(path) && (!statSync(path).isDirectory() || existsSync(join(path, 'index.html'))), `Missing target ${url.pathname} in ${source}`);
 }
+// Validate rendered fragment targets as well as files (contents, figures, citations).
+const documents = new Map();
+const decode = text => text.replaceAll('&amp;', '&').replaceAll('&quot;', '"').replaceAll('&#39;', "'");
+for (const file of files.filter(path => path.endsWith('.html'))) {
+  const html = readFileSync(file, 'utf8');
+  const ids = [...html.matchAll(/\sid=["']([^"']+)["']/g)].map(match => decode(match[1]));
+  assert.equal(new Set(ids).size, ids.length, `Duplicate IDs in ${file}`);
+  documents.set(file, new Set(ids));
+}
 let pages = 0;
 for (const file of files.filter(path => path.endsWith('.html'))) {
   const html = readFileSync(file, 'utf8');
   assert.ok(!html.includes('/cv.pdf') || existsSync(join(output, 'cv.pdf')), `Dead CV link in ${file}`);
   for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
     const target = match[1].replaceAll('&amp;', '&');
-    if (/^(?:\/|https:\/\/frah90\.github\.io(?:\/|$))/.test(target)) {
-      assertTarget(new URL(target, 'https://frah90.github.io'), file);
+    if (/^(?:#|\/|https:\/\/frah90\.github\.io(?:\/|$))/.test(target)) {
+      const route = file.slice(output.length).replace(/index\.html$/, '');
+      const url = new URL(target, `https://frah90.github.io${route}`);
+      assertTarget(url, file);
+      if (url.origin === 'https://frah90.github.io' && url.hash) {
+        let destination = resolve(output, `.${decodeURIComponent(url.pathname)}`);
+        if (statSync(destination).isDirectory()) destination = join(destination, 'index.html');
+        const ids = documents.get(destination);
+        if (ids) assert.ok(ids.has(decodeURIComponent(url.hash.slice(1))), `Missing fragment ${url.hash} in ${destination} (linked from ${file})`);
+      }
     }
   }
   for (const match of html.matchAll(/<meta property="og:image" content="([^"]+)"/g)) {
@@ -50,4 +67,4 @@ for (const url of urls) {
   assert.ok(!/^\/(?:\.work|research|docs)\//.test(url.pathname), `Planning material in sitemap: ${url.pathname}`);
 }
 assert.ok(!['.work', 'research', 'docs'].some(dir => existsSync(join(output, dir))), 'Planning material copied into public output');
-console.log(`Build output passed: ${pages} pages, internal links/assets, CV eligibility, social image, navigation, sitemap, and planning boundaries.`);
+console.log(`Build output passed: ${pages} pages, internal links/assets/fragments, duplicate IDs, CV eligibility, social image, navigation, sitemap, and planning boundaries.`);

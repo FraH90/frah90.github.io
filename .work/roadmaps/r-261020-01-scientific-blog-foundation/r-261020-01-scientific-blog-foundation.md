@@ -119,7 +119,7 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
 
 ### Phase 3 — Scientific article structure and authoring
 
-**Status:** todo · **ID:** `r-261020-01-scientific-blog-foundation-p3`
+**Status:** done · **ID:** `r-261020-01-scientific-blog-foundation-p3`
 
 **Useful alone:** A real article can explain its purpose, assumptions, figures, and sources without layout workarounds.
 
@@ -127,21 +127,27 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
 
 **Depends on:** `r-261020-01-scientific-blog-foundation-p1`
 
-- ⬜ **todo** · **build** — Extend typed content metadata deliberately for learning statements/prerequisites and supported related material; keep publishing date display only.
-  - ID `r-261020-01-scientific-blog-foundation-p3-1`
-- ⬜ **todo** · **build** — Add heading anchors and collapsed-by-default contents with click/tap/keyboard operation and no permanent sidebar.
-  - ID `r-261020-01-scientific-blog-foundation-p3-2`
-- ⬜ **todo** · **build** — Build reusable scientific figure/caption/reference patterns, accessible descriptions, and wide-figure behavior with provenance and units.
-  - ID `r-261020-01-scientific-blog-foundation-p3-3`
-- ⬜ **todo** · **build** — Add related reading/project links using shared eligible-content rules and honest empty states.
-  - ID `r-261020-01-scientific-blog-foundation-p3-4`
+- ✅ **done** · **build** — Extend typed content metadata deliberately for learning statements/prerequisites and supported related material; keep publishing date display only.
+  - ID `r-261020-01-scientific-blog-foundation-p3-1` · closed 2026-10-20
+  - Evidence (document): Content schema adds optional learningGoals, prerequisites, assumptions, relatedPosts collection references, resources, and unique bibliographic references with empty defaults. Existing trial articles render without placeholders; the article header displays one publication date only.
+- ✅ **done** · **build** — Add heading anchors and collapsed-by-default contents with click/tap/keyboard operation and no permanent sidebar.
+  - ID `r-261020-01-scientific-blog-foundation-p3-2` · closed 2026-10-20
+  - Evidence (document): Native details/summary contents starts collapsed and uses Astro heading metadata. Chromium verified click/keyboard/no-JS navigation, focus transfer, repeated-heading IDs and progressive permalinks. Contents and heading targets remain static HTML without a sidebar.
+- ✅ **done** · **build** — Build reusable scientific figure/caption/reference patterns, accessible descriptions, and wide-figure behavior with provenance and units.
+  - ID `r-261020-01-scientific-blog-foundation-p3-3` · closed 2026-10-20
+  - Evidence (document): ScientificFigure supports source/type/caption/parameters, image alt/dimensions or accessible inline content, and optional wide layout. Citation and reference components provide stable source links. Duplicate reference keys fail schema validation; missing alt raised a specific rendering error; a broken citation fragment failed check:build.
+- ✅ **done** · **build** — Add related reading/project links using shared eligible-content rules and honest empty states.
+  - ID `r-261020-01-scientific-blog-foundation-p3-4` · closed 2026-10-20
+  - Evidence (document): Related reading prioritizes curated published entries and topic/tag overlaps, excludes self/duplicates/drafts, and omits empty panels. Fixture verified three published recommendations and hidden draft sentinel. Missing curated ID raised a specific authoring error. Supporting resources render only when provided.
 - ✅ **done** · **build** — Correct README architecture, imports, URLs, and publishing instructions.
   - ID `r-261020-01-scientific-blog-foundation-p3-5` · closed 2026-10-20 · commits `fe021f4234b382875a4064ae13ef8ada42fb9654`
   - Evidence (document): README.md now describes actual routes, topic registry, draft eligibility, current MDX imports, CV behavior, deployment/build checks, and explicitly pending features. Completed during Phase 1.
-- ⬜ **todo** · **build** — Add a usable article starting template with the enhanced article metadata once that schema lands.
-  - ID `r-261020-01-scientific-blog-foundation-p3-7`
-- ⬜ **todo** · **validation** — Verify one representative article with math, figures, tables/code, prerequisites, contents, links, and both themes.
-  - ID `r-261020-01-scientific-blog-foundation-p3-6`
+- ✅ **done** · **build** — Add a usable article starting template with the enhanced article metadata once that schema lands.
+  - ID `r-261020-01-scientific-blog-foundation-p3-7` · closed 2026-10-20
+  - Evidence (document): docs/templates/article.mdx and npm run new:post create typed, draft-first articles from the shared topic registry. CLI checks passed for creation, overwrite refusal, invalid path and unknown topic. docs/article-authoring.md documents metadata, figures, citations, related material and publishing checks.
+- ✅ **done** · **validation** — Verify one representative article with math, figures, tables/code, prerequisites, contents, links, and both themes.
+  - ID `r-261020-01-scientific-blog-foundation-p3-6` · closed 2026-10-20
+  - Evidence (observation): Fixture passed both themes at 320/390/768/1440px: math/code/table, goals/prerequisites/assumptions, contents/section focus, narrow/wide figures, captions/provenance, citations/references, related draft filtering, and selected axe rules. Final 14-page build/check:build and real articles at 390/1440px passed; fixtures were removed. No-JS contents/citations passed.
 
 ### Phase 4 — Search and RSS
 
@@ -235,7 +241,7 @@ Overstating expertise; treating placeholder text as reviewed science; exposing d
 
 ## Working notes
 
-Phases 0, 1, and 2 are complete. Phase 1 retains the writing-first entry, unifies taxonomy/listings, fixes mobile navigation and broken destinations, supplies the social card, and adds local build-output checks. Later phases remain pending, except the README correction and plot/control theme/lifecycle slice completed ahead of their explicit article-template and static-demo remainders. CV publication has its own idea/proposal and no implementation phase yet. Research notes under research/interests/ are not published by Astro. Validation on 2026-10-20 passed for all 7 JSON data files against vendored schemas; the LifeOS read/validate API and next-item selection; canonical JSON formatting; normalized source-message equality; 11 relative Markdown links; identical agent instruction files; and whitespace checks. Only documentation/planning files changed, so no new UI runtime or build claim is made. Commit evidence is the Git commit containing this Phase 0 record; no future SHA is invented.
+Phases 0, 1, 2, and 3 are complete. Phase 1 retains the writing-first entry, unifies taxonomy/listings, fixes mobile navigation and broken destinations, supplies the social card, and adds local build-output checks. Later phases remain pending, except the README correction and plot/control theme/lifecycle slice completed ahead of their explicit article-template and static-demo remainders. CV publication has its own idea/proposal and no implementation phase yet. Research notes under research/interests/ are not published by Astro. Validation on 2026-10-20 passed for all 7 JSON data files against vendored schemas; the LifeOS read/validate API and next-item selection; canonical JSON formatting; normalized source-message equality; 11 relative Markdown links; identical agent instruction files; and whitespace checks. Only documentation/planning files changed, so no new UI runtime or build claim is made. Commit evidence is the Git commit containing this Phase 0 record; no future SHA is invented.
 
 
 ### Phase 1 verification — 2026-10-20
@@ -259,3 +265,16 @@ The theme is dark initially, including under a light OS preference. An early inl
 Chromium checked Writing, a topic view, About, and the array-factor, Fourier, Gaussian-beam, and transmission-line articles in both themes at 320, 390, 768, and 1440 pixels. There was no horizontal page overflow. Selected axe rules (contrast, labels, button names, link names) passed at 390/1440 pixels. Representative dark/light article and listing screenshots were visually reviewed. Chart theme updates preserved real drag-zoom and keyboard slider changes continued to work. A blocked plotting import showed the explicit chart error message without an unhandled page error; complete static/demo failure alternatives remain Phase 5.
 
 A temporary published layout fixture exercised a long title, prose/link/quotation/list, syntax-highlighted code, a long equation, a wide table, and a wide non-data figure. Both palettes passed contrast checks. Local keyboard scrolling and ARIA/scroll-region checks passed for code/table/math; figure width exceeded the prose measure on desktop. The fixture and its otherwise empty topic were removed before the final production build. `npm run build` and `npm run check:build` passed for the final 14-page output, and fixture text/routes were absent. Numerical accuracy, static scientific fallback design, and manual assistive-technology testing were not claimed by these UI checks.
+
+
+### Phase 3 verification — 2026-10-20
+
+The article collection now supports optional plain-text learning goals, prerequisites and assumptions; typed supporting material; unique reference keys; and curated related collection references. Older articles use empty defaults and acquire no empty panels. Only the publication date is displayed. The article template/guide documents the fields and the draft creation command. Exclusive writes prevent overwriting an existing article, and the command validates topic/slug against the shared registry.
+
+Native collapsed contents uses Astro heading IDs/metadata and works with click, keyboard, touch-sized controls, and no JavaScript. The heading plugin adds programmatic focus targets without tab stops; optional client permalinks preserve native IDs. Repeated headings retained distinct targets. ScientificFigure supports image or inline-vector content, narrow/wide layout, captions, result type, parameters/units context, provenance, and optional source links. Image figures require alt text and positive dimensions. Citation links target the generated reference list; empty bibliography/material/related panels are omitted.
+
+A temporary published article exercised goals, prerequisites, assumptions, math, syntax-highlighted code, a table, image/vector figures, captions and references, duplicate body headings, and curated plus automatic related reading. It passed Chromium checks in both themes at 320, 390, 768, and 1440 pixels, with no horizontal page overflow. Selected axe contrast, label, button/link-name, image-alt, ARIA and scroll-region rules passed. Dark mobile and light desktop screenshots were visually reviewed. No-JavaScript contents and citation navigation passed. Related results excluded a draft, duplicates, and the current article; the draft sentinel was absent from generated HTML/sitemap.
+
+Negative checks verified duplicate reference keys fail schema validation, missing related IDs raise a specific authoring error, missing image alt raises a specific rendering error and prevents figure output, and broken citation fragments fail the generated-output checker. The latter also checks duplicate rendered IDs and local HTML fragment targets.
+
+All temporary articles and the negative-test page were removed. The final production build and check:build passed for 14 pages, including fragment integrity; no temporary article/topic remained. Existing public articles passed collapsed contents, focus, permalink, empty-state, theme and overflow checks at 390/1440 pixels; native contents also worked with JavaScript disabled. This verifies publishing infrastructure, not a scientific review of the existing trial text. Search/RSS remain Phase 4; workflow permissions remain deferred to Phase 7.

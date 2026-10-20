@@ -1,0 +1,21 @@
+---
+import type { CollectionEntry } from 'astro:content';
+interface Props { references: CollectionEntry<'blog'>['data']['references']; }
+const { references } = Astro.props;
+---
+{references.length > 0 && (
+  <section class="article-section reading-width" aria-labelledby="article-tools-references">
+    <h2 id="article-tools-references" tabindex="-1" class="article-section-title">References</h2>
+    <ul class="reference-list">
+      {references.map(reference => (
+        <li id={`ref-${reference.id}`} tabindex="-1">
+          <span class="reference-key">[{reference.id}]</span>
+          <div>
+            {reference.url ? <a href={reference.url}>{reference.title}</a> : <span class="text-ink">{reference.title}</span>}
+            {reference.detail && <p class="text-muted mt-1">{reference.detail}</p>}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}

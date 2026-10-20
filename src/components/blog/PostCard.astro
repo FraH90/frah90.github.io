@@ -7,9 +7,11 @@ interface Props {
   category: TopicSlug;
   description: string;
   slug: string;
+  headingLevel?: 2 | 3;
 }
-const { title, date, category, description, slug } = Astro.props;
+const { title, date, category, description, slug, headingLevel = 2 } = Astro.props;
 const topic = getTopic(category);
+const Heading = headingLevel === 3 ? 'h3' : 'h2';
 const formatted = new Intl.DateTimeFormat('en-US', {
   year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC',
 }).format(date);
@@ -21,9 +23,9 @@ const formatted = new Intl.DateTimeFormat('en-US', {
       <span class:list={['font-medium', topic.color]}>{topic.label}</span>
       <time datetime={date.toISOString()} class="text-muted">{formatted}</time>
     </div>
-    <h2 class="text-xl text-ink mb-3 leading-snug group-hover:underline decoration-rule-strong underline-offset-4" style="font-family: 'Lora', Georgia, serif;">
+    <Heading class="text-xl text-ink mb-3 leading-snug group-hover:underline decoration-rule-strong underline-offset-4" style="font-family: 'Lora', Georgia, serif;">
       {title}
-    </h2>
+    </Heading>
     <p class="text-sm leading-relaxed text-muted">{description}</p>
     <span class="mt-5 inline-block text-sm text-body" aria-hidden="true">Read article <span class="ml-1">→</span></span>
   </a>

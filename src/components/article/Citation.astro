@@ -1,0 +1,6 @@
+---
+interface Props { reference: string; }
+const { reference } = Astro.props;
+if (!reference || !/^[a-z0-9][a-z0-9-]*$/.test(reference)) throw new Error('Citation requires a reference ID.');
+---
+<a class="citation" href={`#ref-${reference}`} aria-label={`Reference ${reference}`}>[{reference}]</a>

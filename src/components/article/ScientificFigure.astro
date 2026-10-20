@@ -1,0 +1,42 @@
+---
+import { isArticleLink } from '../../lib/article-links';
+
+interface Props {
+  id: string;
+  caption: string;
+  kind: 'analytical' | 'simulation' | 'measurement' | 'schematic' | 'illustration';
+  source: string;
+  sourceUrl?: string;
+  parameters?: string;
+  label?: string;
+  wide?: boolean;
+  src?: string;
+  alt?: string;
+  width?: number;
+  height?: number;
+}
+const { id, caption, kind, source, sourceUrl, parameters, label, wide = false,
+  src, alt, width, height } = Astro.props;
+const kinds = { analytical: 'Analytical result', simulation: 'Simulation', measurement: 'Measurement',
+  schematic: 'Schematic', illustration: 'Illustration' };
+if (!id || !/^[a-z0-9][a-z0-9-]*$/.test(id) || !caption?.trim() || !source?.trim() || !Object.hasOwn(kinds, kind)) {
+  throw new Error('ScientificFigure requires a valid id, caption, kind, and source.');
+}
+if (sourceUrl && !isArticleLink(sourceUrl)) throw new Error(`Figure ${id}: use an HTTP(S) or root-relative source URL.`);
+if (src && (!isArticleLink(src) || !alt?.trim() || !(width && width > 0) || !(height && height > 0))) {
+  throw new Error(`Figure ${id}: images require a public src, descriptive alt, and positive width/height.`);
+}
+if (!src && !Astro.slots.has('default')) throw new Error(`Figure ${id} needs an image or inline figure content.`);
+---
+
+<figure id={`fig-${id}`} class:list={['scientific-figure not-prose', { 'figure-wide': wide }]}
+  aria-describedby={`fig-${id}-caption`}>
+  <div class="figure-visual">
+    {src ? <img src={src} alt={alt} width={width} height={height} loading="lazy" decoding="async" /> : <slot />}
+  </div>
+  <figcaption id={`fig-${id}-caption`}>
+    <p>{label && <strong>Figure {label}. </strong>}{caption}</p>
+    <p class="figure-meta">{kinds[kind]}{parameters && <> · {parameters}</>}</p>
+    <p class="figure-source">Source: {sourceUrl ? <a href={sourceUrl}>{source}</a> : source}</p>
+  </figcaption>
+</figure>

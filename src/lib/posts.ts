@@ -21,3 +21,23 @@ export async function getAllCategories() {
   const populated = new Set(posts.map(post => post.data.category));
   return topics.filter(topic => populated.has(topic.slug));
 }
+
+/** Curated links first, then genuinely overlapping topics/tags. Never expose drafts. */
+export async function getRelatedPosts(post: CollectionEntry<'blog'>, limit = 3) {
+  const all = await getCollection('blog');
+  const known = new Map(all.map(entry => [entry.id, entry]));
+  const curated = post.data.relatedPosts.map(({ id }) => {
+    const entry = known.get(id);
+    if (!entry) throw new Error(`Article ${post.id} refers to missing related post ${id}`);
+    return entry;
+  }).filter(entry => entry.id !== post.id && isPublishedPost(entry));
+  const tags = new Set(post.data.tags.map(tag => tag.toLowerCase()));
+  const candidates = all.filter(entry => entry.id !== post.id && isPublishedPost(entry))
+    .map(entry => ({ entry, score: (entry.data.category === post.data.category ? 3 : 0)
+      + new Set(entry.data.tags.map(tag => tag.toLowerCase()).filter(tag => tags.has(tag))).size }))
+    .filter(candidate => candidate.score > 0)
+    .sort((a, b) => b.score - a.score || b.entry.data.date.valueOf() - a.entry.data.date.valueOf()
+      || a.entry.id.localeCompare(b.entry.id));
+  return [...new Map([...curated, ...candidates.map(candidate => candidate.entry)]
+    .map(entry => [entry.id, entry])).values()].slice(0, limit);
+}

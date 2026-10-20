@@ -10,7 +10,7 @@ A content-first engineering blog built with Astro and MDX, hosted at **https://f
 - [Work ledger, proposals, and roadmap](.work/README.md).
 - [Unpublished research notebook](research/README.md).
 
-The ledger records what is implemented. Light/dark switching is implemented. Collapsed contents, enhanced article metadata, related reading, search, and RSS remain planned work.
+The ledger records what is implemented. Light/dark switching is implemented. Collapsed contents, article metadata, scientific figure/citation components, related reading, and draft scaffolding are implemented. Search and RSS remain planned work.
 
 ## Local development
 
@@ -29,7 +29,7 @@ npm run check:build
 npm run preview
 ```
 
-`check:build` checks generated pages, internal links/assets, missing CV links, social-image targets, navigation, sitemap destinations, and separation of planning/research files from public output. It requires a completed build. Browser checks remain necessary for responsive layouts, keyboard interactions, and demos.
+`check:build` checks generated pages, internal links/assets and fragment targets, duplicate IDs, missing CV links, social-image targets, navigation, sitemap destinations, and separation of planning/research files from public output. It requires a completed build. Browser checks remain necessary for responsive layouts, keyboard interactions, and demos.
 
 ## Structure
 
@@ -43,6 +43,7 @@ src/
   pages/                       Static routes
   layouts/                     Site shell and article layout
   components/blog/             Shared listing and article cards
+  components/article/          Contents, scientific figures, citations/references
   components/nav/              Persistent navigation
   components/demos/            React interactive examples
   components/ui/               Chart, slider, equation, and demo wrappers
@@ -74,6 +75,8 @@ Semantic color and layout tokens live in `src/styles/global.css`. Article prose 
 
 ## Write an article
 
+Use `npm run new:post -- rf/my-article` to create a draft safely, or copy the [article template](docs/templates/article.mdx). See the [full authoring guide](docs/article-authoring.md) for learning goals, prerequisites, assumptions, figures, references, supporting material, and related reading.
+
 Create `src/content/blog/rf/my-article.mdx` with explicit draft status:
 
 ```yaml
@@ -87,7 +90,7 @@ draft: true
 ---
 ```
 
-Required fields: `title`, `date`, `category`, and `description`. Optional fields: `tags`, `draft`, and `coverImage`. The current schema defaults `draft` to false, so always start with `draft: true`. `coverImage` is metadata only until figure/cover rendering lands. The current trial articles remain subject to editorial review.
+Required fields: `title`, `date`, `category`, and `description`. Optional fields: `tags`, `draft`, and `coverImage`. The current schema defaults `draft` to false, so always start with `draft: true`. `coverImage` remains metadata only; use the `ScientificFigure` component for captioned inline or wide figures. The current trial articles remain subject to editorial review.
 
 Write prose and math in MDX:
 

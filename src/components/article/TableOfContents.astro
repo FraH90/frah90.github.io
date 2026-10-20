@@ -1,0 +1,19 @@
+---
+interface Props { headings: { depth: number; slug: string; text: string }[]; }
+const headings = Astro.props.headings.filter(heading => heading.depth === 2 || heading.depth === 3);
+---
+
+{headings.length >= 2 && (
+  <details class="article-contents reading-width mb-10">
+    <summary>On this page <span class="text-muted text-xs font-normal">{headings.length} sections</span></summary>
+    <nav aria-label="Article contents">
+      <ul>
+        {headings.map(heading => (
+          <li class:list={{ 'contents-subsection': heading.depth === 3 }}>
+            <a href={`#${heading.slug}`}>{heading.text}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </details>
+)}

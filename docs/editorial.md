@@ -22,7 +22,7 @@ Explain what changing each control demonstrates. Label controls programmatically
 
 ## Publication workflow
 
-Create MDX under `src/content/blog/<category>/`. The current schema requires `title`, `date`, `category`, and `description`; tags are optional and `draft` currently defaults to false, so always set `draft: true` explicitly while writing. Learning statements/prerequisites, figure components, related reading, RSS, and search support are planned additions, not existing frontmatter promises.
+Create MDX under `src/content/blog/<category>/`. The current schema requires `title`, `date`, `category`, and `description`; tags are optional and `draft` currently defaults to false, so always set `draft: true` explicitly while writing. Learning goals, prerequisites, assumptions, related-post references, supporting material, and bibliographic references are optional typed fields with empty defaults. Figure and citation components and collapsed contents are implemented. See [the authoring guide](article-authoring.md) and [draft template](templates/article.mdx). RSS and search remain planned additions.
 
 Choose stable category slugs from `src/lib/topics.ts`; only topics with published content appear in public filters. Article URLs include the category, for example `/blog/rf/transmission-line-theory`. From an article in a category subdirectory, component imports currently use `../../../components/...`.
 

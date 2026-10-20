@@ -10,7 +10,7 @@ A content-first scientific and technical publication with a visible author. Read
 
 Astro generates static pages for GitHub Pages. MDX files under `src/content/blog/` form the `blog` collection defined in `src/content.config.ts`. The root currently redirects to `/blog`. Routes include article and category pages and About. The former empty Projects route now redirects to writing. React islands host analytical demos; KaTeX renders MDX math at build time. Plotly is dynamically imported by its wrapper. GitHub Actions builds and deploys pushes to `main`.
 
-Phase 1 now shares topic metadata and listing components, keeps navigation visible at mobile sizes, gates CV links on the presence of the PDF, and supplies a real social preview asset. Root and Projects redirect aliases are excluded from the sitemap. Phase 2 adds shared reading/theme tokens, a persisted light option, and theme-aware scientific plots. Enhanced article structure and discovery remain roadmap work.
+Phase 1 now shares topic metadata and listing components, keeps navigation visible at mobile sizes, gates CV links on the presence of the PDF, and supplies a real social preview asset. Root and Projects redirect aliases are excluded from the sitemap. Phase 2 adds shared reading/theme tokens, a persisted light option, and theme-aware scientific plots. Phase 3 adds optional article metadata, native collapsed contents, scientific figures/citations, related reading, and a safe draft-creation command. Discovery remains roadmap work.
 
 ## Target information architecture
 
@@ -49,7 +49,11 @@ The collection schema, topic filters, article labels, and category routes consum
 
 Article prose stays narrower than figures and interactive frames. Long words wrap; wide tables, code, and equations scroll inside their own containers and become keyboard-focusable when needed. Both syntax palettes are emitted through [Astro's Shiki configuration](https://docs.astro.build/en/guides/syntax-highlighting/). KaTeX follows the surrounding text color. `PlotlyChart.tsx` resolves CSS variables into colors understood by Plotly and uses [Plotly.react](https://plotly.com/javascript/plotlyjs-function-reference/) with stable UI revision to preserve reader zoom while changing theme. Axis settings merge with shared defaults instead of replacing their grid/text colors. Plot instances and theme listeners are cleaned up on unmount; scientific model calculations are unaffected.
 
-A collapsed contents disclosure remains Phase 3 work: heading anchors, click/touch/keyboard operation, and no permanent sidebar.
+`render(post).headings` supplies native section IDs and labels to `TableOfContents.astro`; its HTML details/summary is initially collapsed and needs no JavaScript. A small rehype plugin makes heading targets programmatically focusable without adding tab stops, and the article script adds optional permalink controls. No sidebar is used.
+
+`src/content.config.ts` owns optional plain-text learning goals, prerequisites, assumptions, typed supporting links, unique reference keys, and collection references for curated related posts. `getRelatedPosts` filters through shared publication eligibility before rendering, removes self/duplicates, and adds only genuinely overlapping published topics/tags. Unknown curated IDs fail article generation. Empty tools are omitted.
+
+`src/components/article/` owns contents, scientific figures, citations, and reference rendering. Figures require explicit provenance/type/caption; image figures also require alt text and dimensions. Their visual source colors are preserved. `scripts/new-post.mjs` uses the shared topic registry and the non-published template at `docs/templates/article.mdx`; exclusive file creation prevents overwrites. The output checker validates local HTML fragments and duplicate IDs as well as public files. See [the authoring guide](article-authoring.md).
 
 Search should fit the static hosting model. Select an implementation after testing indexing, math/code handling, payload, keyboard/mobile UI, and draft exclusion. RSS is generated from eligible published content. Do not introduce a server solely for either feature.
 

@@ -1,18 +1,27 @@
 ---
+import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
-import { getTopic, type TopicSlug } from '../lib/topics';
+import { getTopic } from '../lib/topics';
 import { siteName } from '../lib/site';
+import TableOfContents from '../components/article/TableOfContents.astro';
+import ArticleReferences from '../components/article/ArticleReferences.astro';
+import PostCard from '../components/blog/PostCard.astro';
 
 interface Props {
-  title: string;
-  date: Date;
-  category: TopicSlug;
-  description: string;
-  tags: string[];
+  post: CollectionEntry<'blog'>;
+  headings: { depth: number; slug: string; text: string }[];
+  relatedPosts: CollectionEntry<'blog'>[];
 }
-
-const { title, date, category, description } = Astro.props;
+const { post, headings, relatedPosts } = Astro.props;
+const { title, date, category, description, learningGoals, prerequisites, assumptions, resources, references } = post.data;
 const topic = getTopic(category);
+const contents = [
+  ...(assumptions.length ? [{ depth: 2, slug: 'article-tools-assumptions', text: 'Model assumptions' }] : []),
+  ...headings,
+  ...(resources.length ? [{ depth: 2, slug: 'article-tools-resources', text: 'Supporting material' }] : []),
+  ...(references.length ? [{ depth: 2, slug: 'article-tools-references', text: 'References' }] : []),
+  ...(relatedPosts.length ? [{ depth: 2, slug: 'article-tools-related', text: 'Related reading' }] : []),
+];
 
 const formatted = new Intl.DateTimeFormat('en-US', {
   year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC',
@@ -42,9 +51,40 @@ const formatted = new Intl.DateTimeFormat('en-US', {
       </p>
     </header>
 
+    {(learningGoals.length > 0 || prerequisites.length > 0) && (
+      <div class="article-brief reading-width mb-8">
+        {learningGoals.length > 0 && <div>
+          <h2 class="text-sm font-medium text-ink mb-3">What you’ll learn</h2>
+          <ul class="space-y-2 list-disc pl-5">{learningGoals.map(goal => <li>{goal}</li>)}</ul>
+        </div>}
+        {prerequisites.length > 0 && <p class="mt-4"><strong class="text-ink font-medium">Prerequisites: </strong>{prerequisites.join('; ')}.</p>}
+      </div>
+    )}
+    <TableOfContents headings={contents} />
+    {assumptions.length > 0 && <section class="article-assumptions reading-width mb-10" aria-labelledby="article-tools-assumptions">
+      <h2 id="article-tools-assumptions" tabindex="-1" class="text-sm font-medium text-ink mb-3">Model assumptions</h2>
+      <ul class="list-disc pl-5 space-y-2">{assumptions.map(assumption => <li>{assumption}</li>)}</ul>
+    </section>}
+
     <div class="prose article-content">
       <slot />
     </div>
+
+    {resources.length > 0 && <section class="article-section reading-width" aria-labelledby="article-tools-resources">
+      <h2 id="article-tools-resources" tabindex="-1" class="article-section-title">Supporting material</h2>
+      <ul class="space-y-3">{resources.map(resource => <li>
+        <a href={resource.url} class="text-accent underline underline-offset-4">{resource.label}</a>
+        {resource.kind !== 'other' && <span class="text-muted text-xs ml-2 capitalize">{resource.kind}</span>}
+      </li>)}</ul>
+    </section>}
+    <ArticleReferences references={references} />
+    {relatedPosts.length > 0 && <section class="article-section" aria-labelledby="article-tools-related">
+      <h2 id="article-tools-related" tabindex="-1" class="article-section-title">Related reading</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">{relatedPosts.map(related => (
+        <PostCard title={related.data.title} date={related.data.date} category={related.data.category}
+          description={related.data.description} slug={related.id} headingLevel={3} />
+      ))}</div>
+    </section>}
 
     <div class="reading-width mt-16 pt-8 border-t border-rule">
       <a href="/blog" class="text-sm text-muted hover:text-ink transition-colors">
@@ -55,6 +95,15 @@ const formatted = new Intl.DateTimeFormat('en-US', {
 </BaseLayout>
 
 <script>
+  // Progressive permalinks; native heading IDs and the contents work without JavaScript.
+  for (const heading of document.querySelectorAll<HTMLElement>('.article-content :is(h2, h3, h4)[id]')) {
+    const anchor = document.createElement('a');
+    anchor.href = `#${heading.id}`;
+    anchor.className = 'heading-anchor';
+    anchor.textContent = '#';
+    anchor.setAttribute('aria-label', `Link to section: ${heading.textContent?.trim()}`);
+    heading.append(' ', anchor);
+  }
   // Wide scientific material scrolls locally and remains reachable by keyboard.
   for (const [selector, label] of [['pre', 'Code block'], ['table', 'Table'], ['.katex-display', 'Equation']]) {
     for (const element of document.querySelectorAll<HTMLElement>(`.article-content ${selector}`)) {

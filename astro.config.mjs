@@ -6,6 +6,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import rehypeAccessibleHeadings from './src/lib/rehype-accessible-headings.mjs';
 
 export default defineConfig({
   output: 'static',
@@ -22,7 +23,7 @@ export default defineConfig({
       defaultColor: false,
     },
     remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex],
+    rehypePlugins: [rehypeKatex, rehypeAccessibleHeadings],
   },
 
   vite: {

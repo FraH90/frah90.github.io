@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check:build": "node scripts/check-build.mjs"
+    "check:build": "node scripts/check-build.mjs",
+    "new:post": "node --experimental-strip-types scripts/new-post.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",
