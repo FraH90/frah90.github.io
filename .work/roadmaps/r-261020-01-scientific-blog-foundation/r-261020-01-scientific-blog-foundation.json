@@ -241,7 +241,10 @@
               "value": "Content schema adds optional learningGoals, prerequisites, assumptions, relatedPosts collection references, resources, and unique bibliographic references with empty defaults. Existing trial articles render without placeholders; the article header displays one publication date only."
             }
           ],
-          "closed_at": "2026-10-20"
+          "closed_at": "2026-10-20",
+          "commits": [
+            "f4d13ff2cbff0914e5be99068e804b40319e545d"
+          ]
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p3-2",
@@ -254,7 +257,10 @@
               "value": "Native details/summary contents starts collapsed and uses Astro heading metadata. Chromium verified click/keyboard/no-JS navigation, focus transfer, repeated-heading IDs and progressive permalinks. Contents and heading targets remain static HTML without a sidebar."
             }
           ],
-          "closed_at": "2026-10-20"
+          "closed_at": "2026-10-20",
+          "commits": [
+            "f4d13ff2cbff0914e5be99068e804b40319e545d"
+          ]
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p3-3",
@@ -267,7 +273,10 @@
               "value": "ScientificFigure supports source/type/caption/parameters, image alt/dimensions or accessible inline content, and optional wide layout. Citation and reference components provide stable source links. Duplicate reference keys fail schema validation; missing alt raised a specific rendering error; a broken citation fragment failed check:build."
             }
           ],
-          "closed_at": "2026-10-20"
+          "closed_at": "2026-10-20",
+          "commits": [
+            "f4d13ff2cbff0914e5be99068e804b40319e545d"
+          ]
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p3-4",
@@ -280,7 +289,10 @@
               "value": "Related reading prioritizes curated published entries and topic/tag overlaps, excludes self/duplicates/drafts, and omits empty panels. Fixture verified three published recommendations and hidden draft sentinel. Missing curated ID raised a specific authoring error. Supporting resources render only when provided."
             }
           ],
-          "closed_at": "2026-10-20"
+          "closed_at": "2026-10-20",
+          "commits": [
+            "f4d13ff2cbff0914e5be99068e804b40319e545d"
+          ]
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p3-5",
@@ -295,7 +307,8 @@
           ],
           "closed_at": "2026-10-20",
           "commits": [
-            "fe021f4234b382875a4064ae13ef8ada42fb9654"
+            "fe021f4234b382875a4064ae13ef8ada42fb9654",
+            "f4d13ff2cbff0914e5be99068e804b40319e545d"
           ]
         },
         {
@@ -309,7 +322,10 @@
               "value": "docs/templates/article.mdx and npm run new:post create typed, draft-first articles from the shared topic registry. CLI checks passed for creation, overwrite refusal, invalid path and unknown topic. docs/article-authoring.md documents metadata, figures, citations, related material and publishing checks."
             }
           ],
-          "closed_at": "2026-10-20"
+          "closed_at": "2026-10-20",
+          "commits": [
+            "f4d13ff2cbff0914e5be99068e804b40319e545d"
+          ]
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p3-6",
@@ -322,7 +338,10 @@
               "value": "Fixture passed both themes at 320/390/768/1440px: math/code/table, goals/prerequisites/assumptions, contents/section focus, narrow/wide figures, captions/provenance, citations/references, related draft filtering, and selected axe rules. Final 14-page build/check:build and real articles at 390/1440px passed; fixtures were removed. No-JS contents/citations passed."
             }
           ],
-          "closed_at": "2026-10-20"
+          "closed_at": "2026-10-20",
+          "commits": [
+            "f4d13ff2cbff0914e5be99068e804b40319e545d"
+          ]
         }
       ],
       "closed_at": "2026-10-20"

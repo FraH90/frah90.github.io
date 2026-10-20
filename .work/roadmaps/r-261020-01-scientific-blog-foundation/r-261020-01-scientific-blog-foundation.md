@@ -128,25 +128,25 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
 **Depends on:** `r-261020-01-scientific-blog-foundation-p1`
 
 - ✅ **done** · **build** — Extend typed content metadata deliberately for learning statements/prerequisites and supported related material; keep publishing date display only.
-  - ID `r-261020-01-scientific-blog-foundation-p3-1` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p3-1` · closed 2026-10-20 · commits `f4d13ff2cbff0914e5be99068e804b40319e545d`
   - Evidence (document): Content schema adds optional learningGoals, prerequisites, assumptions, relatedPosts collection references, resources, and unique bibliographic references with empty defaults. Existing trial articles render without placeholders; the article header displays one publication date only.
 - ✅ **done** · **build** — Add heading anchors and collapsed-by-default contents with click/tap/keyboard operation and no permanent sidebar.
-  - ID `r-261020-01-scientific-blog-foundation-p3-2` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p3-2` · closed 2026-10-20 · commits `f4d13ff2cbff0914e5be99068e804b40319e545d`
   - Evidence (document): Native details/summary contents starts collapsed and uses Astro heading metadata. Chromium verified click/keyboard/no-JS navigation, focus transfer, repeated-heading IDs and progressive permalinks. Contents and heading targets remain static HTML without a sidebar.
 - ✅ **done** · **build** — Build reusable scientific figure/caption/reference patterns, accessible descriptions, and wide-figure behavior with provenance and units.
-  - ID `r-261020-01-scientific-blog-foundation-p3-3` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p3-3` · closed 2026-10-20 · commits `f4d13ff2cbff0914e5be99068e804b40319e545d`
   - Evidence (document): ScientificFigure supports source/type/caption/parameters, image alt/dimensions or accessible inline content, and optional wide layout. Citation and reference components provide stable source links. Duplicate reference keys fail schema validation; missing alt raised a specific rendering error; a broken citation fragment failed check:build.
 - ✅ **done** · **build** — Add related reading/project links using shared eligible-content rules and honest empty states.
-  - ID `r-261020-01-scientific-blog-foundation-p3-4` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p3-4` · closed 2026-10-20 · commits `f4d13ff2cbff0914e5be99068e804b40319e545d`
   - Evidence (document): Related reading prioritizes curated published entries and topic/tag overlaps, excludes self/duplicates/drafts, and omits empty panels. Fixture verified three published recommendations and hidden draft sentinel. Missing curated ID raised a specific authoring error. Supporting resources render only when provided.
 - ✅ **done** · **build** — Correct README architecture, imports, URLs, and publishing instructions.
-  - ID `r-261020-01-scientific-blog-foundation-p3-5` · closed 2026-10-20 · commits `fe021f4234b382875a4064ae13ef8ada42fb9654`
+  - ID `r-261020-01-scientific-blog-foundation-p3-5` · closed 2026-10-20 · commits `fe021f4234b382875a4064ae13ef8ada42fb9654`, `f4d13ff2cbff0914e5be99068e804b40319e545d`
   - Evidence (document): README.md now describes actual routes, topic registry, draft eligibility, current MDX imports, CV behavior, deployment/build checks, and explicitly pending features. Completed during Phase 1.
 - ✅ **done** · **build** — Add a usable article starting template with the enhanced article metadata once that schema lands.
-  - ID `r-261020-01-scientific-blog-foundation-p3-7` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p3-7` · closed 2026-10-20 · commits `f4d13ff2cbff0914e5be99068e804b40319e545d`
   - Evidence (document): docs/templates/article.mdx and npm run new:post create typed, draft-first articles from the shared topic registry. CLI checks passed for creation, overwrite refusal, invalid path and unknown topic. docs/article-authoring.md documents metadata, figures, citations, related material and publishing checks.
 - ✅ **done** · **validation** — Verify one representative article with math, figures, tables/code, prerequisites, contents, links, and both themes.
-  - ID `r-261020-01-scientific-blog-foundation-p3-6` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p3-6` · closed 2026-10-20 · commits `f4d13ff2cbff0914e5be99068e804b40319e545d`
   - Evidence (observation): Fixture passed both themes at 320/390/768/1440px: math/code/table, goals/prerequisites/assumptions, contents/section focus, narrow/wide figures, captions/provenance, citations/references, related draft filtering, and selected axe rules. Final 14-page build/check:build and real articles at 390/1440px passed; fixtures were removed. No-JS contents/citations passed.
 
 ### Phase 4 — Search and RSS
