@@ -10,7 +10,7 @@ A content-first scientific and technical publication with a visible author. Read
 
 Astro generates static pages for GitHub Pages. MDX files under `src/content/blog/` form the `blog` collection defined in `src/content.config.ts`. The root currently redirects to `/blog`. Routes include article and category pages and About. The former empty Projects route now redirects to writing. React islands host analytical demos; KaTeX renders MDX math at build time. Plotly is dynamically imported by its wrapper. GitHub Actions builds and deploys pushes to `main`.
 
-Phase 1 now shares topic metadata and listing components, keeps navigation visible at mobile sizes, gates CV links on the presence of the PDF, and supplies a real social preview asset. Root and Projects redirect aliases are excluded from the sitemap. Phase 2 adds shared reading/theme tokens, a persisted light option, and theme-aware scientific plots. Phase 3 adds optional article metadata, native collapsed contents, scientific figures/citations, related reading, and a safe draft-creation command. Discovery remains roadmap work.
+Phase 1 now shares topic metadata and listing components, keeps navigation visible at mobile sizes, gates CV links on the presence of the PDF, and supplies a real social preview asset. Root and Projects redirect aliases are excluded from the sitemap. Phase 2 adds shared reading/theme tokens, a persisted light option, and theme-aware scientific plots. Phase 3 adds optional article metadata, native collapsed contents, scientific figures/citations, related reading, and a safe draft-creation command. Phase 4 adds Pagefind full-text search and a summary RSS feed.
 
 ## Target information architecture
 
@@ -41,7 +41,7 @@ Phase 1 now shares topic metadata and listing components, keeps navigation visib
 
 The shared topic registry at `src/lib/topics.ts` is implemented, with stable machine slugs, human labels, order, and presentation metadata. Existing slugs are retained; future changes need a deliberate migration. Current labels for stable slugs: Antennas & Arrays (`antennas`), RF & Microwave (`rf`), Optics & Photonics (`optics`), Signal Processing (`dsp`), Machine Learning (`ml`), and Other Topics (`misc`). The registry defines display order; new interests do not automatically become empty public categories.
 
-The collection schema, topic filters, article labels, and category routes consume this vocabulary. `src/lib/posts.ts` provides shared publication eligibility for listings and article routes. Future related reading, search, and RSS must use these same helpers.
+The collection schema, topic filters, article labels, and category routes consume this vocabulary. `src/lib/posts.ts` provides shared publication eligibility for listings and article routes. Related reading and RSS use these helpers; search indexes only generated published article routes. Future discovery surfaces must preserve the same eligibility rule.
 
 ## Reading and interaction
 
@@ -55,7 +55,7 @@ Article prose stays narrower than figures and interactive frames. Long words wra
 
 `src/components/article/` owns contents, scientific figures, citations, and reference rendering. Figures require explicit provenance/type/caption; image figures also require alt text and dimensions. Their visual source colors are preserved. `scripts/new-post.mjs` uses the shared topic registry and the non-published template at `docs/templates/article.mdx`; exclusive file creation prevents overwrites. The output checker validates local HTML fragments and duplicate IDs as well as public files. See [the authoring guide](article-authoring.md).
 
-Search should fit the static hosting model. Select an implementation after testing indexing, math/code handling, payload, keyboard/mobile UI, and draft exclusion. RSS is generated from eligible published content. Do not introduce a server solely for either feature.
+Search uses Pagefind after the Astro build, scoped to published article bodies; its engine is loaded only on query submission. RSS is generated from the same eligible posts through a summary-only static endpoint. See [the discovery decision, measurements, and behavior](search-and-rss.md). No server is required.
 
 Demos explain their model, provide useful loading/error/static output, and avoid loading large visualization code on ordinary reading/list pages. Determine a measured payload budget before optimizing; the baseline Plotly output was roughly 4.6 MB uncompressed, not a measured transfer size or load time.
 

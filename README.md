@@ -10,7 +10,7 @@ A content-first engineering blog built with Astro and MDX, hosted at **https://f
 - [Work ledger, proposals, and roadmap](.work/README.md).
 - [Unpublished research notebook](research/README.md).
 
-The ledger records what is implemented. Light/dark switching is implemented. Collapsed contents, article metadata, scientific figure/citation components, related reading, and draft scaffolding are implemented. Search and RSS remain planned work.
+The ledger records what is implemented. Light/dark switching is implemented. Collapsed contents, article metadata, scientific figure/citation components, related reading, and draft scaffolding are implemented. Static full-text search and a summary RSS feed are implemented; see [discovery behavior and checks](docs/search-and-rss.md).
 
 ## Local development
 
@@ -29,7 +29,9 @@ npm run check:build
 npm run preview
 ```
 
-`check:build` checks generated pages, internal links/assets and fragment targets, duplicate IDs, missing CV links, social-image targets, navigation, sitemap destinations, and separation of planning/research files from public output. It requires a completed build. Browser checks remain necessary for responsive layouts, keyboard interactions, and demos.
+The build runs Astro followed by Pagefind. Search requires this generated index: use the production preview for search testing; `npm run dev` alone has no index. RSS is a static endpoint with summaries and absolute article links.
+
+`check:build` checks generated pages, internal links/assets and fragment targets, duplicate IDs, missing CV links, social-image targets, navigation, sitemap destinations, search index/article counts, RSS membership/dates/discovery, and separation of planning/research files from public output. It requires a completed build. Browser checks remain necessary for responsive layouts, keyboard interactions, and demos.
 
 ## Structure
 
@@ -63,9 +65,11 @@ research/interests/            Unpublished interests and investigations
 - `/blog` lists published articles; `/blog/<topic>` filters the same listing by topic.
 - `/blog/<topic>/<article>` is the article URL, for example `/blog/rf/transmission-line-theory`.
 - `/about` provides author context and contact.
+- `/search?q=beam+steering` searches published article text (JavaScript required; topics remain available without it).
+- `/rss.xml` supplies the summary RSS feed.
 - `/projects` redirects to writing until actual case studies are available.
 
-Redirect aliases are excluded from the sitemap. The mobile header retains the same Writing/About destinations as desktop. The site's existing FraH90 handle remains the public identity until the author chooses another name.
+Redirect aliases are excluded from the sitemap. The mobile header retains the same Writing/About/Search destinations as desktop. The site's existing FraH90 handle remains the public identity until the author chooses another name.
 
 ## Reading themes
 
@@ -115,7 +119,7 @@ import InteractiveFrame from '../../../components/ui/InteractiveFrame.astro';
 
 KaTeX renders MDX math at build time. Browser-only visualization code belongs in React islands, with browser-safe imports. Existing demos use `client:only="react"`; the chart wrapper handles import/render failure with a message, but meaningful static alternatives and complete demo loading/failure behavior remain pending roadmap work. Raw Astro templates do not run through the Markdown math pipeline.
 
-Review scientific claims, assumptions, figures/captions, units, references, links, and browser behavior before changing `draft` to false. Published articles appear automatically in their listing and topic route. Drafts are excluded through `src/lib/posts.ts`, including article-route generation. Future discovery outputs must use the same eligibility rule.
+Review scientific claims, assumptions, figures/captions, units, references, links, and browser behavior before changing `draft` to false. Published articles appear automatically in their listing and topic route. Drafts are excluded through `src/lib/posts.ts`, including article-route generation. Search, RSS, related reading, and sitemap also exclude drafts.
 
 ## Topics
 

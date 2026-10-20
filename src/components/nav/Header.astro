@@ -5,6 +5,7 @@ import { siteName } from '../../lib/site';
 const navLinks = [
   { href: '/blog', label: 'Writing' },
   { href: '/about', label: 'About' },
+  { href: '/search', label: 'Search' },
 ];
 const current = Astro.url.pathname.replace(/\/$/, '') || '/';
 const isActive = (href: string) => current === href || current.startsWith(`${href}/`);
@@ -15,8 +16,8 @@ const isActive = (href: string) => current === href || current.startsWith(`${hre
     <a href="/" class="inline-flex min-h-11 items-center font-medium tracking-tight text-ink" aria-label={`${siteName} — home`}>
       {siteName}<span class="ml-1 text-accent" aria-hidden="true">.</span>
     </a>
-    <div class="flex items-center gap-3 sm:gap-6">
-      <ul class="flex items-center gap-4 sm:gap-7">
+    <div class="flex items-center gap-2 sm:gap-6">
+      <ul class="flex items-center gap-3 sm:gap-7">
         {navLinks.map(({ href, label }) => (
           <li>
             <a href={href}

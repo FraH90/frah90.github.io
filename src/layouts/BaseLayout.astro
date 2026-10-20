@@ -46,6 +46,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="alternate" type="application/rss+xml" title={`${siteName} — articles`} href={new URL("/rss.xml", Astro.site)} />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <title>{title}</title>
@@ -62,6 +63,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
         <div class="flex flex-wrap justify-center gap-6">
           <a href="https://github.com/FraH90" target="_blank" rel="noopener" class="hover:text-ink transition-colors">GitHub</a>
           <a href="/about" class="hover:text-ink transition-colors">About</a>
+          <a href="/rss.xml" class="hover:text-ink transition-colors">RSS</a>
           {cvUrl && <a href={cvUrl} target="_blank" rel="noopener" class="hover:text-ink transition-colors">CV</a>}
         </div>
       </div>

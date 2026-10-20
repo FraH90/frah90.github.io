@@ -67,4 +67,25 @@ for (const url of urls) {
   assert.ok(!/^\/(?:\.work|research|docs)\//.test(url.pathname), `Planning material in sitemap: ${url.pathname}`);
 }
 assert.ok(!['.work', 'research', 'docs'].some(dir => existsSync(join(output, dir))), 'Planning material copied into public output');
-console.log(`Build output passed: ${pages} pages, internal links/assets/fragments, duplicate IDs, CV eligibility, social image, navigation, sitemap, and planning boundaries.`);
+// Search and feed must cover exactly the published article routes.
+const articleFiles = files.filter(path => path.endsWith('.html') && readFileSync(path, 'utf8').includes('data-pagefind-body'));
+const articleUrls = articleFiles.map(path => `https://frah90.github.io${path.slice(output.length).replace(/\/index\.html$/, '')}`).sort();
+assert.ok(existsSync(join(output, 'search/index.html')), 'Search page missing');
+assert.ok(existsSync(join(output, 'pagefind/pagefind.js')), 'Search engine missing: run the complete npm run build');
+const entry = JSON.parse(readFileSync(join(output, 'pagefind/pagefind-entry.json'), 'utf8'));
+assert.equal(Object.values(entry.languages).reduce((sum, lang) => sum + lang.page_count, 0), articleUrls.length, 'Search index/article count mismatch');
+const feed = readFileSync(join(output, 'rss.xml'), 'utf8');
+assert.match(feed, /<rss version="2.0"/);
+assert.match(feed, /rel="self" type="application\/rss\+xml"/);
+const items = [...feed.matchAll(/<item>([\s\S]*?)<\/item>/g)].map(match => match[1]);
+const feedUrls = items.map(item => item.match(/<link>([^<]+)<\/link>/)?.[1]).sort();
+assert.deepEqual(feedUrls, articleUrls, 'RSS must contain exactly the published article routes');
+for (const item of items) {
+  assert.match(item, /<guid isPermaLink="true">https:\/\/frah90\.github\.io\/blog\//);
+  assert.ok(Number.isFinite(Date.parse(item.match(/<pubDate>([^<]+)<\/pubDate>/)?.[1])), 'Invalid RSS publication date');
+}
+for (const file of files.filter(path => path.endsWith('.html'))) {
+  const html = readFileSync(file, 'utf8');
+  if (!html.includes('http-equiv="refresh"')) assert.match(html, /rel="alternate" type="application\/rss\+xml"/, `Missing RSS autodiscovery in ${file}`);
+}
+console.log(`Build output passed: ${pages} pages, internal links/assets/fragments, duplicate IDs, CV eligibility, social image, navigation, sitemap, planning boundaries, search index/article count, RSS article membership/dates, and feed discovery.`);

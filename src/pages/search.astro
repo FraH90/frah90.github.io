@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getAllCategories } from '../lib/posts';
+import { siteName } from '../lib/site';
+const topics = await getAllCategories();
+---
+<BaseLayout title={`Search — ${siteName}`} description="Search scientific and technical articles by topic, concept, or phrase.">
+  <section class="site-shell py-12 sm:py-16">
+    <div class="reading-width">
+      <h1 class="page-title text-3xl sm:text-4xl mb-4">Search the writing</h1>
+      <p class="text-muted mb-8">Find a topic, concept, or phrase across the articles.</p>
+      <form id="article-search" role="search" action="/search" method="get">
+        <label for="search-query" class="block text-sm font-medium mb-3">Search articles</label>
+        <div class="search-controls">
+          <input id="search-query" type="search" name="q" maxlength="200" autocomplete="off" placeholder="e.g. beam steering" aria-describedby="search-help" />
+          <button type="submit">Search</button>
+        </div>
+        <p id="search-help" class="text-sm text-muted mt-3">Search titles and article text. Use quotes for an exact phrase.</p>
+      </form>
+      <noscript><p class="mt-6 text-body">Text search needs JavaScript. You can <a class="text-accent underline" href="/blog">browse all writing</a> or choose a topic below.</p></noscript>
+      <p id="search-status" role="status" aria-live="polite" aria-atomic="true" class="text-sm text-muted mt-8">Enter a search, or browse by topic below.</p>
+      <ol id="search-results" class="search-results" aria-label="Search results"></ol>
+      <button id="search-more" class="search-more" type="button" hidden>Show more results</button>
+      <nav aria-label="Browse topics" class="mt-12 pt-8 border-t border-rule">
+        <h2 class="text-base font-medium mb-4">Browse by topic</h2>
+        <ul class="flex flex-wrap gap-3">{topics.map(topic => <li><a class="topic-filter" href={`/blog/${topic.slug}`}>{topic.label}</a></li>)}</ul>
+      </nav>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import '../lib/search-client';
+</script>

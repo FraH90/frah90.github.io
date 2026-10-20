@@ -30,19 +30,19 @@ const formatted = new Intl.DateTimeFormat('en-US', {
 ---
 
 <BaseLayout title={`${title} — ${siteName}`} description={description}>
-  <article class="site-shell py-16">
+  <article class="site-shell py-16" data-pagefind-body>
     <header class="reading-width mb-12 pb-10 border-b border-rule">
       <div class="flex flex-wrap items-center gap-x-3 gap-y-1 mb-6">
         <a
           href={`/blog/${category}`}
           class:list={['inline-flex min-h-11 items-center text-sm hover:underline underline-offset-4', topic.color]}
         >
-          {topic.label}
+          <span data-pagefind-meta="topic">{topic.label}</span>
         </a>
         <span class="text-muted">·</span>
         <time datetime={date.toISOString()} class="text-sm text-muted">{formatted}</time>
       </div>
-      <h1 class="page-title text-3xl sm:text-4xl text-ink leading-tight mb-4"
+      <h1 data-pagefind-meta="title" class="page-title text-3xl sm:text-4xl text-ink leading-tight mb-4"
         style="font-family: 'Lora', Georgia, serif; font-weight: 400;">
         {title}
       </h1>
@@ -86,7 +86,7 @@ const formatted = new Intl.DateTimeFormat('en-US', {
       ))}</div>
     </section>}
 
-    <div class="reading-width mt-16 pt-8 border-t border-rule">
+    <div data-pagefind-ignore class="reading-width mt-16 pt-8 border-t border-rule">
       <a href="/blog" class="text-sm text-muted hover:text-ink transition-colors">
         ← All writing
       </a>

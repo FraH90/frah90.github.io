@@ -25,7 +25,7 @@ The author has broad engineering interests and is developing depth through study
 - Use consistent typography, spacing, widths, filters, and card behavior. Keep prose readable and let figures expand where useful. Contrast and keyboard usability are requirements.
 - Article contents navigation is collapsed by default and must not consume a permanent sidebar. Click/tap and keyboard must work; hover is optional enhancement.
 - Articles show a short learning statement, prerequisites where relevant, and a published date. Do not display updated dates. Add explicit model assumptions, captions, references, and related reading/project links when applicable.
-- Search and RSS are planned features. Draft content must be excluded consistently from listings, routes, related content, search, RSS, and sitemap.
+- Search and RSS are implemented discovery surfaces. Draft content must be excluded consistently from listings, routes, related content, search, RSS, and sitemap.
 - Interactive demos require loading/error behavior and a meaningful static alternative, correct boundary cases, associated control labels, units, and a deliberate performance budget.
 - Trial articles are development fixtures pending an explicit editorial decision. Do not present them as verified research or invent replacement content.
 

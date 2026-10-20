@@ -151,7 +151,7 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
 
 ### Phase 4 — Search and RSS
 
-**Status:** todo · **ID:** `r-261020-01-scientific-blog-foundation-p4`
+**Status:** done · **ID:** `r-261020-01-scientific-blog-foundation-p4`
 
 **Useful alone:** Readers can find and follow published writing as the archive grows.
 
@@ -159,14 +159,18 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
 
 **Depends on:** `r-261020-01-scientific-blog-foundation-p1`, `r-261020-01-scientific-blog-foundation-p3`
 
-- ⬜ **todo** · **research** — Compare static search approaches with a small index/payload/accuracy experiment before selecting a dependency.
-  - ID `r-261020-01-scientific-blog-foundation-p4-1`
-- ⬜ **todo** · **build** — Implement search with accessible opening, focus handling, keyboard controls, results, and no-results state; index only published content.
-  - ID `r-261020-01-scientific-blog-foundation-p4-2`
-- ⬜ **todo** · **build** — Generate RSS from published content with stable absolute URLs and discoverable feed links.
-  - ID `r-261020-01-scientific-blog-foundation-p4-3`
-- ⬜ **todo** · **validation** — Check known queries, draft exclusion across every output, feed validity, and mobile/keyboard discovery.
-  - ID `r-261020-01-scientific-blog-foundation-p4-4`
+- ✅ **done** · **research** — Compare static search approaches with a small index/payload/accuracy experiment before selecting a dependency.
+  - ID `r-261020-01-scientific-blog-foundation-p4-1` · closed 2026-10-20
+  - Evidence (document): docs/search-and-rss.md records the five-article metadata/full-text experiment, eight query results, raw/gzip JSON sizes, Pagefind response-body bytes, official sources, and the rendered-content/chunked-index decision. Pagefind 1.5.2 is pinned; existing unrelated lockfile edits are preserved.
+- ✅ **done** · **build** — Implement search with accessible opening, focus handling, keyboard controls, results, and no-results state; index only published content.
+  - ID `r-261020-01-scientific-blog-foundation-p4-2` · closed 2026-10-20
+  - Evidence (document): Dedicated /search provides a labeled bookmarkable GET form, lazy Pagefind loading, status announcements, loading/no-results/failure states, ten-result batches, keyboard focus/Escape behavior, and native topic fallback. Indexed HTML is limited to generated published article bodies; duplicate KaTeX markup, islands, contents and article-tool sections are excluded. Failed result downloads reset the engine before retry.
+- ✅ **done** · **build** — Generate RSS from published content with stable absolute URLs and discoverable feed links.
+  - ID `r-261020-01-scientific-blog-foundation-p4-3` · closed 2026-10-20
+  - Evidence (document): Static /rss.xml emits summary-only RSS 2.0 from getAllPosts with XML-escaped text, absolute stable article links/GUIDs, publication dates and topic labels. Every regular page supplies feed autodiscovery and a visible footer link; README and mirrored working contracts describe the delivered features.
+- ✅ **done** · **validation** — Check known queries, draft exclusion across every output, feed validity, and mobile/keyboard discovery.
+  - ID `r-261020-01-scientific-blog-foundation-p4-4` · closed 2026-10-20
+  - Evidence (observation): Production build/check:build passed. Chromium checked both themes at 320/390/768/1440px, known/body/phrase/empty queries, keyboard navigation and pagination focus, query URLs/history, no-JS topic fallback, blocked engine and fragment recovery, and selected axe rules. Temporary fixtures verified 11-result pagination, code indexing, formula exclusion, exact escaped/Unicode RSS XML roundtrip, and draft exclusion across routes/listings/related/search/feed/sitemap. Fixtures removed before final 15-page/five-article build. No manual screen-reader or scientific accuracy audit claimed.
 
 ### Phase 5 — Reliable scientific demos
 
@@ -241,7 +245,7 @@ Overstating expertise; treating placeholder text as reviewed science; exposing d
 
 ## Working notes
 
-Phases 0, 1, 2, and 3 are complete. Phase 1 retains the writing-first entry, unifies taxonomy/listings, fixes mobile navigation and broken destinations, supplies the social card, and adds local build-output checks. Later phases remain pending, except the README correction and plot/control theme/lifecycle slice completed ahead of their explicit article-template and static-demo remainders. CV publication has its own idea/proposal and no implementation phase yet. Research notes under research/interests/ are not published by Astro. Validation on 2026-10-20 passed for all 7 JSON data files against vendored schemas; the LifeOS read/validate API and next-item selection; canonical JSON formatting; normalized source-message equality; 11 relative Markdown links; identical agent instruction files; and whitespace checks. Only documentation/planning files changed, so no new UI runtime or build claim is made. Commit evidence is the Git commit containing this Phase 0 record; no future SHA is invented.
+Phases 0, 1, 2, 3, and 4 are complete. Phase 1 retains the writing-first entry, unifies taxonomy/listings, fixes mobile navigation and broken destinations, supplies the social card, and adds local build-output checks. Later phases remain pending, except the README correction and plot/control theme/lifecycle slice completed ahead of their explicit article-template and static-demo remainders. CV publication has its own idea/proposal and no implementation phase yet. Research notes under research/interests/ are not published by Astro. Validation on 2026-10-20 passed for all 7 JSON data files against vendored schemas; the LifeOS read/validate API and next-item selection; canonical JSON formatting; normalized source-message equality; 11 relative Markdown links; identical agent instruction files; and whitespace checks. Only documentation/planning files changed, so no new UI runtime or build claim is made. Commit evidence is the Git commit containing this Phase 0 record; no future SHA is invented.
 
 
 ### Phase 1 verification — 2026-10-20
@@ -278,3 +282,14 @@ A temporary published article exercised goals, prerequisites, assumptions, math,
 Negative checks verified duplicate reference keys fail schema validation, missing related IDs raise a specific authoring error, missing image alt raises a specific rendering error and prevents figure output, and broken citation fragments fail the generated-output checker. The latter also checks duplicate rendered IDs and local HTML fragment targets.
 
 All temporary articles and the negative-test page were removed. The final production build and check:build passed for 14 pages, including fragment integrity; no temporary article/topic remained. Existing public articles passed collapsed contents, focus, permalink, empty-state, theme and overflow checks at 390/1440 pixels; native contents also worked with JavaScript disabled. This verifies publishing infrastructure, not a scientific review of the existing trial text. Search/RSS remain Phase 4; workflow permissions remain deferred to Phase 7.
+
+
+### Phase 4 verification — 2026-10-20
+
+Pagefind 1.5.2 now runs after Astro through npm run build; the deployment workflow already invokes that command. The five-article experiment, costs, alternatives and official sources are recorded in [the discovery design note](../../../docs/search-and-rss.md). Search indexes rendered published article bodies, excluding menus, related tools, live islands and duplicate KaTeX markup. Scientific prose and code are searchable; symbolic formula semantics are not claimed. The dedicated search page uses native navigation, a labeled bookmarkable query form, live status, highlighted excerpts, ten-result batches, no-results, retry and topic fallback. The engine loads only for a nonempty submitted query. RSS is summary-only, with stable absolute permalinks, publication dates, topic labels, escaped XML, head discovery and footer access.
+
+Chromium checks passed at 320, 390, 768 and 1440 pixels in both themes, with no page overflow. Known title/body queries, exact phrase and absent queries, URL restoration, keyboard submission/result navigation and Escape clearing passed. With JavaScript disabled, topic browsing remained usable. Selected axe contrast, labels, button/link names, ARIA and scrolling rules passed. Representative mobile dark/light screenshots were visually reviewed. These checks are not a manual screen-reader audit.
+
+A temporary set of 11 published fixtures checked pagination and focus on the first newly loaded result, literal code search, exclusion of duplicated rendered formulas, and XML escaping/Unicode roundtrips. A temporary draft in an otherwise empty category had no route/category/listing/related/search/feed/sitemap presence. The RSS parsed with Python ElementTree and its dates/GUIDs matched the expected articles. A blocked engine recovered on form resubmission. A blocked result fragment exposed Pagefind's cached rejection; the implementation now destroys the failed engine before retry and that recovery passed independently.
+
+Fixtures were removed before the final 15-page build. npm run build, npm run check:build, final search/feed smoke, vendored schemas, LifeOS reader validation, mirrored instructions, relative documentation links and whitespace checks passed. The output checker now requires a generated search runtime, compares indexed article counts, checks exact RSS article membership/dates, and checks feed autodiscovery. The dependency lock's Pagefind-only changes passed npm ci --dry-run; pre-existing unrelated lockfile edits remain unstaged. Phase 5 demo reliability/performance is next. Workflow permissions and automatic check:build CI invocation remain deferred to Phase 7.

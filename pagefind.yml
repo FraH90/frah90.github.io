@@ -1,0 +1,7 @@
+# Index article prose/code only; omit chrome, duplicate formula markup and live controls.
+exclude_selectors:
+  - .katex
+  - astro-island
+  - .article-contents
+  - .article-section
+  - '[data-pagefind-ignore]'
