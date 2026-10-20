@@ -25,6 +25,8 @@ btw. read the .work folder inside lifeos repo, i ve gave u access to it (read on
 
 ## Goal
 
+**Closed on 2026-10-20 for the delivered website foundation.** The owner-written article and deferred workflow work are transferred to separate roadmaps, not marked implemented.
+
 Create a content-first scientific and technical blog with consistent navigation, rigorous figures and articles, accessible reading, discovery, and an honest interdisciplinary author profile.
 
 ## Context and rationale
@@ -37,7 +39,7 @@ The owner clarified that the content must remain the protagonist. Professional p
 
 ## Decisions and trade-offs
 
-Agreed: content-first scientific blog; honest interdisciplinary positioning; scientific figures as central evidence; dark initially with explicit light option; collapsed contents; learning statement/prerequisites; published date only; captions, references, assumptions, related links, search, RSS; consistent topics/navigation first. Detailed entry routing, public identity, search package, and trial-content disposition remain open. Phase order expresses priority; explicit dependencies only identify real prerequisites. Search/RSS and demo reliability should not block early navigation improvements.
+Agreed: content-first scientific blog; honest interdisciplinary positioning; scientific figures as central evidence; dark initially with explicit light option; collapsed contents; learning statement/prerequisites; published date only; captions, references, assumptions, related links, search, RSS; consistent topics/navigation first. Entry routing, public identity/privacy, search implementation and demo disposition are now resolved in the recorded implementation/owner decisions. The owner-written article and deferred deployment work are tracked separately following closeout. Phase order expresses priority; explicit dependencies only identify real prerequisites. Search/RSS and demo reliability should not block early navigation improvements.
 
 ## Delivery plan
 
@@ -204,11 +206,11 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
 
 ### Phase 6 — Author context and publication readiness
 
-**Status:** active · **ID:** `r-261020-01-scientific-blog-foundation-p6`
+**Status:** done · **ID:** `r-261020-01-scientific-blog-foundation-p6`
 
 **Useful alone:** Readers can understand who writes the site and assess actual work.
 
-**Done when:** About uses owner-confirmed background and privacy choices; the five original articles remain explicitly labeled public demos; at least one owner-written/approved substantive article meets the editorial and figure standard.
+**Done when:** About uses the owner-confirmed electronic-engineer background and privacy choices; all five original articles remain clearly labeled public demos; the delivered site has recorded desktop/mobile, keyboard, theme and publication-boundary checks.
 
 **Depends on:** `r-261020-01-scientific-blog-foundation-p3`, `r-261020-01-scientific-blog-foundation-p4`, `r-261020-01-scientific-blog-foundation-p5`
 
@@ -220,20 +222,22 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
   - ID `r-261020-01-scientific-blog-foundation-p6-2` · closed 2026-10-20 · commits `8149b37f2f9e44fed56c496518634445de922440`, `cc8bb91fa531416c68287a5708ddbf6886d77e1d`
   - Evidence (document): The paired roadmap Markdown inventories all five trial articles, available analytical evidence, unchanged public status and owner decisions needed. No article was retired, promoted to reviewed work, assigned a new publication date, or automatically selected as the first approved article.
   - Evidence (decision): Owner explicitly chose to retain and label the original articles as demos. All five now use demo:true with shared label/notice in listings, headers, related cards, search metadata/results and RSS titles/descriptions/categories. URLs/GUIDs and existing dates are preserved; this is not certification of scientific review.
-- ▶️ **active** · **build** — Prepare one real article with the owner using available scientific figures/data/code; distinguish tutorial, simulation, measurement, and exploration.
-  - ID `r-261020-01-scientific-blog-foundation-p6-3` · commits `cc8bb91fa531416c68287a5708ddbf6886d77e1d`
+- ⛔ **declined** · **build** — Prepare one real article with the owner using available scientific figures/data/code; distinguish tutorial, simulation, measurement, and exploration.
+  - ID `r-261020-01-scientific-blog-foundation-p6-3` · closed 2026-10-20 · commits `cc8bb91fa531416c68287a5708ddbf6886d77e1d`
   - Evidence (document): Owner plans to write a deeper, research-oriented phased-array article. Idea i-261020-04-research-oriented-phased-array-article preserves the request and proposes a bounded beam-squint bandwidth/aperture study, primary starting sources, assumptions, three scientific figures and reproducibility checks. The exact subtopic is a suggestion, with no manuscript, new calculation, novelty claim or publication approval fabricated.
-- ▶️ **active** · **validation** — Run production build and review representative navigation, article, About, discovery, links, and failure states on desktop/mobile in both themes.
-  - ID `r-261020-01-scientific-blog-foundation-p6-4` · commits `8149b37f2f9e44fed56c496518634445de922440`, `cc8bb91fa531416c68287a5708ddbf6886d77e1d`
+  - Evidence (decision): Removed from the foundation scope at the owner's explicit closeout request and transferred to r-261020-02-first-phased-array-article. Declined here means transferred, not implemented or abandoned. The manuscript, new analysis and publication remain unfinished.
+- ✅ **done** · **validation** — Verify the delivered website foundation across navigation, demo articles, About, discovery, links and failure states on desktop/mobile in both themes; first-manuscript review is a separate publication task.
+  - ID `r-261020-01-scientific-blog-foundation-p6-4` · closed 2026-10-20 · commits `8149b37f2f9e44fed56c496518634445de922440`, `cc8bb91fa531416c68287a5708ddbf6886d77e1d`
   - Evidence (observation): Current About slice passed production build/output/demo checks and Chromium at 320/390/768/1440px in both themes: layout, active navigation, keyboard/skip and article links, selected axe rules, no-JS topic browsing and CV absence. GitHub profile/source URLs returned HTTP 200; email syntax/link retained but ownership/deliverability not verified. Final owner article and wider Phase 6 sign-off remain pending.
   - Evidence (observation): Production build/output/demo checks pass. Chromium verifies no contacts and Demo labels across listing/article/related/search views at 320/1440 in both themes, selected axe and no-JS labeling. Isolated ordinary/draft fixtures distinguish normal articles from demos and preserve draft exclusion; fixtures removed before the final 15-page/five-article build. Final owner manuscript review remains pending.
+  - Evidence (decision): Foundation checks are already recorded in implementation commits 8149b37, cc8bb91 and earlier phases. Scope is narrowed to the delivered site; validation of the unwritten owner article moves to r-261020-02-first-phased-array-article. This documentation closeout does not claim a new UI audit or a finished paper.
 - ✅ **done** · **build** — Replace the unconfirmed biography/skills grid with a professional interest-led About structure, eligible topic/article links, source access and existing contact/CV behavior.
   - ID `r-261020-01-scientific-blog-foundation-p6-5` · closed 2026-10-20 · commits `8149b37f2f9e44fed56c496518634445de922440`
   - Evidence (document): src/pages/about.astro presents physical models, signals/inference and engineering software as interests; agentic IC design is explicitly exploratory. Topic labels use the shared registry; links and examples use shared published-content queries so empty/draft destinations are omitted. There are no invented credentials, employer/project claims, skill proficiency levels, or empty profile placeholders.
 
 ### Phase 7 — Workflow permissions and automated deployment checks
 
-**Status:** todo · **ID:** `r-261020-01-scientific-blog-foundation-p7`
+**Status:** declined · **ID:** `r-261020-01-scientific-blog-foundation-p7`
 
 **Useful alone:** Broken public links and assets can stop deployment automatically instead of relying on a local check.
 
@@ -241,10 +245,12 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
 
 **Depends on:** `r-261020-01-scientific-blog-foundation-p6`
 
-- ⬜ **todo** · **decision** — Resolve the GitHub integration workflows permission using the supported LifeOS/GitHub configuration; do not add credentials to this repository.
-  - ID `r-261020-01-scientific-blog-foundation-p7-1`
-- ⬜ **todo** · **build** — Add npm run check:build and npm run check:demos after the Astro/Pagefind build and before GitHub Pages artifact upload; verify broken output/model or payload regressions block deployment and a valid deployment passes.
-  - ID `r-261020-01-scientific-blog-foundation-p7-2`
+- ⛔ **declined** · **decision** — Resolve the GitHub integration workflows permission using the supported LifeOS/GitHub configuration; do not add credentials to this repository.
+  - ID `r-261020-01-scientific-blog-foundation-p7-1` · closed 2026-10-20
+  - Evidence (decision): Transferred unchanged in intent to r-261020-03-deployment-checks, which remains paused under the owner's earlier explicit deferral. No workflow permission, CI gate or deployment verification is claimed complete.
+- ⛔ **declined** · **build** — Add npm run check:build and npm run check:demos after the Astro/Pagefind build and before GitHub Pages artifact upload; verify broken output/model or payload regressions block deployment and a valid deployment passes.
+  - ID `r-261020-01-scientific-blog-foundation-p7-2` · closed 2026-10-20
+  - Evidence (decision): Transferred unchanged in intent to r-261020-03-deployment-checks, which remains paused under the owner's earlier explicit deferral. No workflow permission, CI gate or deployment verification is claimed complete.
 <!-- ledger-phases:end -->
 
 ## Risks
@@ -374,3 +380,14 @@ A typed demo boolean, default false, is distinct from draft eligibility. Each or
 The first substantive article will be written by the owner and will concern phased arrays at greater depth. The linked idea proposes a bandwidth/aperture study of beam squint: a stated directional-loss requirement, fixed-phase steering versus ideal true-time delay, explicit physical spacing and angle conventions, and three research figures. It links an Analog Devices technical explanation and Cai et al.'s research paper as starting points. This is an elaborated suggestion, not an accepted subtopic, completed simulation, manuscript, novelty claim, or automatic publication. No article is generated or scheduled for an invented deadline. Phase 6 remains active until the owner-written article and its evidence are available and approved.
 
 Production build/check:build/check:demos passed for the clean 15-page/five-article output. Chromium checked 320/1440px and both themes: confirmed background, no contact links, five public demo labels in listing/topic/article/related/search views, metadata, no overflow, selected axe rules and no-JavaScript labels/navigation. The original broadside array and other demo behavior is unchanged. RSS XML retains five items with stable links/GUIDs and explicit Demo titles/categories. An isolated ordinary article had no demo notice/status/RSS category; a draft demo had no route/listing/related/feed/sitemap presence. Fixtures were removed before the final build. Vendored schemas, LifeOS reader/projection, instruction equality, relative documentation links and whitespace checks passed. No workflow or LifeOS source file was modified.
+
+
+### Foundation closure and transfer — 2026-10-20
+
+The owner explicitly requested: “Ok. Reminds me this. But the roadmap has been finished? We need to close it. Then the first article.” The delivered website foundation is now **done**, closed on 2026-10-20, and no longer primary. Its closure is a documented scope boundary, not a claim that the owner’s article or workflow permissions are finished.
+
+Completed scope includes navigation/taxonomy, themes/reading, scientific article tools, search/RSS, reliable static/on-demand demos, owner-confirmed profile/privacy choices and demo labels, with the existing implementation/validation evidence retained. The foundation portion of p6-4 is closed from already recorded checks; no new UI test is claimed by this documentation-only update.
+
+Unfinished p6-3 and first-manuscript review move to [the first phased-array article roadmap](../r-261020-02-first-phased-array-article/r-261020-02-first-phased-array-article.md), now the only primary roadmap. The existing writing brief is its starting point. Phase 7 permissions/CI checks move to [a separate paused follow-up](../r-261020-03-deployment-checks/r-261020-03-deployment-checks.md), honoring the earlier owner deferral. Old transferred items use declined because ledger v2 has no transferred status; their evidence explicitly says they are not implemented or abandoned. No pending work is silently erased.
+
+The original-thought block and delivery history are preserved verbatim. A date/time/timezone has been requested for a timed reminder; the brief is already stored, but no notification is scheduled.

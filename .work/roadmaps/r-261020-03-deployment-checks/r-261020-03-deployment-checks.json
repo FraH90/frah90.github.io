@@ -1,0 +1,55 @@
+{
+  "$schema": "../../schema/roadmap.v2.json",
+  "version": 2,
+  "kind": "roadmap",
+  "order": 2,
+  "id": "r-261020-03-deployment-checks",
+  "title": "Deferred workflow permissions and deployment checks",
+  "why": "Preserve the unfinished CI/workflow follow-up outside the completed website foundation without bypassing the owner’s explicit deferral.",
+  "status": "paused",
+  "primary": false,
+  "done_when": "Supported workflow permissions are configured, both output and demo checks run before Pages artifact upload, and a real valid deployment plus failing-check behavior verify the gate.",
+  "created_at": "2026-10-20",
+  "closed_at": null,
+  "phases": [
+    {
+      "id": "r-261020-03-deployment-checks-p1",
+      "title": "Supported workflow permission",
+      "status": "todo",
+      "useful_alone": "The integration can publish authorized workflow edits without adding credentials to the checkout.",
+      "done_when": "The owner’s supported LifeOS/GitHub configuration authorizes workflow edits.",
+      "depends_on": [],
+      "items": [
+        {
+          "id": "r-261020-03-deployment-checks-p1-1",
+          "text": "Resolve the GitHub integration workflows permission using the supported LifeOS/GitHub configuration; do not add credentials to this repository.",
+          "status": "todo",
+          "kind": "decision",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "r-261020-03-deployment-checks-p2",
+      "title": "CI build and demo gates",
+      "status": "todo",
+      "useful_alone": "Broken public output or demo/model/payload regressions prevent deployment.",
+      "done_when": "Both checks run before artifact upload; invalid output is blocked and a real valid workflow run passes.",
+      "depends_on": [
+        "r-261020-03-deployment-checks-p1"
+      ],
+      "items": [
+        {
+          "id": "r-261020-03-deployment-checks-p2-1",
+          "text": "Add npm run check:build and npm run check:demos after the Astro/Pagefind build and before GitHub Pages artifact upload; verify broken output/model or payload regressions block deployment and a valid deployment passes.",
+          "status": "todo",
+          "kind": "build",
+          "evidence": []
+        }
+      ]
+    }
+  ],
+  "open_questions": [
+    "The owner has deferred this work until later. Resume only when the owner returns to workflow permissions."
+  ]
+}

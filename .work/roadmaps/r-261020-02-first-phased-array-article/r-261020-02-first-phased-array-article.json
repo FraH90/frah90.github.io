@@ -1,0 +1,89 @@
+{
+  "$schema": "../../schema/roadmap.v2.json",
+  "version": 2,
+  "kind": "roadmap",
+  "order": 1,
+  "id": "r-261020-02-first-phased-array-article",
+  "title": "First substantive phased-array article",
+  "why": "Turn the saved beam-squint writing brief into an owner-written, reproducible phased-array study and publish it after scientific and editorial review.",
+  "from_idea": "i-261020-04-research-oriented-phased-array-article",
+  "status": "active",
+  "primary": true,
+  "done_when": "The owner-written article, reproducible code and scientific figures are reviewed, its model assumptions and limitations are explicit, the owner approves publication, and the published article passes site/discovery checks.",
+  "success_metrics": [
+    "A focused question about directional-response loss versus bandwidth, aperture and scan angle.",
+    "Reproducible figures and independent checks support the conclusions; no invented measurements or novelty claims.",
+    "One owner-approved substantive article is published with correct labels, date, references and discovery outputs."
+  ],
+  "kill_conditions": [
+    "Re-scope if the first article expands into an unmanageable multi-effect hardware study.",
+    "Do not publish unsupported numerical/physical claims or a manuscript the owner has not approved."
+  ],
+  "created_at": "2026-10-20",
+  "closed_at": null,
+  "phases": [
+    {
+      "id": "r-261020-02-first-phased-array-article-p1",
+      "title": "Owner manuscript and reproducible evidence",
+      "status": "active",
+      "useful_alone": "A bounded research question and inspectable manuscript/code/figure package can be reviewed before publication.",
+      "done_when": "The owner provides a manuscript plus code/figures or explicitly scoped analytical evidence for the agreed study.",
+      "depends_on": [],
+      "items": [
+        {
+          "id": "r-261020-02-first-phased-array-article-p1-1",
+          "text": "Carry forward the saved beam-squint brief and record the owner’s instruction to close website setup and focus on the first article.",
+          "status": "done",
+          "kind": "decision",
+          "closed_at": "2026-10-20",
+          "evidence": [
+            {
+              "kind": "decision",
+              "value": "The owner said “Ok” to the proposal, asked to keep it as a reminder, and requested closing the foundation roadmap before the first article. The existing idea contains the central question, suggested sweep, three figures, sources and model limits. No manuscript or results are claimed."
+            }
+          ],
+          "commits": [
+            "cc8bb91fa531416c68287a5708ddbf6886d77e1d"
+          ]
+        },
+        {
+          "id": "r-261020-02-first-phased-array-article-p1-2",
+          "text": "Owner writes the phased-array manuscript and provides reproducible code/figures; use the saved beam-squint brief as the working direction, with scope refined by the owner.",
+          "status": "todo",
+          "kind": "build",
+          "evidence": []
+        }
+      ]
+    },
+    {
+      "id": "r-261020-02-first-phased-array-article-p2",
+      "title": "Scientific review and publication",
+      "status": "todo",
+      "useful_alone": "The completed article can be read, checked and followed through the site.",
+      "done_when": "Claims/model/evidence pass review, the owner approves the final article, and production/draft/discovery/browser checks pass before publication.",
+      "depends_on": [
+        "r-261020-02-first-phased-array-article-p1"
+      ],
+      "items": [
+        {
+          "id": "r-261020-02-first-phased-array-article-p2-1",
+          "text": "Review angle/phase conventions, normalization, fixed physical spacing, visible solutions, numerical identities, scientific captions, references and model limits against the actual manuscript/evidence.",
+          "status": "todo",
+          "kind": "validation",
+          "evidence": []
+        },
+        {
+          "id": "r-261020-02-first-phased-array-article-p2-2",
+          "text": "With owner approval, prepare final MDX and a genuine publication date; verify figures, math, mobile/desktop, keyboard, themes, draft exclusion and search/RSS/related/sitemap, then publish.",
+          "status": "todo",
+          "kind": "build",
+          "evidence": []
+        }
+      ]
+    }
+  ],
+  "open_questions": [
+    "When will the owner provide the first manuscript and its code/figures?",
+    "A notification time/timezone has not been supplied; no timed reminder has been scheduled."
+  ]
+}

@@ -7,9 +7,9 @@
   "title": "Scientific blog foundation and professional reading experience",
   "why": "Create a content-first scientific and technical blog with consistent navigation, rigorous figures and articles, accessible reading, discovery, and an honest interdisciplinary author profile.",
   "from_idea": "i-261020-01-content-first-scientific-blog",
-  "status": "active",
-  "primary": true,
-  "done_when": "All phases meet their acceptance criteria, publishing outputs exclude drafts, existing article links remain valid, and representative articles pass desktop/mobile, keyboard, theme, and scientific-content checks.",
+  "status": "done",
+  "primary": false,
+  "done_when": "The static blog foundation, navigation, themes, article tools, discovery, demos, confirmed About and demo labels are delivered and verified. Owner article publication and deferred workflow checks are explicitly transferred to separate roadmaps.",
   "success_metrics": [
     "One shared topic vocabulary and consistent listing/navigation behavior across the site.",
     "Representative articles support figures, math, collapsed contents, both themes, and useful failure behavior on mobile and desktop.",
@@ -21,7 +21,7 @@
     "Re-scope if a feature requires infrastructure beyond static GitHub Pages without a demonstrated need."
   ],
   "created_at": "2026-10-20",
-  "closed_at": null,
+  "closed_at": "2026-10-20",
   "phases": [
     {
       "id": "r-261020-01-scientific-blog-foundation-p0",
@@ -542,9 +542,9 @@
     {
       "id": "r-261020-01-scientific-blog-foundation-p6",
       "title": "Author context and publication readiness",
-      "status": "active",
+      "status": "done",
       "useful_alone": "Readers can understand who writes the site and assess actual work.",
-      "done_when": "About uses owner-confirmed background and privacy choices; the five original articles remain explicitly labeled public demos; at least one owner-written/approved substantive article meets the editorial and figure standard.",
+      "done_when": "About uses the owner-confirmed electronic-engineer background and privacy choices; all five original articles remain clearly labeled public demos; the delivered site has recorded desktop/mobile, keyboard, theme and publication-boundary checks.",
       "depends_on": [
         "r-261020-01-scientific-blog-foundation-p3",
         "r-261020-01-scientific-blog-foundation-p4",
@@ -596,22 +596,27 @@
         {
           "id": "r-261020-01-scientific-blog-foundation-p6-3",
           "text": "Prepare one real article with the owner using available scientific figures/data/code; distinguish tutorial, simulation, measurement, and exploration.",
-          "status": "active",
+          "status": "declined",
           "kind": "build",
           "evidence": [
             {
               "kind": "document",
               "value": "Owner plans to write a deeper, research-oriented phased-array article. Idea i-261020-04-research-oriented-phased-array-article preserves the request and proposes a bounded beam-squint bandwidth/aperture study, primary starting sources, assumptions, three scientific figures and reproducibility checks. The exact subtopic is a suggestion, with no manuscript, new calculation, novelty claim or publication approval fabricated."
+            },
+            {
+              "kind": "decision",
+              "value": "Removed from the foundation scope at the owner's explicit closeout request and transferred to r-261020-02-first-phased-array-article. Declined here means transferred, not implemented or abandoned. The manuscript, new analysis and publication remain unfinished."
             }
           ],
           "commits": [
             "cc8bb91fa531416c68287a5708ddbf6886d77e1d"
-          ]
+          ],
+          "closed_at": "2026-10-20"
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p6-4",
-          "text": "Run production build and review representative navigation, article, About, discovery, links, and failure states on desktop/mobile in both themes.",
-          "status": "active",
+          "text": "Verify the delivered website foundation across navigation, demo articles, About, discovery, links and failure states on desktop/mobile in both themes; first-manuscript review is a separate publication task.",
+          "status": "done",
           "kind": "validation",
           "evidence": [
             {
@@ -621,12 +626,17 @@
             {
               "kind": "observation",
               "value": "Production build/output/demo checks pass. Chromium verifies no contacts and Demo labels across listing/article/related/search views at 320/1440 in both themes, selected axe and no-JS labeling. Isolated ordinary/draft fixtures distinguish normal articles from demos and preserve draft exclusion; fixtures removed before the final 15-page/five-article build. Final owner manuscript review remains pending."
+            },
+            {
+              "kind": "decision",
+              "value": "Foundation checks are already recorded in implementation commits 8149b37, cc8bb91 and earlier phases. Scope is narrowed to the delivered site; validation of the unwritten owner article moves to r-261020-02-first-phased-array-article. This documentation closeout does not claim a new UI audit or a finished paper."
             }
           ],
           "commits": [
             "8149b37f2f9e44fed56c496518634445de922440",
             "cc8bb91fa531416c68287a5708ddbf6886d77e1d"
-          ]
+          ],
+          "closed_at": "2026-10-20"
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p6-5",
@@ -644,12 +654,13 @@
             "8149b37f2f9e44fed56c496518634445de922440"
           ]
         }
-      ]
+      ],
+      "closed_at": "2026-10-20"
     },
     {
       "id": "r-261020-01-scientific-blog-foundation-p7",
       "title": "Workflow permissions and automated deployment checks",
-      "status": "todo",
+      "status": "declined",
       "useful_alone": "Broken public links and assets can stop deployment automatically instead of relying on a local check.",
       "done_when": "Workflow-file edits are authorized through the integration, npm run check:build and npm run check:demos run after the production build and before upload, and a successful workflow run verifies the gate.",
       "depends_on": [
@@ -659,23 +670,34 @@
         {
           "id": "r-261020-01-scientific-blog-foundation-p7-1",
           "text": "Resolve the GitHub integration workflows permission using the supported LifeOS/GitHub configuration; do not add credentials to this repository.",
-          "status": "todo",
+          "status": "declined",
           "kind": "decision",
-          "evidence": []
+          "evidence": [
+            {
+              "kind": "decision",
+              "value": "Transferred unchanged in intent to r-261020-03-deployment-checks, which remains paused under the owner's earlier explicit deferral. No workflow permission, CI gate or deployment verification is claimed complete."
+            }
+          ],
+          "closed_at": "2026-10-20"
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p7-2",
           "text": "Add npm run check:build and npm run check:demos after the Astro/Pagefind build and before GitHub Pages artifact upload; verify broken output/model or payload regressions block deployment and a valid deployment passes.",
-          "status": "todo",
+          "status": "declined",
           "kind": "build",
-          "evidence": []
+          "evidence": [
+            {
+              "kind": "decision",
+              "value": "Transferred unchanged in intent to r-261020-03-deployment-checks, which remains paused under the owner's earlier explicit deferral. No workflow permission, CI gate or deployment verification is claimed complete."
+            }
+          ],
+          "closed_at": "2026-10-20"
         }
-      ]
+      ],
+      "closed_at": "2026-10-20"
     }
   ],
   "open_questions": [
-    "Which real figures, projects, and reproducible datasets are ready for publication.",
-    "CV source repository, intended public artifact, and publication mechanism are deferred.",
-    "Which precise phased-array research question will the owner choose, and when will its manuscript/code/figures be ready for review? Beam squint is the current suggestion, not an approved result."
+    "CV source and publication mechanism remain deferred in their existing idea/proposal; no CV integration was implemented."
   ]
 }

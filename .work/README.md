@@ -4,7 +4,11 @@ This repository adopts LifeOS ledger v2. The ledger lives here, not in the LifeO
 
 ## Start here
 
-The primary implementation plan is [Scientific blog foundation](roadmaps/r-261020-01-scientific-blog-foundation/r-261020-01-scientific-blog-foundation.md). Phases 0, 1, 2, 3, 4, and 5 are complete: project guidance, shared topics/listings, mobile navigation, public-link fixes, build checks, reading/themes, scientific article tools, static full-text search, summary RSS, and reliable static/on-demand demos are in place. Phase 6 (author context and publication decisions) is active: the owner confirms electronic engineer, retains FraH90, declines public contacts and retains the five original articles as labeled demos. The first substantive phased-array article remains for the owner to write/review. The plot/control theme/lifecycle slice was delivered early; Phase 5 completes the published demo work. Author/privacy and demo-disposition decisions are recorded; the substantive publication example remains pending. The owner-deferred workflow-permissions and CI build gate are the final Phase 7.
+The [scientific blog foundation](roadmaps/r-261020-01-scientific-blog-foundation/r-261020-01-scientific-blog-foundation.md) is **done and closed**. It delivered the website structure, navigation, themes, article tools, search/RSS, reliable demos, confirmed About/privacy choices and explicit demo labels. Its implementation evidence remains in that bundle.
+
+The only primary roadmap is now [the first substantive phased-array article](roadmaps/r-261020-02-first-phased-array-article/r-261020-02-first-phased-array-article.md). The owner writes the manuscript and develops its evidence from the saved beam-squint brief; scientific review and publication follow. The unwritten article is not counted as completed website work.
+
+[Workflow permissions and deployment checks](roadmaps/r-261020-03-deployment-checks/r-261020-03-deployment-checks.md) are a separate **paused, non-primary** follow-up under the owner’s earlier instruction to deal with permissions later. No CI gate or successful workflow verification is claimed complete. Transferred items are explicitly closed out of the foundation scope with links to these follow-ups; no pending work was lost.
 
 Captured sources:
 

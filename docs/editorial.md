@@ -1,6 +1,6 @@
 # Editorial and authoring guide
 
-This is the agreed publishing standard. Features described as planned are not yet implemented; see the primary roadmap for delivery status.
+This is the agreed publishing standard. Features described as planned are not yet implemented; see [the work ledger](../.work/README.md) for the closed foundation and current article roadmap.
 
 ## Voice and positioning
 
