@@ -11,7 +11,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "check:build": "node scripts/check-build.mjs",
-    "new:post": "node --experimental-strip-types scripts/new-post.mjs"
+    "new:post": "node --experimental-strip-types scripts/new-post.mjs",
+    "check:demos": "node --experimental-strip-types scripts/check-demo-models.mjs && node scripts/check-demo-budget.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",

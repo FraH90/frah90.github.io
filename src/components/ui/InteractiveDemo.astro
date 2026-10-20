@@ -1,0 +1,63 @@
+---
+import StaticChart from "./StaticChart.astro";
+import { demoExamples } from "../../lib/demo-examples";
+import type { DemoKind } from "../../lib/demo-charts";
+interface Props {
+  kind: DemoKind;
+}
+const { kind } = Astro.props;
+const example = demoExamples[kind];
+---
+
+<section
+  class="interactive-demo not-prose my-8 rounded-xl border border-rule bg-surface/60"
+  data-demo={kind}
+  data-pagefind-ignore
+  aria-label={`${example.label} example`}
+>
+  <div class="border-b border-rule px-4 py-3 text-sm font-medium text-ink">
+    {example.label}
+  </div>
+  <div class="p-4 sm:p-5">
+    <div
+      data-demo-live
+      hidden
+      tabindex="-1"
+      role="region"
+      aria-label={`${example.label} interactive controls`}
+    >
+    </div>
+    <div data-demo-static>
+      <p class="text-sm text-body leading-relaxed mb-4">
+        <strong class="text-ink font-medium"
+          >Calculated reference case.
+        </strong>{example.parameters}
+      </p>
+      <div class="space-y-6">
+        {example.charts.map((spec) => <StaticChart spec={spec} />)}
+      </div>
+      <p class="text-sm text-body leading-relaxed mt-4">
+        {example.observation}
+      </p>
+    </div>
+    <div class="demo-actions mt-5 flex flex-wrap gap-3 items-center">
+      <button data-demo-start type="button" hidden>Load interactive demo</button
+      >
+      <button data-demo-static-toggle type="button" aria-expanded="false" hidden
+        >Show reference case</button
+      >
+    </div>
+    <p
+      data-demo-status
+      role="status"
+      aria-live="polite"
+      class="mt-3 text-sm text-muted"
+    >
+      The reference figure is available without JavaScript. Enable JavaScript to
+      explore other settings.
+    </p>
+  </div>
+</section>
+<script>
+  import "../../lib/demo-client";
+</script>

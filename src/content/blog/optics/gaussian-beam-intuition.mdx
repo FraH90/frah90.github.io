@@ -5,12 +5,18 @@ category: optics
 description: The three numbers that define a Gaussian beam and why you can't minimize all three simultaneously.
 tags: [optics, laser, gaussian-beam, photonics]
 draft: false
+assumptions:
+  - Ideal free-space paraxial fundamental Gaussian beam with M² = 1.
+  - w is the 1/e² intensity radius, not diameter; θ is the divergence half-angle.
+references:
+  - id: gaussian-mit
+    title: "MIT 6.974 — Paraxial Wave Equation and Gaussian Beams"
+    url: https://ocw.mit.edu/courses/6-974-fundamentals-of-photonics-quantum-electronics-spring-2006/871c32e6e4a44cbb1546741ef06f0f2f_parax_wav_eq_gau.pdf
 ---
 
-import GaussianBeamDemo from '../../../components/demos/GaussianBeamDemo';
-import InteractiveFrame from '../../../components/ui/InteractiveFrame.astro';
+import InteractiveDemo from '../../../components/ui/InteractiveDemo.astro';
 
-Every single-mode laser beam is a Gaussian beam. Three numbers fully characterize it:
+An ideal fundamental paraxial laser mode can be modeled as a Gaussian beam. Real beams can depart from this model through aberrations, apertures, or non-ideal beam quality. At a given wavelength, three related quantities describe its size and spreading:
 
 1. **Beam waist** $w_0$ — the minimum spot radius (at the focal plane)
 2. **Rayleigh range** $z_R$ — the distance at which the beam area doubles
@@ -22,7 +28,7 @@ $$z_R = \frac{\pi w_0^2}{\lambda}, \qquad \theta \approx \frac{\lambda}{\pi w_0}
 
 ## The Fundamental Trade-off
 
-$w_0 \cdot \theta = \lambda / \pi$ is a constant — the diffraction limit. **Smaller focus → faster divergence, always.** This is a consequence of the wave nature of light, not a limitation of lens quality.
+$w_0 \cdot \theta = \lambda / \pi$ is fixed for this ideal paraxial model at a given wavelength. **Smaller waist → greater divergence.** Large divergence requires a model beyond the small-angle paraxial approximation.
 
 ## Beam Evolution
 
@@ -36,12 +42,10 @@ For $|z| \ll z_R$ the beam is approximately collimated. For $|z| \gg z_R$ it div
 
 Sweep $w_0$ and $\lambda$ and watch the beam envelope evolve. Notice how tightening the waist immediately increases divergence:
 
-<InteractiveFrame label="Gaussian Beam">
-  <GaussianBeamDemo client:only="react" />
-</InteractiveFrame>
+<InteractiveDemo kind="gaussian" />
 
 ## Physical intuition
 
 The Rayleigh range $z_R$ is the key quantity to internalize. It tells you how long your beam stays "focused" before it starts spreading significantly. A short-wavelength, large-waist beam has a long $z_R$ — this is why collimated laser beams at 532 nm can travel meters before visibly spreading.
 
-For fiber coupling, the waist must match the fiber mode field diameter (~5–10 µm for SMF-28), which sets a tight constraint on the focusing optics and alignment tolerances.
+For fiber coupling, compare compatible size definitions: a Gaussian waist **radius** should be compared with the fiber mode-field **radius**, or compare the diameter $2w_0$ with the mode-field diameter at the intended wavelength. Size matching alone is not sufficient; alignment, phase curvature, polarization, and the actual mode profile also affect coupling.

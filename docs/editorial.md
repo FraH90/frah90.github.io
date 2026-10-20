@@ -28,7 +28,7 @@ Choose stable category slugs from `src/lib/topics.ts`; only topics with publishe
 
 Before publishing: review mathematical/scientific accuracy and citations; run the production build; check equations, figures, tables, code, links, interactive behavior, and mobile reading. Verify draft exclusion from every index and feed. Set a genuine publication date and remove draft status only when the piece is ready.
 
-The existing five articles are trial content. Decide explicitly whether to correct and retain, replace, or retire them before treating the archive as reviewed. Known review targets include the transmission-line short-circuit quarter-wave statement and infinite-VSWR handling; uniform-array sidelobe and beamwidth claims; Gaussian beam ideal-model scope and waist-radius versus mode-field-diameter wording; and overly general ML claims. This list is a review queue, not a completed scientific audit.
+The existing five articles are trial content. Decide explicitly whether to correct and retain, replace, or retire them before treating the archive as reviewed. Phase 5 corrected the transmission-line short-circuit quarter-wave statement and infinite-VSWR handling, uniform-array steering/sidelobe/beamwidth claims, Gaussian model scope and radius-versus-diameter wording, and DFT scaling/window limitations. Independent model identities and boundary checks now cover those teaching examples. Broader editorial review, physical validation, and the overly general ML claims remain pending; these targeted fixes are not a completed scientific audit.
 
 ## Professional context
 

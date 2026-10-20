@@ -6,9 +6,8 @@ Output: public/data/gaussian-beam/default.json
 Usage:
     python scripts/generate_gaussian_beam.py
 
-This script is an example of the precomputed-data workflow:
-run locally, commit the JSON, the browser loads it for the initial render.
-Slider changes trigger pure-JS recomputation for interactivity.
+This is a standalone reference dataset, not a browser dependency.
+The current static figures and interactive controls use the shared TypeScript model.
 """
 
 import json
@@ -33,7 +32,7 @@ def gaussian_beam(w0_um: float, lambda_um: float, z_max_mm: float, points: int =
             "lambda_um": lambda_um,
             "z_max_mm": z_max_mm,
             "zR_mm": zR * 1e3,
-            "divergence_deg": math.degrees(math.atan(lam / (math.pi * w0))),
+            "divergence_deg": math.degrees(lam / (math.pi * w0)),
         },
         "z_mm": [zi * 1e3 for zi in z],
         "w_um": [wi * 1e6 for wi in w],

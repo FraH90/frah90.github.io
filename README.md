@@ -26,6 +26,7 @@ Production verification:
 ```bash
 npm run build
 npm run check:build
+npm run check:demos
 npm run preview
 ```
 
@@ -47,7 +48,7 @@ src/
   components/blog/             Shared listing and article cards
   components/article/          Contents, scientific figures, citations/references
   components/nav/              Persistent navigation
-  components/demos/            React interactive examples
+  components/demos/            On-demand React controls and SVG charts
   components/ui/               Chart, slider, equation, and demo wrappers
   styles/global.css            Tailwind, KaTeX, shared interaction styles
 public/                        Deliberately public assets and datasets
@@ -75,7 +76,7 @@ Redirect aliases are excluded from the sitemap. The mobile header retains the sa
 
 Dark is the initial default, independently of the browser's system preference. The header button switches to light or dark and stores the explicit choice under `frah90-theme` in local storage. It applies before body rendering, persists across page loads, and synchronizes between tabs. If storage is blocked, the switch still works for the current page; if JavaScript is disabled, the site stays readable in dark mode and hides the unavailable switch.
 
-Semantic color and layout tokens live in `src/styles/global.css`. Article prose has a narrower reading measure than figures and interactive demos. Wide equations, code, and tables scroll locally and receive keyboard focus when they overflow. Shiki emits both code palettes at build time. Plotly resolves shared CSS color tokens and updates axes, labels, and traces while preserving reader zoom; range controls use native theme-aware styling and associated labels.
+Semantic color and layout tokens live in `src/styles/global.css`. Article prose has a narrower reading measure than figures and interactive demos. Wide equations, code, and tables scroll locally and receive keyboard focus when they overflow. Shiki emits both code palettes at build time. Scientific SVG charts inherit shared theme tokens. Range controls use native styling and associated labels. See [interactive demo behavior and measured budgets](docs/interactive-demos.md).
 
 ## Write an article
 
@@ -106,18 +107,17 @@ $$
 $$
 ```
 
-For an existing interactive example, import from a category-level article:
+For an existing analytical example, import from a category-level article:
 
 ```mdx
-import TransmissionLineDemo from '../../../components/demos/TransmissionLineDemo';
-import InteractiveFrame from '../../../components/ui/InteractiveFrame.astro';
+import InteractiveDemo from '../../../components/ui/InteractiveDemo.astro';
 
-<InteractiveFrame label="Transmission line">
-  <TransmissionLineDemo client:only="react" />
-</InteractiveFrame>
+<InteractiveDemo kind="transmission" />
 ```
 
-KaTeX renders MDX math at build time. Browser-only visualization code belongs in React islands, with browser-safe imports. Existing demos use `client:only="react"`; the chart wrapper handles import/render failure with a message, but meaningful static alternatives and complete demo loading/failure behavior remain pending roadmap work. Raw Astro templates do not run through the Markdown math pipeline.
+Supported kinds are `array`, `fourier`, `gaussian`, and `transmission`. Each supplies a calculated static figure, units, model assumptions, and a reference observation before scripts load. Readers explicitly load the interactive controls; errors or a 15-second stalled load leave the reference visible. `Show reference case` compares the initial case with the current controls. No interactive JavaScript or plotting library is needed to read the example. These compact SVG plots provide labeled curves and local horizontal scrolling, without Plotly pan/zoom or hover inspection.
+
+KaTeX renders MDX math at build time. The published demos use native SVG and small on-demand React roots; browser code remains outside static rendering. The old `PlotlyChart` and unused `ModeProfileViewer` are exploratory code, excluded from current published bundles. The mode viewer's approximations are unvalidated; do not publish it as an optical solver.
 
 Review scientific claims, assumptions, figures/captions, units, references, links, and browser behavior before changing `draft` to false. Published articles appear automatically in their listing and topic route. Drafts are excluded through `src/lib/posts.ts`, including article-route generation. Search, RSS, related reading, and sitemap also exclude drafts.
 

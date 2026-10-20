@@ -4,7 +4,7 @@ This repository adopts LifeOS ledger v2. The ledger lives here, not in the LifeO
 
 ## Start here
 
-The primary implementation plan is [Scientific blog foundation](roadmaps/r-261020-01-scientific-blog-foundation/r-261020-01-scientific-blog-foundation.md). Phases 0, 1, 2, 3, and 4 are complete: project guidance, shared topics/listings, mobile navigation, public-link fixes, build checks, reading/themes, scientific article tools, static full-text search, and summary RSS are in place. Phase 5 (interactive demo reliability and performance) is next. Later phases remain pending; the plot/control theme/lifecycle slice was completed early, with the remaining demo work explicit. The owner-deferred workflow-permissions and CI build gate are the final Phase 7.
+The primary implementation plan is [Scientific blog foundation](roadmaps/r-261020-01-scientific-blog-foundation/r-261020-01-scientific-blog-foundation.md). Phases 0, 1, 2, 3, 4, and 5 are complete: project guidance, shared topics/listings, mobile navigation, public-link fixes, build checks, reading/themes, scientific article tools, static full-text search, summary RSS, and reliable static/on-demand demos are in place. Phase 6 (author context and publication decisions) is next. The plot/control theme/lifecycle slice was delivered early; Phase 5 completes the published demo work. Author facts, trial-article disposition and a publication example remain pending. The owner-deferred workflow-permissions and CI build gate are the final Phase 7.
 
 Captured sources:
 

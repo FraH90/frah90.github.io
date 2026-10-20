@@ -427,7 +427,7 @@
     {
       "id": "r-261020-01-scientific-blog-foundation-p5",
       "title": "Reliable scientific demos",
-      "status": "todo",
+      "status": "done",
       "useful_alone": "Interactive articles remain informative when code is slow or unavailable.",
       "done_when": "Demos provide loading/error/static alternatives, accessible controls, correct documented boundaries, plot cleanup, and measured loading behavior; normal article/list pages avoid unnecessary visualization payload.",
       "depends_on": [
@@ -438,16 +438,28 @@
         {
           "id": "r-261020-01-scientific-blog-foundation-p5-1",
           "text": "Measure current visualization transfer/hydration cost and define a practical budget before selecting optimization work.",
-          "status": "todo",
+          "status": "done",
           "kind": "research",
-          "evidence": []
+          "evidence": [
+            {
+              "kind": "document",
+              "value": "docs/interactive-demos.md records production Chromium measurements: previous demos fetched ~1.526 MB encoded / 5.006 MB decoded JS, first plot ~1.80–1.90s, script execution ~1.28–1.30s in this ARM64 container. Budgets: initial controller ≤3 KiB gzip; all application JS ≤250 KiB decoded / 80 KiB gzip; demo HTML ≤32 KiB gzip; direct DFT p95 ≤50ms; loading timeout 15s."
+            }
+          ],
+          "closed_at": "2026-10-20"
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p5-2",
           "text": "Add meaningful static alternatives and complete loading/error behavior around browser-only demos; verify fallback content and import failure beyond the existing chart error message.",
-          "status": "todo",
+          "status": "done",
           "kind": "build",
-          "evidence": []
+          "evidence": [
+            {
+              "kind": "document",
+              "value": "InteractiveDemo emits calculated reference SVG, parameters, units, descriptions and observations before JavaScript. Explicit activation loads only the chosen React controls. Loading/import/root-render/15s timeout errors preserve the reference and provide retry; stale imports cannot mount after timeout. Chromium verified no-JS, offline, blocked controller/module, render exception, timeout/late completion, and import retry."
+            }
+          ],
+          "closed_at": "2026-10-20"
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p5-6",
@@ -459,6 +471,10 @@
             {
               "kind": "observation",
               "value": "Completed during Phase 2: live charts render in development and production, change axis/trace colors, preserve a real drag-zoom, and still respond to keyboard slider input. Blocked plot import produced a readable error message without an unhandled page error. Full scientific/static fallbacks remain p5-2."
+            },
+            {
+              "kind": "document",
+              "value": "Phase 5 replaces public Plotly plots with native SVG; theme changes preserve parameters/paths without listeners or plot instances. The former zoom interaction is intentionally omitted for these simple plots (docs/interactive-demos.md). Legacy Plotly cleanup/zoom support remains unchanged for unpublished exploratory code."
             }
           ],
           "commits": [
@@ -468,25 +484,44 @@
         {
           "id": "r-261020-01-scientific-blog-foundation-p5-3",
           "text": "Correct and independently verify representative numerical/boundary behavior, including infinite VSWR and scientific statements that contradict the models.",
-          "status": "todo",
+          "status": "done",
           "kind": "build",
-          "evidence": []
+          "evidence": [
+            {
+              "kind": "observation",
+              "value": "Shared ideal models passed independent array closed-form/null/grating/sidelobe/half-power identities, transmission match/short/reactive/open checks and infinite VSWR, Gaussian waist/Rayleigh/symmetry/endpoints, and DFT zero/DC/Nyquist/bin-amplitude/leakage checks. Targeted article corrections add explicit assumptions and sources; integer-degree phase controls include zero/±180°. Broader editorial review remains Phase 6."
+            }
+          ],
+          "closed_at": "2026-10-20"
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p5-4",
           "text": "Reduce unnecessary eager visualization loading or replace heavyweight plotting where the measured tradeoff justifies it.",
-          "status": "todo",
+          "status": "done",
           "kind": "build",
-          "evidence": []
+          "evidence": [
+            {
+              "kind": "observation",
+              "value": "Four published demos use native SVG rather than Plotly. Initial demo code is ~1.6 KB gzip; activated article JS is ~66.6–66.8 KB encoded versus ~1.526 MB previously. Complete emitted application JS is 210898 decoded / 69895 gzip bytes, under budget. No Plotly chunk is generated; ordinary pages request no demo/React assets. SVG intentionally omits Plotly zoom/hover inspection; tradeoff documented."
+            }
+          ],
+          "closed_at": "2026-10-20"
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p5-5",
           "text": "Check offline/import failure, JavaScript disabled, keyboard controls, resize/theme behavior, boundary values, and measured payload against the agreed budget.",
-          "status": "todo",
+          "status": "done",
           "kind": "validation",
-          "evidence": []
+          "evidence": [
+            {
+              "kind": "observation",
+              "value": "Final build/check:build/check:demos passed for 15 pages and five indexed/feed articles. Chromium checked four demos at 320/390/768/1440px in both themes: keyboard activation/focus, slider endpoints/windows, invalid steering, infinite VSWR, paraxial warning, actual resize/theme parameter preservation, local SVG scrolling, no-JS figures, navigation, loading/failure recovery and selected axe rules. DFT p95 ~8ms locally. No manual screen-reader or field-performance claim."
+            }
+          ],
+          "closed_at": "2026-10-20"
         }
-      ]
+      ],
+      "closed_at": "2026-10-20"
     },
     {
       "id": "r-261020-01-scientific-blog-foundation-p6",
@@ -535,7 +570,7 @@
       "title": "Workflow permissions and automated deployment checks",
       "status": "todo",
       "useful_alone": "Broken public links and assets can stop deployment automatically instead of relying on a local check.",
-      "done_when": "Workflow-file edits are authorized through the integration, npm run check:build runs after the production build and before upload, and a successful workflow run verifies the gate.",
+      "done_when": "Workflow-file edits are authorized through the integration, npm run check:build and npm run check:demos run after the production build and before upload, and a successful workflow run verifies the gate.",
       "depends_on": [
         "r-261020-01-scientific-blog-foundation-p6"
       ],
@@ -549,7 +584,7 @@
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p7-2",
-          "text": "Add npm run check:build after the Astro build and before GitHub Pages artifact upload; verify the check blocks broken output and a valid deployment passes.",
+          "text": "Add npm run check:build and npm run check:demos after the Astro/Pagefind build and before GitHub Pages artifact upload; verify broken output/model or payload regressions block deployment and a valid deployment passes.",
           "status": "todo",
           "kind": "build",
           "evidence": []

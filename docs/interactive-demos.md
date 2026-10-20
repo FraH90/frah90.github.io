@@ -1,0 +1,52 @@
+# Interactive teaching examples
+
+## Scope and scientific boundaries
+
+Four published trial articles use `InteractiveDemo.astro`: array factor, transmission line, ideal Gaussian propagation, and spectral leakage. The frame renders calculated reference figures and observations at build time. The same pure TypeScript models and chart specifications drive optional React controls. No measured dataset or validated engineering design is implied. Keep model assumptions, units, normalization and angle conventions next to the example.
+
+The unused `ModeProfileViewer.tsx` is an exploratory fixture with unvalidated Bessel/eigenvalue approximations. It is not imported by public routes, indexed, or treated as a solver. Its legacy Plotly wrapper remains in source but is absent from the published JavaScript. Publishing a mode solver requires separate numerical/reference work.
+
+## Measured baseline and optimization decision
+
+Measured on 2026-10-20 in Chromium, ARM64 sandbox, production preview, new page/browser cache per route, unthrottled local network. These are container observations, not field-user or mobile hardware performance guarantees. Resource Timing `encodedBodySize` reports compressed response-body bytes; `decodedBodySize` reports decoded bytes; neither includes all connection or response-header overhead. Inline theme/article scripts, CSS, HTML and fonts are outside the JavaScript response-body totals below.
+
+| Article | Previous eager JS encoded / decoded bytes | Previous document-to-first-plot | New JS encoded / decoded after activation | New click-to-ready |
+| --- | ---: | ---: | ---: | ---: |
+| Array factor | 1,526,124 / 5,005,713 | 1,836 ms | 66,804 / 204,907 | 99 ms |
+| Spectral leakage | 1,526,340 / 5,006,911 | 1,901 ms | 66,794 / 204,902 | 94 ms |
+| Gaussian beam | 1,525,973 / 5,005,617 | 1,802 ms | 66,615 / 204,591 | 102 ms |
+| Transmission line | 1,526,088 / 5,005,824 | 1,805 ms | 66,680 / 204,773 | 99 ms |
+
+The previous Plotly chunk alone was 1,461,514 encoded / 4,805,636 decoded bytes. Initial script execution in the old demos was about 1.28–1.30 seconds. Writing and the non-demo ML article fetched no external application-JS resource in that baseline. The new demo controller is approximately 1.6 KB gzip / 3.6 KB decoded before activation; no React renderer or demo code is requested until the reader loads a demo. Activated totals above include that controller and the chosen demo's dependencies. The new click timing and previous navigation timing start at different events; they are not a controlled user-experience speedup ratio. All four model bundles together remain below the budget below. Minor loader/error-message changes can shift exact bytes from these recorded measurements; checks use ceilings rather than fixed hashes.
+
+These curves and spectra need axes, legends, units, accessible explanations and parameter updates. Native SVG provides those with no new dependency and substantially less loading/initialization work. It intentionally omits Plotly pan/zoom, hover inspection, and modebar controls. At small widths charts scroll locally at a readable minimum width; the frame explains that behavior. Do not use this renderer as a general substitute for 3D, large datasets, or interactive scientific analysis.
+
+## Budgets
+
+Established after the baseline and before assessing the replacement:
+
+- No React/demo/plotting payload on article entry; the small activation controller must stay below 3 KiB gzip. Ordinary pages must not request it.
+- All emitted application JavaScript under `dist/_astro/` combined must stay at or below 250 KiB decoded / 80 KiB gzip. This is stricter than a per-demo cap and excludes the separately lazy Pagefind engine.
+- No Plotly chunk in the current published build.
+- Each of the four article documents, including reference SVGs, at or below 32 KiB gzip.
+- The 512-point direct DFT at or below 50 ms p95 in 30 local Node runs. This guards an obvious regression; it is not a universal frame-time promise on slow devices.
+- A stalled activation returns to a readable reference/error state after 15 seconds. Later completion must not replace that state unexpectedly.
+
+Run `npm run build`, `npm run check:build`, and `npm run check:demos`. The latter checks independent numerical identities and the generated payload/document ceilings. Network and UI behavior require browser checks as well. The current full application set measures about 211 KB decoded / 70 KB gzip, with a local DFT p95 around 8 ms. No new library was installed into the application.
+
+## Loading, failure and lifecycle
+
+`InteractiveDemo.astro` emits static SVG, a parameter statement, model description and observation. Buttons start hidden. Its small controller enables Load interactive demo and imports only the requested demo plus `demo-mount.tsx` after an explicit action. A loading announcement keeps the static example visible. After React commits, focus moves into the named live region, the reference hides, and a disclosure can show it alongside the current controls. The reference remains the original settings and is labeled accordingly.
+
+Dynamic import, React root rendering, and timeout failures restore the static case and a retry control. A timed-out import cannot mount later because each activation carries a generation counter. Unmounts clean up roots; pagehide preserves browser-cache entries and releases a leaving page's root. No chart engines, global theme listeners or resize observers are needed by native SVG. Theme tokens update its strokes/text while control values and paths remain intact.
+
+The React root owns an initially empty live container only; it never clears Astro's static reference. This follows [React's partial-page createRoot guidance](https://react.dev/reference/react-dom/client/createRoot). Error callbacks dispose the failed root after its commit instead of synchronously unmounting during React work. With JavaScript disabled or even the loader blocked, the figures and explanatory text remain useful and no dead start button appears.
+
+## Numerical checks and targeted corrections
+
+- Array factor: compare direct phasor summation with the closed-form uniform-array expression; test broadside, nulls, invalid principal steering and multiple visible in-phase orders. Broadside is 90° from the array axis. The old beamwidth readout was removed; article text now limits the 50.8°/(N·d/λ) approximation to sufficiently long broadside arrays. Uniform weighting does not make sidelobes arbitrarily small with increasing N. Exact half-wave endfire has an opposite-end ambiguity. The phase control uses integer degrees, converted to radians in the model, so zero and both ±π endpoints are representable without range-step drift.
+- Transmission line: test match, 100 Ω on 50 Ω, short, passive reactive loads, and the analytic ideal-open Γ = +1 boundary. Short/reactive loads show true infinite VSWR. A short has a voltage null at the load and maximum λ/4 away. A finite maximum slider resistance is not called an ideal open circuit.
+- Gaussian beam: test waist value, √2 radius at the Rayleigh range, propagation symmetry, and positive finite control endpoints. Radius and divergence half-angle use consistent paraxial conventions. High-divergence settings show a model-limit warning at λ/(πw₀) > 0.1 rad; this is a conservative explanatory threshold, not a sharp validity boundary. The standalone reference-data generator uses the same paraxial half-angle convention. Radius is distinguished from mode-field diameter in the article.
+- DFT: test zero input, DC, Nyquist, coherent sinusoid amplitude and off-bin distant leakage. One-sided amplitudes are normalized by the sum of window weights; non-endpoint bins are doubled. The N/2+1 output now includes Nyquist and has matching frequency/amplitude lengths. Symmetric Hann/Hamming/Blackman windows use N−1. Coherent gain correction does not remove scalloping or broadened main lobes.
+
+Primary references: [Ellingson's standing waves](https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Electromagnetics_I_(Ellingson)/03%3A_Transmission_Lines/3.13%3A_Standing_Waves), [standing-wave ratio](https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Electromagnetics_I_(Ellingson)/03%3A_Transmission_Lines/3.14%3A_Standing_Wave_Ratio), [Bevelacqua's uniform arrays](https://www.antenna-theory.com/arrays/weights/uniform.php) and [grating lobes](https://www.antenna-theory.com/arrays/weights/gratinglobes.php), [MIT Gaussian beam lecture](https://ocw.mit.edu/courses/6-974-fundamentals-of-photonics-quantum-electronics-spring-2006/871c32e6e4a44cbb1546741ef06f0f2f_parax_wav_eq_gau.pdf), and [SciPy spectral analysis](https://docs.scipy.org/doc/scipy/tutorial/signal.html#spectral-analysis). The articles link their relevant sources through typed references. These checks verify representative ideal models; broader editorial review and publication decisions remain in Phase 6.

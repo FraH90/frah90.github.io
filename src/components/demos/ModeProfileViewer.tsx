@@ -1,3 +1,5 @@
+// Unpublished exploratory fixture. Bessel/eigenvalue approximations are not validated.
+// Do not add to an article without replacing the model and independently checking it.
 import { useState, useMemo } from 'react';
 import Slider from '../ui/Slider';
 import PlotlyChart from '../ui/PlotlyChart';

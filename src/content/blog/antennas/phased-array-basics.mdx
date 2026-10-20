@@ -5,10 +5,20 @@ category: antennas
 description: A first-principles walkthrough of the array factor and how progressive phase shifts steer a beam without moving parts.
 tags: [antennas, phased-array, beamforming]
 draft: false
+assumptions:
+  - Uniform linear array of identical isotropic uncoupled elements with equal amplitudes.
+  - Narrowband far-field array factor only; element patterns, coupling, losses and polarization are omitted.
+  - The angle θ is measured from the array axis; broadside is 90 degrees.
+references:
+  - id: uniform-array
+    title: "Peter J. Bevelacqua — Analysis of Uniform Arrays"
+    url: https://www.antenna-theory.com/arrays/weights/uniform.php
+  - id: grating-lobes
+    title: "Peter J. Bevelacqua — Grating Lobes"
+    url: https://www.antenna-theory.com/arrays/weights/gratinglobes.php
 ---
 
-import ArrayFactorDemo from '../../../components/demos/ArrayFactorDemo';
-import InteractiveFrame from '../../../components/ui/InteractiveFrame.astro';
+import InteractiveDemo from '../../../components/ui/InteractiveDemo.astro';
 
 A phased array antenna achieves beam steering by exploiting constructive and destructive
 interference between multiple radiating elements. Each element transmits (or receives) the
@@ -17,34 +27,34 @@ same signal, but with a controlled phase offset applied between adjacent element
 ## The Array Factor
 
 For a uniform linear array of $N$ elements with spacing $d$ and progressive phase shift $\beta$,
-the combined radiation pattern is:
+the normalized array factor is:
 
 $$AF(\theta) = \frac{1}{N} \sum_{n=0}^{N-1} e^{\,j n \psi}, \quad \psi = kd\cos\theta + \beta$$
 
-where $k = 2\pi/\lambda$ is the wavenumber. The main lobe points at the angle $\theta_0$ where $\psi = 0$:
+where $k = 2\pi/\lambda$ is the wavenumber. One possible in-phase direction is the angle $\theta_0$ where $\psi = 0$, provided the arccosine argument lies in $[-1,1]$:
 
 $$\theta_0 = \arccos\!\left(-\frac{\beta}{kd}\right)$$
+
+Other in-phase directions satisfy $\psi = 2\pi m$ for integer $m$. More than one visible solution produces grating lobes; a steering angle is not necessarily unique.
 
 ## Play with it
 
 Try changing $N$, spacing $d/\lambda$, and phase shift $\beta$ below and watch how the pattern responds:
 
-<InteractiveFrame label="Array Factor">
-  <ArrayFactorDemo client:only="react" />
-</InteractiveFrame>
+<InteractiveDemo kind="array" />
 
 ## What to observe
 
-**Element count $N$** — more elements means a narrower main lobe and lower sidelobes. The 3 dB beamwidth scales roughly as $102° / (N \cdot d/\lambda)$.
+**Element count $N$** — at fixed spacing and uniform weights, increasing N narrows the main lobe. It does not make relative sidelobes arbitrarily small; for large uniform arrays the first sidelobe approaches about −13.3 dB. Near broadside, for a sufficiently long array, the approximate full half-power beamwidth is $50.8° / (N \cdot d/\lambda)$. That approximation is unreliable near endfire or for electrically short arrays.
 
-**Spacing $d > \lambda/2$** — grating lobes appear. These are full-strength secondary beams at other angles, a fundamental consequence of spatial aliasing. In most systems you want $d \leq \lambda/2$.
+**Spacing $d > \lambda/2$** — grating lobes can appear, depending on the steering direction. These are additional in-phase beams caused by spatial sampling. Check all visible solutions of $kd\cos\theta + \beta = 2\pi m$.
 
-**Phase shift $\beta$** — this is beam steering. Setting $\beta = -kd\cos\theta_0$ points the main lobe at $\theta_0$. At $d = \lambda/2$, you can steer across the full visible range without grating lobes.
+**Phase shift $\beta$** — this is beam steering. Setting $\beta = -kd\cos\theta_0$ points the main lobe at $\theta_0$. At $d = \lambda/2$, interior scan directions avoid additional in-phase beams, but exact endfire has an equal beam at the opposite endpoint. Spacing strictly below half a wavelength avoids that endpoint ambiguity in this ideal model.
 
 ## Key trade-offs
 
 | Parameter | Effect |
 |---|---|
-| Increase $N$ | Narrower beam, lower sidelobes, more hardware |
-| Increase $d$ beyond $\lambda/2$ | Grating lobes appear |
-| Increase $\|\beta\|$ | Beam steers toward endfire ($\theta = 0°$ or $180°$) |
+| Increase $N$ | Narrower beam at fixed spacing; more hardware; sidelobe level still depends on weights |
+| Increase $d$ beyond $\lambda/2$ | Grating lobes become possible; depends on scan angle |
+| Change $\beta$ | Changes visible in-phase directions; the ψ = 0 solution can leave the visible range |

@@ -5,35 +5,46 @@ category: dsp
 description: What spectral leakage is, why it happens in the DFT, and how window functions reduce it at the cost of frequency resolution.
 tags: [dsp, fft, windowing, spectral-leakage]
 draft: false
+assumptions:
+  - 512 uniformly spaced samples at 1 kHz, with frequencies below the 500 Hz Nyquist limit.
+  - Symmetric windows use N−1 in their cosine arguments; the one-sided amplitude spectrum is coherent-gain corrected.
+references:
+  - id: scipy-spectral
+    title: "SciPy Signal Processing Tutorial — Spectral Analysis"
+    url: https://docs.scipy.org/doc/scipy/tutorial/signal.html#spectral-analysis
+  - id: scipy-hann
+    title: "SciPy — Hann window"
+    url: https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.windows.hann.html
 ---
 
-import FourierTransformDemo from '../../../components/demos/FourierTransformDemo';
-import InteractiveFrame from '../../../components/ui/InteractiveFrame.astro';
+import InteractiveDemo from '../../../components/ui/InteractiveDemo.astro';
 
 The DFT assumes the $N$-point signal is one period of an infinitely periodic sequence.
 When the signal frequency is not an exact integer multiple of $\Delta f = f_s / N$,
-this assumption is violated and energy "leaks" from the true frequency bin into neighboring bins.
+the periodic extension has a boundary discontinuity and the observed tone spreads across bins.
 This is **spectral leakage**.
 
 ## Why It Happens
 
 Selecting $N$ samples is equivalent to multiplying an infinite signal by a rectangular window.
-In the frequency domain, multiplication becomes convolution with the window's spectrum — a sinc function:
+In the frequency domain, multiplication becomes convolution with the window's spectrum — a periodic sinc-like (Dirichlet) response. Ignoring its linear phase, its magnitude is:
 
-$$W_\text{rect}(f) = \frac{\sin(\pi f N / f_s)}{\sin(\pi f / f_s)}$$
+$$|W_\text{rect}(f)| = \left|\frac{\sin(\pi f N / f_s)}{\sin(\pi f / f_s)}\right|$$
 
-The sinc has high sidelobes (first sidelobe at −13 dB). Any spectral component leaks into
+At removable singularities, use the limiting value. The rectangular window has high sidelobes (first sidelobe at −13 dB). Any spectral component leaks into
 adjacent bins through these sidelobes.
 
 ## Play with it
 
 Set three sinusoidal components and switch between window types. Notice how the rectangular window leaks badly when a frequency sits between bins, and how Hann/Blackman suppresses the sidelobes at the cost of wider peaks:
 
-<InteractiveFrame label="Fourier Transform">
-  <FourierTransformDemo client:only="react" />
-</InteractiveFrame>
+<InteractiveDemo kind="fourier" />
+
+The spectrum shows one-sided peak amplitude, normalized by the sum of window coefficients. This corrects coherent gain; off-bin tones still suffer scalloping and nearby components can interfere. DC and Nyquist bins are not doubled. The default frequencies are deliberately off-bin.
 
 ## The window trade-off
+
+Approximate large-N sidelobe levels and null-to-null widths (cycles/sample):
 
 | Window | First sidelobe | Main lobe width |
 |---|---|---|
@@ -42,8 +53,8 @@ Set three sinusoidal components and switch between window types. Notice how the 
 | Hamming | −43 dB | $4/N$ |
 | Blackman | −58 dB | $6/N$ |
 
-Better sidelobe suppression always costs main lobe width — you cannot have both. Choose based on whether you care more about resolving closely-spaced frequencies (use rectangular or Hann) or detecting weak signals next to strong ones (use Blackman).
+For these windows, lower distant sidelobes come with broader main lobes. Choose based on whether you care more about resolving closely-spaced frequencies (use rectangular or Hann) or detecting weak signals next to strong ones (use Blackman).
 
 ## Practical rule
 
-If your signal frequency is known to sit exactly on a DFT bin, windowing adds nothing. In practice it rarely does, so windowing is almost always worth it. Hann is the default choice for most applications.
+For isolated bin-centered tones in a noiseless coherent record, a rectangular window can preserve narrow spectral lines without leakage into other DFT bins. For off-bin tones, a Hann window is a useful starting point, but the choice depends on dynamic range, resolution, amplitude accuracy, and noise. Correcting coherent gain does not remove scalloping loss.

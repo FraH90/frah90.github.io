@@ -174,7 +174,7 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
 
 ### Phase 5 — Reliable scientific demos
 
-**Status:** todo · **ID:** `r-261020-01-scientific-blog-foundation-p5`
+**Status:** done · **ID:** `r-261020-01-scientific-blog-foundation-p5`
 
 **Useful alone:** Interactive articles remain informative when code is slow or unavailable.
 
@@ -182,19 +182,25 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
 
 **Depends on:** `r-261020-01-scientific-blog-foundation-p2`, `r-261020-01-scientific-blog-foundation-p3`
 
-- ⬜ **todo** · **research** — Measure current visualization transfer/hydration cost and define a practical budget before selecting optimization work.
-  - ID `r-261020-01-scientific-blog-foundation-p5-1`
-- ⬜ **todo** · **build** — Add meaningful static alternatives and complete loading/error behavior around browser-only demos; verify fallback content and import failure beyond the existing chart error message.
-  - ID `r-261020-01-scientific-blog-foundation-p5-2`
+- ✅ **done** · **research** — Measure current visualization transfer/hydration cost and define a practical budget before selecting optimization work.
+  - ID `r-261020-01-scientific-blog-foundation-p5-1` · closed 2026-10-20
+  - Evidence (document): docs/interactive-demos.md records production Chromium measurements: previous demos fetched ~1.526 MB encoded / 5.006 MB decoded JS, first plot ~1.80–1.90s, script execution ~1.28–1.30s in this ARM64 container. Budgets: initial controller ≤3 KiB gzip; all application JS ≤250 KiB decoded / 80 KiB gzip; demo HTML ≤32 KiB gzip; direct DFT p95 ≤50ms; loading timeout 15s.
+- ✅ **done** · **build** — Add meaningful static alternatives and complete loading/error behavior around browser-only demos; verify fallback content and import failure beyond the existing chart error message.
+  - ID `r-261020-01-scientific-blog-foundation-p5-2` · closed 2026-10-20
+  - Evidence (document): InteractiveDemo emits calculated reference SVG, parameters, units, descriptions and observations before JavaScript. Explicit activation loads only the chosen React controls. Loading/import/root-render/15s timeout errors preserve the reference and provide retry; stale imports cannot mount after timeout. Chromium verified no-JS, offline, blocked controller/module, render exception, timeout/late completion, and import retry.
 - ✅ **done** · **build** — Make plots and range controls theme-aware, preserve plot zoom, clean up plot/theme listeners, associate slider labels, and handle plot import/render rejection.
   - ID `r-261020-01-scientific-blog-foundation-p5-6` · closed 2026-10-20 · commits `1843f4a049cce9450db2813058dd00c488bf5b82`
   - Evidence (observation): Completed during Phase 2: live charts render in development and production, change axis/trace colors, preserve a real drag-zoom, and still respond to keyboard slider input. Blocked plot import produced a readable error message without an unhandled page error. Full scientific/static fallbacks remain p5-2.
-- ⬜ **todo** · **build** — Correct and independently verify representative numerical/boundary behavior, including infinite VSWR and scientific statements that contradict the models.
-  - ID `r-261020-01-scientific-blog-foundation-p5-3`
-- ⬜ **todo** · **build** — Reduce unnecessary eager visualization loading or replace heavyweight plotting where the measured tradeoff justifies it.
-  - ID `r-261020-01-scientific-blog-foundation-p5-4`
-- ⬜ **todo** · **validation** — Check offline/import failure, JavaScript disabled, keyboard controls, resize/theme behavior, boundary values, and measured payload against the agreed budget.
-  - ID `r-261020-01-scientific-blog-foundation-p5-5`
+  - Evidence (document): Phase 5 replaces public Plotly plots with native SVG; theme changes preserve parameters/paths without listeners or plot instances. The former zoom interaction is intentionally omitted for these simple plots (docs/interactive-demos.md). Legacy Plotly cleanup/zoom support remains unchanged for unpublished exploratory code.
+- ✅ **done** · **build** — Correct and independently verify representative numerical/boundary behavior, including infinite VSWR and scientific statements that contradict the models.
+  - ID `r-261020-01-scientific-blog-foundation-p5-3` · closed 2026-10-20
+  - Evidence (observation): Shared ideal models passed independent array closed-form/null/grating/sidelobe/half-power identities, transmission match/short/reactive/open checks and infinite VSWR, Gaussian waist/Rayleigh/symmetry/endpoints, and DFT zero/DC/Nyquist/bin-amplitude/leakage checks. Targeted article corrections add explicit assumptions and sources; integer-degree phase controls include zero/±180°. Broader editorial review remains Phase 6.
+- ✅ **done** · **build** — Reduce unnecessary eager visualization loading or replace heavyweight plotting where the measured tradeoff justifies it.
+  - ID `r-261020-01-scientific-blog-foundation-p5-4` · closed 2026-10-20
+  - Evidence (observation): Four published demos use native SVG rather than Plotly. Initial demo code is ~1.6 KB gzip; activated article JS is ~66.6–66.8 KB encoded versus ~1.526 MB previously. Complete emitted application JS is 210898 decoded / 69895 gzip bytes, under budget. No Plotly chunk is generated; ordinary pages request no demo/React assets. SVG intentionally omits Plotly zoom/hover inspection; tradeoff documented.
+- ✅ **done** · **validation** — Check offline/import failure, JavaScript disabled, keyboard controls, resize/theme behavior, boundary values, and measured payload against the agreed budget.
+  - ID `r-261020-01-scientific-blog-foundation-p5-5` · closed 2026-10-20
+  - Evidence (observation): Final build/check:build/check:demos passed for 15 pages and five indexed/feed articles. Chromium checked four demos at 320/390/768/1440px in both themes: keyboard activation/focus, slider endpoints/windows, invalid steering, infinite VSWR, paraxial warning, actual resize/theme parameter preservation, local SVG scrolling, no-JS figures, navigation, loading/failure recovery and selected axe rules. DFT p95 ~8ms locally. No manual screen-reader or field-performance claim.
 
 ### Phase 6 — Author context and publication readiness
 
@@ -221,13 +227,13 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
 
 **Useful alone:** Broken public links and assets can stop deployment automatically instead of relying on a local check.
 
-**Done when:** Workflow-file edits are authorized through the integration, npm run check:build runs after the production build and before upload, and a successful workflow run verifies the gate.
+**Done when:** Workflow-file edits are authorized through the integration, npm run check:build and npm run check:demos run after the production build and before upload, and a successful workflow run verifies the gate.
 
 **Depends on:** `r-261020-01-scientific-blog-foundation-p6`
 
 - ⬜ **todo** · **decision** — Resolve the GitHub integration workflows permission using the supported LifeOS/GitHub configuration; do not add credentials to this repository.
   - ID `r-261020-01-scientific-blog-foundation-p7-1`
-- ⬜ **todo** · **build** — Add npm run check:build after the Astro build and before GitHub Pages artifact upload; verify the check blocks broken output and a valid deployment passes.
+- ⬜ **todo** · **build** — Add npm run check:build and npm run check:demos after the Astro/Pagefind build and before GitHub Pages artifact upload; verify broken output/model or payload regressions block deployment and a valid deployment passes.
   - ID `r-261020-01-scientific-blog-foundation-p7-2`
 <!-- ledger-phases:end -->
 
@@ -245,7 +251,7 @@ Overstating expertise; treating placeholder text as reviewed science; exposing d
 
 ## Working notes
 
-Phases 0, 1, 2, 3, and 4 are complete. Phase 1 retains the writing-first entry, unifies taxonomy/listings, fixes mobile navigation and broken destinations, supplies the social card, and adds local build-output checks. Later phases remain pending, except the README correction and plot/control theme/lifecycle slice completed ahead of their explicit article-template and static-demo remainders. CV publication has its own idea/proposal and no implementation phase yet. Research notes under research/interests/ are not published by Astro. Validation on 2026-10-20 passed for all 7 JSON data files against vendored schemas; the LifeOS read/validate API and next-item selection; canonical JSON formatting; normalized source-message equality; 11 relative Markdown links; identical agent instruction files; and whitespace checks. Only documentation/planning files changed, so no new UI runtime or build claim is made. Commit evidence is the Git commit containing this Phase 0 record; no future SHA is invented.
+Phases 0, 1, 2, 3, 4, and 5 are complete. Phase 1 retains the writing-first entry, unifies taxonomy/listings, fixes mobile navigation and broken destinations, supplies the social card, and adds local build-output checks. Owner-confirmed author context, trial-article disposition and an approved publication example remain pending. The README and plot/control theme slices were delivered early; their article-template and static-demo remainders are now complete. CV publication has its own idea/proposal and no implementation phase yet. Research notes under research/interests/ are not published by Astro. Validation on 2026-10-20 passed for all 7 JSON data files against vendored schemas; the LifeOS read/validate API and next-item selection; canonical JSON formatting; normalized source-message equality; 11 relative Markdown links; identical agent instruction files; and whitespace checks. Only documentation/planning files changed in Phase 0, so that initial phase made no new UI runtime or build claim. Commit evidence is the Git commit containing this Phase 0 record; no future SHA is invented.
 
 
 ### Phase 1 verification — 2026-10-20
@@ -293,3 +299,18 @@ Chromium checks passed at 320, 390, 768 and 1440 pixels in both themes, with no 
 A temporary set of 11 published fixtures checked pagination and focus on the first newly loaded result, literal code search, exclusion of duplicated rendered formulas, and XML escaping/Unicode roundtrips. A temporary draft in an otherwise empty category had no route/category/listing/related/search/feed/sitemap presence. The RSS parsed with Python ElementTree and its dates/GUIDs matched the expected articles. A blocked engine recovered on form resubmission. A blocked result fragment exposed Pagefind's cached rejection; the implementation now destroys the failed engine before retry and that recovery passed independently.
 
 Fixtures were removed before the final 15-page build. npm run build, npm run check:build, final search/feed smoke, vendored schemas, LifeOS reader validation, mirrored instructions, relative documentation links and whitespace checks passed. The output checker now requires a generated search runtime, compares indexed article counts, checks exact RSS article membership/dates, and checks feed autodiscovery. The dependency lock's Pagefind-only changes passed npm ci --dry-run; pre-existing unrelated lockfile edits remain unstaged. Phase 5 demo reliability/performance is next. Workflow permissions and automatic check:build CI invocation remain deferred to Phase 7.
+
+
+### Phase 5 verification — 2026-10-20
+
+The measured Plotly baseline, replacement decision, budgets, model conventions and limits are recorded in [interactive demo architecture](../../../docs/interactive-demos.md). The four published teaching examples now use build-time SVG reference figures and explicit on-demand React controls sharing pure analytical models/chart specifications. Every reference carries parameters, units, calculated provenance and observations. No Plotly bundle is emitted; the old wrapper and unvalidated mode-profile fixture remain unpublished. The compact SVG renderer deliberately omits Plotly zoom/hover inspection.
+
+The initial controller is approximately 1.6 KB gzip; activated per-article JS is about 66.6–66.8 KB encoded versus about 1.526 MB in the previous eager implementation. All emitted application JS totals 210898 decoded / 69895 gzip bytes, below the conservative 250 KiB decoded / 80 KiB gzip cap. Demo HTML remains below 32 KiB gzip each. The direct 512-point DFT p95 was about 8 ms across 30 local runs against a 50 ms ceiling. The measurements are local ARM64/Chromium observations, not mobile field guarantees; docs distinguish response-body bytes, headers, decoded size and timing start points.
+
+Independent identities verify uniform-array closed form, nulls, sidelobes, long broadside-array half-power width and visible grating orders; transmission-line match/short/reactive/analytic-open cases; Gaussian waist/Rayleigh/symmetry and finite endpoints; DFT zero/DC/Nyquist/coherent amplitude and off-bin distant leakage. Corrected public text addresses short-circuit quarter-wave behavior, array sidelobe/beamwidth and endfire ambiguity, Gaussian model scope/radius conventions, and window amplitude/scalloping limits, with typed assumptions and primary references. The phase slider now uses integer degrees so zero and ±180° are reachable without step drift. Trial-article disposition and comprehensive editorial review remain Phase 6.
+
+Chromium checked all four demos in dark/light at 320, 390, 768 and 1440 pixels: static/reference/live states, keyboard loading/focus, range endpoints, window buttons, invalid steering, true infinite VSWR, high-divergence warning, state/path preservation across theme changes, local chart scrolling and no horizontal page overflow. Actual viewport resizing retained values/paths. Exact phase endpoints and opposite-endfire ambiguity passed. Ordinary Writing/About/ML/Search pages requested no demo/React assets. Representative mobile light and desktop dark frames were visually reviewed; selected axe contrast/labels/button/link/image/ARIA/scroll-region rules passed. This is not a manual screen-reader or comprehensive browser audit.
+
+JavaScript-disabled pages retained figures/parameters/observations with hidden inactive controls. Blocked controller and demo imports, offline activation, a deliberately throwing React component, 15-second stalled import and late completion all preserved readable references. A transient import failure recovered on retry. Root unmounting and generation guards prevent stale async mounts; native SVG needs no plot/theme/resize cleanup. No scientific fixture was retained or published.
+
+The final production build, check:build and check:demos passed for 15 pages, five published search documents and five feed entries. README, script guidance and architecture match the actual activation/static paths. Vendored-schema, LifeOS ledger-reader/projection, mirrored-instruction, documentation-link and whitespace checks passed. Phase 6 author context/content decisions is next. Phase 7 retains owner-deferred workflow permissions, now scheduling both output and demo checks before deployment artifact upload. No workflow or LifeOS repository file was modified.
