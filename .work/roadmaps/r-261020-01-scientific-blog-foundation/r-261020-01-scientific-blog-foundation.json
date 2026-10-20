@@ -561,6 +561,9 @@
               "kind": "document",
               "value": "About now uses the owner-stated interdisciplinary interests and learning/development orientation. Unconfirmed professional experience/tool lists were removed. Existing FraH90 handle/email retained, with explicit requests for public name, background, projects/tools and email confirmation. Full author-profile decision remains open pending owner input."
             }
+          ],
+          "commits": [
+            "8149b37f2f9e44fed56c496518634445de922440"
           ]
         },
         {
@@ -573,6 +576,9 @@
               "kind": "document",
               "value": "The paired roadmap Markdown inventories all five trial articles, available analytical evidence, unchanged public status and owner decisions needed. No article was retired, promoted to reviewed work, assigned a new publication date, or automatically selected as the first approved article."
             }
+          ],
+          "commits": [
+            "8149b37f2f9e44fed56c496518634445de922440"
           ]
         },
         {
@@ -592,6 +598,9 @@
               "kind": "observation",
               "value": "Current About slice passed production build/output/demo checks and Chromium at 320/390/768/1440px in both themes: layout, active navigation, keyboard/skip and article links, selected axe rules, no-JS topic browsing and CV absence. GitHub profile/source URLs returned HTTP 200; email syntax/link retained but ownership/deliverability not verified. Final owner article and wider Phase 6 sign-off remain pending."
             }
+          ],
+          "commits": [
+            "8149b37f2f9e44fed56c496518634445de922440"
           ]
         },
         {
@@ -605,6 +614,9 @@
               "kind": "document",
               "value": "src/pages/about.astro presents physical models, signals/inference and engineering software as interests; agentic IC design is explicitly exploratory. Topic labels use the shared registry; links and examples use shared published-content queries so empty/draft destinations are omitted. There are no invented credentials, employer/project claims, skill proficiency levels, or empty profile placeholders."
             }
+          ],
+          "commits": [
+            "8149b37f2f9e44fed56c496518634445de922440"
           ]
         }
       ]

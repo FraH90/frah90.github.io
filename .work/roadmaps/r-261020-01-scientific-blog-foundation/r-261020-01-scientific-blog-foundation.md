@@ -213,18 +213,18 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
 **Depends on:** `r-261020-01-scientific-blog-foundation-p3`, `r-261020-01-scientific-blog-foundation-p4`, `r-261020-01-scientific-blog-foundation-p5`
 
 - ▶️ **active** · **decision** — Gather confirmed background/public name and available work; write an honest interdisciplinary About page linked to relevant articles and contact.
-  - ID `r-261020-01-scientific-blog-foundation-p6-1`
+  - ID `r-261020-01-scientific-blog-foundation-p6-1` · commits `8149b37f2f9e44fed56c496518634445de922440`
   - Evidence (document): About now uses the owner-stated interdisciplinary interests and learning/development orientation. Unconfirmed professional experience/tool lists were removed. Existing FraH90 handle/email retained, with explicit requests for public name, background, projects/tools and email confirmation. Full author-profile decision remains open pending owner input.
 - ▶️ **active** · **decision** — Decide the disposition of each trial article and review any retained text and model assumptions before publication.
-  - ID `r-261020-01-scientific-blog-foundation-p6-2`
+  - ID `r-261020-01-scientific-blog-foundation-p6-2` · commits `8149b37f2f9e44fed56c496518634445de922440`
   - Evidence (document): The paired roadmap Markdown inventories all five trial articles, available analytical evidence, unchanged public status and owner decisions needed. No article was retired, promoted to reviewed work, assigned a new publication date, or automatically selected as the first approved article.
 - ⬜ **todo** · **build** — Prepare one real article with the owner using available scientific figures/data/code; distinguish tutorial, simulation, measurement, and exploration.
   - ID `r-261020-01-scientific-blog-foundation-p6-3`
 - ▶️ **active** · **validation** — Run production build and review representative navigation, article, About, discovery, links, and failure states on desktop/mobile in both themes.
-  - ID `r-261020-01-scientific-blog-foundation-p6-4`
+  - ID `r-261020-01-scientific-blog-foundation-p6-4` · commits `8149b37f2f9e44fed56c496518634445de922440`
   - Evidence (observation): Current About slice passed production build/output/demo checks and Chromium at 320/390/768/1440px in both themes: layout, active navigation, keyboard/skip and article links, selected axe rules, no-JS topic browsing and CV absence. GitHub profile/source URLs returned HTTP 200; email syntax/link retained but ownership/deliverability not verified. Final owner article and wider Phase 6 sign-off remain pending.
 - ✅ **done** · **build** — Replace the unconfirmed biography/skills grid with a professional interest-led About structure, eligible topic/article links, source access and existing contact/CV behavior.
-  - ID `r-261020-01-scientific-blog-foundation-p6-5` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p6-5` · closed 2026-10-20 · commits `8149b37f2f9e44fed56c496518634445de922440`
   - Evidence (document): src/pages/about.astro presents physical models, signals/inference and engineering software as interests; agentic IC design is explicitly exploratory. Topic labels use the shared registry; links and examples use shared published-content queries so empty/draft destinations are omitted. There are no invented credentials, employer/project claims, skill proficiency levels, or empty profile placeholders.
 
 ### Phase 7 — Workflow permissions and automated deployment checks
