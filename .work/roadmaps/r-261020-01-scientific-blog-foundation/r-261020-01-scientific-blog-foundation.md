@@ -160,16 +160,16 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
 **Depends on:** `r-261020-01-scientific-blog-foundation-p1`, `r-261020-01-scientific-blog-foundation-p3`
 
 - ✅ **done** · **research** — Compare static search approaches with a small index/payload/accuracy experiment before selecting a dependency.
-  - ID `r-261020-01-scientific-blog-foundation-p4-1` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p4-1` · closed 2026-10-20 · commits `182fe279a87af1c074b59fbcd9b4a6ebc6a90eb7`
   - Evidence (document): docs/search-and-rss.md records the five-article metadata/full-text experiment, eight query results, raw/gzip JSON sizes, Pagefind response-body bytes, official sources, and the rendered-content/chunked-index decision. Pagefind 1.5.2 is pinned; existing unrelated lockfile edits are preserved.
 - ✅ **done** · **build** — Implement search with accessible opening, focus handling, keyboard controls, results, and no-results state; index only published content.
-  - ID `r-261020-01-scientific-blog-foundation-p4-2` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p4-2` · closed 2026-10-20 · commits `182fe279a87af1c074b59fbcd9b4a6ebc6a90eb7`
   - Evidence (document): Dedicated /search provides a labeled bookmarkable GET form, lazy Pagefind loading, status announcements, loading/no-results/failure states, ten-result batches, keyboard focus/Escape behavior, and native topic fallback. Indexed HTML is limited to generated published article bodies; duplicate KaTeX markup, islands, contents and article-tool sections are excluded. Failed result downloads reset the engine before retry.
 - ✅ **done** · **build** — Generate RSS from published content with stable absolute URLs and discoverable feed links.
-  - ID `r-261020-01-scientific-blog-foundation-p4-3` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p4-3` · closed 2026-10-20 · commits `182fe279a87af1c074b59fbcd9b4a6ebc6a90eb7`
   - Evidence (document): Static /rss.xml emits summary-only RSS 2.0 from getAllPosts with XML-escaped text, absolute stable article links/GUIDs, publication dates and topic labels. Every regular page supplies feed autodiscovery and a visible footer link; README and mirrored working contracts describe the delivered features.
 - ✅ **done** · **validation** — Check known queries, draft exclusion across every output, feed validity, and mobile/keyboard discovery.
-  - ID `r-261020-01-scientific-blog-foundation-p4-4` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p4-4` · closed 2026-10-20 · commits `182fe279a87af1c074b59fbcd9b4a6ebc6a90eb7`
   - Evidence (observation): Production build/check:build passed. Chromium checked both themes at 320/390/768/1440px, known/body/phrase/empty queries, keyboard navigation and pagination focus, query URLs/history, no-JS topic fallback, blocked engine and fragment recovery, and selected axe rules. Temporary fixtures verified 11-result pagination, code indexing, formula exclusion, exact escaped/Unicode RSS XML roundtrip, and draft exclusion across routes/listings/related/search/feed/sitemap. Fixtures removed before final 15-page/five-article build. No manual screen-reader or scientific accuracy audit claimed.
 
 ### Phase 5 — Reliable scientific demos
