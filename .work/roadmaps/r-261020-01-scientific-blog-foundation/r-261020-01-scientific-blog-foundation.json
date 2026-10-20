@@ -542,7 +542,7 @@
     {
       "id": "r-261020-01-scientific-blog-foundation-p6",
       "title": "Author context and publication readiness",
-      "status": "todo",
+      "status": "active",
       "useful_alone": "Readers can understand who writes the site and assess actual work.",
       "done_when": "About uses owner-confirmed facts and working contact links; public trial content has an explicit disposition; at least one owner-approved article demonstrates the editorial/figure standard without invented evidence.",
       "depends_on": [
@@ -554,16 +554,26 @@
         {
           "id": "r-261020-01-scientific-blog-foundation-p6-1",
           "text": "Gather confirmed background/public name and available work; write an honest interdisciplinary About page linked to relevant articles and contact.",
-          "status": "todo",
+          "status": "active",
           "kind": "decision",
-          "evidence": []
+          "evidence": [
+            {
+              "kind": "document",
+              "value": "About now uses the owner-stated interdisciplinary interests and learning/development orientation. Unconfirmed professional experience/tool lists were removed. Existing FraH90 handle/email retained, with explicit requests for public name, background, projects/tools and email confirmation. Full author-profile decision remains open pending owner input."
+            }
+          ]
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p6-2",
           "text": "Decide the disposition of each trial article and review any retained text and model assumptions before publication.",
-          "status": "todo",
+          "status": "active",
           "kind": "decision",
-          "evidence": []
+          "evidence": [
+            {
+              "kind": "document",
+              "value": "The paired roadmap Markdown inventories all five trial articles, available analytical evidence, unchanged public status and owner decisions needed. No article was retired, promoted to reviewed work, assigned a new publication date, or automatically selected as the first approved article."
+            }
+          ]
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p6-3",
@@ -575,9 +585,27 @@
         {
           "id": "r-261020-01-scientific-blog-foundation-p6-4",
           "text": "Run production build and review representative navigation, article, About, discovery, links, and failure states on desktop/mobile in both themes.",
-          "status": "todo",
+          "status": "active",
           "kind": "validation",
-          "evidence": []
+          "evidence": [
+            {
+              "kind": "observation",
+              "value": "Current About slice passed production build/output/demo checks and Chromium at 320/390/768/1440px in both themes: layout, active navigation, keyboard/skip and article links, selected axe rules, no-JS topic browsing and CV absence. GitHub profile/source URLs returned HTTP 200; email syntax/link retained but ownership/deliverability not verified. Final owner article and wider Phase 6 sign-off remain pending."
+            }
+          ]
+        },
+        {
+          "id": "r-261020-01-scientific-blog-foundation-p6-5",
+          "text": "Replace the unconfirmed biography/skills grid with a professional interest-led About structure, eligible topic/article links, source access and existing contact/CV behavior.",
+          "status": "done",
+          "kind": "build",
+          "closed_at": "2026-10-20",
+          "evidence": [
+            {
+              "kind": "document",
+              "value": "src/pages/about.astro presents physical models, signals/inference and engineering software as interests; agentic IC design is explicitly exploratory. Topic labels use the shared registry; links and examples use shared published-content queries so empty/draft destinations are omitted. There are no invented credentials, employer/project claims, skill proficiency levels, or empty profile placeholders."
+            }
+          ]
         }
       ]
     },
@@ -612,6 +640,8 @@
     "Public author/site display name and confirmed background for About.",
     "Disposition of the five trial articles: correct and retain, replace, or retire.",
     "Which real figures, projects, and reproducible datasets are ready for publication.",
-    "CV source repository, intended public artifact, and publication mechanism are deferred."
+    "CV source repository, intended public artifact, and publication mechanism are deferred.",
+    "Which concrete project/topic and available code, figures or data should become the first owner-approved article?",
+    "Confirm whether the existing public email frah.221190@gmail.com remains the intended contact."
   ]
 }

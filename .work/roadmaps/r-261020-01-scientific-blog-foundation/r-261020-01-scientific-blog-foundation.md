@@ -204,7 +204,7 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
 
 ### Phase 6 — Author context and publication readiness
 
-**Status:** todo · **ID:** `r-261020-01-scientific-blog-foundation-p6`
+**Status:** active · **ID:** `r-261020-01-scientific-blog-foundation-p6`
 
 **Useful alone:** Readers can understand who writes the site and assess actual work.
 
@@ -212,14 +212,20 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
 
 **Depends on:** `r-261020-01-scientific-blog-foundation-p3`, `r-261020-01-scientific-blog-foundation-p4`, `r-261020-01-scientific-blog-foundation-p5`
 
-- ⬜ **todo** · **decision** — Gather confirmed background/public name and available work; write an honest interdisciplinary About page linked to relevant articles and contact.
+- ▶️ **active** · **decision** — Gather confirmed background/public name and available work; write an honest interdisciplinary About page linked to relevant articles and contact.
   - ID `r-261020-01-scientific-blog-foundation-p6-1`
-- ⬜ **todo** · **decision** — Decide the disposition of each trial article and review any retained text and model assumptions before publication.
+  - Evidence (document): About now uses the owner-stated interdisciplinary interests and learning/development orientation. Unconfirmed professional experience/tool lists were removed. Existing FraH90 handle/email retained, with explicit requests for public name, background, projects/tools and email confirmation. Full author-profile decision remains open pending owner input.
+- ▶️ **active** · **decision** — Decide the disposition of each trial article and review any retained text and model assumptions before publication.
   - ID `r-261020-01-scientific-blog-foundation-p6-2`
+  - Evidence (document): The paired roadmap Markdown inventories all five trial articles, available analytical evidence, unchanged public status and owner decisions needed. No article was retired, promoted to reviewed work, assigned a new publication date, or automatically selected as the first approved article.
 - ⬜ **todo** · **build** — Prepare one real article with the owner using available scientific figures/data/code; distinguish tutorial, simulation, measurement, and exploration.
   - ID `r-261020-01-scientific-blog-foundation-p6-3`
-- ⬜ **todo** · **validation** — Run production build and review representative navigation, article, About, discovery, links, and failure states on desktop/mobile in both themes.
+- ▶️ **active** · **validation** — Run production build and review representative navigation, article, About, discovery, links, and failure states on desktop/mobile in both themes.
   - ID `r-261020-01-scientific-blog-foundation-p6-4`
+  - Evidence (observation): Current About slice passed production build/output/demo checks and Chromium at 320/390/768/1440px in both themes: layout, active navigation, keyboard/skip and article links, selected axe rules, no-JS topic browsing and CV absence. GitHub profile/source URLs returned HTTP 200; email syntax/link retained but ownership/deliverability not verified. Final owner article and wider Phase 6 sign-off remain pending.
+- ✅ **done** · **build** — Replace the unconfirmed biography/skills grid with a professional interest-led About structure, eligible topic/article links, source access and existing contact/CV behavior.
+  - ID `r-261020-01-scientific-blog-foundation-p6-5` · closed 2026-10-20
+  - Evidence (document): src/pages/about.astro presents physical models, signals/inference and engineering software as interests; agentic IC design is explicitly exploratory. Topic labels use the shared registry; links and examples use shared published-content queries so empty/draft destinations are omitted. There are no invented credentials, employer/project claims, skill proficiency levels, or empty profile placeholders.
 
 ### Phase 7 — Workflow permissions and automated deployment checks
 
@@ -314,3 +320,40 @@ Chromium checked all four demos in dark/light at 320, 390, 768 and 1440 pixels: 
 JavaScript-disabled pages retained figures/parameters/observations with hidden inactive controls. Blocked controller and demo imports, offline activation, a deliberately throwing React component, 15-second stalled import and late completion all preserved readable references. A transient import failure recovered on retry. Root unmounting and generation guards prevent stale async mounts; native SVG needs no plot/theme/resize cleanup. No scientific fixture was retained or published.
 
 The final production build, check:build and check:demos passed for 15 pages, five published search documents and five feed entries. README, script guidance and architecture match the actual activation/static paths. Vendored-schema, LifeOS ledger-reader/projection, mirrored-instruction, documentation-link and whitespace checks passed. Phase 6 author context/content decisions is next. Phase 7 retains owner-deferred workflow permissions, now scheduling both output and demo checks before deployment artifact upload. No workflow or LifeOS repository file was modified.
+
+
+### Phase 6 author/publication preparation — 2026-10-20
+
+Phase 6 is active, not complete. The owner authorized continuing implementation. A conservative About page is implemented from already stated interests and intent. The owner has been asked for public name, education/current role, concrete projects/tools, email confirmation, the disposition of the five trial articles, and the first real article/topic with available evidence. No answers or editorial approval are inferred from silence. CV publication and Phase 7 workflow permissions remain deferred.
+
+#### Author facts and source boundaries
+
+The originating owner message confirms breadth across antennas, RF, optics, DSP and ML; developing depth rather than claiming vertical expertise; a content-first scientific/technical blog; and interest in agentic programming both as engineering assistance and within integrated circuit design using open-source tools. About expresses these as interests and intentions. It does not publish research-folder notes or introduce new categories.
+
+The existing site handle FraH90 and GitHub profile/source links are retained. The existing public email frah.221190@gmail.com is retained pending explicit confirmation; a valid mailto link does not verify mailbox ownership or delivery. The GitHub profile and website repository returned HTTP 200. The former biography's professional/background claims and proficiency list (including HFSS/CST, VNA measurements, PyTorch and other tools) were not confirmed by the owner and are omitted. No education, employer, years of experience, project outcome or personal name is guessed.
+
+About now has a readable introduction, three connected-interest sections, published-only topic links, two eligible analytical teaching examples, source access and existing contact links. It calls agentic IC design an exploration and avoids turning trial articles into professional-project evidence. It retains CV gating: no PDF link appears without the asset.
+
+#### Trial-content decision inventory
+
+This is the owner-decision record within the existing roadmap, not a separate implementation task list. All five entries currently retain draft: false and their existing 2026-05-10 date; neither their status nor date is an approval or a verified publication history. All original article URLs remain unchanged.
+
+| Collection ID | Available evidence and current limits | Owner decision |
+| --- | --- | --- |
+| antennas/phased-array-basics | Uniform isotropic-element analytical array factor; static/live figures and independent steering/null/grating/sidelobe checks. No coupled-element or hardware experiment. Targeted Phase 5 text corrections. | Pending: retain/develop, replace, or retire. |
+| rf/transmission-line-theory | Lossless-line equations, static/live voltage-envelope model and match/short/reactive/ideal-open checks. No measured line/VNA data. Targeted Phase 5 text corrections. | Pending: retain/develop, replace, or retire. |
+| optics/gaussian-beam-intuition | Ideal free-space paraxial Gaussian model with waist/Rayleigh checks, stated radius conventions and a high-divergence warning. No experimental beam or fiber-coupling result. | Pending: retain/develop, replace, or retire. |
+| dsp/spectral-leakage | Analytical sine signals and 512-point DFT; window/DC/Nyquist/coherent-amplitude/leakage checks. No acquired signal dataset or instrument experiment. | Pending: retain/develop, replace, or retire. |
+| ml/ml-for-signal-data | Prose advice without attached dataset, implementation, comparative metrics or sources. Broad recommendations have not been reviewed as an empirical result. | Pending: substantiate/reframe, replace, or retire. |
+
+The choices presented to the owner are keeping clearly labeled examples while selecting a real article separately, developing them into publishable tutorials, or retiring public listings while preserving source. No choice is selected automatically. A retirement decision would need deliberate handling of existing inbound URLs and shared discovery eligibility; no redirect or route deletion is made here.
+
+#### First approved article: inputs still needed
+
+The owner has been asked to choose a real question/project and identify available code, figures, simulations or measurements. Its article kind must reflect the evidence: analytical tutorial, numerical exploration, simulation, measurement or project report. Existing model/code checks could support an analytical tutorial if selected; they cannot establish measured engineering performance. No topic is silently selected, no new public article is invented, and p6-3 remains open for that collaboration.
+
+#### Verification of the delivered About slice
+
+Production build and generated-output checks passed, preserving 15 pages, five search documents and five RSS entries; the independent demo/model/payload checks also passed. Chromium checked About at 320, 390, 768 and 1440 pixels in dark/light, with no page overflow. Active navigation, skip-link focus, keyboard reading navigation, populated topic links, eligible article examples, contact URLs and absent-CV behavior passed. Selected axe contrast, headings, labels, button/link/image-name and ARIA rules passed. JavaScript-disabled topic navigation passed. An isolated build temporarily marked the two featured examples as drafts: About omitted their links, their otherwise empty topic destinations and the empty examples panel. The original source bytes/statuses were restored before the final build. Representative desktop/mobile screenshots were visually reviewed. No manual screen-reader or email-delivery test is claimed.
+
+README, architecture and editorial guidance match the conservative profile. Schema/ledger-reader/projection, relative documentation-link, mirrored-instruction and whitespace checks passed. The About implementation slice is complete, while author facts, final article dispositions, the first owner-approved article and final Phase 6 acceptance remain open. No workflow or LifeOS repository file was modified.

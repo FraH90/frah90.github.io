@@ -65,7 +65,7 @@ research/interests/            Unpublished interests and investigations
 - `/` redirects to `/blog`, keeping writing first.
 - `/blog` lists published articles; `/blog/<topic>` filters the same listing by topic.
 - `/blog/<topic>/<article>` is the article URL, for example `/blog/rf/transmission-line-theory`.
-- `/about` provides author context and contact.
+- `/about` presents the author’s stated interdisciplinary interests, links published teaching examples and source, and retains existing contact links. Personal background and additional project claims await owner confirmation.
 - `/search?q=beam+steering` searches published article text (JavaScript required; topics remain available without it).
 - `/rss.xml` supplies the summary RSS feed.
 - `/projects` redirects to writing until actual case studies are available.

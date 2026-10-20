@@ -32,4 +32,4 @@ The existing five articles are trial content. Decide explicitly whether to corre
 
 ## Professional context
 
-About should explain the author's background and current questions, linking concrete work. Only list tools and experience the author confirms. Private interest notes are source material, not automatically published prose. CV publication is deferred until its source and intended public artifact are known.
+About currently explains owner-stated interests and approach, links eligible analytical examples and repository source, and retains the existing contact details. The old professional/tool proficiency claims were removed because they were not owner-confirmed. Public name, background, concrete projects and the existing email still need confirmation; keep those decisions in the primary roadmap. Only list tools and experience the author confirms. Private interest notes are source material, not automatically published prose. CV publication is deferred until its source and intended public artifact are known.

@@ -1,97 +1,188 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { cvUrl, siteName } from '../lib/site';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { cvUrl, siteName } from "../lib/site";
+import { getTopic, type TopicSlug } from "../lib/topics";
+import { getAllCategories, getAllPosts } from "../lib/posts";
 
-const skillGroups = [
-  {
-    label: 'Antennas & Arrays',
-    items: ['Phased array design', 'Array factor analysis', 'Beam steering', 'Near/far field', 'HFSS / CST'],
-  },
-  {
-    label: 'RF & Microwave',
-    items: ['Transmission line theory', 'Smith chart / impedance matching', 'S-parameters', 'LTspice', 'VNA measurements'],
-  },
-  {
-    label: 'Photonics & Optics',
-    items: ['Gaussian beam propagation', 'Mode field analysis', 'Fiber optics', 'Optical resonators', 'Dispersion modeling'],
-  },
-  {
-    label: 'Signal Processing',
-    items: ['Fourier analysis (DFT/FFT)', 'Filter design (FIR/IIR)', 'Spectral estimation', 'Windowing', 'Sampling theory'],
-  },
-  {
-    label: 'Simulation & Software',
-    items: ['Python (NumPy, SciPy, Plotly)', 'MATLAB / Octave', 'Jupyter notebooks', 'Git', 'Linux'],
-  },
-  {
-    label: 'Machine Learning',
-    items: ['Neural networks (PyTorch)', 'Applied ML for signal data', 'Feature engineering', 'Model evaluation'],
-  },
-];
+const availableTopics = new Set(
+  (await getAllCategories()).map((topic) => topic.slug),
+);
+const examples = (await getAllPosts()).filter((post) =>
+  ["rf/transmission-line-theory", "antennas/phased-array-basics"].includes(
+    post.id,
+  ),
+);
+const interests: { title: string; description: string; topics: TopicSlug[] }[] =
+  [
+    {
+      title: "Physical models",
+      description:
+        "Interference and propagation connect my interests in antennas, RF, and optics. I’m interested in how a model’s assumptions shape what it can explain.",
+      topics: ["antennas", "rf", "optics"],
+    },
+    {
+      title: "Signals and inference",
+      description:
+        "Sampling, Fourier methods, and machine learning offer different ways to understand signal data. I want to explore where those methods connect and where their limits matter.",
+      topics: ["dsp", "ml"],
+    },
+    {
+      title: "Engineering software",
+      description:
+        "I’m interested in agentic programming for engineering tools and workflows, including integrated circuit design with open-source tools. This is a direction for exploration.",
+      topics: [],
+    },
+  ];
 ---
 
-<BaseLayout title={`About — ${siteName}`} description="About FraH — electronics and photonics engineer.">
-  <div class="site-shell py-16">
-    <h1 class="page-title text-3xl sm:text-4xl text-ink mb-8">About</h1>
+<BaseLayout
+  title={`About — ${siteName}`}
+  description={`The interests and approach behind ${siteName}’s scientific and technical writing.`}
+>
+  <article class="site-shell py-12 sm:py-16">
+    <header class="reading-width mb-12">
+      <p class="text-sm text-muted mb-3">{siteName}</p>
+      <h1 class="page-title text-3xl sm:text-4xl text-ink mb-6">About</h1>
+      <p
+        class="text-xl sm:text-2xl leading-relaxed text-ink"
+        style="font-family: 'Lora', Georgia, serif;"
+      >
+        Engineering across waves, signals, and computation.
+      </p>
+    </header>
 
-    <div class="prose mb-16">
+    <div class="prose reading-width mb-12">
       <p>
-        I'm an engineer working in electronics, photonics, and RF systems.
-        My background spans antenna design and simulation, optical system modeling,
-        transmission line theory, and signal processing.
+        My interests span antennas, RF, optics, signal processing, and machine
+        learning. I’m developing depth across these areas through study and
+        practical exploration, with an interest in the ideas that connect them.
       </p>
       <p>
-        This site is a living document of things I actually understand — not a CV.
-        Each demo and article represents something I've worked through from first principles.
+        This blog is where I want to bring that work together: technical
+        explanations, analytical models, experiments, and small tools. The aim
+        is to make the reasoning inspectable through equations, figures, code,
+        and explicit assumptions.
       </p>
     </div>
 
-    <h2 class="text-xs font-mono uppercase tracking-widest text-muted mb-6">Skills</h2>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
-      {skillGroups.map(group => (
-        <div class="border border-rule rounded-lg p-5">
-          <h3 class="text-xs font-mono uppercase tracking-widest text-accent mb-4">{group.label}</h3>
-          <ul class="space-y-1.5">
-            {group.items.map(item => (
-              <li class="text-sm text-muted flex items-start gap-2">
-                <span class="text-muted mt-0.5">—</span>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
+    <section aria-labelledby="about-interests" class="mb-14">
+      <h2 id="about-interests" class="text-xl text-ink font-medium mb-6">
+        Current interests
+      </h2>
+      <div class="grid md:grid-cols-3 gap-5">
+        {
+          interests.map((interest) => (
+            <section class="border border-rule rounded-lg p-5 min-w-0">
+              <h3 class="text-base text-ink font-medium mb-3">
+                {interest.title}
+              </h3>
+              <p class="text-sm text-body leading-relaxed">
+                {interest.description}
+              </p>
+              {interest.topics.some((slug) => availableTopics.has(slug)) && (
+                <ul class="mt-4 space-y-1">
+                  {interest.topics
+                    .filter((slug) => availableTopics.has(slug))
+                    .map((slug) => {
+                      const topic = getTopic(slug);
+                      return (
+                        <li>
+                          <a
+                            href={`/blog/${topic.slug}`}
+                            class="inline-flex min-h-11 items-center text-sm text-accent underline underline-offset-4"
+                          >
+                            {topic.label}
+                          </a>
+                        </li>
+                      );
+                    })}
+                </ul>
+              )}
+            </section>
+          ))
+        }
+      </div>
+    </section>
 
-    <h2 class="text-xs font-mono uppercase tracking-widest text-muted mb-6">Contact</h2>
-    <div class="space-y-3">
-      <a
-        href="https://github.com/FraH90"
-        target="_blank"
-        rel="noopener"
-        class="flex flex-wrap items-center gap-4 border border-rule rounded-lg p-4 hover:border-rule-strong transition-colors group"
-      >
-        <span class="text-muted font-mono text-sm w-16">GitHub</span>
-        <span class="text-body break-all group-hover:text-accent transition-colors">github.com/FraH90</span>
-      </a>
-      <a
-        href="mailto:frah.221190@gmail.com"
-        class="flex flex-wrap items-center gap-4 border border-rule rounded-lg p-4 hover:border-rule-strong transition-colors group"
-      >
-        <span class="text-muted font-mono text-sm w-16">Email</span>
-        <span class="text-body break-all group-hover:text-accent transition-colors">frah.221190@gmail.com</span>
-      </a>
-      {cvUrl && (
+    <section aria-labelledby="about-writing" class="reading-width mb-14">
+      <h2 id="about-writing" class="text-xl text-ink font-medium mb-4">
+        Read the work
+      </h2>
+      <p class="text-body leading-relaxed mb-4">
+        Start with the writing archive for explanations and analytical examples.
+        Each piece should make its model, evidence, and limitations clear, so
+        you can assess the reasoning for yourself.
+      </p>
+      {
+        examples.length > 0 && (
+          <div class="mb-5">
+            <p class="text-sm text-muted mb-2">
+              Analytical teaching examples from the current archive:
+            </p>
+            <ul class="space-y-2">
+              {examples.map((post) => (
+                <li>
+                  <a
+                    href={`/blog/${post.id}`}
+                    class="inline-flex min-h-11 items-center text-accent underline underline-offset-4"
+                  >
+                    {post.data.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+      <div class="flex flex-wrap gap-x-6 gap-y-2">
         <a
-          href={cvUrl}
-          target="_blank"
-          rel="noopener"
-          class="flex flex-wrap items-center gap-4 border border-rule rounded-lg p-4 hover:border-rule-strong transition-colors group"
+          href="/blog"
+          class="inline-flex min-h-11 items-center text-accent underline underline-offset-4"
+          >Browse the writing <span aria-hidden="true" class="ml-2">→</span></a
         >
-          <span class="text-muted font-mono text-sm w-16">CV</span>
-          <span class="text-body break-all group-hover:text-accent transition-colors">Download PDF</span>
-        </a>
-      )}
-    </div>
-  </div>
+        <a
+          href="https://github.com/FraH90/frah90.github.io"
+          class="inline-flex min-h-11 items-center text-accent underline underline-offset-4"
+          >Explore the site’s source</a
+        >
+      </div>
+    </section>
+
+    <section aria-labelledby="about-contact" class="reading-width">
+      <h2 id="about-contact" class="text-xl text-ink font-medium mb-4">
+        Get in touch
+      </h2>
+      <p class="text-body leading-relaxed mb-4">
+        For questions about the writing or a technical conversation:
+      </p>
+      <ul class="space-y-3">
+        <li>
+          <a
+            href="https://github.com/FraH90"
+            class="inline-flex min-h-11 flex-wrap items-center gap-x-4 text-accent underline underline-offset-4 break-all"
+            >GitHub <span class="text-body">github.com/FraH90</span></a
+          >
+        </li>
+        <li>
+          <a
+            href="mailto:frah.221190@gmail.com"
+            class="inline-flex min-h-11 flex-wrap items-center gap-x-4 text-accent underline underline-offset-4 break-all"
+            >Email <span class="text-body">frah.221190@gmail.com</span></a
+          >
+        </li>
+        {
+          cvUrl && (
+            <li>
+              <a
+                href={cvUrl}
+                class="inline-flex min-h-11 items-center text-accent underline underline-offset-4"
+              >
+                Download CV (PDF)
+              </a>
+            </li>
+          )
+        }
+      </ul>
+    </section>
+  </article>
 </BaseLayout>
