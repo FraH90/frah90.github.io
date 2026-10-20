@@ -1,0 +1,14 @@
+{
+  "$schema": "../../schema/idea.v2.json",
+  "version": 2,
+  "kind": "idea",
+  "order": 3,
+  "id": "i-261020-04-research-oriented-phased-array-article",
+  "title": "A research-oriented first article on phased arrays",
+  "status": "elaborated",
+  "captured_at": "2026-10-20",
+  "source": "chat",
+  "roadmaps": [
+    "r-261020-01-scientific-blog-foundation"
+  ]
+}

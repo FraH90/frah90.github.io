@@ -53,7 +53,7 @@ const interests: { title: string; description: string; topics: TopicSlug[] }[] =
 
     <div class="prose reading-width mb-12">
       <p>
-        My interests span antennas, RF, optics, signal processing, and machine
+        I’m an electronic engineer. My interests span antennas, RF, optics, signal processing, and machine
         learning. I’m developing depth across these areas through study and
         practical exploration, with an interest in the ideas that connect them.
       </p>
@@ -117,7 +117,7 @@ const interests: { title: string; description: string; topics: TopicSlug[] }[] =
         examples.length > 0 && (
           <div class="mb-5">
             <p class="text-sm text-muted mb-2">
-              Analytical teaching examples from the current archive:
+              Demo articles from the current archive:
             </p>
             <ul class="space-y-2">
               {examples.map((post) => (
@@ -145,44 +145,10 @@ const interests: { title: string; description: string; topics: TopicSlug[] }[] =
           class="inline-flex min-h-11 items-center text-accent underline underline-offset-4"
           >Explore the site’s source</a
         >
+        {cvUrl && <a href={cvUrl} class="inline-flex min-h-11 items-center text-accent underline underline-offset-4">Download CV (PDF)</a>}
       </div>
     </section>
 
-    <section aria-labelledby="about-contact" class="reading-width">
-      <h2 id="about-contact" class="text-xl text-ink font-medium mb-4">
-        Get in touch
-      </h2>
-      <p class="text-body leading-relaxed mb-4">
-        For questions about the writing or a technical conversation:
-      </p>
-      <ul class="space-y-3">
-        <li>
-          <a
-            href="https://github.com/FraH90"
-            class="inline-flex min-h-11 flex-wrap items-center gap-x-4 text-accent underline underline-offset-4 break-all"
-            >GitHub <span class="text-body">github.com/FraH90</span></a
-          >
-        </li>
-        <li>
-          <a
-            href="mailto:frah.221190@gmail.com"
-            class="inline-flex min-h-11 flex-wrap items-center gap-x-4 text-accent underline underline-offset-4 break-all"
-            >Email <span class="text-body">frah.221190@gmail.com</span></a
-          >
-        </li>
-        {
-          cvUrl && (
-            <li>
-              <a
-                href={cvUrl}
-                class="inline-flex min-h-11 items-center text-accent underline underline-offset-4"
-              >
-                Download CV (PDF)
-              </a>
-            </li>
-          )
-        }
-      </ul>
-    </section>
+
   </article>
 </BaseLayout>

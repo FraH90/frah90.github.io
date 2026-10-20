@@ -6,6 +6,7 @@ import { siteName } from '../lib/site';
 import TableOfContents from '../components/article/TableOfContents.astro';
 import ArticleReferences from '../components/article/ArticleReferences.astro';
 import PostCard from '../components/blog/PostCard.astro';
+import { articleDisplayTitle, demoLabel, demoNotice } from '../lib/article-status';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -13,7 +14,7 @@ interface Props {
   relatedPosts: CollectionEntry<'blog'>[];
 }
 const { post, headings, relatedPosts } = Astro.props;
-const { title, date, category, description, learningGoals, prerequisites, assumptions, resources, references } = post.data;
+const { demo, title, date, category, description, learningGoals, prerequisites, assumptions, resources, references } = post.data;
 const topic = getTopic(category);
 const contents = [
   ...(assumptions.length ? [{ depth: 2, slug: 'article-tools-assumptions', text: 'Model assumptions' }] : []),
@@ -29,8 +30,8 @@ const formatted = new Intl.DateTimeFormat('en-US', {
 
 ---
 
-<BaseLayout title={`${title} — ${siteName}`} description={description}>
-  <article class="site-shell py-16" data-pagefind-body>
+<BaseLayout title={`${articleDisplayTitle(title, demo)} — ${siteName}`} description={demo ? `${demoNotice} ${description}` : description}>
+  <article class="site-shell py-16" data-pagefind-body data-article-demo={demo ? "true" : undefined}>
     <header class="reading-width mb-12 pb-10 border-b border-rule">
       <div class="flex flex-wrap items-center gap-x-3 gap-y-1 mb-6">
         <a
@@ -39,6 +40,7 @@ const formatted = new Intl.DateTimeFormat('en-US', {
         >
           <span data-pagefind-meta="topic">{topic.label}</span>
         </a>
+        {demo && <span class="demo-badge" data-pagefind-meta="status">{demoLabel}</span>}
         <span class="text-muted">·</span>
         <time datetime={date.toISOString()} class="text-sm text-muted">{formatted}</time>
       </div>
@@ -49,6 +51,7 @@ const formatted = new Intl.DateTimeFormat('en-US', {
       <p class="text-base text-muted leading-relaxed" style="font-family: 'Lora', Georgia, serif; font-style: italic;">
         {description}
       </p>
+      {demo && <p class="demo-notice mt-6" data-pagefind-ignore>{demoNotice}</p>}
     </header>
 
     {(learningGoals.length > 0 || prerequisites.length > 0) && (
@@ -82,7 +85,7 @@ const formatted = new Intl.DateTimeFormat('en-US', {
       <h2 id="article-tools-related" tabindex="-1" class="article-section-title">Related reading</h2>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">{relatedPosts.map(related => (
         <PostCard title={related.data.title} date={related.data.date} category={related.data.category}
-          description={related.data.description} slug={related.id} headingLevel={3} />
+          description={related.data.description} slug={related.id} demo={related.data.demo} headingLevel={3} />
       ))}</div>
     </section>}
 

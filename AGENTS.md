@@ -17,7 +17,7 @@ The author has broad engineering interests and is developing depth through study
 
 ## Product decisions
 
-- Content comes first. Keep a clear author identity and an accessible About page with background, interests, demonstrated work, and contact. CV belongs there when available; CV integration is deferred.
+- Content comes first. Keep a clear author identity and an accessible About page with background, interests, and demonstrated work. Use the FraH90 handle and the owner-confirmed background “electronic engineer”; do not publish a personal name or contact details. CV belongs there when available; CV integration is deferred.
 - Fix navigation and category consistency first. Use one topic registry for stable slugs, readable labels, ordering, and presentation. Preserve existing article URLs or add redirects when a migration is agreed.
 - Keep navigation visible and usable on mobile, with a clear site/home identity and semantic current-page state. Avoid empty public destinations and misleading link targets.
 - Dark is the initial default. Offer an explicit accessible light/dark switch, persist the choice, avoid a theme flash, and theme charts, equations, code, and controls as well as page chrome.
@@ -27,7 +27,7 @@ The author has broad engineering interests and is developing depth through study
 - Articles show a short learning statement, prerequisites where relevant, and a published date. Do not display updated dates. Add explicit model assumptions, captions, references, and related reading/project links when applicable.
 - Search and RSS are implemented discovery surfaces. Draft content must be excluded consistently from listings, routes, related content, search, RSS, and sitemap.
 - Interactive demos require loading/error behavior and a meaningful static alternative, correct boundary cases, associated control labels, units, and a deliberate performance budget.
-- Trial articles are development fixtures pending an explicit editorial decision. Do not present them as verified research or invent replacement content.
+- The five original articles remain public demos with explicit demo metadata and labels in listings, articles, related reading, search, and RSS. Preserve their URLs. Demo status does not certify scientific review; do not invent replacement content or present demos as reviewed research.
 
 ## Architecture and boundaries
 

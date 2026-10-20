@@ -88,4 +88,21 @@ for (const file of files.filter(path => path.endsWith('.html'))) {
   const html = readFileSync(file, 'utf8');
   if (!html.includes('http-equiv="refresh"')) assert.match(html, /rel="alternate" type="application\/rss\+xml"/, `Missing RSS autodiscovery in ${file}`);
 }
-console.log(`Build output passed: ${pages} pages, internal links/assets/fragments, duplicate IDs, CV eligibility, social image, navigation, sitemap, planning boundaries, search index/article count, RSS article membership/dates, and feed discovery.`);
+// Editorial demo status must agree between public article HTML and RSS.
+for (const file of articleFiles) {
+  const html = readFileSync(file, 'utf8');
+  const url = `https://frah90.github.io${file.slice(output.length).replace(/\/index\.html$/, '')}`;
+  const item = items.find(item => item.includes(`<link>${url}</link>`));
+  const demo = html.includes('data-article-demo="true"');
+  assert.equal(item.includes('<category>Demo</category>'), demo, `RSS demo status mismatch: ${url}`);
+  if (demo) {
+    assert.match(html, /class="demo-notice/);
+    assert.match(html, /not a reviewed research publication/);
+    assert.match(item, /<title>Demo — /);
+  }
+}
+for (const file of files.filter(path => path.endsWith('.html'))) {
+  const html = readFileSync(file, 'utf8');
+  assert.ok(!/href="mailto:/i.test(html), `Public contact email in ${file}`);
+}
+console.log(`Build output passed: ${pages} pages, internal links/assets/fragments, duplicate IDs, CV eligibility, social image, navigation, sitemap, planning boundaries, search index/article count, RSS article membership/dates, feed discovery, demo status, and contact omission.`);

@@ -1,5 +1,6 @@
 ---
 import { getTopic, type TopicSlug } from '../../lib/topics';
+import { demoLabel } from '../../lib/article-status';
 
 interface Props {
   title: string;
@@ -8,8 +9,9 @@ interface Props {
   description: string;
   slug: string;
   headingLevel?: 2 | 3;
+  demo?: boolean;
 }
-const { title, date, category, description, slug, headingLevel = 2 } = Astro.props;
+const { title, date, category, description, slug, headingLevel = 2, demo = false } = Astro.props;
 const topic = getTopic(category);
 const Heading = headingLevel === 3 ? 'h3' : 'h2';
 const formatted = new Intl.DateTimeFormat('en-US', {
@@ -21,6 +23,7 @@ const formatted = new Intl.DateTimeFormat('en-US', {
   <a href={`/blog/${slug}`} class="post-card group block h-full rounded-lg border border-rule p-6 hover:border-rule-strong hover:bg-surface/40 transition-colors">
     <div class="flex flex-wrap items-center gap-x-3 gap-y-2 mb-4 text-xs">
       <span class:list={['font-medium', topic.color]}>{topic.label}</span>
+      {demo && <span class="demo-badge">{demoLabel}</span>}
       <time datetime={date.toISOString()} class="text-muted">{formatted}</time>
     </div>
     <Heading class="text-xl text-ink mb-3 leading-snug group-hover:underline decoration-rule-strong underline-offset-4" style="font-family: 'Lora', Georgia, serif;">

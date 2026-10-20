@@ -1,6 +1,6 @@
 # Writing a technical article
 
-The article tools are optional and render as static HTML. The existing trial articles still require scientific review; adding these tools does not validate their claims.
+The article tools are optional and render as static HTML. The five original articles remain explicitly labeled demos; adding these tools does not validate their claims.
 
 ## Start a draft
 
@@ -14,7 +14,7 @@ A file at `src/content/blog/rf/my-article.mdx` becomes `/blog/rf/my-article`. Se
 
 ## Metadata
 
-All new fields default to empty arrays, so older articles remain valid. Values are plain text, not Markdown or LaTeX; put rich explanations and equations in the body.
+`demo` is a boolean editorial label, defaulting to false. Set `demo: true` for public examples of the site; they receive a Demo label and notice in discovery/article views. This is separate from `draft: true`, which excludes a piece from publication entirely. Ordinary articles are not certified as reviewed merely because demo is false. Optional array fields default to empty arrays, so older articles remain valid. Values are plain text, not Markdown or LaTeX; put rich explanations and equations in the body.
 
 ```yaml
 learningGoals:

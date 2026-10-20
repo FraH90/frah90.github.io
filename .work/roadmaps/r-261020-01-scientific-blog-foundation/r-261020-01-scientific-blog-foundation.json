@@ -544,7 +544,7 @@
       "title": "Author context and publication readiness",
       "status": "active",
       "useful_alone": "Readers can understand who writes the site and assess actual work.",
-      "done_when": "About uses owner-confirmed facts and working contact links; public trial content has an explicit disposition; at least one owner-approved article demonstrates the editorial/figure standard without invented evidence.",
+      "done_when": "About uses owner-confirmed background and privacy choices; the five original articles remain explicitly labeled public demos; at least one owner-written/approved substantive article meets the editorial and figure standard.",
       "depends_on": [
         "r-261020-01-scientific-blog-foundation-p3",
         "r-261020-01-scientific-blog-foundation-p4",
@@ -553,40 +553,55 @@
       "items": [
         {
           "id": "r-261020-01-scientific-blog-foundation-p6-1",
-          "text": "Gather confirmed background/public name and available work; write an honest interdisciplinary About page linked to relevant articles and contact.",
-          "status": "active",
+          "text": "Apply the confirmed profile/privacy choices: retain FraH90, state electronic engineer, omit personal name and contacts, and link writing/source without unconfirmed proficiency claims.",
+          "status": "done",
           "kind": "decision",
           "evidence": [
             {
               "kind": "document",
               "value": "About now uses the owner-stated interdisciplinary interests and learning/development orientation. Unconfirmed professional experience/tool lists were removed. Existing FraH90 handle/email retained, with explicit requests for public name, background, projects/tools and email confirmation. Full author-profile decision remains open pending owner input."
+            },
+            {
+              "kind": "decision",
+              "value": "Owner confirms electronic engineer, keeps the existing public handle, declines personal name and public contacts. About now states the confirmed background; its contact panel/email and the footer profile contact link are removed. Source repository links remain inspectable code, not a contact panel. Mirrored working contracts record these choices."
             }
           ],
           "commits": [
             "8149b37f2f9e44fed56c496518634445de922440"
-          ]
+          ],
+          "closed_at": "2026-10-20"
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p6-2",
-          "text": "Decide the disposition of each trial article and review any retained text and model assumptions before publication.",
-          "status": "active",
+          "text": "Retain all five original articles as explicitly labeled public demos, preserving URLs and distinguishing demo status from draft eligibility and reviewed research.",
+          "status": "done",
           "kind": "decision",
           "evidence": [
             {
               "kind": "document",
               "value": "The paired roadmap Markdown inventories all five trial articles, available analytical evidence, unchanged public status and owner decisions needed. No article was retired, promoted to reviewed work, assigned a new publication date, or automatically selected as the first approved article."
+            },
+            {
+              "kind": "decision",
+              "value": "Owner explicitly chose to retain and label the original articles as demos. All five now use demo:true with shared label/notice in listings, headers, related cards, search metadata/results and RSS titles/descriptions/categories. URLs/GUIDs and existing dates are preserved; this is not certification of scientific review."
             }
           ],
           "commits": [
             "8149b37f2f9e44fed56c496518634445de922440"
-          ]
+          ],
+          "closed_at": "2026-10-20"
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p6-3",
           "text": "Prepare one real article with the owner using available scientific figures/data/code; distinguish tutorial, simulation, measurement, and exploration.",
-          "status": "todo",
+          "status": "active",
           "kind": "build",
-          "evidence": []
+          "evidence": [
+            {
+              "kind": "document",
+              "value": "Owner plans to write a deeper, research-oriented phased-array article. Idea i-261020-04-research-oriented-phased-array-article preserves the request and proposes a bounded beam-squint bandwidth/aperture study, primary starting sources, assumptions, three scientific figures and reproducibility checks. The exact subtopic is a suggestion, with no manuscript, new calculation, novelty claim or publication approval fabricated."
+            }
+          ]
         },
         {
           "id": "r-261020-01-scientific-blog-foundation-p6-4",
@@ -597,6 +612,10 @@
             {
               "kind": "observation",
               "value": "Current About slice passed production build/output/demo checks and Chromium at 320/390/768/1440px in both themes: layout, active navigation, keyboard/skip and article links, selected axe rules, no-JS topic browsing and CV absence. GitHub profile/source URLs returned HTTP 200; email syntax/link retained but ownership/deliverability not verified. Final owner article and wider Phase 6 sign-off remain pending."
+            },
+            {
+              "kind": "observation",
+              "value": "Production build/output/demo checks pass. Chromium verifies no contacts and Demo labels across listing/article/related/search views at 320/1440 in both themes, selected axe and no-JS labeling. Isolated ordinary/draft fixtures distinguish normal articles from demos and preserve draft exclusion; fixtures removed before the final 15-page/five-article build. Final owner manuscript review remains pending."
             }
           ],
           "commits": [
@@ -649,11 +668,8 @@
     }
   ],
   "open_questions": [
-    "Public author/site display name and confirmed background for About.",
-    "Disposition of the five trial articles: correct and retain, replace, or retire.",
     "Which real figures, projects, and reproducible datasets are ready for publication.",
     "CV source repository, intended public artifact, and publication mechanism are deferred.",
-    "Which concrete project/topic and available code, figures or data should become the first owner-approved article?",
-    "Confirm whether the existing public email frah.221190@gmail.com remains the intended contact."
+    "Which precise phased-array research question will the owner choose, and when will its manuscript/code/figures be ready for review? Beam squint is the current suggestion, not an approved result."
   ]
 }

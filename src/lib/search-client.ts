@@ -1,5 +1,6 @@
+import { demoLabel } from './article-status';
 // Native form/link navigation remains available; the search engine loads on demand.
-type ResultData = { url: string; meta: { title?: string; topic?: string }; excerpt: string };
+type ResultData = { url: string; meta: { title?: string; topic?: string; status?: string }; excerpt: string };
 type Result = { data: () => Promise<ResultData> };
 type Search = { destroy: () => Promise<void>; search: (query: string) => Promise<{ results: Result[] }> };
 const form = document.querySelector<HTMLFormElement>('#article-search')!;
@@ -37,6 +38,12 @@ async function showBatch(version: number, focusNew = false) {
       const topic = document.createElement('p');
       topic.className = 'text-sm text-muted mb-2';
       topic.textContent = result.meta.topic ?? '';
+      if (result.meta.status === demoLabel) {
+        const badge = document.createElement('span');
+        badge.className = 'demo-badge ml-3';
+        badge.textContent = demoLabel;
+        topic.append(badge);
+      }
       const heading = document.createElement('h2');
       const link = document.createElement('a');
       link.href = url.pathname + url.hash;

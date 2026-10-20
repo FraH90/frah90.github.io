@@ -61,7 +61,6 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
       <div class="site-shell flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted">
         <span>&copy; {new Date().getFullYear()} {siteName}</span>
         <div class="flex flex-wrap justify-center gap-6">
-          <a href="https://github.com/FraH90" target="_blank" rel="noopener" class="hover:text-ink transition-colors">GitHub</a>
           <a href="/about" class="hover:text-ink transition-colors">About</a>
           <a href="/rss.xml" class="hover:text-ink transition-colors">RSS</a>
           {cvUrl && <a href={cvUrl} target="_blank" rel="noopener" class="hover:text-ink transition-colors">CV</a>}

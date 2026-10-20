@@ -65,12 +65,12 @@ research/interests/            Unpublished interests and investigations
 - `/` redirects to `/blog`, keeping writing first.
 - `/blog` lists published articles; `/blog/<topic>` filters the same listing by topic.
 - `/blog/<topic>/<article>` is the article URL, for example `/blog/rf/transmission-line-theory`.
-- `/about` presents the author’s stated interdisciplinary interests, links published teaching examples and source, and retains existing contact links. Personal background and additional project claims await owner confirmation.
+- `/about` presents the author’s stated interdisciplinary interests, links the published demos and repository source. The public identity remains FraH90; background is electronic engineer. Personal name and contacts are intentionally omitted.
 - `/search?q=beam+steering` searches published article text (JavaScript required; topics remain available without it).
 - `/rss.xml` supplies the summary RSS feed.
 - `/projects` redirects to writing until actual case studies are available.
 
-Redirect aliases are excluded from the sitemap. The mobile header retains the same Writing/About/Search destinations as desktop. The site's existing FraH90 handle remains the public identity until the author chooses another name.
+Redirect aliases are excluded from the sitemap. The mobile header retains the same Writing/About/Search destinations as desktop. FraH90 is the intended public identity; a personal name and contacts are deliberately omitted.
 
 ## Reading themes
 
@@ -95,7 +95,7 @@ draft: true
 ---
 ```
 
-Required fields: `title`, `date`, `category`, and `description`. Optional fields: `tags`, `draft`, and `coverImage`. The current schema defaults `draft` to false, so always start with `draft: true`. `coverImage` remains metadata only; use the `ScientificFigure` component for captioned inline or wide figures. The current trial articles remain subject to editorial review.
+Required fields: `title`, `date`, `category`, and `description`. Optional fields: `tags`, `draft`, `demo`, and `coverImage`. The current schema defaults `draft` to false, so always start with `draft: true`. `coverImage` remains metadata only; use the `ScientificFigure` component for captioned inline or wide figures. The five original articles remain public with `demo: true` and explicit Demo labels; keep this separate from draft eligibility.
 
 Write prose and math in MDX:
 
