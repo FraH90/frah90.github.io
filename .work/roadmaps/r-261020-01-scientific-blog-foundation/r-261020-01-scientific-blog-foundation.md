@@ -183,23 +183,23 @@ Agreed: content-first scientific blog; honest interdisciplinary positioning; sci
 **Depends on:** `r-261020-01-scientific-blog-foundation-p2`, `r-261020-01-scientific-blog-foundation-p3`
 
 - ✅ **done** · **research** — Measure current visualization transfer/hydration cost and define a practical budget before selecting optimization work.
-  - ID `r-261020-01-scientific-blog-foundation-p5-1` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p5-1` · closed 2026-10-20 · commits `b628e603c674eaf758af1dcd58cf014223517b68`
   - Evidence (document): docs/interactive-demos.md records production Chromium measurements: previous demos fetched ~1.526 MB encoded / 5.006 MB decoded JS, first plot ~1.80–1.90s, script execution ~1.28–1.30s in this ARM64 container. Budgets: initial controller ≤3 KiB gzip; all application JS ≤250 KiB decoded / 80 KiB gzip; demo HTML ≤32 KiB gzip; direct DFT p95 ≤50ms; loading timeout 15s.
 - ✅ **done** · **build** — Add meaningful static alternatives and complete loading/error behavior around browser-only demos; verify fallback content and import failure beyond the existing chart error message.
-  - ID `r-261020-01-scientific-blog-foundation-p5-2` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p5-2` · closed 2026-10-20 · commits `b628e603c674eaf758af1dcd58cf014223517b68`
   - Evidence (document): InteractiveDemo emits calculated reference SVG, parameters, units, descriptions and observations before JavaScript. Explicit activation loads only the chosen React controls. Loading/import/root-render/15s timeout errors preserve the reference and provide retry; stale imports cannot mount after timeout. Chromium verified no-JS, offline, blocked controller/module, render exception, timeout/late completion, and import retry.
 - ✅ **done** · **build** — Make plots and range controls theme-aware, preserve plot zoom, clean up plot/theme listeners, associate slider labels, and handle plot import/render rejection.
-  - ID `r-261020-01-scientific-blog-foundation-p5-6` · closed 2026-10-20 · commits `1843f4a049cce9450db2813058dd00c488bf5b82`
+  - ID `r-261020-01-scientific-blog-foundation-p5-6` · closed 2026-10-20 · commits `1843f4a049cce9450db2813058dd00c488bf5b82`, `b628e603c674eaf758af1dcd58cf014223517b68`
   - Evidence (observation): Completed during Phase 2: live charts render in development and production, change axis/trace colors, preserve a real drag-zoom, and still respond to keyboard slider input. Blocked plot import produced a readable error message without an unhandled page error. Full scientific/static fallbacks remain p5-2.
   - Evidence (document): Phase 5 replaces public Plotly plots with native SVG; theme changes preserve parameters/paths without listeners or plot instances. The former zoom interaction is intentionally omitted for these simple plots (docs/interactive-demos.md). Legacy Plotly cleanup/zoom support remains unchanged for unpublished exploratory code.
 - ✅ **done** · **build** — Correct and independently verify representative numerical/boundary behavior, including infinite VSWR and scientific statements that contradict the models.
-  - ID `r-261020-01-scientific-blog-foundation-p5-3` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p5-3` · closed 2026-10-20 · commits `b628e603c674eaf758af1dcd58cf014223517b68`
   - Evidence (observation): Shared ideal models passed independent array closed-form/null/grating/sidelobe/half-power identities, transmission match/short/reactive/open checks and infinite VSWR, Gaussian waist/Rayleigh/symmetry/endpoints, and DFT zero/DC/Nyquist/bin-amplitude/leakage checks. Targeted article corrections add explicit assumptions and sources; integer-degree phase controls include zero/±180°. Broader editorial review remains Phase 6.
 - ✅ **done** · **build** — Reduce unnecessary eager visualization loading or replace heavyweight plotting where the measured tradeoff justifies it.
-  - ID `r-261020-01-scientific-blog-foundation-p5-4` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p5-4` · closed 2026-10-20 · commits `b628e603c674eaf758af1dcd58cf014223517b68`
   - Evidence (observation): Four published demos use native SVG rather than Plotly. Initial demo code is ~1.6 KB gzip; activated article JS is ~66.6–66.8 KB encoded versus ~1.526 MB previously. Complete emitted application JS is 210898 decoded / 69895 gzip bytes, under budget. No Plotly chunk is generated; ordinary pages request no demo/React assets. SVG intentionally omits Plotly zoom/hover inspection; tradeoff documented.
 - ✅ **done** · **validation** — Check offline/import failure, JavaScript disabled, keyboard controls, resize/theme behavior, boundary values, and measured payload against the agreed budget.
-  - ID `r-261020-01-scientific-blog-foundation-p5-5` · closed 2026-10-20
+  - ID `r-261020-01-scientific-blog-foundation-p5-5` · closed 2026-10-20 · commits `b628e603c674eaf758af1dcd58cf014223517b68`
   - Evidence (observation): Final build/check:build/check:demos passed for 15 pages and five indexed/feed articles. Chromium checked four demos at 320/390/768/1440px in both themes: keyboard activation/focus, slider endpoints/windows, invalid steering, infinite VSWR, paraxial warning, actual resize/theme parameter preservation, local SVG scrolling, no-JS figures, navigation, loading/failure recovery and selected axe rules. DFT p95 ~8ms locally. No manual screen-reader or field-performance claim.
 
 ### Phase 6 — Author context and publication readiness
