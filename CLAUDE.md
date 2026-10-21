@@ -24,6 +24,7 @@ The author has broad engineering interests and is developing depth through study
 - Give scientific figures a central role: radiation patterns, schematics, measurements, simulation comparisons, and other evidence. Figures need units, captions, source/context, and accessible explanations. Never substitute decorative generated imagery for scientific evidence.
 - Use consistent typography, spacing, widths, filters, and card behavior. Keep prose readable and let figures expand where useful. Contrast and keyboard usability are requirements.
 - Keep article prose and applets aligned in the shared shell, with moderate plot heights and readable axis labels. Avoid oversized scaled SVG labels.
+- Do not append hash/asterisk/permalink symbols beside section headings; retain native heading IDs and Contents links.
 - Use a compact Contents disclosure without full-width decorative rules. Article contents navigation is collapsed by default and must not consume a permanent sidebar. Click/tap and keyboard must work; hover is optional enhancement.
 - Center tables as blocks within the article; preserve readable cell alignment and local horizontal scrolling when needed.
 - Displayed equations must be centered. Write display math with `$$` delimiters on separate lines; preserve inline `$...$` within prose and local scrolling for wide equations.

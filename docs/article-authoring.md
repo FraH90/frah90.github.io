@@ -46,7 +46,7 @@ references:
 
 Start body sections at `##`, with `###` for subsections. Astro supplies heading IDs, including unique IDs for repeated headings. The native “Contents” disclosure is collapsed by default and appears when there are at least two relevant sections. It includes second/third-level body headings and any rendered assumptions, material, references, and related-reading sections. It works without JavaScript and uses no sidebar.
 
-JavaScript adds small heading permalink links as an enhancement; native IDs and contents links remain usable without it. Reserve `article-tools-*`, `fig-*`, and `ref-*` for the article components. Avoid duplicate IDs when adding custom markup.
+Headings have no appended permalink symbols. Native IDs and contents links remain usable with or without JavaScript. Reserve `article-tools-*`, `fig-*`, and `ref-*` for the article components. Avoid duplicate IDs when adding custom markup.
 
 ## Scientific figures
 

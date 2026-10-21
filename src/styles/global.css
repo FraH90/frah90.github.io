@@ -208,8 +208,6 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 .article-contents a:hover { color: var(--ink); background: var(--elevated); }
 .contents-subsection { padding-left: .85rem; }
 @media (max-width: 639px) { .article-contents ul { grid-template-columns: minmax(0,1fr); } }
-.heading-anchor { font-family: 'Inter', system-ui, sans-serif; font-size: 0.7em; font-weight: 400; color: var(--muted) !important; text-decoration: none !important; padding: 0.15em; }
-.heading-anchor:hover, .heading-anchor:focus-visible { color: var(--accent) !important; text-decoration: underline !important; }
 .article-section { margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--rule); color: var(--body); font-size: 0.875rem; line-height: 1.7; overflow-wrap: anywhere; }
 .article-section-title { font-family: 'Lora', Georgia, serif; font-size: 1.5rem; color: var(--ink); margin-bottom: 1.5rem; }
 .reference-list { display: grid; gap: 1.25rem; }

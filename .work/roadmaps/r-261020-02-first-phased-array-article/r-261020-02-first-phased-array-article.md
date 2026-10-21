@@ -59,6 +59,9 @@ The owner writes the article; no manuscript, measurements, code results or publi
 - ✅ **done** · **build** — Center article tables as blocks while retaining author-controlled cell alignment and local horizontal scrolling.
   - ID `r-261020-02-first-phased-array-article-p0-4` · closed 2026-10-21 · commits `d54e3a734c28b25d0569a89ca37da5bbdad4f1fe`
   - Evidence (measurement): Build/output checks pass. Local Chromium verifies both table-bearing articles at 1440/390px in dark/light and no-JavaScript mode: centered bounds, semantic headers, no page overflow. Simulated wide tables remain keyboard-scrollable. Desktop table screenshot inspected.
+- ✅ **done** · **build** — Remove appended permalink symbols beside section headings while retaining native section IDs and Contents navigation.
+  - ID `r-261020-02-first-phased-array-article-p0-5` · closed 2026-10-21
+  - Evidence (measurement): Build and output checks pass. Local Chromium at 1440/390px in dark/light and JavaScript/no-JavaScript modes verifies plain heading text, absent appended symbols and keyboard Contents navigation to the preserved focusable heading ID.
 
 ### Phase 1 — Owner manuscript and reproducible evidence
 
@@ -127,3 +130,7 @@ The eight standalone formulas were written as same-line `$$formula$$`, which rem
 ### Table alignment correction — 2026-10-21
 
 Owner request: “Also tables should be centered”. Shared article CSS now gives compact tables intrinsic width and automatic horizontal margins, capped at the article width so wide tables retain local scrolling. Cell alignment and semantic markup remain intact; authoring instructions record the default.
+
+### Heading symbol removal — 2026-10-21
+
+Owner request: “The asterisc at the right of the title.. of a topic. i dont like it”. This was the script-appended `#` permalink beside article section headings. Removed that enhancement and its styles; heading IDs and Contents links remain. Both project contracts and authoring/architecture guidance record the preference.

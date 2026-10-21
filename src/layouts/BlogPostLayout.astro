@@ -98,15 +98,6 @@ const formatted = new Intl.DateTimeFormat('en-US', {
 </BaseLayout>
 
 <script>
-  // Progressive permalinks; native heading IDs and the contents work without JavaScript.
-  for (const heading of document.querySelectorAll<HTMLElement>('.article-content :is(h2, h3, h4)[id]')) {
-    const anchor = document.createElement('a');
-    anchor.href = `#${heading.id}`;
-    anchor.className = 'heading-anchor';
-    anchor.textContent = '#';
-    anchor.setAttribute('aria-label', `Link to section: ${heading.textContent?.trim()}`);
-    heading.append(' ', anchor);
-  }
   // Wide scientific material scrolls locally and remains reachable by keyboard.
   for (const [selector, label] of [['pre', 'Code block'], ['table', 'Table'], ['.katex-display', 'Equation']]) {
     for (const element of document.querySelectorAll<HTMLElement>(`.article-content ${selector}`)) {
