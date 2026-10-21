@@ -54,7 +54,7 @@ The owner writes the article; no manuscript, measurements, code results or publi
   - Evidence (measurement): Production build, output checks, numerical identities and payload budget pass. Browser matrix: four demos × 1440/390px × dark/light; automatic controls, aligned prose, no page overflow/focus theft, keyboard disclosure/control endpoints and axe WCAG A/AA pass. No-JavaScript and blocked-module fallback checked. Application JS 210521 decoded / 69785 gzip bytes; controller 1479 gzip bytes.
   - Evidence (document): docs/interactive-demos.md records the 2026-10-21 browser matrix and failure checks: blocked controller/module, simulated render failure, timeout/late completion and theme persistence. Local Chromium only; no owner visual approval or universal-device claim.
 - ✅ **done** · **build** — Center displayed equations across articles; correct same-line double-dollar delimiters, preserve inline math and readable local overflow, and document the authoring convention.
-  - ID `r-261020-02-first-phased-array-article-p0-3` · closed 2026-10-21
+  - ID `r-261020-02-first-phased-array-article-p0-3` · closed 2026-10-21 · commits `3c25ea324650641bd9ab7c361325cd5073f52130`
   - Evidence (measurement): Build and output checks pass. All eight existing equations render as KaTeX display blocks across four articles. Local Chromium verifies geometric centering at 1440/390px in dark/light themes, inline math preservation, no page overflow, no-JavaScript rendering and keyboard scrolling of a simulated wide equation. Desktop screenshot inspected.
 
 ### Phase 1 — Owner manuscript and reproducible evidence

@@ -78,6 +78,9 @@
               "kind": "measurement",
               "value": "Build and output checks pass. All eight existing equations render as KaTeX display blocks across four articles. Local Chromium verifies geometric centering at 1440/390px in dark/light themes, inline math preservation, no page overflow, no-JavaScript rendering and keyboard scrolling of a simulated wide equation. Desktop screenshot inspected."
             }
+          ],
+          "commits": [
+            "3c25ea324650641bd9ab7c361325cd5073f52130"
           ]
         }
       ]
