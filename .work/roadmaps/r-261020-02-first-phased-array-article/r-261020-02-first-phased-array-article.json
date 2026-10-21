@@ -162,6 +162,9 @@
               "kind": "measurement",
               "value": "Production build, 15-page output checks, numerical identities and explicit restored-Plotly budget pass. Total JS 5016587 decoded / 1531105 gzip bytes; controller 1559 gzip bytes. Local Chromium covers four demos × 1440/390px × dark/light: all axis titles, original 384px/192px/256px heights, Fourier bars, compact live content, slider endpoints, no page overflow/focus jump or browser errors. Separate no-JS/import/render/timeout fallback checks pass; default screenshots inspected, axis title bounds, live theme update and mobile resize pass."
             }
+          ],
+          "commits": [
+            "e38cc7adbc6825c911e1f1172ee3d135b83f8bab"
           ]
         }
       ]
