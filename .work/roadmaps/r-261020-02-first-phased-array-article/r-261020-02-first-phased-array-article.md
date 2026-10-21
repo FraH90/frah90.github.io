@@ -76,7 +76,7 @@ The owner writes the article; no manuscript, measurements, code results or publi
   - ID `r-261020-02-first-phased-array-article-p0-9` · closed 2026-10-21 · commits `4c485f36ede4df000210a94409f7eef40964a200`
   - Evidence (measurement): Production build, output/model/payload checks pass. Local Chromium at 320/390/430/1440px in both themes verifies horizontal labels within bounds, no chart/rotated y title, >78% of chart width used by plotting area, 288px phone/384px desktop heights, keyboard dB toggle, correct fixed linear/dB ranges, no page overflow, and no-JavaScript/import-failure fallback. Phone screenshots inspected. Physical iPhone Safari was not tested.
 - ✅ **done** · **build** — Apply the compact phone layout to every live demo plot: horizontal y labels, hidden y-zero text, no redundant titles, tighter margins/padding and locked gestures.
-  - ID `r-261020-02-first-phased-array-article-p0-10` · closed 2026-10-21
+  - ID `r-261020-02-first-phased-array-article-p0-10` · closed 2026-10-21 · commits `8b64fb5ff7835f9649aec674d0c27c145fbcd128`
   - Evidence (measurement): Build, 15-page output checks, numerical identities and payload budget pass (5017144 decoded / 1531379 gzip JS bytes). Local Chromium verifies five plots across four articles at 320/390/1440px in both themes: no chart/vertical y titles or y-zero text, axis/annotation bounds, >70% horizontal plotting area, keyboard control endpoints/dB ranges, Fourier bars, no overflow, all no-JS and blocked-engine fallbacks. Default screenshots inspected. Mixed extreme Gaussian controls retain signed tick bounds; live theme update passes. Physical iPhone Safari not tested.
 
 ### Phase 1 — Owner manuscript and reproducible evidence

@@ -194,6 +194,9 @@
               "kind": "measurement",
               "value": "Build, 15-page output checks, numerical identities and payload budget pass (5017144 decoded / 1531379 gzip JS bytes). Local Chromium verifies five plots across four articles at 320/390/1440px in both themes: no chart/vertical y titles or y-zero text, axis/annotation bounds, >70% horizontal plotting area, keyboard control endpoints/dB ranges, Fourier bars, no overflow, all no-JS and blocked-engine fallbacks. Default screenshots inspected. Mixed extreme Gaussian controls retain signed tick bounds; live theme update passes. Physical iPhone Safari not tested."
             }
+          ],
+          "commits": [
+            "8b64fb5ff7835f9649aec674d0c27c145fbcd128"
           ]
         }
       ]
