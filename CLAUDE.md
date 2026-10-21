@@ -20,13 +20,14 @@ The author has broad engineering interests and is developing depth through study
 - Content comes first. Keep a clear author identity and an accessible About page with background, interests, and demonstrated work. Use the FraH90 handle and the owner-confirmed background “electronic engineer”; do not publish a personal name or contact details. CV belongs there when available; CV integration is deferred.
 - Fix navigation and category consistency first. Use one topic registry for stable slugs, readable labels, ordering, and presentation. Preserve existing article URLs or add redirects when a migration is agreed.
 - Keep navigation visible and usable on mobile, with a clear site/home identity and semantic current-page state. Avoid empty public destinations and misleading link targets.
-- Dark is the initial default. Offer an explicit accessible light/dark switch, persist the choice, avoid a theme flash, and theme charts, equations, code, and controls as well as page chrome.
+- Retain the original neutral zinc dark palette. Dark is the initial default. Offer an explicit accessible light/dark switch, persist the choice, avoid a theme flash, and theme charts, equations, code, and controls as well as page chrome.
 - Give scientific figures a central role: radiation patterns, schematics, measurements, simulation comparisons, and other evidence. Figures need units, captions, source/context, and accessible explanations. Never substitute decorative generated imagery for scientific evidence.
 - Use consistent typography, spacing, widths, filters, and card behavior. Keep prose readable and let figures expand where useful. Contrast and keyboard usability are requirements.
-- Article contents navigation is collapsed by default and must not consume a permanent sidebar. Click/tap and keyboard must work; hover is optional enhancement.
+- Keep article prose and applets aligned in the shared shell, with moderate plot heights and readable axis labels. Avoid oversized scaled SVG labels.
+- Use a compact Contents disclosure without full-width decorative rules. Article contents navigation is collapsed by default and must not consume a permanent sidebar. Click/tap and keyboard must work; hover is optional enhancement.
 - Articles show a short learning statement, prerequisites where relevant, and a published date. Do not display updated dates. Add explicit model assumptions, captions, references, and related reading/project links when applicable.
 - Search and RSS are implemented discovery surfaces. Draft content must be excluded consistently from listings, routes, related content, search, RSS, and sitemap.
-- Interactive demos require loading/error behavior and a meaningful static alternative, correct boundary cases, associated control labels, units, and a deliberate performance budget.
+- Load interactive demos automatically on page entry without stealing focus or scrolling; do not add a load gate or normal-state status clutter. Interactive demos require loading/error behavior and a meaningful static alternative, correct boundary cases, associated control labels, units, and a deliberate performance budget.
 - The five original articles remain public demos with explicit demo metadata and labels in listings, articles, related reading, search, and RSS. Preserve their URLs. Demo status does not certify scientific review; do not invent replacement content or present demos as reviewed research.
 
 ## Architecture and boundaries

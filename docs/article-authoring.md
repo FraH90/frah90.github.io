@@ -44,7 +44,7 @@ references:
 
 ## Sections and contents
 
-Start body sections at `##`, with `###` for subsections. Astro supplies heading IDs, including unique IDs for repeated headings. The native “On this page” disclosure is collapsed by default and appears when there are at least two relevant sections. It includes second/third-level body headings and any rendered assumptions, material, references, and related-reading sections. It works without JavaScript and uses no sidebar.
+Start body sections at `##`, with `###` for subsections. Astro supplies heading IDs, including unique IDs for repeated headings. The native “Contents” disclosure is collapsed by default and appears when there are at least two relevant sections. It includes second/third-level body headings and any rendered assumptions, material, references, and related-reading sections. It works without JavaScript and uses no sidebar.
 
 JavaScript adds small heading permalink links as an enhancement; native IDs and contents links remain usable without it. Reserve `article-tools-*`, `fig-*`, and `ref-*` for the article components. Avoid duplicate IDs when adding custom markup.
 
@@ -103,4 +103,4 @@ npm run check:build
 npm run preview
 ```
 
-Review the article on mobile and desktop in both themes, including contents, equation/table/code overflow, figures, reference links, and related reading. Drafts must stay absent from public output. Set `draft: false` only after review. Search and RSS are still pending roadmap work and must reuse the same publication eligibility when added.
+Review the article on mobile and desktop in both themes, including contents, equation/table/code overflow, figures, reference links, and related reading. Drafts must stay absent from public output. Set `draft: false` only after review. Search and RSS are implemented and reuse the same publication eligibility.

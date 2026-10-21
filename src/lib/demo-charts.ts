@@ -79,6 +79,7 @@ export function fourierCharts(
   return [
     {
       title: "Time-domain signal",
+      height: 200,
       description:
         "Calculated sum of three unitless sine waves, sampled at 1 kHz. The plot shows the first 200 of 512 samples before windowing.",
       xLabel: "Time (s)",
@@ -94,6 +95,7 @@ export function fourierCharts(
     },
     {
       title: "One-sided amplitude spectrum",
+      height: 250,
       description: `512-point DFT with ${window} window, bin spacing 1.953125 Hz. Amplitudes are corrected for window coherent gain; off-bin tones can still suffer scalloping. DC and Nyquist bins are not doubled.`,
       xLabel: "Frequency (Hz)",
       yLabel: "Peak amplitude (a.u.)",

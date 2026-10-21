@@ -50,7 +50,7 @@ for (const article of articles) {
   );
   assert.ok(
     !html.includes("client:only"),
-    `Eager browser-only demo in ${article}`,
+    `Missing browser-safe demo mount boundary in ${article}`,
   );
   assert.ok(
     gzipSync(html).length <= 32 * 1024,

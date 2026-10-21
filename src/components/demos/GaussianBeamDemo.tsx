@@ -12,7 +12,7 @@ export default function GaussianBeamDemo() {
     [waist, wavelength, extent],
   );
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
         <Slider
           label="Waist radius w₀"

@@ -13,10 +13,11 @@ export interface ChartSpec {
   traces: Trace[];
   xRange?: [number, number];
   yRange?: [number, number];
+  height?: number;
 }
 export const chartBox = {
-  width: 640,
-  height: 320,
+  width: 960,
+  height: 360,
   left: 74,
   right: 20,
   top: 20,
@@ -30,7 +31,8 @@ function extent(values: number[]): [number, number] {
   return min === max ? [min - 1, max + 1] : [min, max];
 }
 export function chartGeometry(spec: ChartSpec) {
-  const { width, height, left, right, top, bottom } = chartBox;
+  const { width, left, right, top, bottom } = chartBox;
+  const height = spec.height ?? chartBox.height;
   const xr = spec.xRange ?? extent(spec.traces.flatMap((t) => t.x));
   const yr = spec.yRange ?? extent(spec.traces.flatMap((t) => t.y));
   const sx = (x: number) =>

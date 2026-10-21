@@ -23,12 +23,55 @@
   "closed_at": null,
   "phases": [
     {
+      "id": "r-261020-02-first-phased-array-article-p0",
+      "title": "Owner-requested visual corrections before writing",
+      "status": "done",
+      "closed_at": "2026-10-21",
+      "useful_alone": "Articles regain the owner-preferred palette, aligned reading layout and immediately available demos.",
+      "done_when": "Palette, contents, prose width and plot sizing are corrected; automatic demos and fallback behavior pass browser checks.",
+      "depends_on": [],
+      "items": [
+        {
+          "id": "r-261020-02-first-phased-array-article-p0-1",
+          "text": "Restore neutral zinc dark colors, simplify collapsed Contents, align article prose with applets, and reduce scaled chart height/labels.",
+          "kind": "build",
+          "status": "done",
+          "closed_at": "2026-10-21",
+          "evidence": [
+            {
+              "kind": "document",
+              "value": "src/styles/global.css; src/components/article/TableOfContents.astro; shared chart geometry and article layout. Desktop/mobile screenshots inspected in dark and light themes."
+            }
+          ]
+        },
+        {
+          "id": "r-261020-02-first-phased-array-article-p0-2",
+          "text": "Automatically mount all four demos on article entry without a load gate or focus jump, preserving static no-JavaScript/error alternatives; document the owner correction.",
+          "kind": "build",
+          "status": "done",
+          "closed_at": "2026-10-21",
+          "evidence": [
+            {
+              "kind": "measurement",
+              "value": "Production build, output checks, numerical identities and payload budget pass. Browser matrix: four demos × 1440/390px × dark/light; automatic controls, aligned prose, no page overflow/focus theft, keyboard disclosure/control endpoints and axe WCAG A/AA pass. No-JavaScript and blocked-module fallback checked. Application JS 210521 decoded / 69785 gzip bytes; controller 1479 gzip bytes."
+            },
+            {
+              "kind": "document",
+              "value": "docs/interactive-demos.md records the 2026-10-21 browser matrix and failure checks: blocked controller/module, simulated render failure, timeout/late completion and theme persistence. Local Chromium only; no owner visual approval or universal-device claim."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "r-261020-02-first-phased-array-article-p1",
       "title": "Owner manuscript and reproducible evidence",
       "status": "active",
       "useful_alone": "A bounded research question and inspectable manuscript/code/figure package can be reviewed before publication.",
       "done_when": "The owner provides a manuscript plus code/figures or explicitly scoped analytical evidence for the agreed study.",
-      "depends_on": [],
+      "depends_on": [
+        "r-261020-02-first-phased-array-article-p0"
+      ],
       "items": [
         {
           "id": "r-261020-02-first-phased-array-article-p1-1",

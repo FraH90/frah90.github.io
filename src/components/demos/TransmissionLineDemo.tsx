@@ -15,7 +15,7 @@ export default function TransmissionLineDemo() {
     [Z0, resistance, reactance, length],
   );
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Slider
           label="Z₀"

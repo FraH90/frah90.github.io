@@ -36,6 +36,24 @@ The owner writes the article; no manuscript, measurements, code results or publi
 - Re-scope if the first article expands into an unmanageable multi-effect hardware study.
 - Do not publish unsupported numerical/physical claims or a manuscript the owner has not approved.
 
+### Phase 0 — Owner-requested visual corrections before writing
+
+**Status:** done · **ID:** `r-261020-02-first-phased-array-article-p0`
+
+**Useful alone:** Articles regain the owner-preferred palette, aligned reading layout and immediately available demos.
+
+**Done when:** Palette, contents, prose width and plot sizing are corrected; automatic demos and fallback behavior pass browser checks.
+
+**Depends on:** none
+
+- ✅ **done** · **build** — Restore neutral zinc dark colors, simplify collapsed Contents, align article prose with applets, and reduce scaled chart height/labels.
+  - ID `r-261020-02-first-phased-array-article-p0-1` · closed 2026-10-21
+  - Evidence (document): src/styles/global.css; src/components/article/TableOfContents.astro; shared chart geometry and article layout. Desktop/mobile screenshots inspected in dark and light themes.
+- ✅ **done** · **build** — Automatically mount all four demos on article entry without a load gate or focus jump, preserving static no-JavaScript/error alternatives; document the owner correction.
+  - ID `r-261020-02-first-phased-array-article-p0-2` · closed 2026-10-21
+  - Evidence (measurement): Production build, output checks, numerical identities and payload budget pass. Browser matrix: four demos × 1440/390px × dark/light; automatic controls, aligned prose, no page overflow/focus theft, keyboard disclosure/control endpoints and axe WCAG A/AA pass. No-JavaScript and blocked-module fallback checked. Application JS 210521 decoded / 69785 gzip bytes; controller 1479 gzip bytes.
+  - Evidence (document): docs/interactive-demos.md records the 2026-10-21 browser matrix and failure checks: blocked controller/module, simulated render failure, timeout/late completion and theme persistence. Local Chromium only; no owner visual approval or universal-device claim.
+
 ### Phase 1 — Owner manuscript and reproducible evidence
 
 **Status:** active · **ID:** `r-261020-02-first-phased-array-article-p1`
@@ -44,7 +62,7 @@ The owner writes the article; no manuscript, measurements, code results or publi
 
 **Done when:** The owner provides a manuscript plus code/figures or explicitly scoped analytical evidence for the agreed study.
 
-**Depends on:** none
+**Depends on:** `r-261020-02-first-phased-array-article-p0`
 
 - ✅ **done** · **decision** — Carry forward the saved beam-squint brief and record the owner’s instruction to close website setup and focus on the first article.
   - ID `r-261020-02-first-phased-array-article-p1-1` · closed 2026-10-20 · commits `cc8bb91fa531416c68287a5708ddbf6886d77e1d`
@@ -81,3 +99,15 @@ A notification time/timezone has not been supplied; no timed reminder has been s
 ## Working notes
 
 This is the only primary roadmap. The foundation roadmap remains closed. [Workflow permissions/checks](../r-261020-03-deployment-checks/r-261020-03-deployment-checks.md) remain separately paused under the owner’s earlier deferral. The brief is saved as a persistent reminder; no timed notification has been created.
+
+### Owner visual feedback — 2026-10-21
+
+The owner explicitly reprioritized visual repairs before writing. This is a new corrective phase on the active article roadmap; the historical foundation closure remains intact. No article or deployment-permission work is claimed complete.
+
+> Before writing the article we need to fix lot of shit
+> - i dont fukcing like the palette of the dark mode. It's fucking hugly! I prefer the old palette
+> - the toc is fucking ugly! THos fuckin 3 lines.. but the toc itself also is ugly!
+> - I dont want the "load interactive demo" shit. it must be loaded directly when we open page, as before! Moreover im ok with horizontal size.. but vertical size, u change it? the size of applet. i dunno.. i dont lkike it a lot now. was better before
+> - I'm ok with the size horizontal of the apllet.. but writing? it's fucking shit. It's impaginated veyr very bad. Maybe same size as horizontal as the applet? Woudl be better?
+>
+> I dunno, i handed to u this shit to improove the design.. but u made it even more shitty for some stuff

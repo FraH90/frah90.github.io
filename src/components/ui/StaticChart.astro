@@ -9,7 +9,8 @@ interface Props {
 }
 const { spec } = Astro.props;
 const { xTicks, yTicks, paths } = chartGeometry(spec);
-const { width, height, left, right, top, bottom } = chartBox;
+const { width, left, right, top, bottom } = chartBox;
+  const height = spec.height ?? chartBox.height;
 ---
 
 <figure class="scientific-chart">

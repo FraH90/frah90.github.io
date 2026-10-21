@@ -18,7 +18,7 @@ export default function FourierTransformDemo() {
     value: number,
   ) => set(values.map((v, i) => (i === index ? value : v)));
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {frequencies.map((frequency, i) => (
           <div

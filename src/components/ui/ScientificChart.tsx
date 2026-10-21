@@ -5,7 +5,8 @@ import {
 } from "../../lib/chart-geometry";
 export default function ScientificChart({ spec }: { spec: ChartSpec }) {
   const { xTicks, yTicks, paths } = chartGeometry(spec);
-  const { width, height, left, right, top, bottom } = chartBox;
+  const { width, left, right, top, bottom } = chartBox;
+  const height = spec.height ?? chartBox.height;
   return (
     <figure className="scientific-chart">
       <figcaption className="text-sm text-ink mb-3">{spec.title}</figcaption>

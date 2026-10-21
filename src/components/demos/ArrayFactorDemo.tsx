@@ -19,7 +19,7 @@ export default function ArrayFactorDemo() {
       ? `${((Math.acos(cosine) * 180) / Math.PI).toFixed(1)}°`
       : "No visible solution";
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
         <Slider
           label="Elements N"

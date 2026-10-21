@@ -17,15 +17,17 @@ Measured on 2026-10-20 in Chromium, ARM64 sandbox, production preview, new page/
 | Gaussian beam | 1,525,973 / 5,005,617 | 1,802 ms | 66,615 / 204,591 | 102 ms |
 | Transmission line | 1,526,088 / 5,005,824 | 1,805 ms | 66,680 / 204,773 | 99 ms |
 
+The following activation measurements describe the previous click-to-load implementation, superseded by automatic loading on 2026-10-21. They are historical, not current navigation timings.
+
 The previous Plotly chunk alone was 1,461,514 encoded / 4,805,636 decoded bytes. Initial script execution in the old demos was about 1.28–1.30 seconds. Writing and the non-demo ML article fetched no external application-JS resource in that baseline. The new demo controller is approximately 1.6 KB gzip / 3.6 KB decoded before activation; no React renderer or demo code is requested until the reader loads a demo. Activated totals above include that controller and the chosen demo's dependencies. The new click timing and previous navigation timing start at different events; they are not a controlled user-experience speedup ratio. All four model bundles together remain below the budget below. Minor loader/error-message changes can shift exact bytes from these recorded measurements; checks use ceilings rather than fixed hashes.
 
 These curves and spectra need axes, legends, units, accessible explanations and parameter updates. Native SVG provides those with no new dependency and substantially less loading/initialization work. It intentionally omits Plotly pan/zoom, hover inspection, and modebar controls. At small widths charts scroll locally at a readable minimum width; the frame explains that behavior. Do not use this renderer as a general substitute for 3D, large datasets, or interactive scientific analysis.
 
 ## Budgets
 
-Established after the baseline and before assessing the replacement:
+Payload/model ceilings were established with the replacement; automatic entry loading supersedes the original activation policy on 2026-10-21:
 
-- No React/demo/plotting payload on article entry; the small activation controller must stay below 3 KiB gzip. Ordinary pages must not request it.
+- Load the chosen React demo automatically on article entry; the controller must stay below 3 KiB gzip. Ordinary pages must not request demo code.
 - All emitted application JavaScript under `dist/_astro/` combined must stay at or below 250 KiB decoded / 80 KiB gzip. This is stricter than a per-demo cap and excludes the separately lazy Pagefind engine.
 - No Plotly chunk in the current published build.
 - Each of the four article documents, including reference SVGs, at or below 32 KiB gzip.
@@ -36,7 +38,7 @@ Run `npm run build`, `npm run check:build`, and `npm run check:demos`. The latte
 
 ## Loading, failure and lifecycle
 
-`InteractiveDemo.astro` emits static SVG, a parameter statement, model description and observation. Buttons start hidden. Its small controller enables Load interactive demo and imports only the requested demo plus `demo-mount.tsx` after an explicit action. A loading announcement keeps the static example visible. After React commits, focus moves into the named live region, the reference hides, and a disclosure can show it alongside the current controls. The reference remains the original settings and is labeled accordingly.
+`InteractiveDemo.astro` emits static SVG, a parameter statement, model description and observation. Its small controller automatically imports only the relevant demo plus `demo-mount.tsx`. A loading announcement keeps the static example visible. After React commits, the reference and status hide without moving focus or scrolling. Normal operation shows no load button or reference toggle. Failure preserves the reference and offers Retry demo; only a manual successful retry focuses the controls. Without JavaScript, the static reference remains readable.
 
 Dynamic import, React root rendering, and timeout failures restore the static case and a retry control. A timed-out import cannot mount later because each activation carries a generation counter. Unmounts clean up roots; pagehide preserves browser-cache entries and releases a leaving page's root. No chart engines, global theme listeners or resize observers are needed by native SVG. Theme tokens update its strokes/text while control values and paths remain intact.
 
@@ -50,3 +52,9 @@ The React root owns an initially empty live container only; it never clears Astr
 - DFT: test zero input, DC, Nyquist, coherent sinusoid amplitude and off-bin distant leakage. One-sided amplitudes are normalized by the sum of window weights; non-endpoint bins are doubled. The N/2+1 output now includes Nyquist and has matching frequency/amplitude lengths. Symmetric Hann/Hamming/Blackman windows use N−1. Coherent gain correction does not remove scalloping or broadened main lobes.
 
 Primary references: [Ellingson's standing waves](https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Electromagnetics_I_(Ellingson)/03%3A_Transmission_Lines/3.13%3A_Standing_Waves), [standing-wave ratio](https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Electromagnetics_I_(Ellingson)/03%3A_Transmission_Lines/3.14%3A_Standing_Wave_Ratio), [Bevelacqua's uniform arrays](https://www.antenna-theory.com/arrays/weights/uniform.php) and [grating lobes](https://www.antenna-theory.com/arrays/weights/gratinglobes.php), [MIT Gaussian beam lecture](https://ocw.mit.edu/courses/6-974-fundamentals-of-photonics-quantum-electronics-spring-2006/871c32e6e4a44cbb1546741ef06f0f2f_parax_wav_eq_gau.pdf), and [SciPy spectral analysis](https://docs.scipy.org/doc/scipy/tutorial/signal.html#spectral-analysis). The articles link their relevant sources through typed references. These checks verify representative ideal models; broader editorial review and publication decisions remain in Phase 6.
+
+## Owner visual correction — 2026-10-21
+
+Automatic loading is the current product decision. The initial bundle now includes React and the selected demo; the historical click-to-ready timings above do not apply. The complete application set remains under 250 KiB decoded / 80 KiB gzip. Charts use 960×360 geometry with 200/250-high stacked Fourier panels, 16-unit labels, and local scrolling below a 48rem minimum plot width. Article prose shares the applet shell.
+
+Production browser review on 2026-10-21 covered all four demos at 1440px and 390px in both themes: automatic controls, matched prose/applet edges, no page overflow or initial focus/scroll movement, keyboard contents/control endpoints, and axe WCAG A/AA checks passed. Dark/light screenshots were inspected. Separate checks passed for no JavaScript, blocked controller/module, simulated React render failure, timeout with late completion, retry fallback and theme persistence. These are local Chromium checks, not a claim of every browser/device or owner visual approval.
