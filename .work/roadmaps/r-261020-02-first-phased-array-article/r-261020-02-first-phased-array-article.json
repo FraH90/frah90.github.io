@@ -126,6 +126,9 @@
               "kind": "measurement",
               "value": "Build/output checks pass, including retained Demo metadata and no persistent notice. Local Chromium verifies all five articles at 1440/390/320px in both themes: initially hidden explanation, hover/focus reveal, hoverable tooltip, Escape dismissal and on-screen bounds. Touch reveal/outside-tap dismissal also pass with and without JavaScript; no-JavaScript Escape dismissal is not implemented."
             }
+          ],
+          "commits": [
+            "d873ec396e296cda0cf16cbb2ea17876119a6c6a"
           ]
         }
       ]

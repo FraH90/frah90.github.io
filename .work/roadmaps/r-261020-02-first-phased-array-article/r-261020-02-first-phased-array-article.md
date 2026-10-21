@@ -63,7 +63,7 @@ The owner writes the article; no manuscript, measurements, code results or publi
   - ID `r-261020-02-first-phased-array-article-p0-5` · closed 2026-10-21 · commits `c69db129ff31e41ecf200067d49e5a002fc89ce7`
   - Evidence (measurement): Build and output checks pass. Local Chromium at 1440/390px in dark/light and JavaScript/no-JavaScript modes verifies plain heading text, absent appended symbols and keyboard Contents navigation to the preserved focusable heading ID.
 - ✅ **done** · **build** — Replace the persistent demo explanation box with a transient tooltip on the article Demo badge, preserving discovery metadata and accessible interaction.
-  - ID `r-261020-02-first-phased-array-article-p0-6` · closed 2026-10-21
+  - ID `r-261020-02-first-phased-array-article-p0-6` · closed 2026-10-21 · commits `d873ec396e296cda0cf16cbb2ea17876119a6c6a`
   - Evidence (measurement): Build/output checks pass, including retained Demo metadata and no persistent notice. Local Chromium verifies all five articles at 1440/390/320px in both themes: initially hidden explanation, hover/focus reveal, hoverable tooltip, Escape dismissal and on-screen bounds. Touch reveal/outside-tap dismissal also pass with and without JavaScript; no-JavaScript Escape dismissal is not implemented.
 
 ### Phase 1 — Owner manuscript and reproducible evidence
