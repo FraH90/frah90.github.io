@@ -1,4 +1,18 @@
-# Interactive teaching examples
+# Interactive demos
+
+## Current owner decision — original Plotly presentation
+
+On 2026-10-21 the owner reviewed an equal-width comparison and explicitly chose the original demo design for all demos, requesting only missing axis names. Live controls now use the original compact arrangement, thin sliders, monospace readouts and Plotly plot types. Standard plots are 384px tall; Fourier retains 192px time and 256px bar-spectrum panels. No added explanatory paragraphs or standalone legends sit inside the live boxes. Existing article assumptions/references remain.
+
+`PlotlyChart.tsx` converts axis title strings into `{ text }` objects so labels actually render with the installed engine. It applies semantic theme colors. Shared verified models retain corrected Fourier one-sided/window normalization, DC/Nyquist treatment, true infinite VSWR, Gaussian divergence convention and safe array steering limits. The displayed broadside beamwidth estimate uses 50.8/(N d/λ) degrees; the original 102 coefficient was incorrect for half-power width.
+
+Automatic loading preserves the calculated static reference until every Plotly chart reports a completed draw. Imports/render failures and the 15-second timeout retain the reference and Retry control. No JavaScript still provides static SVG figures and model context. Ordinary pages never request Plotly. The production engine is capped at 5 MiB decoded / 1600 KiB gzip; all application JS at 6 MiB / 1800 KiB, controller at 3 KiB gzip and article HTML at 32 KiB gzip. This deliberately supersedes the much smaller SVG payload budget because the owner selected Plotly. Run `npm run build`, `npm run check:build`, and `npm run check:demos`.
+
+## Historical SVG implementation record (superseded)
+
+The following records the earlier SVG replacement and its measurements. Its renderer, controls and payload policy are historical, not current requirements.
+
+### Archived teaching-example notes
 
 ## Scope and scientific boundaries
 

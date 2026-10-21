@@ -50,7 +50,7 @@ src/
   components/blog/             Shared listing and article cards
   components/article/          Contents, scientific figures, citations/references
   components/nav/              Persistent navigation
-  components/demos/            Automatically mounted React controls and SVG charts
+  components/demos/            Automatically mounted React controls and Plotly charts
   components/ui/               Chart, slider, equation, and demo wrappers
   styles/global.css            Tailwind, KaTeX, shared interaction styles
 public/                        Deliberately public assets and datasets
@@ -78,7 +78,7 @@ Redirect aliases are excluded from the sitemap. The mobile header retains the sa
 
 Dark is the initial default, independently of the browser's system preference. The header button switches to light or dark and stores the explicit choice under `frah90-theme` in local storage. It applies before body rendering, persists across page loads, and synchronizes between tabs. If storage is blocked, the switch still works for the current page; if JavaScript is disabled, the site stays readable in dark mode and hides the unavailable switch.
 
-Semantic color and layout tokens live in `src/styles/global.css`. Article prose, headings and demos share the same 64rem shell; neutral zinc colors restore the original dark palette. The compact Contents disclosure stays collapsed initially. Wide equations, code, and tables scroll locally and receive keyboard focus when they overflow. Shiki emits both code palettes at build time. Scientific SVG charts inherit shared theme tokens. Range controls use native styling and associated labels. See [interactive demo behavior and measured budgets](docs/interactive-demos.md).
+Semantic color and layout tokens live in `src/styles/global.css`. Article prose, headings and demos share the same 64rem shell; neutral zinc colors restore the original dark palette. The compact Contents disclosure stays collapsed initially. Wide equations, code, and tables scroll locally and receive keyboard focus when they overflow. Shiki emits both code palettes at build time. Plotly charts use shared theme colors and visible axis titles. Range controls use native styling and associated labels. See [interactive demo behavior and measured budgets](docs/interactive-demos.md).
 
 ## Write an article
 
@@ -117,9 +117,9 @@ import InteractiveDemo from '../../../components/ui/InteractiveDemo.astro';
 <InteractiveDemo kind="transmission" />
 ```
 
-Supported kinds are `array`, `fourier`, `gaussian`, and `transmission`. Each supplies a calculated static figure, units, model assumptions, and a reference observation before scripts load. Interactive controls start automatically on page entry without moving focus. Errors or a 15-second stalled load leave the reference visible and offer Retry demo. No interactive JavaScript or plotting library is needed to read the example. These compact SVG plots provide labeled curves and local horizontal scrolling, without Plotly pan/zoom or hover inspection.
+Supported kinds are `array`, `fourier`, `gaussian`, and `transmission`. Each supplies a calculated static figure, units, model assumptions, and a reference observation before scripts load. Interactive controls start automatically on page entry without moving focus. Errors or a 15-second stalled load leave the reference visible and offer Retry demo. No interactive JavaScript or plotting library is needed to read the example. The original compact Plotly layouts and plot types are restored, with named axes and units. Heights are fixed at 384px, or 192/256px for the Fourier pair. Static SVG reference plots remain available when scripts fail.
 
-KaTeX renders MDX math at build time. The published demos use native SVG and small on-demand React roots; browser code remains outside static rendering. The old `PlotlyChart` and unused `ModeProfileViewer` are exploratory code, excluded from current published bundles. The mode viewer's approximations are unvalidated; do not publish it as an optical solver.
+KaTeX renders MDX math at build time. The published demos use automatically loaded Plotly charts in small React roots; browser code remains outside static rendering. The unused `ModeProfileViewer` remains exploratory code, excluded from published bundles. The mode viewer's approximations are unvalidated; do not publish it as an optical solver.
 
 Review scientific claims, assumptions, figures/captions, units, references, links, and browser behavior before changing `draft` to false. Published articles appear automatically in their listing and topic route. Drafts are excluded through `src/lib/posts.ts`, including article-route generation. Search, RSS, related reading, and sitemap also exclude drafts.
 
@@ -140,5 +140,3 @@ CV links appear only if `public/cv.pdf` exists when the site builds. CV publicat
 Tables are centered automatically, with local scrolling for wide tables. Displayed equations use `$$` delimiters on separate lines and are centered globally; single-line `$...$` stays inline. See [math authoring](docs/article-authoring.md#displayed-equations).
 
 The article Demo badge shows its explanation temporarily on hover/focus (tap on touchscreens); no persistent notice box interrupts reading.
-
-A temporary [design comparison](/design-review/) presents rendered screenshots of the original and current phased-array demos and full article pages. It is excluded from sitemap/search/RSS and marked noindex; remove the route and `public/design-review/` assets after the owner chooses a direction.

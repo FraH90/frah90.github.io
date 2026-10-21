@@ -16,17 +16,17 @@ const sizes = scripts.map((file) => {
 const raw = sizes.reduce((sum, file) => sum + file.raw, 0),
   gzip = sizes.reduce((sum, file) => sum + file.gzip, 0);
 assert.ok(
-  raw <= 250 * 1024,
-  `Application JS ${raw} bytes exceeds 250 KiB decoded budget`,
+  raw <= 6 * 1024 * 1024,
+  `Application JS ${raw} bytes exceeds 6 MiB decoded budget`,
 );
 assert.ok(
-  gzip <= 80 * 1024,
-  `Application JS ${gzip} bytes exceeds 80 KiB gzip budget`,
+  gzip <= 1800 * 1024,
+  `Application JS ${gzip} bytes exceeds 1800 KiB gzip budget`,
 );
-assert.ok(
-  !scripts.some((file) => /plotly/i.test(file)),
-  "Plotly must not be shipped by the current simple demos",
-);
+// Owner chose the original Plotly renderer on 2026-10-21. Keep its cost explicit.
+const engine = sizes.filter(file => /plotly/i.test(file.file));
+assert.equal(engine.length, 1, 'Expected one shared Plotly engine chunk');
+assert.ok(engine[0].raw <= 5 * 1024 * 1024 && engine[0].gzip <= 1600 * 1024, 'Plotly engine exceeds its restored-renderer budget');
 const controller = sizes.find((file) =>
   file.file.startsWith("InteractiveDemo."),
 );

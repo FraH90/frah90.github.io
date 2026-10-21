@@ -49,7 +49,7 @@ export default function PlotlyChart({ data, layout, className = 'w-full h-96' }:
       const styles = getComputedStyle(document.documentElement);
       const color = (name: string) => styles.getPropertyValue(name).trim();
       const user = resolveColors(layout ?? {}, styles);
-      const font = { color: color('--muted'), family: 'Inter, system-ui, sans-serif', size: 12 };
+      const font = { color: color('--muted'), family: 'monospace', size: 11 };
       const axis = (settings: any = {}) => ({
         color: color('--muted'), gridcolor: color('--rule'), zerolinecolor: color('--rule-strong'),
         automargin: true,
@@ -58,7 +58,7 @@ export default function PlotlyChart({ data, layout, className = 'w-full h-96' }:
       });
       const themedLayout = {
         paper_bgcolor: 'transparent', plot_bgcolor: 'transparent',
-        margin: { t: 50, r: 20, b: 55, l: 55 },
+        margin: { t: 40, r: 20, b: 55, l: 65 },
         // Theme updates preserve the reader's zoom and legend selection.
         uirevision: 'preserve-view',
         ...user,
@@ -68,7 +68,11 @@ export default function PlotlyChart({ data, layout, className = 'w-full h-96' }:
         hoverlabel: { bgcolor: color('--surface'), bordercolor: color('--rule-strong'), font, ...user.hoverlabel },
       };
       await engine.react(element, resolveColors(data, styles), themedLayout, { responsive: true, displayModeBar: false });
-      if (!cancelled) setError(false);
+      if (!cancelled) {
+        setError(false);
+        element.dataset.plotReady = 'true';
+        element.dispatchEvent(new CustomEvent('plot-ready', { bubbles: true }));
+      }
     }).catch(error => {
       if (!cancelled) {
         console.error('Unable to render chart', error);
@@ -78,10 +82,12 @@ export default function PlotlyChart({ data, layout, className = 'w-full h-96' }:
     return () => { cancelled = true; };
   }, [data, layout, themeVersion]);
 
+  if (error) throw new Error('Unable to render Plotly chart');
+
   return (
     <div className="min-w-0">
       {error && <p role="status" className="text-sm text-muted">This chart could not load. Reload the page to try again.</p>}
-      <div ref={ref} className={className} />
+      <div ref={ref} className={className} data-plot-ready="false" role="img" aria-label={`${(layout as any)?.title?.text ?? 'Scientific plot'}. ${(layout as any)?.xaxis?.title ?? ''}; ${(layout as any)?.yaxis?.title ?? ''}.`} />
     </div>
   );
 }

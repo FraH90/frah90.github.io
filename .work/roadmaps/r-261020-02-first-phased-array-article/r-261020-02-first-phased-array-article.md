@@ -68,6 +68,10 @@ The owner writes the article; no manuscript, measurements, code results or publi
 - ✅ **done** · **build** — Provide a temporary HTTPS-accessible visual comparison of the original and current phased-array demos and complete article pages.
   - ID `r-261020-02-first-phased-array-article-p0-7` · closed 2026-10-21 · commits `9671bb7bcb8ff0b25066fdc43d53d29d5825ba81`
   - Evidence (measurement): Temporary /design-review/ route uses rendered screenshots at equal 1024px demo widths (original components from 22a1c85, current from b8a8a3e). Production build/output checks pass for 16 pages. Local Chromium checks desktop/mobile, both themes, JS/no-JS, keyboard view switching, image decoding, no page overflow and noindex metadata. Route excluded from sitemap, search and RSS; normal article remains unchanged.
+- ✅ **done** · **build** — Restore the original compact Plotly presentation across all four public demos, add working axis titles, retain numerical corrections and static fallbacks, and remove the completed comparison preview.
+  - ID `r-261020-02-first-phased-array-article-p0-8` · closed 2026-10-21
+  - Evidence (decision): Owner: “I prefer the old version. A lot. A fucking lot. Only thing it misses: the Theta and module of AF on axis. Only things. For all demos… return to the old plot shit.. only add the names on axis if missing”. This supersedes live-SVG presentation decisions; original numerical errors are not reintroduced.
+  - Evidence (measurement): Production build, 15-page output checks, numerical identities and explicit restored-Plotly budget pass. Total JS 5016587 decoded / 1531105 gzip bytes; controller 1559 gzip bytes. Local Chromium covers four demos × 1440/390px × dark/light: all axis titles, original 384px/192px/256px heights, Fourier bars, compact live content, slider endpoints, no page overflow/focus jump or browser errors. Separate no-JS/import/render/timeout fallback checks pass; default screenshots inspected, axis title bounds, live theme update and mobile resize pass.
 
 ### Phase 1 — Owner manuscript and reproducible evidence
 
@@ -151,3 +155,11 @@ Removed the persistent article notice and attached its existing text to the Demo
 ### Accessible design comparison — 2026-10-21
 
 Owner asked for both versions rendered, then reported that local file/image links were not accessible in the chat interface. A temporary public `/design-review/` page provides side-by-side screenshots and a full-page view switch. The older demo was restored in an isolated temporary checkout; the article text and surrounding layout are identical in both renders. Images are visual previews, not live controls. The comparison is noindex, unlinked from site navigation and absent from discovery outputs. Remove the route, screenshot assets and sitemap exclusion once the owner chooses a direction. No visual direction has yet been approved.
+
+### Owner chooses the original demos — 2026-10-21
+
+Original words: “I prefer the old version. A lot. A fucking lot. Only thing it misses: the Theta and module of AF on axis. Only things. For all demos… return to the old plot shit.. only add the names on axis if missing”.
+
+Restored the compact Plotly control/layout design from 22a1c85 for all four public demos, including thin sliders, small monospace rows, original trace types and fixed heights. Axis title strings are normalized to the installed Plotly object syntax. Verified shared models preserve corrected physics/numerics (including true infinite VSWR, spectrum normalization and broadside HPBW coefficient); the live boxes lose the added narrative and SVG legends. Static reference plots stay available without scripts or after errors. Loading completes only after all Plotly charts draw.
+
+The owner’s renderer preference explicitly replaces the SVG payload policy: Plotly is a shared engine capped at 5 MiB decoded/1600 KiB gzip, complete application JS at 6 MiB/1800 KiB. No new application dependency was installed. The comparison route, screenshot assets, noindex option and temporary sitemap exception are removed after the decision. Historical delivery evidence remains intact.

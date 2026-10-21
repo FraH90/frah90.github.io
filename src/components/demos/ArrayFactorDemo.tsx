@@ -1,78 +1,70 @@
-import { useState, useMemo } from "react";
-import Slider from "../ui/Slider";
-import ScientificChart from "../ui/ScientificChart";
-import { computeArray } from "../../lib/demo-models";
-import { arrayChart } from "../../lib/demo-charts";
+import { useState, useMemo } from 'react';
+import Slider from '../ui/Slider';
+import PlotlyChart from '../ui/PlotlyChart';
+import { computeArray } from '../../lib/demo-models';
+
 export default function ArrayFactorDemo() {
-  const [N, setN] = useState(8),
-    [spacing, setSpacing] = useState(0.5),
-    [phaseDegrees, setPhaseDegrees] = useState(0),
-    [dB, setDB] = useState(false);
-  const beta = (phaseDegrees * Math.PI) / 180;
-  const model = useMemo(
-    () => computeArray(N, spacing, beta),
-    [N, spacing, beta],
-  );
-  const cosine = -beta / (2 * Math.PI * spacing);
-  const primary =
-    Math.abs(cosine) <= 1
-      ? `${((Math.acos(cosine) * 180) / Math.PI).toFixed(1)}°`
-      : "No visible solution";
+  const [N, setN]       = useState(8);
+  const [d, setD]       = useState(0.5);
+  const [beta, setBeta] = useState(0);
+  const [showdB, setShowdB] = useState(false);
+
+  const { thetaDeg, AF, AFdB } = useMemo(() => {
+    const model = computeArray(N, d, beta);
+    return {
+      thetaDeg: model.x,
+      AF: model.y,
+      AFdB: model.y.map(value => 20 * Math.log10(Math.max(value, 1e-6))),
+    };
+  }, [N, d, beta]);
+
+  const yData = showdB ? AFdB : AF;
+  const yLabel = showdB ? '|AF| dB' : '|AF| normalized';
+
+  const steeringAngle = beta !== 0
+    ? (Math.abs(-beta / (2 * Math.PI * d)) <= 1 ? ((Math.acos(-beta / (2 * Math.PI * d)) * 180) / Math.PI).toFixed(1) + '°' : 'No visible solution')
+    : '90.0°';
+
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-6">
+      {/* Sliders */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-        <Slider
-          label="Elements N"
-          min={2}
-          max={64}
-          step={1}
-          value={N}
-          onChange={setN}
-          decimals={0}
-        />
-        <Slider
-          label="Spacing d/λ"
-          min={0.1}
-          max={2}
-          step={0.05}
-          value={spacing}
-          onChange={setSpacing}
-        />
-        <Slider
-          label="Phase shift β"
-          min={-180}
-          max={180}
-          step={1}
-          value={phaseDegrees}
-          onChange={setPhaseDegrees}
-          decimals={0}
-          unit="°"
-        />
+        <Slider label="Elements (N)" min={2} max={64} step={1}
+                value={N} onChange={setN} decimals={0} />
+        <Slider label="Spacing d/λ" min={0.1} max={2.0} step={0.05}
+                value={d} onChange={setD} unit="λ" />
+        <Slider label="Phase shift β" min={-Math.PI} max={Math.PI} step={0.05}
+                value={beta} onChange={setBeta} unit=" rad"
+                minLabel="-π" maxLabel="π" />
       </div>
-      <p className="demo-readout">
-        ψ = 0 direction: <output>{primary}</output>. In-phase directions (all
-        orders):{" "}
-        <output>
-          {model.directions.length
-            ? model.directions.map((d) => `${d.toFixed(1)}°`).join(", ")
-            : "None in the visible range"}
-        </output>
-        .
-      </p>
-      <label className="flex items-center gap-2 min-h-11 text-sm">
-        <input
-          type="checkbox"
-          checked={dB}
-          onChange={(e) => setDB(e.target.checked)}
-        />{" "}
-        dB scale (floor −60 dB)
-      </label>
-      <ScientificChart spec={arrayChart(model, dB)} />
-      <p className="text-sm text-muted">
-        Uniform weights do not independently lower sidelobes as N increases.
-        Multiple in-phase directions indicate grating lobes. Element patterns,
-        coupling, losses and bandwidth are omitted.
-      </p>
+
+      {/* Info row */}
+      <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-muted">
+        <span>steering angle ≈ <span className="text-accent">{steeringAngle}</span></span>
+        <span>Broadside HPBW ≈ <span className="text-accent">{(50.8 / (N * d)).toFixed(1)}°</span></span>
+        <label className="flex items-center gap-2 cursor-pointer ml-auto">
+          <input type="checkbox" checked={showdB} onChange={e => setShowdB(e.target.checked)}
+                 className="accent-accent" />
+          <span>dB scale</span>
+        </label>
+      </div>
+
+      {/* Plot */}
+      <PlotlyChart
+        data={[{
+          x: thetaDeg,
+          y: yData,
+          type: 'scatter',
+          mode: 'lines',
+          line: { color: 'var(--plot-green)', width: 1.5 },
+          name: yLabel,
+        }]}
+        layout={{
+          title: { text: 'Array Factor vs. Angle', font: { size: 13 } },
+          xaxis: { title: 'θ (degrees)', range: [0, 180], dtick: 30 },
+          yaxis: { title: yLabel, range: showdB ? [-60, 0] : [0, 1] },
+        }}
+      />
     </div>
   );
 }

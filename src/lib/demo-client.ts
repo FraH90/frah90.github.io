@@ -44,7 +44,9 @@ for (const frame of document.querySelectorAll<HTMLElement>('[data-demo]')) {
       const [{ mountDemo }, module] = await Promise.all([import('./demo-mount'), demos[kind]()]);
       if (version !== generation) return;
       live.hidden = false;
-      cleanup = mountDemo(live, module.default, () => {
+      const ready = () => {
+        const plots = [...live.querySelectorAll<HTMLElement>('[data-plot-ready]')];
+        if (!plots.length || plots.some(plot => plot.dataset.plotReady !== 'true')) return;
         if (version !== generation) return;
         clearTimeout(timer);
         reference.hidden = true;
@@ -53,7 +55,10 @@ for (const frame of document.querySelectorAll<HTMLElement>('[data-demo]')) {
         status.hidden = true;
         // Automatic loading must never move a reader's keyboard focus or scroll.
         if (manual) live.focus({ preventScroll: true });
-      }, () => failed(version));
+      };
+      live.addEventListener('plot-ready', ready);
+      const unmount = mountDemo(live, module.default, ready, () => failed(version));
+      cleanup = () => { live.removeEventListener('plot-ready', ready); unmount(); };
     } catch { failed(version); }
   }
   retry.addEventListener('click', () => { void load(true); });

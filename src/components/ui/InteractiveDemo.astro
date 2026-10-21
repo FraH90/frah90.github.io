@@ -10,15 +10,16 @@ const example = demoExamples[kind];
 ---
 
 <section
-  class="interactive-demo not-prose my-8 rounded-lg border border-rule bg-surface/60"
+  class="interactive-demo not-prose my-8 rounded-xl border border-rule bg-surface/60"
   data-demo={kind}
   data-pagefind-ignore
   aria-label={`${example.label} example`}
 >
-  <div class="border-b border-rule px-4 py-3 text-sm font-medium text-ink">
-    {example.label}
+  <div class="border-b border-rule px-4 py-2 flex items-center gap-2">
+    <span class="w-2 h-2 rounded-full bg-accent/60" aria-hidden="true"></span>
+    <span class="text-[11px] font-mono text-muted uppercase tracking-widest">{example.label}</span>
   </div>
-  <div class="p-4 sm:p-5">
+  <div class="p-5">
     <div
       data-demo-live
       hidden

@@ -7,14 +7,12 @@ interface Props {
   title: string;
   description?: string;
   ogImage?: string;
-  noindex?: boolean;
 }
 
 const {
   title,
   description = siteDescription,
   ogImage = '/og-default.png',
-  noindex = false,
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
@@ -35,7 +33,6 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
