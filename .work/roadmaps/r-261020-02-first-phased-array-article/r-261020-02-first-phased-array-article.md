@@ -66,7 +66,7 @@ The owner writes the article; no manuscript, measurements, code results or publi
   - ID `r-261020-02-first-phased-array-article-p0-6` · closed 2026-10-21 · commits `d873ec396e296cda0cf16cbb2ea17876119a6c6a`
   - Evidence (measurement): Build/output checks pass, including retained Demo metadata and no persistent notice. Local Chromium verifies all five articles at 1440/390/320px in both themes: initially hidden explanation, hover/focus reveal, hoverable tooltip, Escape dismissal and on-screen bounds. Touch reveal/outside-tap dismissal also pass with and without JavaScript; no-JavaScript Escape dismissal is not implemented.
 - ✅ **done** · **build** — Provide a temporary HTTPS-accessible visual comparison of the original and current phased-array demos and complete article pages.
-  - ID `r-261020-02-first-phased-array-article-p0-7` · closed 2026-10-21
+  - ID `r-261020-02-first-phased-array-article-p0-7` · closed 2026-10-21 · commits `9671bb7bcb8ff0b25066fdc43d53d29d5825ba81`
   - Evidence (measurement): Temporary /design-review/ route uses rendered screenshots at equal 1024px demo widths (original components from 22a1c85, current from b8a8a3e). Production build/output checks pass for 16 pages. Local Chromium checks desktop/mobile, both themes, JS/no-JS, keyboard view switching, image decoding, no page overflow and noindex metadata. Route excluded from sitemap, search and RSS; normal article remains unchanged.
 
 ### Phase 1 — Owner manuscript and reproducible evidence
