@@ -60,7 +60,7 @@ The owner writes the article; no manuscript, measurements, code results or publi
   - ID `r-261020-02-first-phased-array-article-p0-4` · closed 2026-10-21 · commits `d54e3a734c28b25d0569a89ca37da5bbdad4f1fe`
   - Evidence (measurement): Build/output checks pass. Local Chromium verifies both table-bearing articles at 1440/390px in dark/light and no-JavaScript mode: centered bounds, semantic headers, no page overflow. Simulated wide tables remain keyboard-scrollable. Desktop table screenshot inspected.
 - ✅ **done** · **build** — Remove appended permalink symbols beside section headings while retaining native section IDs and Contents navigation.
-  - ID `r-261020-02-first-phased-array-article-p0-5` · closed 2026-10-21
+  - ID `r-261020-02-first-phased-array-article-p0-5` · closed 2026-10-21 · commits `c69db129ff31e41ecf200067d49e5a002fc89ce7`
   - Evidence (measurement): Build and output checks pass. Local Chromium at 1440/390px in dark/light and JavaScript/no-JavaScript modes verifies plain heading text, absent appended symbols and keyboard Contents navigation to the preserved focusable heading ID.
 
 ### Phase 1 — Owner manuscript and reproducible evidence

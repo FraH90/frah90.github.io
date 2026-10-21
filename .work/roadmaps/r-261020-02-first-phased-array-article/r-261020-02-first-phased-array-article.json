@@ -110,6 +110,9 @@
               "kind": "measurement",
               "value": "Build and output checks pass. Local Chromium at 1440/390px in dark/light and JavaScript/no-JavaScript modes verifies plain heading text, absent appended symbols and keyboard Contents navigation to the preserved focusable heading ID."
             }
+          ],
+          "commits": [
+            "c69db129ff31e41ecf200067d49e5a002fc89ce7"
           ]
         }
       ]
