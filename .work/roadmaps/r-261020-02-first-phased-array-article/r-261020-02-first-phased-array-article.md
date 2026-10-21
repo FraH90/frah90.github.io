@@ -47,10 +47,10 @@ The owner writes the article; no manuscript, measurements, code results or publi
 **Depends on:** none
 
 - ✅ **done** · **build** — Restore neutral zinc dark colors, simplify collapsed Contents, align article prose with applets, and reduce scaled chart height/labels.
-  - ID `r-261020-02-first-phased-array-article-p0-1` · closed 2026-10-21
+  - ID `r-261020-02-first-phased-array-article-p0-1` · closed 2026-10-21 · commits `bdb6326bfc5d4dd10b6ca76ad1f7a2b9c7c04ac6`
   - Evidence (document): src/styles/global.css; src/components/article/TableOfContents.astro; shared chart geometry and article layout. Desktop/mobile screenshots inspected in dark and light themes.
 - ✅ **done** · **build** — Automatically mount all four demos on article entry without a load gate or focus jump, preserving static no-JavaScript/error alternatives; document the owner correction.
-  - ID `r-261020-02-first-phased-array-article-p0-2` · closed 2026-10-21
+  - ID `r-261020-02-first-phased-array-article-p0-2` · closed 2026-10-21 · commits `bdb6326bfc5d4dd10b6ca76ad1f7a2b9c7c04ac6`
   - Evidence (measurement): Production build, output checks, numerical identities and payload budget pass. Browser matrix: four demos × 1440/390px × dark/light; automatic controls, aligned prose, no page overflow/focus theft, keyboard disclosure/control endpoints and axe WCAG A/AA pass. No-JavaScript and blocked-module fallback checked. Application JS 210521 decoded / 69785 gzip bytes; controller 1479 gzip bytes.
   - Evidence (document): docs/interactive-demos.md records the 2026-10-21 browser matrix and failure checks: blocked controller/module, simulated render failure, timeout/late completion and theme persistence. Local Chromium only; no owner visual approval or universal-device claim.
 
