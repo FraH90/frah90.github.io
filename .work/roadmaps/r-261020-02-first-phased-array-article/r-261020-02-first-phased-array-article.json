@@ -82,6 +82,19 @@
           "commits": [
             "3c25ea324650641bd9ab7c361325cd5073f52130"
           ]
+        },
+        {
+          "id": "r-261020-02-first-phased-array-article-p0-4",
+          "text": "Center article tables as blocks while retaining author-controlled cell alignment and local horizontal scrolling.",
+          "kind": "build",
+          "status": "done",
+          "closed_at": "2026-10-21",
+          "evidence": [
+            {
+              "kind": "measurement",
+              "value": "Build/output checks pass. Local Chromium verifies both table-bearing articles at 1440/390px in dark/light and no-JavaScript mode: centered bounds, semantic headers, no page overflow. Simulated wide tables remain keyboard-scrollable. Desktop table screenshot inspected."
+            }
+          ]
         }
       ]
     },

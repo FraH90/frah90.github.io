@@ -137,4 +137,4 @@ CV links appear only if `public/cv.pdf` exists when the site builds. CV publicat
 
 `.github/workflows/deploy.yml` installs dependencies, builds, uploads `dist/`, and deploys to GitHub Pages on pushes to `main` or manual workflow dispatch. GitHub Pages must use **GitHub Actions** as its publishing source. Environment-specific commit/push instructions are in `CLAUDE.md` and `AGENTS.md`.
 
-Displayed equations use `$$` delimiters on separate lines and are centered globally; single-line `$...$` stays inline. See [math authoring](docs/article-authoring.md#displayed-equations).
+Tables are centered automatically, with local scrolling for wide tables. Displayed equations use `$$` delimiters on separate lines and are centered globally; single-line `$...$` stays inline. See [math authoring](docs/article-authoring.md#displayed-equations).

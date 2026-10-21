@@ -269,3 +269,6 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 .article-layout .article-content :where(p) { margin-top: 1rem; margin-bottom: 1rem; }
 .interactive-demo .scientific-chart { margin: 0; }
 .interactive-demo .demo-status:empty { display: none; }
+
+/* Center compact tables; keep wide tables scrollable inside the article. */
+.article-layout .article-content table { width: fit-content; max-width: 100%; margin-inline: auto; }

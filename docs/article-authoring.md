@@ -81,6 +81,8 @@ The default figure fits the prose measure; `wide={true}` uses the wider article 
 
 For inline SVG or other static markup, omit image props and provide a slot. Give the SVG `role="img"` and a descriptive `aria-label` (or linked title/description). Continue to provide the figure caption, type, and source. This is for authored scientific diagrams, not invented measurement data.
 
+Tables are centered automatically within the article. Use normal Markdown table syntax; cell alignment stays under the author’s control. Wide tables scroll locally instead of widening the page.
+
 ## Displayed equations
 
 Use `$...$` for inline math within prose. Displayed equations are always centered by the shared stylesheet. Put each `$$` delimiter on its own line, with blank lines around the block:

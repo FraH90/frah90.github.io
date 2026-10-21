@@ -56,6 +56,9 @@ The owner writes the article; no manuscript, measurements, code results or publi
 - ✅ **done** · **build** — Center displayed equations across articles; correct same-line double-dollar delimiters, preserve inline math and readable local overflow, and document the authoring convention.
   - ID `r-261020-02-first-phased-array-article-p0-3` · closed 2026-10-21 · commits `3c25ea324650641bd9ab7c361325cd5073f52130`
   - Evidence (measurement): Build and output checks pass. All eight existing equations render as KaTeX display blocks across four articles. Local Chromium verifies geometric centering at 1440/390px in dark/light themes, inline math preservation, no page overflow, no-JavaScript rendering and keyboard scrolling of a simulated wide equation. Desktop screenshot inspected.
+- ✅ **done** · **build** — Center article tables as blocks while retaining author-controlled cell alignment and local horizontal scrolling.
+  - ID `r-261020-02-first-phased-array-article-p0-4` · closed 2026-10-21
+  - Evidence (measurement): Build/output checks pass. Local Chromium verifies both table-bearing articles at 1440/390px in dark/light and no-JavaScript mode: centered bounds, semantic headers, no page overflow. Simulated wide tables remain keyboard-scrollable. Desktop table screenshot inspected.
 
 ### Phase 1 — Owner manuscript and reproducible evidence
 
@@ -120,3 +123,7 @@ The owner explicitly reprioritized visual repairs before writing. This is a new 
 Owner request: “The formulas.. must ALWAYS appear at the center. I dunno if it's something relative on how we write the article in mdx file or how we render it”
 
 The eight standalone formulas were written as same-line `$$formula$$`, which remark-math treated as inline math. They now use separate-line display fences, and the shared stylesheet explicitly centers display math. Inline formulas remain in prose. Wide displays retain local scrolling with their left edge reachable. The authoring guide and both project contracts record this convention.
+
+### Table alignment correction — 2026-10-21
+
+Owner request: “Also tables should be centered”. Shared article CSS now gives compact tables intrinsic width and automatic horizontal margins, capped at the article width so wide tables retain local scrolling. Cell alignment and semantic markup remain intact; authoring instructions record the default.
