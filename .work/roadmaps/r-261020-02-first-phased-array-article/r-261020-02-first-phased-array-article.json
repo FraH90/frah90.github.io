@@ -130,6 +130,19 @@
           "commits": [
             "d873ec396e296cda0cf16cbb2ea17876119a6c6a"
           ]
+        },
+        {
+          "id": "r-261020-02-first-phased-array-article-p0-7",
+          "text": "Provide a temporary HTTPS-accessible visual comparison of the original and current phased-array demos and complete article pages.",
+          "kind": "build",
+          "status": "done",
+          "closed_at": "2026-10-21",
+          "evidence": [
+            {
+              "kind": "measurement",
+              "value": "Temporary /design-review/ route uses rendered screenshots at equal 1024px demo widths (original components from 22a1c85, current from b8a8a3e). Production build/output checks pass for 16 pages. Local Chromium checks desktop/mobile, both themes, JS/no-JS, keyboard view switching, image decoding, no page overflow and noindex metadata. Route excluded from sitemap, search and RSS; normal article remains unchanged."
+            }
+          ]
         }
       ]
     },

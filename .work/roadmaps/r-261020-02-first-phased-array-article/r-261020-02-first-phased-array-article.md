@@ -65,6 +65,9 @@ The owner writes the article; no manuscript, measurements, code results or publi
 - ✅ **done** · **build** — Replace the persistent demo explanation box with a transient tooltip on the article Demo badge, preserving discovery metadata and accessible interaction.
   - ID `r-261020-02-first-phased-array-article-p0-6` · closed 2026-10-21 · commits `d873ec396e296cda0cf16cbb2ea17876119a6c6a`
   - Evidence (measurement): Build/output checks pass, including retained Demo metadata and no persistent notice. Local Chromium verifies all five articles at 1440/390/320px in both themes: initially hidden explanation, hover/focus reveal, hoverable tooltip, Escape dismissal and on-screen bounds. Touch reveal/outside-tap dismissal also pass with and without JavaScript; no-JavaScript Escape dismissal is not implemented.
+- ✅ **done** · **build** — Provide a temporary HTTPS-accessible visual comparison of the original and current phased-array demos and complete article pages.
+  - ID `r-261020-02-first-phased-array-article-p0-7` · closed 2026-10-21
+  - Evidence (measurement): Temporary /design-review/ route uses rendered screenshots at equal 1024px demo widths (original components from 22a1c85, current from b8a8a3e). Production build/output checks pass for 16 pages. Local Chromium checks desktop/mobile, both themes, JS/no-JS, keyboard view switching, image decoding, no page overflow and noindex metadata. Route excluded from sitemap, search and RSS; normal article remains unchanged.
 
 ### Phase 1 — Owner manuscript and reproducible evidence
 
@@ -144,3 +147,7 @@ Owner request: “Remove the box/line Demo article used to demonstrate this site
 Just make appear that shit when we hoover the label "demo", appear somewhere.. but temporary only on hoveer when we hoover..”
 
 Removed the persistent article notice and attached its existing text to the Demo badge as a tooltip. Hover/focus reveals it, Escape dismisses it, and touch focus/outside tap provides phone access. Native CSS hover/focus works without scripts. Listings, search and RSS retain explicit Demo status; this correction changes the article explanation presentation only.
+
+### Accessible design comparison — 2026-10-21
+
+Owner asked for both versions rendered, then reported that local file/image links were not accessible in the chat interface. A temporary public `/design-review/` page provides side-by-side screenshots and a full-page view switch. The older demo was restored in an isolated temporary checkout; the article text and surrounding layout are identical in both renders. Images are visual previews, not live controls. The comparison is noindex, unlinked from site navigation and absent from discovery outputs. Remove the route, screenshot assets and sitemap exclusion once the owner chooses a direction. No visual direction has yet been approved.

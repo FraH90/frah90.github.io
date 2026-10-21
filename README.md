@@ -140,3 +140,5 @@ CV links appear only if `public/cv.pdf` exists when the site builds. CV publicat
 Tables are centered automatically, with local scrolling for wide tables. Displayed equations use `$$` delimiters on separate lines and are centered globally; single-line `$...$` stays inline. See [math authoring](docs/article-authoring.md#displayed-equations).
 
 The article Demo badge shows its explanation temporarily on hover/focus (tap on touchscreens); no persistent notice box interrupts reading.
+
+A temporary [design comparison](/design-review/) presents rendered screenshots of the original and current phased-array demos and full article pages. It is excluded from sitemap/search/RSS and marked noindex; remove the route and `public/design-review/` assets after the owner chooses a direction.
