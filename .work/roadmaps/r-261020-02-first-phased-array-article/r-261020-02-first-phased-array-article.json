@@ -94,6 +94,9 @@
               "kind": "measurement",
               "value": "Build/output checks pass. Local Chromium verifies both table-bearing articles at 1440/390px in dark/light and no-JavaScript mode: centered bounds, semantic headers, no page overflow. Simulated wide tables remain keyboard-scrollable. Desktop table screenshot inspected."
             }
+          ],
+          "commits": [
+            "d54e3a734c28b25d0569a89ca37da5bbdad4f1fe"
           ]
         }
       ]
