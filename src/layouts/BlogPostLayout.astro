@@ -40,7 +40,10 @@ const formatted = new Intl.DateTimeFormat('en-US', {
         >
           <span data-pagefind-meta="topic">{topic.label}</span>
         </a>
-        {demo && <span class="demo-badge" data-pagefind-meta="status">{demoLabel}</span>}
+        {demo && <span class="demo-info">
+          <button type="button" class="demo-badge" aria-describedby="demo-explanation" data-pagefind-meta="status">{demoLabel}</button>
+          <span id="demo-explanation" class="demo-tooltip" role="tooltip" data-pagefind-ignore>{demoNotice}</span>
+        </span>}
         <span class="text-muted">·</span>
         <time datetime={date.toISOString()} class="text-sm text-muted">{formatted}</time>
       </div>
@@ -51,7 +54,6 @@ const formatted = new Intl.DateTimeFormat('en-US', {
       <p class="text-base text-muted leading-relaxed" style="font-family: 'Lora', Georgia, serif; font-style: italic;">
         {description}
       </p>
-      {demo && <p class="demo-notice mt-6" data-pagefind-ignore>{demoNotice}</p>}
     </header>
 
     {(learningGoals.length > 0 || prerequisites.length > 0) && (
@@ -98,6 +100,16 @@ const formatted = new Intl.DateTimeFormat('en-US', {
 </BaseLayout>
 
 <script>
+  for (const info of document.querySelectorAll<HTMLElement>('.demo-info')) {
+    const badge = info.querySelector<HTMLButtonElement>('button')!;
+    const reset = () => { delete info.dataset.dismissed; };
+    info.addEventListener('mouseleave', reset);
+    info.addEventListener('focusout', reset);
+    badge.addEventListener('keydown', event => {
+      if (event.key === 'Escape') info.dataset.dismissed = 'true';
+    });
+  }
+
   // Wide scientific material scrolls locally and remains reachable by keyboard.
   for (const [selector, label] of [['pre', 'Code block'], ['table', 'Table'], ['.katex-display', 'Equation']]) {
     for (const element of document.querySelectorAll<HTMLElement>(`.article-content ${selector}`)) {

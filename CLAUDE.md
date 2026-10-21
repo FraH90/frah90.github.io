@@ -31,6 +31,7 @@ The author has broad engineering interests and is developing depth through study
 - Articles show a short learning statement, prerequisites where relevant, and a published date. Do not display updated dates. Add explicit model assumptions, captions, references, and related reading/project links when applicable.
 - Search and RSS are implemented discovery surfaces. Draft content must be excluded consistently from listings, routes, related content, search, RSS, and sitemap.
 - Load interactive demos automatically on page entry without stealing focus or scrolling; do not add a load gate or normal-state status clutter. Interactive demos require loading/error behavior and a meaningful static alternative, correct boundary cases, associated control labels, units, and a deliberate performance budget.
+- Explain article demo status in a transient tooltip on the Demo badge (hover/focus/tap), not a persistent notice box.
 - The five original articles remain public demos with explicit demo metadata and labels in listings, articles, related reading, search, and RSS. Preserve their URLs. Demo status does not certify scientific review; do not invent replacement content or present demos as reviewed research.
 
 ## Architecture and boundaries

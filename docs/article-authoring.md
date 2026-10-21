@@ -118,3 +118,5 @@ npm run preview
 ```
 
 Review the article on mobile and desktop in both themes, including contents, equation/table/code overflow, figures, reference links, and related reading. Drafts must stay absent from public output. Set `draft: false` only after review. Search and RSS are implemented and reuse the same publication eligibility.
+
+Demo articles retain their badge and discovery metadata. The article badge reveals the explanation on hover or focus (tap on touchscreens); Escape dismisses it. No persistent demo notice appears below the description. The tooltip also works without JavaScript through hover/focus; Escape dismissal is an enhancement.

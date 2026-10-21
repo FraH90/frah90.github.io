@@ -96,7 +96,9 @@ for (const file of articleFiles) {
   const demo = html.includes('data-article-demo="true"');
   assert.equal(item.includes('<category>Demo</category>'), demo, `RSS demo status mismatch: ${url}`);
   if (demo) {
-    assert.match(html, /class="demo-notice/);
+    assert.ok(!html.includes('class="demo-notice'), `Persistent demo notice in ${file}`);
+    assert.match(html, /aria-describedby="demo-explanation"/);
+    assert.match(html, /id="demo-explanation"[^>]*role="tooltip"/);
     assert.match(html, /not a reviewed research publication/);
     assert.match(item, /<title>Demo — /);
   }

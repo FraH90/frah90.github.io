@@ -257,7 +257,6 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 @media (min-width: 640px) { .chart-scroll-hint { display: none; } }
 
 .demo-badge { display: inline-block; padding: .15rem .5rem; border: 1px solid var(--color-rule-strong); border-radius: .25rem; color: var(--color-body); font-size: .75rem; line-height: 1.5; font-weight: 500; vertical-align: middle; }
-.demo-notice { padding: 1rem; border-left: 2px solid var(--color-accent); background: var(--color-surface); color: var(--color-body); font-size: .875rem; line-height: 1.7; }
 
 /* Article text, headings and applets share one set of content edges. */
 .article-layout .reading-width { max-width: none; margin-inline: 0; }
@@ -270,3 +269,10 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 
 /* Center compact tables; keep wide tables scrollable inside the article. */
 .article-layout .article-content table { width: fit-content; max-width: 100%; margin-inline: auto; }
+
+.demo-info { position: relative; display: inline-flex; }
+.demo-info > button { cursor: help; background: transparent; font-family: inherit; }
+.demo-tooltip { position: absolute; z-index: 20; top: calc(100% + .5rem); left: 50%; transform: translateX(-50%); width: min(20rem, calc(100vw - 3rem)); padding: .75rem 1rem; border: 1px solid var(--rule-strong); border-radius: .5rem; background: var(--surface); color: var(--body); box-shadow: 0 .5rem 1.5rem #0003; font-size: .8125rem; line-height: 1.6; font-weight: 400; visibility: hidden; opacity: 0; }
+/* Bridge the pointer gap so the explanation can itself be hovered. */
+.demo-tooltip::before { content: ''; position: absolute; bottom: 100%; left: 0; width: 100%; height: .5rem; }
+.demo-info:not([data-dismissed]):is(:hover, :focus-within) > .demo-tooltip { visibility: visible; opacity: 1; }

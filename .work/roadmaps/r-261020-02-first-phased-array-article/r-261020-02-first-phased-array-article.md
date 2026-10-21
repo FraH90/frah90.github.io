@@ -62,6 +62,9 @@ The owner writes the article; no manuscript, measurements, code results or publi
 - ✅ **done** · **build** — Remove appended permalink symbols beside section headings while retaining native section IDs and Contents navigation.
   - ID `r-261020-02-first-phased-array-article-p0-5` · closed 2026-10-21 · commits `c69db129ff31e41ecf200067d49e5a002fc89ce7`
   - Evidence (measurement): Build and output checks pass. Local Chromium at 1440/390px in dark/light and JavaScript/no-JavaScript modes verifies plain heading text, absent appended symbols and keyboard Contents navigation to the preserved focusable heading ID.
+- ✅ **done** · **build** — Replace the persistent demo explanation box with a transient tooltip on the article Demo badge, preserving discovery metadata and accessible interaction.
+  - ID `r-261020-02-first-phased-array-article-p0-6` · closed 2026-10-21
+  - Evidence (measurement): Build/output checks pass, including retained Demo metadata and no persistent notice. Local Chromium verifies all five articles at 1440/390/320px in both themes: initially hidden explanation, hover/focus reveal, hoverable tooltip, Escape dismissal and on-screen bounds. Touch reveal/outside-tap dismissal also pass with and without JavaScript; no-JavaScript Escape dismissal is not implemented.
 
 ### Phase 1 — Owner manuscript and reproducible evidence
 
@@ -134,3 +137,10 @@ Owner request: “Also tables should be centered”. Shared article CSS now give
 ### Heading symbol removal — 2026-10-21
 
 Owner request: “The asterisc at the right of the title.. of a topic. i dont like it”. This was the script-appended `#` permalink beside article section headings. Removed that enhancement and its styles; heading IDs and Contents links remain. Both project contracts and authoring/architecture guidance record the preference.
+
+### Transient Demo explanation — 2026-10-21
+
+Owner request: “Remove the box/line Demo article used to demonstrate this site’s features. It is not a reviewed research publication.
+Just make appear that shit when we hoover the label "demo", appear somewhere.. but temporary only on hoveer when we hoover..”
+
+Removed the persistent article notice and attached its existing text to the Demo badge as a tooltip. Hover/focus reveals it, Escape dismisses it, and touch focus/outside tap provides phone access. Native CSS hover/focus works without scripts. Listings, search and RSS retain explicit Demo status; this correction changes the article explanation presentation only.
