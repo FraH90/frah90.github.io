@@ -53,6 +53,9 @@ The owner writes the article; no manuscript, measurements, code results or publi
   - ID `r-261020-02-first-phased-array-article-p0-2` · closed 2026-10-21 · commits `bdb6326bfc5d4dd10b6ca76ad1f7a2b9c7c04ac6`
   - Evidence (measurement): Production build, output checks, numerical identities and payload budget pass. Browser matrix: four demos × 1440/390px × dark/light; automatic controls, aligned prose, no page overflow/focus theft, keyboard disclosure/control endpoints and axe WCAG A/AA pass. No-JavaScript and blocked-module fallback checked. Application JS 210521 decoded / 69785 gzip bytes; controller 1479 gzip bytes.
   - Evidence (document): docs/interactive-demos.md records the 2026-10-21 browser matrix and failure checks: blocked controller/module, simulated render failure, timeout/late completion and theme persistence. Local Chromium only; no owner visual approval or universal-device claim.
+- ✅ **done** · **build** — Center displayed equations across articles; correct same-line double-dollar delimiters, preserve inline math and readable local overflow, and document the authoring convention.
+  - ID `r-261020-02-first-phased-array-article-p0-3` · closed 2026-10-21
+  - Evidence (measurement): Build and output checks pass. All eight existing equations render as KaTeX display blocks across four articles. Local Chromium verifies geometric centering at 1440/390px in dark/light themes, inline math preservation, no page overflow, no-JavaScript rendering and keyboard scrolling of a simulated wide equation. Desktop screenshot inspected.
 
 ### Phase 1 — Owner manuscript and reproducible evidence
 
@@ -111,3 +114,9 @@ The owner explicitly reprioritized visual repairs before writing. This is a new 
 > - I'm ok with the size horizontal of the apllet.. but writing? it's fucking shit. It's impaginated veyr very bad. Maybe same size as horizontal as the applet? Woudl be better?
 >
 > I dunno, i handed to u this shit to improove the design.. but u made it even more shitty for some stuff
+
+### Equation alignment correction — 2026-10-21
+
+Owner request: “The formulas.. must ALWAYS appear at the center. I dunno if it's something relative on how we write the article in mdx file or how we render it”
+
+The eight standalone formulas were written as same-line `$$formula$$`, which remark-math treated as inline math. They now use separate-line display fences, and the shared stylesheet explicitly centers display math. Inline formulas remain in prose. Wide displays retain local scrolling with their left edge reachable. The authoring guide and both project contracts record this convention.

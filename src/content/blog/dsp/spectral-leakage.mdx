@@ -30,7 +30,9 @@ This is **spectral leakage**.
 Selecting $N$ samples is equivalent to multiplying an infinite signal by a rectangular window.
 In the frequency domain, multiplication becomes convolution with the window's spectrum — a periodic sinc-like (Dirichlet) response. Ignoring its linear phase, its magnitude is:
 
-$$|W_\text{rect}(f)| = \left|\frac{\sin(\pi f N / f_s)}{\sin(\pi f / f_s)}\right|$$
+$$
+|W_\text{rect}(f)| = \left|\frac{\sin(\pi f N / f_s)}{\sin(\pi f / f_s)}\right|
+$$
 
 At removable singularities, use the limiting value. The rectangular window has high sidelobes (first sidelobe at −13 dB). Any spectral component leaks into
 adjacent bins through these sidelobes.

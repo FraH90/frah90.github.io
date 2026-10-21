@@ -81,6 +81,18 @@ The default figure fits the prose measure; `wide={true}` uses the wider article 
 
 For inline SVG or other static markup, omit image props and provide a slot. Give the SVG `role="img"` and a descriptive `aria-label` (or linked title/description). Continue to provide the figure caption, type, and source. This is for authored scientific diagrams, not invented measurement data.
 
+## Displayed equations
+
+Use `$...$` for inline math within prose. Displayed equations are always centered by the shared stylesheet. Put each `$$` delimiter on its own line, with blank lines around the block:
+
+```md
+$$
+AF(\theta) = \frac{1}{N} \sum_{n=0}^{N-1} e^{j n \psi}
+$$
+```
+
+Do not use `$$formula$$` on one line: remark-math parses that as inline math. Wide display equations scroll locally on small screens so their left edge remains reachable by keyboard; split long derivations into logical lines with LaTeX `aligned` when useful. Math is rendered at build time and remains readable without JavaScript.
+
 ## Citations and references
 
 Reference IDs must be unique lowercase letters/numbers/hyphens. URL is optional for a book or other offline source; include enough bibliographic detail to identify it.

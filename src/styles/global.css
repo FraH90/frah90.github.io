@@ -154,7 +154,8 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 .prose :where(th, td) { min-width: 7rem; }
 .prose :where(img, svg):not(:where(.not-prose, .not-prose *)) { max-width: 100%; height: auto; }
 .prose :where(figcaption) { color: var(--muted); font-family: 'Inter', system-ui, sans-serif; font-size: 0.875rem; }
-.katex-display { max-width: 100%; overflow-x: auto; overflow-y: hidden; padding-block: 0.25em; }
+.katex-display { text-align: center; max-width: 100%; overflow-x: auto; overflow-y: hidden; padding-block: 0.25em; }
+.katex-display > .katex { width: max-content; min-width: 100%; }
 .not-prose { font-family: 'Inter', system-ui, sans-serif; }
 .not-prose :where(.grid > *, .flex > *) { min-width: 0; }
 

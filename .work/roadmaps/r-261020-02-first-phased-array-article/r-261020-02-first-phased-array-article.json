@@ -66,6 +66,19 @@
           "commits": [
             "bdb6326bfc5d4dd10b6ca76ad1f7a2b9c7c04ac6"
           ]
+        },
+        {
+          "id": "r-261020-02-first-phased-array-article-p0-3",
+          "text": "Center displayed equations across articles; correct same-line double-dollar delimiters, preserve inline math and readable local overflow, and document the authoring convention.",
+          "kind": "build",
+          "status": "done",
+          "closed_at": "2026-10-21",
+          "evidence": [
+            {
+              "kind": "measurement",
+              "value": "Build and output checks pass. All eight existing equations render as KaTeX display blocks across four articles. Local Chromium verifies geometric centering at 1440/390px in dark/light themes, inline math preservation, no page overflow, no-JavaScript rendering and keyboard scrolling of a simulated wide equation. Desktop screenshot inspected."
+            }
+          ]
         }
       ]
     },
