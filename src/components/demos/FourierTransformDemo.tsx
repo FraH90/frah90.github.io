@@ -60,7 +60,7 @@ export default function FourierTransformDemo() {
         data={[{ x: t.slice(0, 200), y: timeSig.slice(0, 200), type: 'scatter', mode: 'lines',
                  line: { color: 'var(--plot-green)', width: 1 }, name: 'signal' }]}
         layout={{ title: { text: 'Time Domain', font: { size: 12 } },
-                  xaxis: { title: 'time (s)' }, yaxis: { title: 'amplitude' } }}
+                  xaxis: { title: 'time (s)' }, yaxis: { title: 'Amplitude (a.u.)' } }}
         className="w-full h-48"
       />
 
@@ -68,7 +68,7 @@ export default function FourierTransformDemo() {
         data={[{ x: freqs, y: mag, type: 'bar', marker: { color: 'var(--plot-purple)' }, name: '|X[f]|' }]}
         layout={{ title: { text: 'Magnitude Spectrum', font: { size: 12 } },
                   xaxis: { title: 'frequency (Hz)', range: [0, 500] },
-                  yaxis: { title: 'Peak amplitude (a.u.)' },
+                  yaxis: { title: '|X| (a.u.)', range: [0, (Math.max(...mag) || 1) * 1.05] },
                   bargap: 0 }}
         className="w-full h-64"
       />

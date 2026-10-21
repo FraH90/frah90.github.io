@@ -19,7 +19,7 @@ function resolveColors(value: any, styles: CSSStyleDeclaration): any {
   return value;
 }
 
-export default function PlotlyChart({ data, layout, className = 'w-full h-96', horizontalYLabel }: Props) {
+export default function PlotlyChart({ data, layout, className = 'w-full h-72 sm:h-96', horizontalYLabel }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const plotly = useRef<any>(null);
   const [themeVersion, setThemeVersion] = useState(0);
@@ -57,19 +57,22 @@ export default function PlotlyChart({ data, layout, className = 'w-full h-96', h
         ...settings,
         title: typeof settings.title === 'string' ? { text: settings.title } : settings.title,
       });
+      const yLabel = horizontalYLabel ?? (typeof user.yaxis?.title === 'string' ? user.yaxis.title : user.yaxis?.title?.text);
       const themedLayout = {
         paper_bgcolor: 'transparent', plot_bgcolor: 'transparent',
-        margin: { t: 40, r: 20, b: 55, l: 65 },
+        margin: { t: 28, r: 10, b: 40, l: 36 },
         // Theme updates preserve the reader's zoom and legend selection.
         uirevision: 'preserve-view',
         ...user,
+        title: { text: '' },
+        dragmode: false,
         font: { ...font, ...user.font },
-        xaxis: axis(user.xaxis),
-        yaxis: axis(horizontalYLabel ? { ...user.yaxis, title: { text: '' } } : user.yaxis),
+        xaxis: axis({ ...user.xaxis, fixedrange: true, automargin: false }),
+        yaxis: axis({ ...user.yaxis, title: { text: '' }, fixedrange: true, automargin: false, labelalias: { ...user.yaxis?.labelalias, '0': '' } }),
         annotations: [
           ...(user.annotations ?? []),
-          ...(horizontalYLabel ? [{
-            text: horizontalYLabel, xref: 'paper', yref: 'paper', x: 0, y: 1,
+          ...(yLabel ? [{
+            text: yLabel, xref: 'paper', yref: 'paper', x: 0, y: 1,
             xanchor: 'left', yanchor: 'bottom', yshift: 6, showarrow: false, font,
           }] : []),
         ],

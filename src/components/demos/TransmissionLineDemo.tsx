@@ -45,10 +45,11 @@ export default function TransmissionLineDemo() {
         layout={{
           title: { text: 'Standing Wave Pattern |V(z)|', font: { size: 13 } },
           xaxis: { title: 'position (λ)', zeroline: false },
-          yaxis: { title: '|V| (normalized)', rangemode: 'tozero' },
+          yaxis: { title: '|V| / |V⁺|', range: [0, 2] },
+          margin: { l: 30, r: 10, t: 28, b: 40 },
           shapes: [{ type: 'line', x0: 0, x1: 0, y0: 0, y1: 2,
                      line: { color: '#71717a', width: 1, dash: 'dot' } }],
-          annotations: [{ x: 0, y: 1.95, text: 'load', font: { size: 10, color: '#71717a' },
+          annotations: [{ x: 0, y: 1.95, text: 'load', xanchor: 'right', font: { size: 10, color: '#71717a' },
                           showarrow: false }],
         }}
       />

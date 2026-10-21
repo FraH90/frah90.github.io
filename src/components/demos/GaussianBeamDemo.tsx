@@ -35,7 +35,7 @@ export default function GaussianBeamDemo() {
         layout={{
           title: { text: 'Gaussian Beam Envelope w(z)', font: { size: 13 } },
           xaxis: { title: 'z (mm)', zeroline: true, zerolinecolor: '#3f3f46' },
-          yaxis: { title: 'beam radius (µm)' },
+          yaxis: { title: '±w (µm)' },
           showlegend: false,
         }}
       />

@@ -62,7 +62,7 @@ export default function ArrayFactorDemo() {
           name: yLabel,
         }]}
         layout={{
-          margin: { l: 36, r: 12, t: 28, b: 48 },
+          margin: { l: 26, r: 10, t: 28, b: 40 },
           dragmode: false,
           xaxis: { title: 'θ (degrees)', range: [0, 180], dtick: 30, fixedrange: true, automargin: false },
           yaxis: { title: yLabel, range: showdB ? [-60, 0] : [0, 1], fixedrange: true, automargin: false },

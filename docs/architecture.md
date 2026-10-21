@@ -72,3 +72,5 @@ The owner’s 2026-10-21 visual correction replaces the ruled contents block wit
 After reviewing both versions on 2026-10-21, the owner chose the original Plotly demos for all four published applets. This supersedes the SVG live renderer and scaled chart sizing. Plotly costs are explicitly budgeted in `scripts/check-demo-budget.mjs`; only demo pages request the engine. The temporary comparison route and images were removed after this decision.
 
 The mobile array correction keeps Plotly but removes the chart title and rotated y-axis title. `horizontalYLabel` places a themed `|AF|` annotation above the y-axis. The array explicitly uses 36/12px side margins and disables automatic margin expansion, a 288px phone height (384px desktop), and fixed axes; other demos retain their original settings.
+
+The compact live-plot policy now applies to every published demo chart: horizontal y-axis annotations, no redundant chart title, hidden y-zero label through Plotly label aliases, and locked gestures. Shared defaults own these presentation rules; individual demos supply units, ranges and trace data. Array/transmission can use narrower explicit margins.
