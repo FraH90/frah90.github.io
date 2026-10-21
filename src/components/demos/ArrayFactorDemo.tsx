@@ -51,6 +51,8 @@ export default function ArrayFactorDemo() {
 
       {/* Plot */}
       <PlotlyChart
+        className="w-full h-72 sm:h-96"
+        horizontalYLabel={showdB ? '|AF| (dB)' : '|AF|'}
         data={[{
           x: thetaDeg,
           y: yData,
@@ -60,9 +62,10 @@ export default function ArrayFactorDemo() {
           name: yLabel,
         }]}
         layout={{
-          title: { text: 'Array Factor vs. Angle', font: { size: 13 } },
-          xaxis: { title: 'θ (degrees)', range: [0, 180], dtick: 30 },
-          yaxis: { title: yLabel, range: showdB ? [-60, 0] : [0, 1] },
+          margin: { l: 36, r: 12, t: 28, b: 48 },
+          dragmode: false,
+          xaxis: { title: 'θ (degrees)', range: [0, 180], dtick: 30, fixedrange: true, automargin: false },
+          yaxis: { title: yLabel, range: showdB ? [-60, 0] : [0, 1], fixedrange: true, automargin: false },
         }}
       />
     </div>

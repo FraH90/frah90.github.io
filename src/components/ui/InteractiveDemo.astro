@@ -19,7 +19,7 @@ const example = demoExamples[kind];
     <span class="w-2 h-2 rounded-full bg-accent/60" aria-hidden="true"></span>
     <span class="text-[11px] font-mono text-muted uppercase tracking-widest">{example.label}</span>
   </div>
-  <div class="p-5">
+  <div class:list={[kind === 'array' ? 'p-3 sm:p-5' : 'p-5']}>
     <div
       data-demo-live
       hidden

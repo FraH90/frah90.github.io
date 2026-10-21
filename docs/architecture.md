@@ -70,3 +70,5 @@ Validate each phase against its roadmap acceptance criteria. UI work covers narr
 The owner’s 2026-10-21 visual correction replaces the ruled contents block with a compact native disclosure and removes the demo activation gate. SVG plots use a 960×360 viewBox (shorter stacked Fourier panels), preventing oversized labels and excessive height at the full article width. On narrow screens plots scroll locally at a 48rem minimum width.
 
 After reviewing both versions on 2026-10-21, the owner chose the original Plotly demos for all four published applets. This supersedes the SVG live renderer and scaled chart sizing. Plotly costs are explicitly budgeted in `scripts/check-demo-budget.mjs`; only demo pages request the engine. The temporary comparison route and images were removed after this decision.
+
+The mobile array correction keeps Plotly but removes the chart title and rotated y-axis title. `horizontalYLabel` places a themed `|AF|` annotation above the y-axis. The array explicitly uses 36/12px side margins and disables automatic margin expansion, a 288px phone height (384px desktop), and fixed axes; other demos retain their original settings.

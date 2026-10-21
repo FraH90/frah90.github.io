@@ -72,6 +72,9 @@ The owner writes the article; no manuscript, measurements, code results or publi
   - ID `r-261020-02-first-phased-array-article-p0-8` · closed 2026-10-21 · commits `e38cc7adbc6825c911e1f1172ee3d135b83f8bab`
   - Evidence (decision): Owner: “I prefer the old version. A lot. A fucking lot. Only thing it misses: the Theta and module of AF on axis. Only things. For all demos… return to the old plot shit.. only add the names on axis if missing”. This supersedes live-SVG presentation decisions; original numerical errors are not reintroduced.
   - Evidence (measurement): Production build, 15-page output checks, numerical identities and explicit restored-Plotly budget pass. Total JS 5016587 decoded / 1531105 gzip bytes; controller 1559 gzip bytes. Local Chromium covers four demos × 1440/390px × dark/light: all axis titles, original 384px/192px/256px heights, Fourier bars, compact live content, slider endpoints, no page overflow/focus jump or browser errors. Separate no-JS/import/render/timeout fallback checks pass; default screenshots inspected, axis title bounds, live theme update and mobile resize pass.
+- ✅ **done** · **build** — Improve phone array plot geometry: remove the redundant title, place |AF| horizontally above the y-axis, narrow padding/margins, and prevent accidental touch zoom.
+  - ID `r-261020-02-first-phased-array-article-p0-9` · closed 2026-10-21
+  - Evidence (measurement): Production build, output/model/payload checks pass. Local Chromium at 320/390/430/1440px in both themes verifies horizontal labels within bounds, no chart/rotated y title, >78% of chart width used by plotting area, 288px phone/384px desktop heights, keyboard dB toggle, correct fixed linear/dB ranges, no page overflow, and no-JavaScript/import-failure fallback. Phone screenshots inspected. Physical iPhone Safari was not tested.
 
 ### Phase 1 — Owner manuscript and reproducible evidence
 
@@ -163,3 +166,9 @@ Original words: “I prefer the old version. A lot. A fucking lot. Only thing it
 Restored the compact Plotly control/layout design from 22a1c85 for all four public demos, including thin sliders, small monospace rows, original trace types and fixed heights. Axis title strings are normalized to the installed Plotly object syntax. Verified shared models preserve corrected physics/numerics (including true infinite VSWR, spectrum normalization and broadside HPBW coefficient); the live boxes lose the added narrative and SVG legends. Static reference plots stay available without scripts or after errors. Loading completes only after all Plotly charts draw.
 
 The owner’s renderer preference explicitly replaces the SVG payload policy: Plotly is a shared engine capped at 5 MiB decoded/1600 KiB gzip, complete application JS at 6 MiB/1800 KiB. No new application dependency was installed. The comparison route, screenshot assets, noindex option and temporary sitemap exception are removed after the decision. Historical delivery evidence remains intact.
+
+### Phone array plot correction — 2026-10-21
+
+Owner screenshot showed a narrow, tall array plot with a long vertical label and unused negative amplitude range. Owner asked: “Maybe remove the fucking array factor label put only the module af shit but try to put it on the y axis, I mean not written vertically but normally horizontally. On the axis. So we can take the rest of space w plot”.
+
+The array chart now omits its title, labels the y-axis horizontally with `|AF|` (or `|AF| (dB)`), uses explicit narrow margins and phone padding, and renders at 288px on phones while retaining 384px on larger screens. Fixed axis ranges prevent touch drag zoom from adding unused negative linear amplitude space. Other demos retain the restored layout. Browser verification uses Chromium viewport emulation; no physical iOS Safari verification is claimed.

@@ -4,6 +4,7 @@ interface Props {
   data: object[];
   layout?: object;
   className?: string;
+  horizontalYLabel?: string;
 }
 
 // Plotly needs resolved colors rather than CSS var() strings in its layout/data.
@@ -18,7 +19,7 @@ function resolveColors(value: any, styles: CSSStyleDeclaration): any {
   return value;
 }
 
-export default function PlotlyChart({ data, layout, className = 'w-full h-96' }: Props) {
+export default function PlotlyChart({ data, layout, className = 'w-full h-96', horizontalYLabel }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const plotly = useRef<any>(null);
   const [themeVersion, setThemeVersion] = useState(0);
@@ -63,7 +64,15 @@ export default function PlotlyChart({ data, layout, className = 'w-full h-96' }:
         uirevision: 'preserve-view',
         ...user,
         font: { ...font, ...user.font },
-        xaxis: axis(user.xaxis), yaxis: axis(user.yaxis),
+        xaxis: axis(user.xaxis),
+        yaxis: axis(horizontalYLabel ? { ...user.yaxis, title: { text: '' } } : user.yaxis),
+        annotations: [
+          ...(user.annotations ?? []),
+          ...(horizontalYLabel ? [{
+            text: horizontalYLabel, xref: 'paper', yref: 'paper', x: 0, y: 1,
+            xanchor: 'left', yanchor: 'bottom', yshift: 6, showarrow: false, font,
+          }] : []),
+        ],
         legend: { ...user.legend, font: { ...font, ...user.legend?.font } },
         hoverlabel: { bgcolor: color('--surface'), bordercolor: color('--rule-strong'), font, ...user.hoverlabel },
       };
@@ -80,14 +89,14 @@ export default function PlotlyChart({ data, layout, className = 'w-full h-96' }:
       }
     });
     return () => { cancelled = true; };
-  }, [data, layout, themeVersion]);
+  }, [data, layout, themeVersion, horizontalYLabel]);
 
   if (error) throw new Error('Unable to render Plotly chart');
 
   return (
     <div className="min-w-0">
       {error && <p role="status" className="text-sm text-muted">This chart could not load. Reload the page to try again.</p>}
-      <div ref={ref} className={className} data-plot-ready="false" role="img" aria-label={`${(layout as any)?.title?.text ?? 'Scientific plot'}. ${(layout as any)?.xaxis?.title ?? ''}; ${(layout as any)?.yaxis?.title ?? ''}.`} />
+      <div ref={ref} className={className} data-plot-ready="false" role="img" aria-label={`${(layout as any)?.title?.text ?? 'Scientific plot'}. ${(layout as any)?.xaxis?.title ?? ''}; ${horizontalYLabel ?? (layout as any)?.yaxis?.title ?? ''}.`} />
     </div>
   );
 }

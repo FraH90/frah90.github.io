@@ -166,6 +166,19 @@
           "commits": [
             "e38cc7adbc6825c911e1f1172ee3d135b83f8bab"
           ]
+        },
+        {
+          "id": "r-261020-02-first-phased-array-article-p0-9",
+          "text": "Improve phone array plot geometry: remove the redundant title, place |AF| horizontally above the y-axis, narrow padding/margins, and prevent accidental touch zoom.",
+          "kind": "build",
+          "status": "done",
+          "closed_at": "2026-10-21",
+          "evidence": [
+            {
+              "kind": "measurement",
+              "value": "Production build, output/model/payload checks pass. Local Chromium at 320/390/430/1440px in both themes verifies horizontal labels within bounds, no chart/rotated y title, >78% of chart width used by plotting area, 288px phone/384px desktop heights, keyboard dB toggle, correct fixed linear/dB ranges, no page overflow, and no-JavaScript/import-failure fallback. Phone screenshots inspected. Physical iPhone Safari was not tested."
+            }
+          ]
         }
       ]
     },
