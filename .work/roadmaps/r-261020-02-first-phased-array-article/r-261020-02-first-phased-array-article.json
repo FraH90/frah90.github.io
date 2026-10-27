@@ -210,6 +210,9 @@
               "kind": "measurement",
               "value": "Production build and output/model/payload checks pass (15 pages; existing article/discovery boundaries preserved). Local Chromium verifies 320/390/1440px in dark/light: panel bounds, keyboard toggle/Escape/outside close, topic link/current states, search GET query/results, axe WCAG A/AA and no page overflow. No-JavaScript topic browsing passes. Short landscape and blocked-search-engine fallback checked. About restores the six pre-roadmap subject/tool groups as interests; confirmed engineer background, contact omission and gated CV remain. Social SVG/PNG and shared name are lowercase."
             }
+          ],
+          "commits": [
+            "11a7d8181e880d17414176092ed80d18197e0ee4"
           ]
         }
       ]
