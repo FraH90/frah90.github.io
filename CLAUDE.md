@@ -17,7 +17,9 @@ The author has broad engineering interests and is developing depth through study
 
 ## Product decisions
 
-- Content comes first. Keep a clear author identity and an accessible About page with background, interests, and demonstrated work. Use the FraH90 handle and the owner-confirmed background “electronic engineer”; do not publish a personal name or contact details. CV belongs there when available; CV integration is deferred.
+- Content comes first. Keep a clear author identity and an accessible About page with background, interests, and demonstrated work. Use the lowercase frah90 handle and the owner-confirmed background “electronic engineer”; do not publish a personal name or contact details. CV belongs there when available; CV integration is deferred.
+- Keep the writing archive free of an introductory hero, author teaser, horizontal topic strip and article counter. Put topic navigation and the magnifying-glass search form in a collapsed-by-default right-side panel, available throughout the site. Preserve keyboard, small-screen and no-JavaScript topic access.
+- About uses the earlier compact introduction and six subject/tool groups, framed as interests rather than unverified proficiency; retain confirmed background, privacy and gated CV rules.
 - Fix navigation and category consistency first. Use one topic registry for stable slugs, readable labels, ordering, and presentation. Preserve existing article URLs or add redirects when a migration is agreed.
 - Keep navigation visible and usable on mobile, with a clear site/home identity and semantic current-page state. Avoid empty public destinations and misleading link targets.
 - Retain the original neutral zinc dark palette. Dark is the initial default. Offer an explicit accessible light/dark switch, persist the choice, avoid a theme flash, and theme charts, equations, code, and controls as well as page chrome.

@@ -3,7 +3,6 @@ import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from './PostCard.astro';
 import { getTopic, type TopicSlug } from '../../lib/topics';
-import { getAllCategories } from '../../lib/posts';
 import { siteName } from '../../lib/site';
 
 interface Props {
@@ -11,7 +10,6 @@ interface Props {
   category?: TopicSlug;
 }
 const { posts, category } = Astro.props;
-const categories = await getAllCategories();
 const topic = category ? getTopic(category) : undefined;
 const heading = topic?.label ?? 'Writing';
 const description = topic
@@ -20,30 +18,8 @@ const description = topic
 ---
 
 <BaseLayout title={`${heading} — ${siteName}`} description={description}>
-  <div class="site-shell py-12 sm:py-16">
-    <header class="mb-8">
-      {topic && <a href="/blog" class="inline-flex min-h-11 items-center text-sm text-muted hover:text-ink mb-3">← All writing</a>}
-      <h1 class="text-3xl sm:text-4xl text-ink mb-4" style="font-family: 'Lora', Georgia, serif;">{heading}</h1>
-      <p class="max-w-2xl text-base text-muted leading-relaxed">{description}</p>
-      {!topic && <a href="/about" class="inline-flex min-h-11 items-center text-sm text-body underline underline-offset-4 decoration-rule-strong hover:decoration-rule-strong mt-2">About the author <span aria-hidden="true" class="ml-2">→</span></a>}
-    </header>
-
-    {categories.length > 0 && (
-      <nav aria-label="Article topics" class="mb-8 border-y border-rule py-4">
-        <ul class="flex flex-wrap gap-2">
-          <li><a href="/blog" aria-current={!category ? 'page' : undefined}
-            class:list={['topic-filter', !category && 'topic-filter-active']}>All topics</a></li>
-          {categories.map(item => (
-            <li><a href={`/blog/${item.slug}`} aria-current={category === item.slug ? 'page' : undefined}
-              class:list={['topic-filter', category === item.slug && 'topic-filter-active']}>
-              {item.label}
-            </a></li>
-          ))}
-        </ul>
-      </nav>
-    )}
-
-    <p class="text-sm text-muted mb-5">{posts.length} {posts.length === 1 ? 'article' : 'articles'}{topic ? ` in ${topic.label}` : ''}</p>
+  <div class="site-shell py-8 sm:py-10">
+    {topic ? <h1 class="text-2xl text-ink mb-6" style="font-family: 'Lora', Georgia, serif;">{topic.label}</h1> : <h1 class="sr-only">Articles</h1>}
     {posts.length === 0 ? (
       <p class="text-muted">No articles published yet.</p>
     ) : (

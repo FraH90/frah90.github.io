@@ -26,7 +26,7 @@
       "id": "r-261020-02-first-phased-array-article-p0",
       "title": "Owner-requested visual corrections before writing",
       "status": "done",
-      "closed_at": "2026-10-21",
+      "closed_at": "2026-10-27",
       "useful_alone": "Articles regain the owner-preferred palette, aligned reading layout and immediately available demos.",
       "done_when": "Palette, contents, prose width and plot sizing are corrected; automatic demos and fallback behavior pass browser checks.",
       "depends_on": [],
@@ -197,6 +197,19 @@
           ],
           "commits": [
             "8b64fb5ff7835f9649aec674d0c27c145fbcd128"
+          ]
+        },
+        {
+          "id": "r-261020-02-first-phased-array-article-p0-11",
+          "text": "Remove archive intro/count, move topics and magnifying-glass search into a collapsible right panel, lowercase public branding, and restore the earlier compact About structure.",
+          "kind": "build",
+          "status": "done",
+          "closed_at": "2026-10-27",
+          "evidence": [
+            {
+              "kind": "measurement",
+              "value": "Production build and output/model/payload checks pass (15 pages; existing article/discovery boundaries preserved). Local Chromium verifies 320/390/1440px in dark/light: panel bounds, keyboard toggle/Escape/outside close, topic link/current states, search GET query/results, axe WCAG A/AA and no page overflow. No-JavaScript topic browsing passes. Short landscape and blocked-search-engine fallback checked. About restores the six pre-roadmap subject/tool groups as interests; confirmed engineer background, contact omission and gated CV remain. Social SVG/PNG and shared name are lowercase."
+            }
           ]
         }
       ]

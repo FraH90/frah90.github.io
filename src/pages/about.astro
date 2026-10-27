@@ -1,154 +1,51 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { cvUrl, siteName } from "../lib/site";
-import { getTopic, type TopicSlug } from "../lib/topics";
-import { getAllCategories, getAllPosts } from "../lib/posts";
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteName, cvUrl } from '../lib/site';
 
-const availableTopics = new Set(
-  (await getAllCategories()).map((topic) => topic.slug),
-);
-const examples = (await getAllPosts()).filter((post) =>
-  ["rf/transmission-line-theory", "antennas/phased-array-basics"].includes(
-    post.id,
-  ),
-);
-const interests: { title: string; description: string; topics: TopicSlug[] }[] =
-  [
-    {
-      title: "Physical models",
-      description:
-        "Interference and propagation connect my interests in antennas, RF, and optics. I’m interested in how a model’s assumptions shape what it can explain.",
-      topics: ["antennas", "rf", "optics"],
-    },
-    {
-      title: "Signals and inference",
-      description:
-        "Sampling, Fourier methods, and machine learning offer different ways to understand signal data. I want to explore where those methods connect and where their limits matter.",
-      topics: ["dsp", "ml"],
-    },
-    {
-      title: "Engineering software",
-      description:
-        "I’m interested in agentic programming for engineering tools and workflows, including integrated circuit design with open-source tools. This is a direction for exploration.",
-      topics: [],
-    },
-  ];
+const subjectGroups = [
+  {
+    label: 'Antennas & Arrays',
+    items: ['Phased array design', 'Array factor analysis', 'Beam steering', 'Near/far field', 'HFSS / CST'],
+  },
+  {
+    label: 'RF & Microwave',
+    items: ['Transmission line theory', 'Smith chart / impedance matching', 'S-parameters', 'LTspice', 'VNA measurements'],
+  },
+  {
+    label: 'Optics & Photonics',
+    items: ['Gaussian beam propagation', 'Mode field analysis', 'Fiber optics', 'Optical resonators', 'Dispersion modeling'],
+  },
+  {
+    label: 'Signal Processing',
+    items: ['Fourier analysis (DFT/FFT)', 'Filter design (FIR/IIR)', 'Spectral estimation', 'Windowing', 'Sampling theory'],
+  },
+  {
+    label: 'Simulation & Software',
+    items: ['Python (NumPy, SciPy, Plotly)', 'MATLAB / Octave', 'Jupyter notebooks', 'Git', 'Linux'],
+  },
+  {
+    label: 'Machine Learning',
+    items: ['Neural networks (PyTorch)', 'Applied ML for signal data', 'Feature engineering', 'Model evaluation'],
+  },
+];
 ---
-
-<BaseLayout
-  title={`About — ${siteName}`}
-  description={`The interests and approach behind ${siteName}’s scientific and technical writing.`}
->
+<BaseLayout title={`About — ${siteName}`} description="An electronic engineer’s interests in waves, signals, and engineering software.">
   <article class="site-shell py-12 sm:py-16">
-    <header class="reading-width mb-12">
-      <p class="text-sm text-muted mb-3">{siteName}</p>
-      <h1 class="page-title text-3xl sm:text-4xl text-ink mb-6">About</h1>
-      <p
-        class="text-xl sm:text-2xl leading-relaxed text-ink"
-        style="font-family: 'Lora', Georgia, serif;"
-      >
-        Engineering across waves, signals, and computation.
-      </p>
-    </header>
-
-    <div class="prose reading-width mb-12">
-      <p>
-        I’m an electronic engineer. My interests span antennas, RF, optics, signal processing, and machine
-        learning. I’m developing depth across these areas through study and
-        practical exploration, with an interest in the ideas that connect them.
-      </p>
-      <p>
-        This blog is where I want to bring that work together: technical
-        explanations, analytical models, experiments, and small tools. The aim
-        is to make the reasoning inspectable through equations, figures, code,
-        and explicit assumptions.
-      </p>
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-3xl font-bold text-ink mb-8">About</h1>
+      <div class="prose max-w-none mb-12">
+        <p>I’m an electronic engineer interested in electronics, photonics, RF systems, and signal processing.</p>
+        <p>This site is a place to work through engineering ideas from first principles, with equations, code, and interactive examples.</p>
+      </div>
+      <h2 class="text-xs font-mono uppercase tracking-widest text-muted mb-6">Topics &amp; tools</h2>
+      <p class="text-sm text-muted mb-6">Areas of interest for study and practical exploration.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {subjectGroups.map(group => <section class="border border-rule rounded-lg p-5 min-w-0">
+          <h3 class="text-xs font-mono uppercase tracking-widest text-accent mb-4">{group.label}</h3>
+          <ul class="space-y-1.5">{group.items.map(item => <li class="text-sm text-body flex items-start gap-2"><span class="text-muted" aria-hidden="true">—</span>{item}</li>)}</ul>
+        </section>)}
+      </div>
+      {cvUrl && <a href={cvUrl} class="inline-flex min-h-11 items-center text-accent underline underline-offset-4 mt-8">Download CV (PDF)</a>}
     </div>
-
-    <section aria-labelledby="about-interests" class="mb-14">
-      <h2 id="about-interests" class="text-xl text-ink font-medium mb-6">
-        Current interests
-      </h2>
-      <div class="grid md:grid-cols-3 gap-5">
-        {
-          interests.map((interest) => (
-            <section class="border border-rule rounded-lg p-5 min-w-0">
-              <h3 class="text-base text-ink font-medium mb-3">
-                {interest.title}
-              </h3>
-              <p class="text-sm text-body leading-relaxed">
-                {interest.description}
-              </p>
-              {interest.topics.some((slug) => availableTopics.has(slug)) && (
-                <ul class="mt-4 space-y-1">
-                  {interest.topics
-                    .filter((slug) => availableTopics.has(slug))
-                    .map((slug) => {
-                      const topic = getTopic(slug);
-                      return (
-                        <li>
-                          <a
-                            href={`/blog/${topic.slug}`}
-                            class="inline-flex min-h-11 items-center text-sm text-accent underline underline-offset-4"
-                          >
-                            {topic.label}
-                          </a>
-                        </li>
-                      );
-                    })}
-                </ul>
-              )}
-            </section>
-          ))
-        }
-      </div>
-    </section>
-
-    <section aria-labelledby="about-writing" class="reading-width mb-14">
-      <h2 id="about-writing" class="text-xl text-ink font-medium mb-4">
-        Read the work
-      </h2>
-      <p class="text-body leading-relaxed mb-4">
-        Start with the writing archive for explanations and analytical examples.
-        Each piece should make its model, evidence, and limitations clear, so
-        you can assess the reasoning for yourself.
-      </p>
-      {
-        examples.length > 0 && (
-          <div class="mb-5">
-            <p class="text-sm text-muted mb-2">
-              Demo articles from the current archive:
-            </p>
-            <ul class="space-y-2">
-              {examples.map((post) => (
-                <li>
-                  <a
-                    href={`/blog/${post.id}`}
-                    class="inline-flex min-h-11 items-center text-accent underline underline-offset-4"
-                  >
-                    {post.data.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )
-      }
-      <div class="flex flex-wrap gap-x-6 gap-y-2">
-        <a
-          href="/blog"
-          class="inline-flex min-h-11 items-center text-accent underline underline-offset-4"
-          >Browse the writing <span aria-hidden="true" class="ml-2">→</span></a
-        >
-        <a
-          href="https://github.com/FraH90/frah90.github.io"
-          class="inline-flex min-h-11 items-center text-accent underline underline-offset-4"
-          >Explore the site’s source</a
-        >
-        {cvUrl && <a href={cvUrl} class="inline-flex min-h-11 items-center text-accent underline underline-offset-4">Download CV (PDF)</a>}
-      </div>
-    </section>
-
-
   </article>
 </BaseLayout>

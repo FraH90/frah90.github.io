@@ -1,11 +1,11 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
+import DiscoveryPanel from './DiscoveryPanel.astro';
 import { siteName } from '../../lib/site';
 
 const navLinks = [
   { href: '/blog', label: 'Writing' },
   { href: '/about', label: 'About' },
-  { href: '/search', label: 'Search' },
 ];
 const current = Astro.url.pathname.replace(/\/$/, '') || '/';
 const isActive = (href: string) => current === href || current.startsWith(`${href}/`);
@@ -32,6 +32,7 @@ const isActive = (href: string) => current === href || current.startsWith(`${hre
         ))}
       </ul>
       <ThemeToggle />
+      <DiscoveryPanel />
     </div>
   </nav>
 </header>

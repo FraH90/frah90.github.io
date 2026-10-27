@@ -1,4 +1,4 @@
-# FraH90 — scientific and technical writing
+# frah90 — scientific and technical writing
 
 A content-first engineering blog built with Astro and MDX, hosted at **https://frah90.github.io**. Articles explore antennas, RF, optics, signal processing, machine learning, and computational engineering. About provides author context; research interests are not claims of specialist experience.
 
@@ -65,14 +65,14 @@ research/interests/            Unpublished interests and investigations
 ## Routes and navigation
 
 - `/` redirects to `/blog`, keeping writing first.
-- `/blog` lists published articles; `/blog/<topic>` filters the same listing by topic.
+- `/blog` starts directly with published article cards, without a hero or article count; `/blog/<topic>` filters the same listing by topic.
 - `/blog/<topic>/<article>` is the article URL, for example `/blog/rf/transmission-line-theory`.
-- `/about` presents the author’s stated interdisciplinary interests, links the published demos and repository source. The public identity remains FraH90; background is electronic engineer. Personal name and contacts are intentionally omitted.
+- `/about` restores the earlier compact introduction and six subject/tool groups, presented as interests for study and exploration. The public identity is lowercase frah90; background is electronic engineer. Personal name and contacts are intentionally omitted.
 - `/search?q=beam+steering` searches published article text (JavaScript required; topics remain available without it).
 - `/rss.xml` supplies the summary RSS feed.
 - `/projects` redirects to writing until actual case studies are available.
 
-Redirect aliases are excluded from the sitemap. The mobile header retains the same Writing/About/Search destinations as desktop. FraH90 is the intended public identity; a personal name and contacts are deliberately omitted.
+Redirect aliases are excluded from the sitemap. The header keeps Writing/About and theme controls. Its Topics control opens a right-side panel with published-topic links and a magnifying-glass search form; native disclosure keeps topic browsing usable without JavaScript. The public identity is lowercase frah90; a personal name and contacts are deliberately omitted.
 
 ## Reading themes
 

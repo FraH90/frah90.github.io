@@ -78,6 +78,9 @@ The owner writes the article; no manuscript, measurements, code results or publi
 - ✅ **done** · **build** — Apply the compact phone layout to every live demo plot: horizontal y labels, hidden y-zero text, no redundant titles, tighter margins/padding and locked gestures.
   - ID `r-261020-02-first-phased-array-article-p0-10` · closed 2026-10-21 · commits `8b64fb5ff7835f9649aec674d0c27c145fbcd128`
   - Evidence (measurement): Build, 15-page output checks, numerical identities and payload budget pass (5017144 decoded / 1531379 gzip JS bytes). Local Chromium verifies five plots across four articles at 320/390/1440px in both themes: no chart/vertical y titles or y-zero text, axis/annotation bounds, >70% horizontal plotting area, keyboard control endpoints/dB ranges, Fourier bars, no overflow, all no-JS and blocked-engine fallbacks. Default screenshots inspected. Mixed extreme Gaussian controls retain signed tick bounds; live theme update passes. Physical iPhone Safari not tested.
+- ✅ **done** · **build** — Remove archive intro/count, move topics and magnifying-glass search into a collapsible right panel, lowercase public branding, and restore the earlier compact About structure.
+  - ID `r-261020-02-first-phased-array-article-p0-11` · closed 2026-10-27
+  - Evidence (measurement): Production build and output/model/payload checks pass (15 pages; existing article/discovery boundaries preserved). Local Chromium verifies 320/390/1440px in dark/light: panel bounds, keyboard toggle/Escape/outside close, topic link/current states, search GET query/results, axe WCAG A/AA and no page overflow. No-JavaScript topic browsing passes. Short landscape and blocked-search-engine fallback checked. About restores the six pre-roadmap subject/tool groups as interests; confirmed engineer background, contact omission and gated CV remain. Social SVG/PNG and shared name are lowercase.
 
 ### Phase 1 — Owner manuscript and reproducible evidence
 
@@ -182,3 +185,16 @@ Owner: “Having two zero is ugly. Delete the y axis one. And maybe u can move t
 Do them all the modifications for all plots in all articles”.
 
 The shared Plotly wrapper now applies horizontal y-axis labels, suppresses redundant visible titles, locks axis gestures and hides only y-zero tick text using label aliases. Every live demo frame gets narrow phone padding. Array left margin moves to 26px; transmission uses 30px; other charts use 36px for signed/longer ticks. Standard phone plots are 288px, desktop 384px; Fourier retains its 192/256px panels and bars. Transmission voltage range remains physically bounded at 0–2 and Fourier spectrum remains nonnegative even at zero input. Semantic names/units, data and gridlines remain. This supersedes the earlier array-only scope.
+
+### Archive, panel and About correction — 2026-10-27
+
+Owner request:
+
+> Remove the "writing", bla bla bla, and about the author. Not needed. The topic selector.. make it a side panel, on the right for now (we'lll see if on the left), collapsible.. with nice ui. In that panel it also go the search shit, in the form of a ingrandimento lens, that now is on top bar (wrong position yeah)
+> Not needed the counter "5 articles"
+> The frah90 shit im undecided if to keep it that way or name the blog another way, but we'll see. for now put it all in minuscolo, not FraH90, everything lowercase
+> And the "about" section.. i preferred the version before the codex modificatons in the about section.. i preferred the previous version yeah
+
+The archive begins with cards; topic routes retain their contextual heading. A global native-details panel appears on the right with a search field/lens submit and populated topic links. It is nonmodal, collapsed initially, and supports native no-JavaScript browsing; small enhancements provide Escape, outside click and a close button. The Search route remains functional but is removed from main navigation. Shared name and social card now use frah90.
+
+About restores the compact introduction and six-group structure from 22a1c85. Original contact links and unconfirmed professional/skills assertions are not republished: the owner-confirmed electronic-engineer background and privacy choices remain, and subjects/tools are framed as interests for study. This is structural restoration rather than a verbatim rollback of those claims. No new public name or proficiency is inferred.
