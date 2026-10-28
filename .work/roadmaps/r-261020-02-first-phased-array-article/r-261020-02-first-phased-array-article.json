@@ -349,7 +349,10 @@
               "value": "Mirrored AGENTS.md/CLAUDE.md and README/architecture/demo/layout guides record 18px/25px prose, centralized height presets/1.5× expansion and shared dismissal. The final design approval remains open."
             }
           ],
-          "closed_at": "2026-10-28"
+          "closed_at": "2026-10-28",
+          "commits": [
+            "664b63f9fff7d32b46459fcbf681b0389c685b1c"
+          ]
         }
       ]
     },
