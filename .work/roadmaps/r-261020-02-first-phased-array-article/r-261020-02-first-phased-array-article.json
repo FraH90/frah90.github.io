@@ -445,7 +445,10 @@
               "value": "docs/architecture.md records the focus/scroll-container mechanism and targeted correction. No new visual direction, dependency or article content is introduced; final design review remains open."
             }
           ],
-          "closed_at": "2026-10-28"
+          "closed_at": "2026-10-28",
+          "commits": [
+            "ad132946d24037769c1eda9b5b82ae677a5c84ce"
+          ]
         }
       ]
     },
