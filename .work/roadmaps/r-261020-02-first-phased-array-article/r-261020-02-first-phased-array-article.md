@@ -99,6 +99,11 @@ The owner writes the article; no manuscript, measurements, code results or publi
   - Evidence (measurement): Final interaction review additionally verifies Escape from a populated search input, pointer-driven open/close without changing page scroll, and icon theme persistence after reload. Escape is captured before the browser search-input clear action.
 - ⬜ **todo** · **decision** — Review reference sites and agree the remaining grid/article visual direction with the owner before publishing substantive articles.
   - ID `r-261020-02-first-phased-array-article-design-2`
+- ✅ **done** · **build** — Replace opening model-assumption callouts with closing Key takeaways and move article Contents into a collapsible left PDF-style outline.
+  - ID `r-261020-02-first-phased-array-article-design-3` · closed 2026-10-28
+  - Evidence (measurement): Production build, 15-page route/discovery checks, numerical model checks and payload budget pass (5017406 decoded / 1531505 gzip JS bytes). Local Chromium verifies all five articles at 320/390/1024/1440px in dark/light: removed assumptions boxes, closing takeaways, left outline geometry, section jumps/focus, desktop reserved space, phone dismissal, no overflow and axe WCAG A/AA. Desktop/phone screenshots inspected. All four live demos resize without overflow when the outline opens; section highlighting, Escape from reading content, independent right dialog and reduced motion pass. Blocked-Plotly static fallback and outline selection pass. Physical Safari not tested.
+  - Evidence (document): docs/article-authoring.md, docs/templates/article.mdx and mirrored AGENTS.md/CLAUDE.md document takeaways metadata and left-outline behavior. Scientific model context remains in prose. The final grid/article visual-review decision remains open.
+  - Evidence (measurement): No-JavaScript phone/desktop review verifies native disclosure, section fragment links, closing summary and no page overflow. Without scripts the phone outline is closed manually through its summary.
 
 ### Phase 1 — Owner manuscript and reproducible evidence
 
@@ -226,3 +231,12 @@ Owner request:
 A new independently useful design phase keeps the remaining visual review active instead of claiming the redesign complete. Article publication now depends on this phase as well as the manuscript/evidence phase; writing can proceed independently. Current changes provide a 52px navigation row plus border, icon-only theme/menu controls, real slide/fade drawer transitions and an interim lighter grid without repeated CTA text. Native dialog manages modal focus while a native disclosure remains the no-script/unsupported-browser fallback. CSS motion honors reduced-motion preferences. The stack remains Astro/Tailwind with React islands for demos.
 
 Reference rationale is in docs/design-direction.md. The owner has not yet selected a reference or approved a final grid. Earlier discussion also favors a phased-array series with the first two or three installments didactic; no final series outline/manuscript is claimed approved by this design delivery.
+
+### Article outline and closing summary — 2026-10-28
+
+Owner request:
+
+> that box with model assumption.. in all articles, i dont need it. But i like the visual idea. We will use that box shit, for the end of the article mauybe, and call it "take away" OR SHIT like that, to summarize that article
+> the table of content.. let's put it in the left, when we open an article. collapsible. mostly such as a pdf viewr that gives u shit to navigate the pdf.
+
+Implementation moves the existing scientific context into ordinary prose and adds concise, article-specific `takeaways` metadata. The accent-edge summary follows the body, before supporting material/references. The left native disclosure starts collapsed; desktop opening reserves reading space, while phones use an overlay that scripts close on section selection. Scripts add current-section highlighting, Escape and focus transfer. Right-side topic/search discovery remains independent. This iteration does not close the owner visual-review decision.

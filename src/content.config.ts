@@ -19,7 +19,7 @@ const blog = defineCollection({
     coverImage:  z.string().optional(),
     learningGoals: z.array(text).default([]),
     prerequisites: z.array(text).default([]),
-    assumptions: z.array(text).default([]),
+    takeaways: z.array(text).default([]),
     relatedPosts: z.array(reference('blog')).default([]),
     resources: z.array(z.object({
       label: text,

@@ -8,9 +8,9 @@ Write clearly about a concrete question, method, result, or lesson. Breadth is u
 
 ## Article structure
 
-Begin with a short description of what the reader will learn and relevant prerequisites. Show the published date; updated dates are not part of the requested reading UI. Use headings that produce useful section links and a collapsed contents disclosure when there are enough sections to help navigation.
+Begin with a short description of what the reader will learn and relevant prerequisites. Show the published date; updated dates are not part of the requested reading UI. Use headings that produce useful section links and a collapsible left contents outline when there are enough sections to help navigation.
 
-State the problem and model assumptions before deriving or simulating a result. Define symbols, units, angle/phase conventions, normalizations, and valid parameter ranges. Distinguish ideal models from measurements and simulation output. Include references that support substantive claims and links to related articles, code, notebooks, or projects where they exist.
+State the problem and model assumptions in the prose before deriving or simulating a result; do not add an opening assumptions callout. Close with a concise “Key takeaways” callout summarizing supported conclusions. Define symbols, units, angle/phase conventions, normalizations, and valid parameter ranges. Distinguish ideal models from measurements and simulation output. Include references that support substantive claims and links to related articles, code, notebooks, or projects where they exist.
 
 ## Scientific figures
 

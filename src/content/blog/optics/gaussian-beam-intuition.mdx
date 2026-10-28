@@ -6,9 +6,10 @@ description: The three numbers that define a Gaussian beam and why you can't min
 tags: [optics, laser, gaussian-beam, photonics]
 draft: false
 demo: true
-assumptions:
-  - Ideal free-space paraxial fundamental Gaussian beam with M² = 1.
-  - w is the 1/e² intensity radius, not diameter; θ is the divergence half-angle.
+takeaways:
+  - "At a fixed wavelength, a smaller ideal Gaussian waist means greater divergence."
+  - "The Rayleigh range marks where the beam area reaches twice its waist value."
+  - "Use consistent radius or diameter definitions; size matching alone does not guarantee fiber coupling."
 references:
   - id: gaussian-mit
     title: "MIT 6.974 — Paraxial Wave Equation and Gaussian Beams"
@@ -28,6 +29,8 @@ These three are not independent:
 $$
 z_R = \frac{\pi w_0^2}{\lambda}, \qquad \theta \approx \frac{\lambda}{\pi w_0}
 $$
+
+Here the model is an ideal free-space, paraxial fundamental Gaussian beam with $M^2 = 1$. The quantity $w$ is the $1/e^2$ intensity radius, not diameter, and $\theta$ is the divergence half-angle.
 
 ## The Fundamental Trade-off
 

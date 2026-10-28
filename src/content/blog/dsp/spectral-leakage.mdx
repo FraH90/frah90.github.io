@@ -6,9 +6,10 @@ description: What spectral leakage is, why it happens in the DFT, and how window
 tags: [dsp, fft, windowing, spectral-leakage]
 draft: false
 demo: true
-assumptions:
-  - 512 uniformly spaced samples at 1 kHz, with frequencies below the 500 Hz Nyquist limit.
-  - Symmetric windows use N−1 in their cosine arguments; the one-sided amplitude spectrum is coherent-gain corrected.
+takeaways:
+  - "Off-bin tones spread energy across DFT bins through spectral leakage."
+  - "Window choice trades main-lobe width against sidelobe suppression."
+  - "Coherent-gain correction does not remove off-bin scalloping loss."
 references:
   - id: scipy-spectral
     title: "SciPy Signal Processing Tutorial — Spectral Analysis"
@@ -24,6 +25,8 @@ The DFT assumes the $N$-point signal is one period of an infinitely periodic seq
 When the signal frequency is not an exact integer multiple of $\Delta f = f_s / N$,
 the periodic extension has a boundary discontinuity and the observed tone spreads across bins.
 This is **spectral leakage**.
+
+The example uses 512 uniformly spaced samples at 1 kHz, with frequencies below the 500 Hz Nyquist limit. Symmetric windows use $N-1$ in their cosine arguments; the one-sided amplitude spectrum is corrected for coherent gain.
 
 ## Why It Happens
 

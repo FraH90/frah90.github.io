@@ -21,8 +21,8 @@ learningGoals:
   - Explain the question the article answers.
 prerequisites:
   - Complex numbers
-assumptions:
-  - State the actual idealizations and valid parameter range.
+takeaways:
+  - Summarize a conclusion supported by the article.
 relatedPosts:
   - rf/transmission-line-theory
 resources:
@@ -36,7 +36,7 @@ references:
     url: https://docs.astro.build/en/guides/content-collections/
 ```
 
-`learningGoals` renders as “What you’ll learn”; `prerequisites` is a compact line below it. `assumptions` renders a short model-assumptions section. Omit these fields when they add nothing; do not add empty placeholders to a published article.
+`learningGoals` renders as “What you’ll learn”; `prerequisites` is a compact line below it. `takeaways` renders a closing “Key takeaways” callout before supporting material and references. Write model assumptions and conventions naturally in the body before using them; there is no automatic opening assumptions box. Omit these fields when they add nothing; do not add empty placeholders to a published article.
 
 `relatedPosts` uses collection IDs, including category, rather than URLs. Curated published links appear first, followed by published articles sharing a topic or tag, up to three results. Duplicates, the current article, and drafts are excluded. Missing curated IDs fail article generation so typos cannot silently become broken recommendations. No related panel appears when nothing is relevant.
 
@@ -44,7 +44,7 @@ references:
 
 ## Sections and contents
 
-Start body sections at `##`, with `###` for subsections. Astro supplies heading IDs, including unique IDs for repeated headings. The native “Contents” disclosure is collapsed by default and appears when there are at least two relevant sections. It includes second/third-level body headings and any rendered assumptions, material, references, and related-reading sections. It works without JavaScript and uses no sidebar.
+Start body sections at `##`, with `###` for subsections. Astro supplies heading IDs, including unique IDs for repeated headings. The left “Contents” outline is collapsed by default and appears when there are at least two relevant sections. It includes second/third-level body headings and any rendered takeaways, material, references, and related-reading sections. On desktop it stays available alongside the article when opened; on phones it overlays the page and closes after section selection when JavaScript is available. Native disclosure and fragment links work without JavaScript. Escape collapses the panel and returns focus to its trigger; current-section highlighting follows reading progress.
 
 Headings have no appended permalink symbols. Native IDs and contents links remain usable with or without JavaScript. Reserve `article-tools-*`, `fig-*`, and `ref-*` for the article components. Avoid duplicate IDs when adding custom markup.
 

@@ -78,11 +78,11 @@ Redirect aliases are excluded from the sitemap. The header keeps Writing/About a
 
 Dark is the initial default, independently of the browser's system preference. The header button switches to light or dark and stores the explicit choice under `frah90-theme` in local storage. It applies before body rendering, persists across page loads, and synchronizes between tabs. If storage is blocked, the switch still works for the current page; if JavaScript is disabled, the site stays readable in dark mode and hides the unavailable switch.
 
-Semantic color and layout tokens live in `src/styles/global.css`. Article prose, headings and demos share the same 64rem shell; neutral zinc colors restore the original dark palette. The compact Contents disclosure stays collapsed initially. Wide equations, code, and tables scroll locally and receive keyboard focus when they overflow. Shiki emits both code palettes at build time. Plotly charts use shared theme colors and visible axis titles. Range controls use native styling and associated labels. See [interactive demo behavior and measured budgets](docs/interactive-demos.md).
+Semantic color and layout tokens live in `src/styles/global.css`. Article prose, headings and demos share the same 64rem shell; neutral zinc colors restore the original dark palette. The left article Contents outline stays collapsed initially; opening it reserves space on desktop and overlays on phones. Wide equations, code, and tables scroll locally and receive keyboard focus when they overflow. Shiki emits both code palettes at build time. Plotly charts use shared theme colors and visible axis titles. Range controls use native styling and associated labels. See [interactive demo behavior and measured budgets](docs/interactive-demos.md).
 
 ## Write an article
 
-Use `npm run new:post -- rf/my-article` to create a draft safely, or copy the [article template](docs/templates/article.mdx). See the [full authoring guide](docs/article-authoring.md) for learning goals, prerequisites, assumptions, figures, references, supporting material, and related reading.
+Use `npm run new:post -- rf/my-article` to create a draft safely, or copy the [article template](docs/templates/article.mdx). See the [full authoring guide](docs/article-authoring.md) for learning goals, prerequisites, closing takeaways, figures, references, supporting material, and related reading.
 
 Create `src/content/blog/rf/my-article.mdx` with explicit draft status:
 

@@ -6,10 +6,10 @@ description: A first-principles walkthrough of the array factor and how progress
 tags: [antennas, phased-array, beamforming]
 draft: false
 demo: true
-assumptions:
-  - Uniform linear array of identical isotropic uncoupled elements with equal amplitudes.
-  - Narrowband far-field array factor only; element patterns, coupling, losses and polarization are omitted.
-  - The angle θ is measured from the array axis; broadside is 90 degrees.
+takeaways:
+  - "Progressive phase offsets steer the visible in-phase directions of an array."
+  - "At fixed spacing, more uniformly weighted elements narrow the main lobe without eliminating sidelobes."
+  - "Grating lobes depend on spacing and scan direction; check every visible in-phase solution."
 references:
   - id: uniform-array
     title: "Peter J. Bevelacqua — Analysis of Uniform Arrays"
@@ -24,6 +24,8 @@ import InteractiveDemo from '../../../components/ui/InteractiveDemo.astro';
 A phased array antenna achieves beam steering by exploiting constructive and destructive
 interference between multiple radiating elements. Each element transmits (or receives) the
 same signal, but with a controlled phase offset applied between adjacent elements.
+
+This model uses a narrowband, far-field uniform linear array of identical, isotropic, uncoupled elements with equal amplitudes. Element patterns, coupling, losses, and polarization are omitted. The angle $\theta$ is measured from the array axis; broadside is 90 degrees.
 
 ## The Array Factor
 

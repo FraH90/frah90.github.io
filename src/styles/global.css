@@ -174,8 +174,8 @@ body { font-family: 'Inter', system-ui, sans-serif; }
   *, *::before, *::after { transition-duration: 0s !important; }
 }
 
-/* Article tools are optional and occupy the reading column rather than a sidebar. */
-.article-brief, .article-assumptions {
+/* Brief and closing summary share the accent-edge callout style. */
+.article-brief, .article-takeaways {
   padding: 1.25rem 1.5rem;
   border-left: 2px solid var(--accent);
   background: var(--surface);
@@ -184,20 +184,7 @@ body { font-family: 'Inter', system-ui, sans-serif; }
   line-height: 1.7;
   overflow-wrap: anywhere;
 }
-/* Compact native disclosure: no full-width rules or permanent sidebar. */
-.article-contents { color: var(--body); }
-.article-contents summary { display: flex; align-items: center; gap: .65rem; width: fit-content; min-height: 44px; padding: .5rem .85rem; border-radius: .5rem; background: var(--surface); list-style: none; cursor: pointer; color: var(--body); font-size: .875rem; }
-.article-contents summary::-webkit-details-marker { display: none; }
-.article-contents summary::marker { content: ''; }
-.article-contents summary:hover { color: var(--ink); background: var(--elevated); }
-.article-contents .contents-chevron { transition: transform 150ms; }
-.article-contents[open] .contents-chevron { transform: rotate(180deg); }
-.article-contents nav { max-width: 44rem; margin-top: .5rem; padding: .5rem; background: var(--surface); border-radius: .5rem; font-size: .875rem; line-height: 1.5; }
-.article-contents ul { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .1rem .5rem; }
-.article-contents a { display: block; padding: .6rem .75rem; border-radius: .3rem; text-decoration: none; overflow-wrap: anywhere; }
-.article-contents a:hover { color: var(--ink); background: var(--elevated); }
-.contents-subsection { padding-left: .85rem; }
-@media (max-width: 639px) { .article-contents ul { grid-template-columns: minmax(0,1fr); } }
+
 .article-section { margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--rule); color: var(--body); font-size: 0.875rem; line-height: 1.7; overflow-wrap: anywhere; }
 .article-section-title { font-family: 'Lora', Georgia, serif; font-size: 1.5rem; color: var(--ink); margin-bottom: 1.5rem; }
 .reference-list { display: grid; gap: 1.25rem; }

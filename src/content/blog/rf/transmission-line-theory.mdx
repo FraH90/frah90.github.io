@@ -6,9 +6,10 @@ description: Why impedance mismatch causes reflections, what the reflection coef
 tags: [rf, transmission-line, impedance, vswr]
 draft: false
 demo: true
-assumptions:
-  - Lossless uniform line with positive real characteristic impedance and a passive load.
-  - The load is at z = 0; the source lies at negative z; incident voltage amplitude is normalized to 1.
+takeaways:
+  - "Impedance mismatch produces a reflected wave and a standing-wave envelope."
+  - "VSWR is 1 for a matched load and tends to infinity for total reflection."
+  - "On a mismatched lossless line, adjacent voltage minima are half a wavelength apart."
 references:
   - id: standing-waves
     title: "Steven W. Ellingson — Standing Waves"
@@ -22,6 +23,8 @@ import InteractiveDemo from '../../../components/ui/InteractiveDemo.astro';
 
 When a transmission line is terminated in a load impedance $Z_L \neq Z_0$, not all the incident
 power is absorbed. The remainder reflects back toward the source, creating a **standing wave** pattern.
+
+The model below is a lossless uniform line with positive real characteristic impedance and a passive load. The load is at $z = 0$ and the source at negative $z$; incident voltage amplitude is normalized to 1.
 
 ## Reflection Coefficient
 

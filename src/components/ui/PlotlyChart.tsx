@@ -29,7 +29,24 @@ export default function PlotlyChart({ data, layout, className = 'w-full h-72 sm:
     const update = () => setThemeVersion(version => version + 1);
     window.addEventListener('themechange', update);
     const element = ref.current;
+    // A reading panel changes the chart container without resizing the window.
+    // Plotly's responsive option alone only handles window resize events.
+    let frame = 0;
+    let disposed = false;
+    const observer = new ResizeObserver(() => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        if (!element || !element.clientWidth || element.dataset.plotReady !== 'true') return;
+        plotly.current?.Plots.resize(element).catch(() => {
+          if (!disposed) setError(true);
+        });
+      });
+    });
+    if (element) observer.observe(element);
     return () => {
+      disposed = true;
+      observer.disconnect();
+      cancelAnimationFrame(frame);
       window.removeEventListener('themechange', update);
       if (element && plotly.current) plotly.current.purge(element);
     };

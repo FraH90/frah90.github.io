@@ -257,6 +257,27 @@
           "status": "todo",
           "kind": "decision",
           "evidence": []
+        },
+        {
+          "id": "r-261020-02-first-phased-array-article-design-3",
+          "text": "Replace opening model-assumption callouts with closing Key takeaways and move article Contents into a collapsible left PDF-style outline.",
+          "kind": "build",
+          "status": "done",
+          "evidence": [
+            {
+              "kind": "measurement",
+              "value": "Production build, 15-page route/discovery checks, numerical model checks and payload budget pass (5017406 decoded / 1531505 gzip JS bytes). Local Chromium verifies all five articles at 320/390/1024/1440px in dark/light: removed assumptions boxes, closing takeaways, left outline geometry, section jumps/focus, desktop reserved space, phone dismissal, no overflow and axe WCAG A/AA. Desktop/phone screenshots inspected. All four live demos resize without overflow when the outline opens; section highlighting, Escape from reading content, independent right dialog and reduced motion pass. Blocked-Plotly static fallback and outline selection pass. Physical Safari not tested."
+            },
+            {
+              "kind": "document",
+              "value": "docs/article-authoring.md, docs/templates/article.mdx and mirrored AGENTS.md/CLAUDE.md document takeaways metadata and left-outline behavior. Scientific model context remains in prose. The final grid/article visual-review decision remains open."
+            },
+            {
+              "kind": "measurement",
+              "value": "No-JavaScript phone/desktop review verifies native disclosure, section fragment links, closing summary and no page overflow. Without scripts the phone outline is closed manually through its summary."
+            }
+          ],
+          "closed_at": "2026-10-28"
         }
       ]
     },

@@ -14,11 +14,11 @@ interface Props {
   relatedPosts: CollectionEntry<'blog'>[];
 }
 const { post, headings, relatedPosts } = Astro.props;
-const { demo, title, date, category, description, learningGoals, prerequisites, assumptions, resources, references } = post.data;
+const { demo, title, date, category, description, learningGoals, prerequisites, takeaways, resources, references } = post.data;
 const topic = getTopic(category);
 const contents = [
-  ...(assumptions.length ? [{ depth: 2, slug: 'article-tools-assumptions', text: 'Model assumptions' }] : []),
   ...headings,
+  ...(takeaways.length ? [{ depth: 2, slug: 'article-tools-takeaways', text: 'Key takeaways' }] : []),
   ...(resources.length ? [{ depth: 2, slug: 'article-tools-resources', text: 'Supporting material' }] : []),
   ...(references.length ? [{ depth: 2, slug: 'article-tools-references', text: 'References' }] : []),
   ...(relatedPosts.length ? [{ depth: 2, slug: 'article-tools-related', text: 'Related reading' }] : []),
@@ -66,14 +66,14 @@ const formatted = new Intl.DateTimeFormat('en-US', {
       </div>
     )}
     <TableOfContents headings={contents} />
-    {assumptions.length > 0 && <section class="article-assumptions reading-width mb-10" aria-labelledby="article-tools-assumptions">
-      <h2 id="article-tools-assumptions" tabindex="-1" class="text-sm font-medium text-ink mb-3">Model assumptions</h2>
-      <ul class="list-disc pl-5 space-y-2">{assumptions.map(assumption => <li>{assumption}</li>)}</ul>
-    </section>}
-
     <div class="prose article-content">
       <slot />
     </div>
+
+    {takeaways.length > 0 && <section class="article-takeaways reading-width mt-10" aria-labelledby="article-tools-takeaways">
+      <h2 id="article-tools-takeaways" tabindex="-1" class="text-sm font-medium text-ink mb-3">Key takeaways</h2>
+      <ul class="list-disc pl-5 space-y-2">{takeaways.map(takeaway => <li>{takeaway}</li>)}</ul>
+    </section>}
 
     {resources.length > 0 && <section class="article-section reading-width" aria-labelledby="article-tools-resources">
       <h2 id="article-tools-resources" tabindex="-1" class="article-section-title">Supporting material</h2>
