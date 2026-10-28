@@ -373,7 +373,10 @@
               "value": "docs/responsive-plots.md explains the algorithm, reusable viewport helper, per-chart height budget and normal-size floor. Settings, README, architecture and mirrored instruction files record proportional fitting; final design approval remains open."
             }
           ],
-          "closed_at": "2026-10-28"
+          "closed_at": "2026-10-28",
+          "commits": [
+            "5ddd9216a48ee11a826b19b987d8d2873493c359"
+          ]
         }
       ]
     },
