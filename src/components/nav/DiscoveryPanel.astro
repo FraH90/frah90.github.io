@@ -5,11 +5,10 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 <details class="discovery-panel" id="discovery-panel">
   <summary aria-label="Topics and search" title="Topics and search">
-    <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M15 4v16M18 8h.01M18 12h.01M18 16h.01"/></svg>
-    <span class="panel-trigger-text">Topics</span>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M9 12h11M4 17h16"/></svg>
   </summary>
   <aside aria-label="Topics and search" class="discovery-drawer">
-    <div class="drawer-heading"><h2>Explore</h2><button type="button" class="drawer-close" aria-label="Close topics panel" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <div class="drawer-heading"><h2 id="discovery-heading">Explore</h2><button type="button" class="drawer-close" aria-label="Close topics panel" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
     <form action="/search" method="get" role="search" aria-label="Search from topics panel" class="drawer-search">
       <label class="sr-only" for="drawer-query">Search articles</label>
       <input id="drawer-query" type="search" name="q" maxlength="200" placeholder="Search articles" autocomplete="off" />
@@ -27,37 +26,88 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 <script>
   const panel = document.querySelector<HTMLDetailsElement>('#discovery-panel');
   const trigger = panel?.querySelector('summary');
-  const close = panel?.querySelector<HTMLButtonElement>('.drawer-close');
-  if (panel && close) {
-    close.hidden = false;
-    close.addEventListener('click', () => { panel.open = false; trigger?.focus(); });
-    document.addEventListener('keydown', event => {
-      if (event.key === 'Escape' && panel.open) { event.preventDefault(); panel.open = false; trigger?.focus(); }
+  const drawer = panel?.querySelector<HTMLElement>('.discovery-drawer');
+  if (panel && trigger && drawer && typeof HTMLDialogElement !== 'undefined') {
+    const dialog = document.createElement('dialog');
+    dialog.id = 'discovery-dialog';
+    dialog.className = 'discovery-modal';
+    dialog.setAttribute('aria-labelledby', 'discovery-heading');
+    dialog.append(drawer);
+    document.body.append(dialog);
+    trigger.setAttribute('aria-haspopup', 'dialog');
+    trigger.setAttribute('aria-controls', dialog.id);
+    trigger.setAttribute('aria-expanded', 'false');
+    const closeButton = drawer.querySelector<HTMLButtonElement>('.drawer-close')!;
+    closeButton.hidden = false;
+    let closing = false;
+    let timer: ReturnType<typeof setTimeout>;
+    const finish = () => {
+      clearTimeout(timer);
+      dialog.close();
+      dialog.classList.remove('is-closing', 'is-visible');
+      closing = false;
+      trigger.setAttribute('aria-expanded', 'false');
+      trigger.focus({ preventScroll: true });
+    };
+    const close = () => {
+      if (!dialog.open || closing) return;
+      closing = true;
+      dialog.classList.remove('is-visible');
+      dialog.classList.add('is-closing');
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) finish();
+      else timer = setTimeout(finish, 300);
+    };
+    trigger.addEventListener('click', event => {
+      event.preventDefault();
+      if (dialog.open) return;
+      dialog.showModal();
+      trigger.setAttribute('aria-expanded', 'true');
+      closeButton.focus({ preventScroll: true });
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (dialog.open && !closing) dialog.classList.add('is-visible');
+      }));
     });
-    document.addEventListener('pointerdown', event => {
-      if (panel.open && event.target instanceof Node && !panel.contains(event.target)) panel.open = false;
+    closeButton.addEventListener('click', close);
+    dialog.addEventListener('cancel', event => { event.preventDefault(); close(); });
+    // Capture Escape before a search input consumes it to clear its value.
+    dialog.addEventListener('keydown', event => {
+      if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); close(); }
+    }, true);
+    dialog.addEventListener('click', event => { if (event.target === dialog) close(); });
+    drawer.addEventListener('transitionend', event => {
+      if (closing && event.target === drawer && event.propertyName === 'transform') finish();
     });
   }
 </script>
-<style>
-summary { display: flex; align-items: center; justify-content: center; gap: .5rem; min-height: 44px; min-width: 44px; padding: .5rem .7rem; list-style: none; border: 1px solid var(--rule-strong); border-radius: .5rem; color: var(--muted); cursor: pointer; font-size: .875rem; }
-summary::-webkit-details-marker { display: none; }
-summary:hover, details[open] summary { color: var(--ink); background: var(--elevated); }
-.discovery-drawer { position: fixed; z-index: 60; right: 1rem; top: 5rem; width: min(22rem, calc(100vw - 2rem)); max-height: calc(100dvh - 6rem); overflow-y: auto; overscroll-behavior: contain; padding: 1.25rem; border: 1px solid var(--rule-strong); border-radius: .75rem; background: var(--surface); box-shadow: 0 1.5rem 4rem #0005; color: var(--body); }
-.drawer-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
-h2 { color: var(--ink); font-size: 1.125rem; font-weight: 500; }
-.drawer-close { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: .4rem; color: var(--muted); cursor: pointer; }
-.drawer-close[hidden] { display: none; }
-.drawer-close:hover { color: var(--ink); background: var(--elevated); }
-.drawer-search { display: flex; align-items: center; margin-bottom: 1.5rem; background: var(--page); border: 1px solid var(--rule-strong); border-radius: .5rem; }
-input { width: 100%; min-width: 0; padding: .75rem; color: var(--ink); font-size: 1rem; background: transparent; border-radius: .5rem; }
-.drawer-search button { display: flex; align-items: center; justify-content: center; flex-shrink: 0; min-width: 44px; min-height: 44px; color: var(--muted); cursor: pointer; }
-.drawer-search button:hover { color: var(--accent); }
-h3 { font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: .5rem; }
-ul { display: grid; gap: .25rem; }
-nav a { display: flex; align-items: center; justify-content: space-between; min-height: 44px; gap: .75rem; padding: .65rem .75rem; border-radius: .4rem; color: var(--body); font-size: .875rem; }
-nav a span { opacity: .5; }
-nav a:hover { background: var(--elevated); color: var(--ink); }
-nav a[aria-current] { background: var(--elevated); color: var(--accent); }
-@media (max-width: 639px) { .panel-trigger-text { display: none; } }
+<style is:global>
+.discovery-panel summary { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; list-style: none; border: 0; border-radius: 50%; background: transparent; color: var(--muted); cursor: pointer; transition: color 160ms, background-color 160ms; }
+.discovery-panel summary::-webkit-details-marker { display: none; }
+.discovery-panel summary:hover, .discovery-panel summary[aria-expanded="true"] { color: var(--ink); background: var(--elevated); }
+.discovery-drawer { padding: 1.5rem; background: var(--surface); color: var(--body); overflow-y: auto; overscroll-behavior: contain; }
+/* Native disclosure remains a functional right panel if scripts cannot run. */
+.discovery-panel .discovery-drawer { position: fixed; z-index: 60; right: 0; top: 52px; width: min(24rem, 100vw); height: calc(100dvh - 52px); border-left: 1px solid var(--rule); box-shadow: -1rem 0 3rem #0003; }
+.discovery-modal { position: fixed; inset: 0; margin: 0; padding: 0; width: 100%; height: 100%; height: 100dvh; max-width: none; max-height: none; border: 0; background: transparent; overflow: hidden; }
+.discovery-modal::backdrop { background: #0008; animation: discovery-dim 220ms ease both; }
+.discovery-modal.is-closing::backdrop { animation: discovery-undim 260ms ease both; }
+.discovery-modal .discovery-drawer { position: absolute; inset: 0 0 0 auto; width: min(24rem, 100%); height: 100%; border-left: 1px solid var(--rule); transform: translateX(100%); transition: transform 280ms cubic-bezier(.22,.8,.25,1); }
+.discovery-modal.is-visible .discovery-drawer { transform: translateX(0); }
+body:has(.discovery-modal[open]) { overflow: hidden; }
+.discovery-drawer .drawer-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+.discovery-drawer h2 { color: var(--ink); font-size: 1.125rem; font-weight: 500; }
+.discovery-drawer .drawer-close { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 0; border-radius: 50%; color: var(--muted); cursor: pointer; transition: background-color 160ms; }
+.discovery-drawer .drawer-close[hidden] { display: none; }
+.discovery-drawer .drawer-close:hover { color: var(--ink); background: var(--elevated); }
+.discovery-drawer .drawer-search { display: flex; align-items: center; margin-bottom: 2rem; border-bottom: 1px solid var(--rule-strong); }
+.discovery-drawer input { width: 100%; min-width: 0; padding: .75rem 0; color: var(--ink); font-size: 1rem; background: transparent; }
+.discovery-drawer .drawer-search button { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 44px; height: 44px; color: var(--muted); cursor: pointer; }
+.discovery-drawer .drawer-search button:hover { color: var(--accent); }
+.discovery-drawer h3 { font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: .75rem; }
+.discovery-drawer ul { display: grid; gap: .25rem; }
+.discovery-drawer nav a { display: flex; align-items: center; justify-content: space-between; min-height: 48px; gap: .75rem; padding: .65rem .5rem; border-bottom: 1px solid var(--rule); color: var(--body); font-size: .9375rem; transition: color 160ms, padding 160ms; }
+.discovery-drawer nav a span { opacity: .5; }
+.discovery-drawer nav a:hover { color: var(--ink); padding-inline: .85rem .15rem; }
+.discovery-drawer nav a[aria-current] { color: var(--accent); }
+@keyframes discovery-dim { from { opacity: 0; } to { opacity: 1; } }
+@keyframes discovery-undim { from { opacity: 1; } to { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .discovery-modal .discovery-drawer { transition: none; } .discovery-modal::backdrop { animation: none; } }
 </style>

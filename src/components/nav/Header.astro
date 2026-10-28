@@ -11,13 +11,13 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
 const isActive = (href: string) => current === href || current.startsWith(`${href}/`);
 ---
 
-<header class="sticky top-0 z-50 bg-page/95 backdrop-blur border-b border-rule">
-  <nav aria-label="Main navigation" class="site-shell min-h-16 flex flex-wrap items-center justify-between gap-x-3 gap-y-1 py-2">
+<header class="site-header sticky top-0 z-50 bg-page/95 border-b border-rule">
+  <nav aria-label="Main navigation" class="site-shell header-nav flex items-center justify-between gap-x-3">
     <a href="/" class="inline-flex min-h-11 items-center font-medium tracking-tight text-ink" aria-label={`${siteName} — home`}>
       {siteName}<span class="ml-1 text-accent" aria-hidden="true">.</span>
     </a>
-    <div class="flex items-center gap-2 sm:gap-6">
-      <ul class="flex items-center gap-3 sm:gap-7">
+    <div class="flex items-center gap-1 sm:gap-3">
+      <ul class="flex items-center gap-3 sm:gap-6">
         {navLinks.map(({ href, label }) => (
           <li>
             <a href={href}

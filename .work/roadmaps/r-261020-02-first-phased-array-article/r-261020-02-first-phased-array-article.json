@@ -218,6 +218,46 @@
       ]
     },
     {
+      "id": "r-261020-02-first-phased-array-article-design",
+      "title": "Design refinement before article publication",
+      "status": "active",
+      "useful_alone": "A slim animated navigation and an inspectable editorial grid improve the existing site before new articles are published.",
+      "done_when": "The owner has reviewed the visual direction and agreed the grid/article presentation, with appropriate browser checks passing.",
+      "depends_on": [
+        "r-261020-02-first-phased-array-article-p0"
+      ],
+      "items": [
+        {
+          "id": "r-261020-02-first-phased-array-article-design-1",
+          "text": "Slim the header, replace boxed controls with icons, implement animated right drawer, remove repeated article CTAs and deliver an interim editorial grid with design references.",
+          "status": "done",
+          "kind": "build",
+          "closed_at": "2026-10-28",
+          "evidence": [
+            {
+              "kind": "measurement",
+              "value": "Production build/output/model/payload checks pass. Local Chromium at 320/390/1440px in both themes verifies 53px total header, icon-only controls, CTA removal, divider-based two-column grid, drawer bounds/focus/Escape/backdrop/search and axe WCAG A/AA. In-flight transform proves slide animation; reduced motion, no-JavaScript disclosure, unsupported-dialog fallback and short-landscape navigation pass. Screenshots inspected. No animation dependency added; physical Safari not tested."
+            },
+            {
+              "kind": "document",
+              "value": "docs/design-direction.md records the current pass and primary reference links: Medium engineering feed, Distill, Bartosz Ciechanowski and Stripe Blog. The grid is explicitly interim, not owner-approved final design."
+            },
+            {
+              "kind": "measurement",
+              "value": "Final interaction review additionally verifies Escape from a populated search input, pointer-driven open/close without changing page scroll, and icon theme persistence after reload. Escape is captured before the browser search-input clear action."
+            }
+          ]
+        },
+        {
+          "id": "r-261020-02-first-phased-array-article-design-2",
+          "text": "Review reference sites and agree the remaining grid/article visual direction with the owner before publishing substantive articles.",
+          "status": "todo",
+          "kind": "decision",
+          "evidence": []
+        }
+      ]
+    },
+    {
       "id": "r-261020-02-first-phased-array-article-p1",
       "title": "Owner manuscript and reproducible evidence",
       "status": "active",
@@ -259,7 +299,8 @@
       "useful_alone": "The completed article can be read, checked and followed through the site.",
       "done_when": "Claims/model/evidence pass review, the owner approves the final article, and production/draft/discovery/browser checks pass before publication.",
       "depends_on": [
-        "r-261020-02-first-phased-array-article-p1"
+        "r-261020-02-first-phased-array-article-p1",
+        "r-261020-02-first-phased-array-article-design"
       ],
       "items": [
         {
@@ -281,6 +322,7 @@
   ],
   "open_questions": [
     "When will the owner provide the first manuscript and its code/figures?",
-    "A notification time/timezone has not been supplied; no timed reminder has been scheduled."
+    "A notification time/timezone has not been supplied; no timed reminder has been scheduled.",
+    "Which reference direction should guide the next grid/article design pass? Final visual review remains open before publication."
   ]
 }

@@ -72,7 +72,7 @@ research/interests/            Unpublished interests and investigations
 - `/rss.xml` supplies the summary RSS feed.
 - `/projects` redirects to writing until actual case studies are available.
 
-Redirect aliases are excluded from the sitemap. The header keeps Writing/About and theme controls. Its Topics control opens a right-side panel with published-topic links and a magnifying-glass search form; native disclosure keeps topic browsing usable without JavaScript. The public identity is lowercase frah90; a personal name and contacts are deliberately omitted.
+Redirect aliases are excluded from the sitemap. The header keeps Writing/About and theme controls. Its icon-only menu control opens a full-height drawer from the right, with published-topic links and a magnifying-glass search form. Native dialog focus handling, Escape/backdrop dismissal and CSS slide/fade motion enhance the drawer; reduced motion is respected and native disclosure preserves topic browsing without JavaScript. The public identity is lowercase frah90; a personal name and contacts are deliberately omitted.
 
 ## Reading themes
 
@@ -140,3 +140,5 @@ CV links appear only if `public/cv.pdf` exists when the site builds. CV publicat
 Tables are centered automatically, with local scrolling for wide tables. Displayed equations use `$$` delimiters on separate lines and are centered globally; single-line `$...$` stays inline. See [math authoring](docs/article-authoring.md#displayed-equations).
 
 The article Demo badge shows its explanation temporarily on hover/focus (tap on touchscreens); no persistent notice box interrupts reading.
+
+The archive currently uses an interim two-column editorial grid with light dividers and no repeated “Read article” labels. See [design direction and reference sites](docs/design-direction.md); further grid review is tracked in the primary roadmap before article publication.

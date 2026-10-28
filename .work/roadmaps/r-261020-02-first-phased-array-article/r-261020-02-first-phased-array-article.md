@@ -82,6 +82,24 @@ The owner writes the article; no manuscript, measurements, code results or publi
   - ID `r-261020-02-first-phased-array-article-p0-11` · closed 2026-10-27 · commits `11a7d8181e880d17414176092ed80d18197e0ee4`
   - Evidence (measurement): Production build and output/model/payload checks pass (15 pages; existing article/discovery boundaries preserved). Local Chromium verifies 320/390/1440px in dark/light: panel bounds, keyboard toggle/Escape/outside close, topic link/current states, search GET query/results, axe WCAG A/AA and no page overflow. No-JavaScript topic browsing passes. Short landscape and blocked-search-engine fallback checked. About restores the six pre-roadmap subject/tool groups as interests; confirmed engineer background, contact omission and gated CV remain. Social SVG/PNG and shared name are lowercase.
 
+### Phase 2 — Design refinement before article publication
+
+**Status:** active · **ID:** `r-261020-02-first-phased-array-article-design`
+
+**Useful alone:** A slim animated navigation and an inspectable editorial grid improve the existing site before new articles are published.
+
+**Done when:** The owner has reviewed the visual direction and agreed the grid/article presentation, with appropriate browser checks passing.
+
+**Depends on:** `r-261020-02-first-phased-array-article-p0`
+
+- ✅ **done** · **build** — Slim the header, replace boxed controls with icons, implement animated right drawer, remove repeated article CTAs and deliver an interim editorial grid with design references.
+  - ID `r-261020-02-first-phased-array-article-design-1` · closed 2026-10-28
+  - Evidence (measurement): Production build/output/model/payload checks pass. Local Chromium at 320/390/1440px in both themes verifies 53px total header, icon-only controls, CTA removal, divider-based two-column grid, drawer bounds/focus/Escape/backdrop/search and axe WCAG A/AA. In-flight transform proves slide animation; reduced motion, no-JavaScript disclosure, unsupported-dialog fallback and short-landscape navigation pass. Screenshots inspected. No animation dependency added; physical Safari not tested.
+  - Evidence (document): docs/design-direction.md records the current pass and primary reference links: Medium engineering feed, Distill, Bartosz Ciechanowski and Stripe Blog. The grid is explicitly interim, not owner-approved final design.
+  - Evidence (measurement): Final interaction review additionally verifies Escape from a populated search input, pointer-driven open/close without changing page scroll, and icon theme persistence after reload. Escape is captured before the browser search-input clear action.
+- ⬜ **todo** · **decision** — Review reference sites and agree the remaining grid/article visual direction with the owner before publishing substantive articles.
+  - ID `r-261020-02-first-phased-array-article-design-2`
+
 ### Phase 1 — Owner manuscript and reproducible evidence
 
 **Status:** active · **ID:** `r-261020-02-first-phased-array-article-p1`
@@ -106,7 +124,7 @@ The owner writes the article; no manuscript, measurements, code results or publi
 
 **Done when:** Claims/model/evidence pass review, the owner approves the final article, and production/draft/discovery/browser checks pass before publication.
 
-**Depends on:** `r-261020-02-first-phased-array-article-p1`
+**Depends on:** `r-261020-02-first-phased-array-article-p1`, `r-261020-02-first-phased-array-article-design`
 
 - ⬜ **todo** · **validation** — Review angle/phase conventions, normalization, fixed physical spacing, visible solutions, numerical identities, scientific captions, references and model limits against the actual manuscript/evidence.
   - ID `r-261020-02-first-phased-array-article-p2-1`
@@ -198,3 +216,13 @@ Owner request:
 The archive begins with cards; topic routes retain their contextual heading. A global native-details panel appears on the right with a search field/lens submit and populated topic links. It is nonmodal, collapsed initially, and supports native no-JavaScript browsing; small enhancements provide Escape, outside click and a close button. The Search route remains functional but is removed from main navigation. Shared name and social card now use frah90.
 
 About restores the compact introduction and six-group structure from 22a1c85. Original contact links and unconfirmed professional/skills assertions are not republished: the owner-confirmed electronic-engineer background and privacy choices remain, and subjects/tools are framed as interests for study. This is structural restoration rather than a verbatim rollback of those claims. No new public name or proficiency is inferred.
+
+### Slim header, animated drawer and ongoing design review — 2026-10-28
+
+Owner request:
+
+> the top bar is shit. can we do it slimmer? also the buttons are shit. i dont want rectangle buttons, just icons fuck sake. and also which fuckin framework are u usin? i dont see any animation, any shit.. it's .. look dead. for side panel i meant something that opens like from right to left, it folds shit like that, and show shit to select.. i dunno take fucking insipration from other blogs, website, i dunno shit like medium. or gimme a list of website we could take insipration from. adjust this shit for now. Also remove the read article shit in a card. And we need to take insipration from other shit on how to design the grid. i dunno currently i want to improove a lot the design before publishing anything,
+
+A new independently useful design phase keeps the remaining visual review active instead of claiming the redesign complete. Article publication now depends on this phase as well as the manuscript/evidence phase; writing can proceed independently. Current changes provide a 52px navigation row plus border, icon-only theme/menu controls, real slide/fade drawer transitions and an interim lighter grid without repeated CTA text. Native dialog manages modal focus while a native disclosure remains the no-script/unsupported-browser fallback. CSS motion honors reduced-motion preferences. The stack remains Astro/Tailwind with React islands for demos.
+
+Reference rationale is in docs/design-direction.md. The owner has not yet selected a reference or approved a final grid. Earlier discussion also favors a phased-array series with the first two or three installments didactic; no final series outline/manuscript is claimed approved by this design delivery.

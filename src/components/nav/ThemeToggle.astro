@@ -5,12 +5,10 @@
   <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
     <path d="M20 15.5A8.5 8.5 0 0 1 8.5 4 8.5 8.5 0 1 0 20 15.5Z" />
   </svg>
-  <span class="theme-toggle-label" aria-hidden="true">Light</span>
 </button>
 
 <script>
   const button = document.querySelector<HTMLButtonElement>('#theme-toggle');
-  const label = button?.querySelector('.theme-toggle-label');
   const root = document.documentElement;
   const readPreference = () => {
     try { return localStorage.getItem('frah90-theme') === 'light' ? 'light' : 'dark'; }
@@ -22,7 +20,6 @@
     const action = `Switch to ${next} theme`;
     button?.setAttribute('aria-label', action);
     button?.setAttribute('title', action);
-    if (label) label.textContent = next === 'light' ? 'Light' : 'Dark';
     window.dispatchEvent(new CustomEvent('themechange'));
   };
   if (button) {
