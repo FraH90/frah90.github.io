@@ -39,3 +39,9 @@ An optional local-only style preview could later expose sliders and export chose
 ## Delivered footer refinement
 
 The article-end All writing link is removed. The shared footer uses a 12px label, a 44px interaction row and 8px vertical padding, yielding 61px including its border. About/RSS links retain 44px targets, muted contrast and visible keyboard focus. The footer remains present; removal has not been requested as a firm decision.
+
+## Owner-selected trial — 2026-10-28
+
+The owner selected the 880px shared column and 18px/30px prose trial, paired desktop panels with mirrored slide motion, viewport-edge header controls, an applet-header expand/restore control and a single central settings file. These supersede the earlier measured frah90 baseline above. Reference-site measurements remain historical observations; the unresolved final design review is still tracked in the primary roadmap.
+
+The applet maximum defaults to 1280px and contracts to fit available space; height remains unchanged. On phones the control may add no width when the shared column already fills available space. Settings are repository defaults, not a private dashboard or per-reader preference UI.

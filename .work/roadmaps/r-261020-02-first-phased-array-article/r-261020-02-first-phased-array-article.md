@@ -108,6 +108,12 @@ The owner writes the article; no manuscript, measurements, code results or publi
   - ID `r-261020-02-first-phased-array-article-design-4` · closed 2026-10-28 · commits `524cbf0849f63d04e18956e7732178448acb391c`
   - Evidence (measurement): Production build and 15-page route/discovery/privacy checks pass. Local Chromium at 320/390/1440px in dark/light verifies absent All writing link, 61px footer, 12px labels, no horizontal overflow, keyboard About-to-RSS focus order and axe WCAG A/AA on the footer. Phone no-JavaScript About navigation passes; screenshot inspected. Physical Safari not tested.
   - Evidence (document): docs/layout-review.md records measured paragraph sizes, line heights and widths from nine reference sites at 1440px, with direct article sources; Analog Dialogue browser access was denied and is explicitly unmeasured. Width/font, Explore layer, edge controls and settings/dashboard remain recommendations for owner review.
+- ✅ **done** · **build** — Trial an 880px shared article canvas with 18px/30px prose, centralized settings, paired animated header-edge panels and expandable applet widths.
+  - ID `r-261020-02-first-phased-array-article-design-5` · closed 2026-10-28
+  - Evidence (measurement): Production build, 15-page route/discovery/privacy checks, independent numerical identities and payload budget pass (5018025 decoded / 1531712 gzip application JS bytes; demo controller 1767 gzip bytes). Local Chromium at 320/390/1024/1440/1920px in both themes verifies 880px maximum aligned canvas, 18px/30px prose, edge controls, modal phone versus nonmodal docked desktop behavior, reserved margins, mutual exclusion, Escape, focus containment, expansion/restore and axe WCAG A/AA. Screenshots inspected.
+  - Evidence (measurement): All four live demos expand to 1280px when space permits and fit reserved-panel/phone widths without overflow; reduced motion and cross-breakpoint dialog mode switching pass. Mirrored in-flight slide, phone section-target focus, populated-search Escape, in-flight expansion overflow and keyboard restoration pass. Native no-JavaScript phone navigation and blocked Plotly static fallback pass. Physical Safari not tested.
+  - Evidence (document): src/styles/settings.css is the central visual-default file. README, architecture, interactive-demo and authoring guides document the trial; mirrored AGENTS.md/CLAUDE.md record the owner decisions. docs/layout-review.md retains reference font/line-height measurements. Final owner visual approval remains open.
+  - Evidence (measurement): Additional desktop no-JavaScript review confirms exclusive native disclosures and left/right reserved margins; mobile Explore GET search returns Pagefind results.
 
 ### Phase 1 — Owner manuscript and reproducible evidence
 
@@ -250,3 +256,15 @@ Implementation moves the existing scientific context into ordinary prose and add
 The owner is undecided about article width/font size, a desktop Explore panel that reserves space, viewport-edge controls and a private settings dashboard versus configuration files. The definite change requested was: “I want to remove for shure that all writing button on the end of page. and make more discrete (more slim) the btm page with rss about and shit. dunno if ill remove it in the end. well see”.
 
 The footer/link change is delivered. Measurements and recommendations are recorded in [the layout review](../../../docs/layout-review.md). Layout alternatives and a dashboard are not implemented or treated as approved. No private route or authentication claim is introduced. The final design decision remains open.
+
+### Owner-selected canvas, panels and settings trial — 2026-10-28
+
+Owner request:
+
+> 1. What's a line lenght? Maybe we can try 880px shared column for text and plots.. preserving aligned edges. and let's see. Maybe we can put a button to extend the plots to a maximum size.. on the right (same bar of the plot name). it expands the plot with some animation dunno
+> 2. I'd say make it 18px, with 30px line spacing. let's see how it does (u didnt mentioned line spacing of those other blogs). line spacing maybe is too big currently, we'll see
+> 3. yes, ok. also i like the current animation of the explore tab when it opens, keep it in the new implementation and give it also to toc
+> 4. iim ok with new proposed button posiiton
+> 5. let's try a single centralized setting file for now.
+
+The trial keeps normal prose/applets aligned at 880px, uses 18px/30px prose, and centralizes defaults in `src/styles/settings.css`. Both native-disclosure enhancements share a responsive panel controller: nonmodal desktop space reservation, mobile native modality, mirrored slide motion and one panel open at a time. Header controls occupy opposite viewport edges. Applets expand around the reading column up to a configured 1280px maximum, bounded by available space, with width motion and original plot heights. This trial does not mark the final design-review decision complete.

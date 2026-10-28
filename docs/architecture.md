@@ -92,3 +92,9 @@ The owner replaced the inline Contents block with a fixed left PDF-style outline
 ## Footer and reading-proportion review — 2026-10-28
 
 Articles omit the bottom All writing return link. The shared footer is a compact 61px row with 12px labels and retained 44px link targets. [The layout review](layout-review.md) records measured typography across reference articles and pending choices about widths, panel behavior, edge controls and configuration; those choices have not been implemented.
+
+## Shared reading canvas and responsive panels — 2026-10-28
+
+The owner selected an 880px shared prose/applet canvas and 18px/30px body type. `src/styles/settings.css` owns visual defaults: palettes, canvas widths, typography, gutters, panel widths/header height, motion timing and the docking breakpoint (exposed to scripts as `--panel-docked`). `reading-panels.css` consumes those defaults. Header receives generated article contents through BaseLayout; outline and Explore controls sit at opposite viewport edges, with identity/navigation centered. `reading-panels.ts` progressively enhances native disclosures into nonmodal desktop dialogs that reserve space, and native modal phone dialogs with focus containment. Both use mirrored slide transitions and reduced-motion support. Only one enhanced panel opens at a time. Resizing across the docking breakpoint reopens the active panel in the appropriate mode.
+
+`demo-expansion.ts` adds an icon control to each applet header. Width expands around the shared column up to the configured 1280px maximum, bounded by viewport gutters and any open desktop panel. Collapse restores aligned edges. Plot heights, numerical models and auto-load/failure handling remain unchanged; the existing chart ResizeObserver follows width changes. No-JavaScript pages hide the unavailable expand control and retain static figures/native topic and outline navigation. No private dashboard or new dependency is introduced.

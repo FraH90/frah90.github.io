@@ -1,7 +1,9 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
 import DiscoveryPanel from './DiscoveryPanel.astro';
+import TableOfContents from '../article/TableOfContents.astro';
 import { siteName } from '../../lib/site';
+const { articleContents = [] } = Astro.props;
 
 const navLinks = [
   { href: '/blog', label: 'Writing' },
@@ -12,7 +14,9 @@ const isActive = (href: string) => current === href || current.startsWith(`${hre
 ---
 
 <header class="site-header sticky top-0 z-50 bg-page/95 border-b border-rule">
-  <nav aria-label="Main navigation" class="site-shell header-nav flex items-center justify-between gap-x-3">
+  <nav aria-label="Main navigation" class="header-nav">
+    {articleContents.length >= 2 ? <TableOfContents headings={articleContents} /> : <span aria-hidden="true" />}
+    <div class="header-center site-shell">
     <a href="/" class="inline-flex min-h-11 items-center font-medium tracking-tight text-ink" aria-label={`${siteName} — home`}>
       {siteName}<span class="ml-1 text-accent" aria-hidden="true">.</span>
     </a>
@@ -32,7 +36,12 @@ const isActive = (href: string) => current === href || current.startsWith(`${hre
         ))}
       </ul>
       <ThemeToggle />
-      <DiscoveryPanel />
     </div>
+    </div>
+    <DiscoveryPanel />
   </nav>
 </header>
+
+<script>
+  import "../../lib/reading-panels";
+</script>

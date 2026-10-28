@@ -301,6 +301,31 @@
           "commits": [
             "524cbf0849f63d04e18956e7732178448acb391c"
           ]
+        },
+        {
+          "id": "r-261020-02-first-phased-array-article-design-5",
+          "text": "Trial an 880px shared article canvas with 18px/30px prose, centralized settings, paired animated header-edge panels and expandable applet widths.",
+          "kind": "build",
+          "status": "done",
+          "evidence": [
+            {
+              "kind": "measurement",
+              "value": "Production build, 15-page route/discovery/privacy checks, independent numerical identities and payload budget pass (5018025 decoded / 1531712 gzip application JS bytes; demo controller 1767 gzip bytes). Local Chromium at 320/390/1024/1440/1920px in both themes verifies 880px maximum aligned canvas, 18px/30px prose, edge controls, modal phone versus nonmodal docked desktop behavior, reserved margins, mutual exclusion, Escape, focus containment, expansion/restore and axe WCAG A/AA. Screenshots inspected."
+            },
+            {
+              "kind": "measurement",
+              "value": "All four live demos expand to 1280px when space permits and fit reserved-panel/phone widths without overflow; reduced motion and cross-breakpoint dialog mode switching pass. Mirrored in-flight slide, phone section-target focus, populated-search Escape, in-flight expansion overflow and keyboard restoration pass. Native no-JavaScript phone navigation and blocked Plotly static fallback pass. Physical Safari not tested."
+            },
+            {
+              "kind": "document",
+              "value": "src/styles/settings.css is the central visual-default file. README, architecture, interactive-demo and authoring guides document the trial; mirrored AGENTS.md/CLAUDE.md record the owner decisions. docs/layout-review.md retains reference font/line-height measurements. Final owner visual approval remains open."
+            },
+            {
+              "kind": "measurement",
+              "value": "Additional desktop no-JavaScript review confirms exclusive native disclosures and left/right reserved margins; mobile Explore GET search returns Pagefind results."
+            }
+          ],
+          "closed_at": "2026-10-28"
         }
       ]
     },

@@ -144,3 +144,5 @@ The article Demo badge shows its explanation temporarily on hover/focus (tap on 
 The archive currently uses an interim two-column editorial grid with light dividers and no repeated “Read article” labels. See [design direction and reference sites](docs/design-direction.md); further grid review is tracked in the primary roadmap before article publication.
 
 The footer stays compact with About/RSS access; articles omit the bottom “All writing” link. See [the measured layout review](docs/layout-review.md) for typography comparisons and pending proportion/control choices.
+
+Visual defaults are centralized in [settings.css](src/styles/settings.css): shared article width (880px), prose type (18px/30px), expanded applet maximum (1280px), panel widths, motion, gutters and palettes. Edit these values here and rebuild to publish defaults. The demo-header expand icon temporarily widens an applet; it does not change plot heights. Both header-edge panels reserve space on desktop and become modal overlays on phones, with one open at a time.

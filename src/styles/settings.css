@@ -1,0 +1,58 @@
+/* Central visual settings. Values are build-time defaults, not private data. */
+:root {
+  color-scheme: dark;
+  --page: #09090b;
+  --surface: #18181b;
+  --elevated: #27272a;
+  --ink: #f4f4f5;
+  --body: #d4d4d8;
+  --muted: #a1a1aa;
+  --rule: #27272a;
+  --rule-strong: #71717a;
+  --accent: #34d399;
+  --plot-green: #34d399;
+  --plot-blue: #60a5fa;
+  --plot-orange: #fb923c;
+  --plot-rose: #f472b6;
+  --plot-purple: #a78bfa;
+  --plot-fill: rgba(237, 193, 126, 0.12);
+  --selection: #164e3b;
+  --reading-width: 46rem;
+  --layout-width: 64rem;
+  /* Reading canvas, type and interaction dimensions. */
+  --article-width: 55rem;
+  --article-font-size: 1.125rem;
+  --article-line-height: 1.875rem;
+  --plot-expanded-width: 80rem;
+  --header-height: 53px;
+  --contents-width: 17rem;
+  --explore-width: 20rem;
+  --panel-duration: 280ms;
+  --panel-easing: cubic-bezier(.22,.8,.25,1);
+  --panel-docked: 0;
+  --page-gutter: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --page: #fafaf7;
+  --surface: #f1f3f1;
+  --elevated: #e5eae7;
+  --ink: #1a282d;
+  --body: #34454e;
+  --muted: #52656e;
+  --rule: #c8d2d2;
+  --rule-strong: #71838a;
+  --accent: #226849;
+  --plot-green: #226849;
+  --plot-blue: #1c6090;
+  --plot-orange: #855817;
+  --plot-rose: #964258;
+  --plot-purple: #6b489d;
+  --plot-fill: rgba(133, 88, 23, 0.09);
+  --selection: #d2e9de;
+}
+
+
+/* This breakpoint also informs the controller through --panel-docked. */
+@media (min-width: 1024px) { :root { --panel-docked: 1; } }

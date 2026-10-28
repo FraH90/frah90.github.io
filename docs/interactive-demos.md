@@ -78,3 +78,7 @@ Production browser review on 2026-10-21 covered all four demos at 1440px and 390
 ## Shared compact live-plot layout — 2026-10-21
 
 After reviewing the phone array layout, the owner requested the same changes for all plots in all articles, plus hiding the duplicated y-axis zero and reclaiming more horizontal space. `PlotlyChart` now suppresses visible plot titles, derives a horizontal y-axis annotation from the semantic axis name, locks gesture zoom, and uses tight margins. Plotly `labelalias` hides only the y-axis zero text: its gridline and numerical data are unchanged. All live demo frames use 8px phone padding (20px desktop). The array left margin is 26px, transmission 30px, and other plots 36px to accommodate signed tick values. Standard phone plots are 288px; Fourier preserves its 192/256px panels. Labels are `|AF|`, `|AF| (dB)`, `±w (µm)`, `|V| / |V⁺|`, `Amplitude (a.u.)` and `|X| (a.u.)`.
+
+## Optional width expansion — 2026-10-28
+
+Each applet header has a progressive expand/restore icon on the right. Normal applets align to the 880px article canvas. Expanded applets grow up to the configured maximum (1280px by default), bounded by viewport gutters and any reserved side panel. Controls and all plots in a multi-plot demo expand together; plot heights, labels, units and scientific data remain unchanged. The shared ResizeObserver updates Plotly after container changes. The button is hidden without scripts; static/no-JavaScript/failure figures remain readable. Width motion respects reduced-motion settings.

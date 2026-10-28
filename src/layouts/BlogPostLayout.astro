@@ -3,7 +3,6 @@ import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import { getTopic } from '../lib/topics';
 import { siteName } from '../lib/site';
-import TableOfContents from '../components/article/TableOfContents.astro';
 import ArticleReferences from '../components/article/ArticleReferences.astro';
 import PostCard from '../components/blog/PostCard.astro';
 import { articleDisplayTitle, demoLabel, demoNotice } from '../lib/article-status';
@@ -30,7 +29,7 @@ const formatted = new Intl.DateTimeFormat('en-US', {
 
 ---
 
-<BaseLayout title={`${articleDisplayTitle(title, demo)} — ${siteName}`} description={demo ? `${demoNotice} ${description}` : description}>
+<BaseLayout articleContents={contents} title={`${articleDisplayTitle(title, demo)} — ${siteName}`} description={demo ? `${demoNotice} ${description}` : description}>
   <article class="site-shell article-layout py-12 sm:py-16" data-pagefind-body data-article-demo={demo ? "true" : undefined}>
     <header class="reading-width mb-8">
       <div class="flex flex-wrap items-center gap-x-3 gap-y-1 mb-6">
@@ -65,7 +64,6 @@ const formatted = new Intl.DateTimeFormat('en-US', {
         {prerequisites.length > 0 && <p class="mt-4"><strong class="text-ink font-medium">Prerequisites: </strong>{prerequisites.join('; ')}.</p>}
       </div>
     )}
-    <TableOfContents headings={contents} />
     <div class="prose article-content">
       <slot />
     </div>

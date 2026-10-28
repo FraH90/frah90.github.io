@@ -3,87 +3,15 @@ interface Props { headings: { depth: number; slug: string; text: string }[]; }
 const headings = Astro.props.headings.filter(heading => heading.depth === 2 || heading.depth === 3);
 ---
 {headings.length >= 2 && (
-  <details class="article-contents" id="article-contents" data-pagefind-ignore>
-    <summary aria-label="Toggle article contents" title="Article contents">
+  <details name="reading-panels" class="article-contents reading-panel" id="article-contents" data-reading-panel="left" data-pagefind-ignore>
+    <summary aria-label="Article contents" title="Article contents">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M12 8h6M12 12h6M12 16h4"/></svg>
-      <span>Contents</span>
-      <svg class="contents-collapse" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg>
     </summary>
-    <nav aria-label="Article contents">
-      <ul>
-        {headings.map(heading => (
-          <li class:list={{ 'contents-subsection': heading.depth === 3 }}>
-            <a href={`#${heading.slug}`}>{heading.text}</a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <aside class="panel-drawer contents-drawer" aria-label="Article contents">
+      <div class="drawer-heading"><h2 id="contents-heading">Contents</h2><button type="button" class="panel-close" aria-label="Close article contents" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+      <nav aria-label="Article contents"><ul>
+        {headings.map(heading => <li class:list={{ 'contents-subsection': heading.depth === 3 }}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}
+      </ul></nav>
+    </aside>
   </details>
 )}
-<script>
-  const panel = document.querySelector<HTMLDetailsElement>('#article-contents');
-  if (panel) {
-    const trigger = panel.querySelector('summary')!;
-    const close = (restoreFocus = true) => {
-      panel.open = false;
-      if (restoreFocus) trigger.focus({ preventScroll: true });
-    };
-    document.addEventListener('keydown', event => {
-      if (event.key === 'Escape' && panel.open && !document.querySelector('dialog[open]')) {
-        event.preventDefault(); close();
-      }
-    });
-    panel.querySelectorAll<HTMLAnchorElement>('nav a').forEach(link => {
-      link.addEventListener('click', () => {
-        const target = document.getElementById(decodeURIComponent(link.hash.slice(1)));
-        if (matchMedia('(max-width: 1023px)').matches) close(false);
-        // Keep the native fragment update; transfer keyboard focus to its heading.
-        requestAnimationFrame(() => target?.focus({ preventScroll: true }));
-      });
-    });
-    document.addEventListener('click', event => {
-      if (panel.open && matchMedia('(max-width: 1023px)').matches && !panel.contains(event.target as Node)) close(false);
-    });
-    // Mark the last heading that has reached the reading position.
-    const links = [...panel.querySelectorAll<HTMLAnchorElement>('nav a')];
-    let scheduled = false;
-    const update = () => {
-      scheduled = false;
-      let current: HTMLAnchorElement | undefined;
-      for (const link of links) {
-        const heading = document.getElementById(decodeURIComponent(link.hash.slice(1)));
-        if (heading && heading.getBoundingClientRect().top <= 160) current = link;
-      }
-      links.forEach(link => {
-        if (link === current) link.setAttribute('aria-current', 'location');
-        else link.removeAttribute('aria-current');
-      });
-    };
-    document.addEventListener('scroll', () => {
-      if (!scheduled) { scheduled = true; requestAnimationFrame(update); }
-    }, { passive: true });
-    update();
-  }
-</script>
-<style is:global>
-.article-contents { position: fixed; z-index: 30; top: 65px; left: 0; color: var(--body); }
-.article-contents summary { display: flex; align-items: center; gap: .75rem; width: 44px; height: 44px; padding: .75rem; background: var(--surface); border-radius: 0 .5rem .5rem 0; list-style: none; cursor: pointer; font-size: .875rem; }
-.article-contents summary::-webkit-details-marker { display: none; }
-.article-contents summary::marker { content: ''; }
-.article-contents summary span, .contents-collapse { display: none; }
-.article-contents summary:hover { color: var(--ink); background: var(--elevated); }
-.article-contents[open] { top: 53px; bottom: 0; width: min(17rem, calc(100vw - 44px)); background: var(--surface); border-right: 1px solid var(--rule); box-shadow: .5rem 0 2rem #0002; }
-.article-contents[open] summary { width: 100%; height: 60px; border-radius: 0; padding-inline: 1rem; }
-.article-contents[open] summary span, .article-contents[open] .contents-collapse { display: block; }
-.contents-collapse { margin-left: auto; }
-.article-contents nav { height: calc(100% - 60px); padding: .5rem .75rem 2rem; overflow-y: auto; overscroll-behavior: contain; font-size: .875rem; line-height: 1.5; }
-.article-contents ul { display: grid; gap: .25rem; }
-.article-contents a { display: block; padding: .65rem .75rem; min-height: 44px; border-radius: .3rem; overflow-wrap: anywhere; }
-.article-contents a:hover { color: var(--ink); background: var(--elevated); }
-.article-contents a[aria-current] { color: var(--accent); background: var(--elevated); }
-.article-contents .contents-subsection { padding-left: .85rem; }
-.article-contents[open] nav { animation: contents-reveal 180ms ease-out; }
-@keyframes contents-reveal { from { opacity: 0; transform: translateX(-.5rem); } to { opacity: 1; transform: translateX(0); } }
-@media (min-width: 1024px) { #main-content:has(.article-contents[open]) { margin-left: 17rem; } }
-@media (prefers-reduced-motion: reduce) { .article-contents[open] nav { animation: none; } }
-</style>

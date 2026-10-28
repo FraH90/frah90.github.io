@@ -1,0 +1,44 @@
+.header-nav { display: grid; grid-template-columns: 44px minmax(0,1fr) 44px; align-items: center; min-height: calc(var(--header-height) - 1px); padding: 4px 8px; gap: 4px; }
+.header-center { max-width: var(--article-width); display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+.reading-panel summary, .panel-close { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; color: var(--muted); list-style: none; cursor: pointer; }
+.reading-panel summary::-webkit-details-marker { display: none; }
+.reading-panel summary:hover, .reading-panel summary[aria-expanded="true"], .panel-close:hover { color: var(--ink); background: var(--elevated); }
+.panel-close[hidden] { display: none; }
+.panel-drawer { padding: 1.5rem; background: var(--surface); color: var(--body); overflow-y: auto; overscroll-behavior: contain; height: 100%; }
+.panel-drawer .drawer-heading { display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin-bottom: 1.5rem; }
+.panel-drawer h2 { color: var(--ink); font-size: 1.125rem; font-weight: 500; }
+.reading-panel .panel-drawer { position: fixed; top: var(--header-height); bottom: 0; height: calc(100dvh - var(--header-height)); width: min(var(--contents-width),100vw); left: 0; border-right: 1px solid var(--rule); }
+.reading-panel[data-reading-panel="right"] .panel-drawer { left: auto; right: 0; width: min(var(--explore-width),100vw); border-right: 0; border-left: 1px solid var(--rule); }
+.reading-dialog { --drawer-width: var(--contents-width); position: fixed; inset: var(--header-height) auto 0 0; margin: 0; padding: 0; width: min(var(--drawer-width),100%); height: calc(100dvh - var(--header-height)); max-width: none; max-height: none; border: 0; background: transparent; overflow: hidden; }
+.reading-dialog[data-side="right"] { --drawer-width: var(--explore-width); left: auto; right: 0; }
+.reading-dialog .panel-drawer { width: 100%; transform: translateX(-100%); transition: transform var(--panel-duration) var(--panel-easing); border-right: 1px solid var(--rule); }
+.reading-dialog[data-side="right"] .panel-drawer { transform: translateX(100%); border-right: 0; border-left: 1px solid var(--rule); }
+.reading-dialog.is-visible .panel-drawer { transform: translateX(0); }
+.reading-dialog:modal { inset: 0; width: 100%; height: 100dvh; }
+.reading-dialog:modal .panel-drawer { position: absolute; inset: 0 auto 0 0; width: min(var(--drawer-width),100%); }
+.reading-dialog:modal[data-side="right"] .panel-drawer { left: auto; right: 0; }
+.reading-dialog::backdrop { background: #0008; animation: panel-dim var(--panel-duration) ease both; }
+.reading-dialog.is-closing::backdrop { animation-direction: reverse; }
+body:has(.reading-dialog:modal) { overflow: hidden; }
+body { --available-width: 100vw; }
+#main-content { transition: margin var(--panel-duration) var(--panel-easing); }
+@media (min-width: 1024px) {
+  body[data-active-panel="left"] { --available-width: calc(100vw - var(--contents-width)); }
+  body[data-active-panel="right"] { --available-width: calc(100vw - var(--explore-width)); }
+  body[data-active-panel="left"] #main-content, body:has(.article-contents[open]) #main-content { margin-left: var(--contents-width); }
+  body[data-active-panel="right"] #main-content, body:has(.discovery-panel[open]) #main-content { margin-right: var(--explore-width); }
+}
+.contents-drawer ul { display: grid; gap: .25rem; }
+.contents-drawer a { display: block; padding: .65rem .75rem; min-height: 44px; border-radius: .3rem; overflow-wrap: anywhere; font-size: .875rem; line-height: 1.5; }
+.contents-drawer a:hover { color: var(--ink); background: var(--elevated); }
+.contents-drawer a[aria-current] { color: var(--accent); background: var(--elevated); }
+.contents-subsection { padding-left: .85rem; }
+@keyframes panel-dim { from { opacity: 0; } to { opacity: 1; } }
+@media (max-width: 639px) {
+  .header-center { width: 100%; }
+  .header-center > a { font-size: .875rem; }
+  .header-center ul { gap: .5rem; }
+  .header-center ul a { font-size: .75rem; }
+  .header-center > div { gap: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .reading-dialog .panel-drawer, #main-content { transition: none; } .reading-dialog::backdrop { animation: none; } }
