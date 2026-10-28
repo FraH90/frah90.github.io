@@ -57,13 +57,13 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <main id="main-content" tabindex="-1" class="flex-1 min-w-0">
       <slot />
     </main>
-    <footer class="border-t border-rule py-8 mt-16">
-      <div class="site-shell flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted">
+    <footer class="site-footer border-t border-rule">
+      <div class="site-shell footer-row flex flex-wrap items-center justify-between gap-x-6 text-muted">
         <span>&copy; {new Date().getFullYear()} {siteName}</span>
-        <div class="flex flex-wrap justify-center gap-6">
-          <a href="/about" class="hover:text-ink transition-colors">About</a>
-          <a href="/rss.xml" class="hover:text-ink transition-colors">RSS</a>
-          {cvUrl && <a href={cvUrl} target="_blank" rel="noopener" class="hover:text-ink transition-colors">CV</a>}
+        <div class="flex flex-wrap items-center gap-5">
+          <a href="/about" class="footer-link hover:text-ink transition-colors">About</a>
+          <a href="/rss.xml" class="footer-link hover:text-ink transition-colors">RSS</a>
+          {cvUrl && <a href={cvUrl} target="_blank" rel="noopener" class="footer-link hover:text-ink transition-colors">CV</a>}
         </div>
       </div>
     </footer>

@@ -142,3 +142,5 @@ Tables are centered automatically, with local scrolling for wide tables. Display
 The article Demo badge shows its explanation temporarily on hover/focus (tap on touchscreens); no persistent notice box interrupts reading.
 
 The archive currently uses an interim two-column editorial grid with light dividers and no repeated “Read article” labels. See [design direction and reference sites](docs/design-direction.md); further grid review is tracked in the primary roadmap before article publication.
+
+The footer stays compact with About/RSS access; articles omit the bottom “All writing” link. See [the measured layout review](docs/layout-review.md) for typography comparisons and pending proportion/control choices.

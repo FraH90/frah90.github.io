@@ -88,3 +88,7 @@ The shared article card now uses a top divider, typography and a small hover res
 ## Article outline and closing summary — 2026-10-28
 
 The owner replaced the inline Contents block with a fixed left PDF-style outline, separate from right-side topic discovery. It remains collapsed initially and scrolls independently. Native disclosure/fragment navigation works without scripts. Article assumptions now live in the prose; the former accent-edge callout styling is used by optional `takeaways` metadata at the end of the article body, before supporting material and references. Existing demo context is retained rather than discarded or relabeled as a conclusion.
+
+## Footer and reading-proportion review — 2026-10-28
+
+Articles omit the bottom All writing return link. The shared footer is a compact 61px row with 12px labels and retained 44px link targets. [The layout review](layout-review.md) records measured typography across reference articles and pending choices about widths, panel behavior, edge controls and configuration; those choices have not been implemented.

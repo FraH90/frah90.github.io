@@ -261,3 +261,8 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 .post-card:hover, .post-card:focus-visible { border-color: var(--rule-strong); }
 .post-card:hover .post-card-title, .post-card:focus-visible .post-card-title { text-decoration-line: underline; }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) { .post-card:hover { transform: translateY(-2px); } }
+
+/* Quiet footer; links retain full keyboard/touch targets. */
+.site-footer { margin-top: 2rem; padding-block: .5rem; font-size: .75rem; }
+.site-footer .footer-row { min-height: 44px; }
+.site-footer .footer-link { display: inline-flex; align-items: center; min-height: 44px; }
