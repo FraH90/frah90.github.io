@@ -425,6 +425,27 @@
           "commits": [
             "f002f8cd5a16928f369510b5484e1a961423bb0f"
           ]
+        },
+        {
+          "id": "r-261020-02-first-phased-array-article-design-10",
+          "text": "Prevent mobile right-drawer clipping caused by dialog scroll offsets during off-screen autofocus.",
+          "kind": "build",
+          "status": "done",
+          "evidence": [
+            {
+              "kind": "measurement",
+              "value": "Pre-fix Chromium reproduction records a native 320px dialog scrollLeft while the right drawer is initially translated off-screen. The fix uses overflow:clip on the wrapper and clears offsets after focus/before reveal. Production build and 33-page route/discovery/privacy checks pass."
+            },
+            {
+              "kind": "measurement",
+              "value": "Local Chromium at 320/393/430/1440px in dark/light tests both panels through three open/close cycles each. Initial/forced wrapper scrollLeft/scrollTop stay zero; drawers/headings stay within viewport and right pane aligns to its right edge. Inner scrolling, populated-search Escape, focus restoration, backdrop dismissal, no page overflow and axe WCAG A/AA pass. Reduced-motion and no-JavaScript tag browsing pass. Phone screenshot inspected. A downloaded WebKit browser could launch but could not initialize a test page in this container; physical iPhone/WebKit verification remains outstanding."
+            },
+            {
+              "kind": "document",
+              "value": "docs/architecture.md records the focus/scroll-container mechanism and targeted correction. No new visual direction, dependency or article content is introduced; final design review remains open."
+            }
+          ],
+          "closed_at": "2026-10-28"
         }
       ]
     },

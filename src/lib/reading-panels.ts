@@ -41,8 +41,16 @@ if (typeof HTMLDialogElement !== 'undefined') {
         trigger.setAttribute('aria-expanded', 'true');
         if (modal) trigger.setAttribute('aria-haspopup', 'dialog'); else trigger.removeAttribute('aria-haspopup');
         button.focus({ preventScroll: true });
+        // Native dialog autofocus can scroll toward the initially off-screen drawer.
+        // Keep that transient offset from shifting the whole panel on mobile WebKit.
+        dialog.scrollLeft = 0;
+        dialog.scrollTop = 0;
         requestAnimationFrame(() => requestAnimationFrame(() => {
-          if (dialog.open && !closing) dialog.classList.add('is-visible');
+          if (dialog.open && !closing) {
+            dialog.scrollLeft = 0;
+            dialog.scrollTop = 0;
+            dialog.classList.add('is-visible');
+          }
         }));
       },
       close(immediate = false, restoreFocus = true) {

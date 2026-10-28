@@ -120,3 +120,7 @@ ArticleReferences retains its `ref-*` targets for citation links but stops displ
 ## Multiple tags and media-led archive — 2026-10-28
 
 The owner requested replacing exclusive public categories with multiple colored tags, adding card media and a leading showcase inspired by the supplied Oxide/Google examples. The new public registry, tag routes, compatibility redirects, model-derived previews, media boundaries and latest-article feature are described in [tags and previews](tags-and-previews.md). This supersedes the prior no-feature archive rule. Existing article URLs, reading canvas, demo behavior, privacy and publication eligibility remain preserved. The final visual review remains open.
+
+## Mobile drawer clipping correction — 2026-10-28
+
+Opening a native dialog focuses its first control while the right drawer is translated off-screen. The dialog previously used `overflow: hidden`, so this could create a transient horizontal scroll offset equal to the drawer width (320px reproduced during opening in Chromium). The owner's iPhone screenshot shows the right edge of a shifted drawer at the opposite side of the viewport. The dialog now uses `overflow: clip`, preventing the wrapper from becoming a scroll container; only the inner drawer scrolls. The controller also clears wrapper scroll offsets after focus and before the slide starts. This keeps the opening/closing motion and native modality while avoiding dependence on browser scroll-offset clamping after the transition.
