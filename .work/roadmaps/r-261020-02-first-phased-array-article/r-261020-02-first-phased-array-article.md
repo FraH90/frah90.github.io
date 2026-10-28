@@ -114,6 +114,11 @@ The owner writes the article; no manuscript, measurements, code results or publi
   - Evidence (measurement): All four live demos expand to 1280px when space permits and fit reserved-panel/phone widths without overflow; reduced motion and cross-breakpoint dialog mode switching pass. Mirrored in-flight slide, phone section-target focus, populated-search Escape, in-flight expansion overflow and keyboard restoration pass. Native no-JavaScript phone navigation and blocked Plotly static fallback pass. Physical Safari not tested.
   - Evidence (document): src/styles/settings.css is the central visual-default file. README, architecture, interactive-demo and authoring guides document the trial; mirrored AGENTS.md/CLAUDE.md record the owner decisions. docs/layout-review.md retains reference font/line-height measurements. Final owner visual approval remains open.
   - Evidence (measurement): Additional desktop no-JavaScript review confirms exclusive native disclosures and left/right reserved margins; mobile Explore GET search returns Pagefind results.
+- ✅ **done** · **build** — Trial 25px prose line spacing, stable Explore hover motion, 1.5× expanded plot heights and shared outside-click layout restoration.
+  - ID `r-261020-02-first-phased-array-article-design-6` · closed 2026-10-28
+  - Evidence (measurement): Production build, 15-page output/discovery/privacy checks, independent numerical models and payload budget pass (5018096 decoded / 1531740 gzip application JS bytes; demo controller 1790 gzip bytes). Local Chromium checks four demos at 390/1440px in both themes: 25px line height, exact normal/1.5× expanded plot heights including both Fourier plots, bounded widths, functional keyboard sliders, inside-click preservation, gutter dismissal/restoration, left/right dialog dismissal, no page overflow and axe WCAG A/AA. Screenshots inspected.
+  - Evidence (measurement): Combined panel and expanded plot reset together on background click; clicks inside either tool preserve both. Reduced motion, Escape from populated search, stable Explore link padding on hover, native no-JavaScript navigation, hidden unavailable expand button and blocked-Plotly static fallback pass. Physical Safari not tested.
+  - Evidence (document): Mirrored AGENTS.md/CLAUDE.md and README/architecture/demo/layout guides record 18px/25px prose, centralized height presets/1.5× expansion and shared dismissal. The final design approval remains open.
 
 ### Phase 1 — Owner manuscript and reproducible evidence
 
@@ -268,3 +273,11 @@ Owner request:
 > 5. let's try a single centralized setting file for now.
 
 The trial keeps normal prose/applets aligned at 880px, uses 18px/30px prose, and centralizes defaults in `src/styles/settings.css`. Both native-disclosure enhancements share a responsive panel controller: nonmodal desktop space reservation, mobile native modality, mirrored slide motion and one panel open at a time. Header controls occupy opposite viewport edges. Applets expand around the reading column up to a configured 1280px maximum, bounded by available space, with width motion and original plot heights. This trial does not mark the final design-review decision complete.
+
+### Line spacing, expanded plot height and outside dismissal — 2026-10-28
+
+Owner request:
+
+> ok, much better. let's make line spacing 25, let's try it. moreover.. the animation of the categories panel, right, make it like the left one.. it's nicer, less nervous. And the plot, maybe let's try to maximeze it even vertically, let's say that clicking that button make it 1.5x enlargment. what do u say? or give differetn proportion to height shit? I want to be enalrged yes. btw. every modification we make on the page, such as opening left and right panel, or also zomming the plot.. it goes away, restores back and close all shit if we click on empty space, that's not the panels or the plot
+
+The current trial keeps the 880px canvas and 18px prose while reducing line spacing to 25px. Both panels retain the common slide easing/timing; Explore removes the additional horizontal link-hover shift. Expanded live plots use a centralized 1.5× height multiplier; collapse restores original heights. A shared outside-click event restores panels and expanded applets together, excluding panel/applet internals, links, controls and active text selection. No manuscript or final visual approval is inferred.

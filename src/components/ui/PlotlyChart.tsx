@@ -116,7 +116,7 @@ export default function PlotlyChart({ data, layout, className = 'w-full h-72 sm:
   return (
     <div className="min-w-0">
       {error && <p role="status" className="text-sm text-muted">This chart could not load. Reload the page to try again.</p>}
-      <div ref={ref} className={className} data-plot-ready="false" role="img" aria-label={`${(layout as any)?.title?.text ?? 'Scientific plot'}. ${(layout as any)?.xaxis?.title ?? ''}; ${horizontalYLabel ?? (layout as any)?.yaxis?.title ?? ''}.`} />
+      <div ref={ref} className={`plotly-chart ${className}`} data-plot-ready="false" role="img" aria-label={`${(layout as any)?.title?.text ?? 'Scientific plot'}. ${(layout as any)?.xaxis?.title ?? ''}; ${horizontalYLabel ?? (layout as any)?.yaxis?.title ?? ''}.`} />
     </div>
   );
 }

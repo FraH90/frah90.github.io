@@ -8,6 +8,7 @@ for (const section of document.querySelectorAll<HTMLElement>('.interactive-demo'
     button.setAttribute('aria-label', `${expanded ? 'Restore' : 'Expand'} ${label}`);
     button.title = expanded ? 'Restore plot width' : 'Expand plot';
   };
+  document.addEventListener('reading-reset', () => toggle(false));
   button.addEventListener('click', () => toggle(button.getAttribute('aria-expanded') !== 'true'));
   section.addEventListener('keydown', event => {
     if (event.key === 'Escape' && section.classList.contains('demo-expanded')) {

@@ -22,8 +22,13 @@
   /* Reading canvas, type and interaction dimensions. */
   --article-width: 55rem;
   --article-font-size: 1.125rem;
-  --article-line-height: 1.875rem;
+  --article-line-height: 1.5625rem;
   --plot-expanded-width: 80rem;
+  --plot-expanded-height-scale: 1.5;
+  --plot-height-phone: 18rem;
+  --plot-height-desktop: 24rem;
+  --plot-height-fourier-time: 12rem;
+  --plot-height-fourier-spectrum: 16rem;
   --header-height: 53px;
   --contents-width: 17rem;
   --explore-width: 20rem;

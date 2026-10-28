@@ -236,3 +236,10 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 .demo-expand .collapse-icon { display: none; }
 .demo-expanded .expand-icon { display: none; }
 .demo-expanded .collapse-icon { display: block; }
+
+/* Expansion changes plot geometry, not text/label scale or scientific data. */
+.plotly-chart { --normal-plot-height: var(--plot-height-phone); height: calc(var(--normal-plot-height) * var(--plot-height-scale, 1)); transition: height var(--panel-duration) var(--panel-easing); }
+@media (min-width: 640px) { .plotly-chart { --normal-plot-height: var(--plot-height-desktop); } }
+.plotly-chart.h-48 { --normal-plot-height: var(--plot-height-fourier-time); }
+.plotly-chart.h-64 { --normal-plot-height: var(--plot-height-fourier-spectrum); }
+.demo-expanded { --plot-height-scale: var(--plot-expanded-height-scale); }

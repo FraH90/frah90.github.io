@@ -45,3 +45,7 @@ The article-end All writing link is removed. The shared footer uses a 12px label
 The owner selected the 880px shared column and 18px/30px prose trial, paired desktop panels with mirrored slide motion, viewport-edge header controls, an applet-header expand/restore control and a single central settings file. These supersede the earlier measured frah90 baseline above. Reference-site measurements remain historical observations; the unresolved final design review is still tracked in the primary roadmap.
 
 The applet maximum defaults to 1280px and contracts to fit available space; height remains unchanged. On phones the control may add no width when the shared column already fills available space. Settings are repository defaults, not a private dashboard or per-reader preference UI.
+
+## Follow-up trial — 2026-10-28
+
+The owner subsequently chose 25px line spacing at the same 18px font size. Expanded plots now use 1.5× their normal height, while width remains bounded by the configured maximum and available space. Clicks outside panels/applets restore layout; interactive links/controls and text selections are preserved. Explore rows no longer shift sideways on hover, matching the stable Contents links while retaining the common slide transition. These supersede the earlier unchanged-height and 30px-spacing trial descriptions above.

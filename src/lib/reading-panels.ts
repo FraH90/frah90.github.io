@@ -11,7 +11,6 @@ interface Panel {
   open: () => void;
   close: (immediate?: boolean, restoreFocus?: boolean) => Promise<void>;
 }
-const panels: Panel[] = [];
 let active: Panel | undefined;
 let request = 0;
 if (typeof HTMLDialogElement !== 'undefined') {
@@ -72,7 +71,6 @@ if (typeof HTMLDialogElement !== 'undefined') {
         return result;
       },
     };
-    panels.push(panel);
     trigger.addEventListener('click', async event => {
       event.preventDefault();
       const token = ++request;
@@ -84,7 +82,6 @@ if (typeof HTMLDialogElement !== 'undefined') {
     });
     button.addEventListener('click', () => { ++request; void panel.close(); });
     dialog.addEventListener('cancel', event => { event.preventDefault(); void panel.close(); });
-    dialog.addEventListener('click', event => { if (event.target === dialog && modal) void panel.close(); });
     drawer.addEventListener('transitionend', event => {
       if (event.target === drawer && event.propertyName === 'transform' && closing) finish?.();
     });
@@ -114,6 +111,12 @@ if (typeof HTMLDialogElement !== 'undefined') {
     }
   });
 }
+// Background clicks restore the page without interrupting controls or content links.
+document.addEventListener('reading-reset', () => {
+  ++request;
+  if (active) void active.close();
+  for (const details of document.querySelectorAll<HTMLDetailsElement>('[data-reading-panel]')) details.open = false;
+});
 // Follow the reading position without a layout pass on every scroll event.
 const links = [...document.querySelectorAll<HTMLAnchorElement>('.contents-drawer nav a')];
 let scheduled = false;
