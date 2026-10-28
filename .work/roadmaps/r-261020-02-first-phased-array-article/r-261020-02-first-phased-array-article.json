@@ -421,7 +421,10 @@
               "value": "docs/tags-and-previews.md documents the taxonomy, compatibility field/redirects, model-derived and illustrative preview provenance, image/GIF/video schema, controlled motion and custom browser-safe renderers. The draft command seeds a registered broad tag and retains draft status; verified generated fixture removed. Typed GIF/video branches are implemented but playback with owner-supplied media assets has not been reviewed. Final feature/media shape approval remains open; latest-article/landscape are the stated initial trial."
             }
           ],
-          "closed_at": "2026-10-28"
+          "closed_at": "2026-10-28",
+          "commits": [
+            "f002f8cd5a16928f369510b5484e1a961423bb0f"
+          ]
         }
       ]
     },
