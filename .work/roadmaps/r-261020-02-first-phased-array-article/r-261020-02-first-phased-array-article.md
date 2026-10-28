@@ -105,7 +105,7 @@ The owner writes the article; no manuscript, measurements, code results or publi
   - Evidence (document): docs/article-authoring.md, docs/templates/article.mdx and mirrored AGENTS.md/CLAUDE.md document takeaways metadata and left-outline behavior. Scientific model context remains in prose. The final grid/article visual-review decision remains open.
   - Evidence (measurement): No-JavaScript phone/desktop review verifies native disclosure, section fragment links, closing summary and no page overflow. Without scripts the phone outline is closed manually through its summary.
 - ✅ **done** · **build** — Remove the article-end All writing link and slim the shared footer; measure reference typography and record unresolved layout/settings options.
-  - ID `r-261020-02-first-phased-array-article-design-4` · closed 2026-10-28
+  - ID `r-261020-02-first-phased-array-article-design-4` · closed 2026-10-28 · commits `524cbf0849f63d04e18956e7732178448acb391c`
   - Evidence (measurement): Production build and 15-page route/discovery/privacy checks pass. Local Chromium at 320/390/1440px in dark/light verifies absent All writing link, 61px footer, 12px labels, no horizontal overflow, keyboard About-to-RSS focus order and axe WCAG A/AA on the footer. Phone no-JavaScript About navigation passes; screenshot inspected. Physical Safari not tested.
   - Evidence (document): docs/layout-review.md records measured paragraph sizes, line heights and widths from nine reference sites at 1440px, with direct article sources; Analog Dialogue browser access was denied and is explicitly unmeasured. Width/font, Explore layer, edge controls and settings/dashboard remain recommendations for owner review.
 

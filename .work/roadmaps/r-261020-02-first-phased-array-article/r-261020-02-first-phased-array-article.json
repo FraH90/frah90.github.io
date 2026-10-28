@@ -297,6 +297,9 @@
               "kind": "document",
               "value": "docs/layout-review.md records measured paragraph sizes, line heights and widths from nine reference sites at 1440px, with direct article sources; Analog Dialogue browser access was denied and is explicitly unmeasured. Width/font, Explore layer, edge controls and settings/dashboard remain recommendations for owner review."
             }
+          ],
+          "commits": [
+            "524cbf0849f63d04e18956e7732178448acb391c"
           ]
         }
       ]
