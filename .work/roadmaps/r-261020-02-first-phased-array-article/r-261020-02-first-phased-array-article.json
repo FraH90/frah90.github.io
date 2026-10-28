@@ -246,6 +246,9 @@
               "kind": "measurement",
               "value": "Final interaction review additionally verifies Escape from a populated search input, pointer-driven open/close without changing page scroll, and icon theme persistence after reload. Escape is captured before the browser search-input clear action."
             }
+          ],
+          "commits": [
+            "62ef3ca94175b3dcdcb4ad4dc331d7fe23d66e88"
           ]
         },
         {

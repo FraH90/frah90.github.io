@@ -93,7 +93,7 @@ The owner writes the article; no manuscript, measurements, code results or publi
 **Depends on:** `r-261020-02-first-phased-array-article-p0`
 
 - ✅ **done** · **build** — Slim the header, replace boxed controls with icons, implement animated right drawer, remove repeated article CTAs and deliver an interim editorial grid with design references.
-  - ID `r-261020-02-first-phased-array-article-design-1` · closed 2026-10-28
+  - ID `r-261020-02-first-phased-array-article-design-1` · closed 2026-10-28 · commits `62ef3ca94175b3dcdcb4ad4dc331d7fe23d66e88`
   - Evidence (measurement): Production build/output/model/payload checks pass. Local Chromium at 320/390/1440px in both themes verifies 53px total header, icon-only controls, CTA removal, divider-based two-column grid, drawer bounds/focus/Escape/backdrop/search and axe WCAG A/AA. In-flight transform proves slide animation; reduced motion, no-JavaScript disclosure, unsupported-dialog fallback and short-landscape navigation pass. Screenshots inspected. No animation dependency added; physical Safari not tested.
   - Evidence (document): docs/design-direction.md records the current pass and primary reference links: Medium engineering feed, Distill, Bartosz Ciechanowski and Stripe Blog. The grid is explicitly interim, not owner-approved final design.
   - Evidence (measurement): Final interaction review additionally verifies Escape from a populated search input, pointer-driven open/close without changing page scroll, and icon theme persistence after reload. Escape is captured before the browser search-input clear action.
