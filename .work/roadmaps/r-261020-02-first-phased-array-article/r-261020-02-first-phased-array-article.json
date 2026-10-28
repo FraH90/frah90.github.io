@@ -325,7 +325,10 @@
               "value": "Additional desktop no-JavaScript review confirms exclusive native disclosures and left/right reserved margins; mobile Explore GET search returns Pagefind results."
             }
           ],
-          "closed_at": "2026-10-28"
+          "closed_at": "2026-10-28",
+          "commits": [
+            "57f86b305ee23d249492bdd2ae33f0a097e13573"
+          ]
         }
       ]
     },
