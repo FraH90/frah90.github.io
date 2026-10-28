@@ -397,7 +397,10 @@
               "value": "README, architecture, authoring and responsive-plot guidance document 18px/27px prose, hidden bibliography keys and serialized resize updates. Mirrored AGENTS.md/CLAUDE.md remain identical. Final owner design approval remains open."
             }
           ],
-          "closed_at": "2026-10-28"
+          "closed_at": "2026-10-28",
+          "commits": [
+            "f57a8bd1059b030f7ec0427b8ed688e15b615bed"
+          ]
         }
       ]
     },
