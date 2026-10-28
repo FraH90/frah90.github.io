@@ -1,6 +1,7 @@
+import { getTag } from './tags';
 import { demoLabel } from './article-status';
 // Native form/link navigation remains available; the search engine loads on demand.
-type ResultData = { url: string; meta: { title?: string; topic?: string; status?: string }; excerpt: string };
+type ResultData = { url: string; meta: { title?: string; tagIds?: string; tags?: string; topic?: string; status?: string }; excerpt: string };
 type Result = { data: () => Promise<ResultData> };
 type Search = { destroy: () => Promise<void>; search: (query: string) => Promise<{ results: Result[] }> };
 const form = document.querySelector<HTMLFormElement>('#article-search')!;
@@ -21,7 +22,7 @@ async function resetEngine() {
 }
 
 function fail() {
-  status.textContent = 'Search could not load. Submit your search to retry, or browse by topic below.';
+  status.textContent = 'Search could not load. Submit your search to retry, or browse by tag below.';
 }
 async function showBatch(version: number, focusNew = false) {
   more.hidden = true;
@@ -35,9 +36,19 @@ async function showBatch(version: number, focusNew = false) {
       const url = new URL(result.url, location.origin);
       if (url.origin !== location.origin || !/^\/blog\/[^/]+\/[^/]+\/?$/.test(url.pathname)) continue;
       const item = document.createElement('li');
-      const topic = document.createElement('p');
-      topic.className = 'text-sm text-muted mb-2';
-      topic.textContent = result.meta.topic ?? '';
+      const topic = document.createElement('div');
+      topic.className = 'tag-badges text-sm text-muted mb-2';
+      const ids = result.meta.tagIds?.split(/\s+/).filter(Boolean) ?? [];
+      for (const id of ids) {
+        try {
+          const tag = getTag(id), badge = document.createElement('a');
+          badge.className = `tag-badge ${tag.color}`;
+          badge.href = `/tags/${tag.slug}`;
+          badge.textContent = tag.label;
+          topic.append(badge);
+        } catch { /* Cached indexes can contain retired tags. */ }
+      }
+      if (!topic.childNodes.length) topic.textContent = result.meta.tags ?? result.meta.topic ?? '';
       if (result.meta.status === demoLabel) {
         const badge = document.createElement('span');
         badge.className = 'demo-badge ml-3';
@@ -55,13 +66,13 @@ async function showBatch(version: number, focusNew = false) {
       item.append(topic, heading, excerpt);
       fragment.append(item);
     }
-    const firstLink = fragment.querySelector('a');
+    const firstLink = fragment.querySelector('h2 a');
     list.append(fragment);
     if (focusNew) firstLink?.focus();
     shown += batch.length;
     more.textContent = 'Show more results';
     status.textContent = matches.length === 0
-      ? `No articles found for “${query}”. Try fewer words or browse a topic.`
+      ? `No articles found for “${query}”. Try fewer words or browse a tag.`
       : `${matches.length} ${matches.length === 1 ? 'article' : 'articles'} found for “${query}”. Showing ${shown}.`;
     more.hidden = shown >= matches.length;
   } catch {
@@ -95,7 +106,7 @@ async function search(updateUrl = true) {
   }
   if (!query) {
     list.removeAttribute('aria-busy');
-    status.textContent = 'Enter a search, or browse by topic below.';
+    status.textContent = 'Enter a search, or browse by tag below.';
     return;
   }
   status.textContent = 'Searching articles…';

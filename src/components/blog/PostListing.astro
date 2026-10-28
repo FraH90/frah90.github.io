@@ -2,31 +2,37 @@
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from './PostCard.astro';
+import ArticlePreview from './ArticlePreview.astro';
+import TagBadges from './TagBadges.astro';
 import { getTopic, type TopicSlug } from '../../lib/topics';
+import { getTag } from '../../lib/tags';
 import { siteName } from '../../lib/site';
-
-interface Props {
-  posts: CollectionEntry<'blog'>[];
-  category?: TopicSlug;
-}
-const { posts, category } = Astro.props;
-const topic = category ? getTopic(category) : undefined;
-const heading = topic?.label ?? 'Writing';
-const description = topic
-  ? `Scientific and technical articles on ${topic.label.toLowerCase()}.`
-  : 'Notes, explanations, and interactive explorations of waves, signals, and computational engineering.';
+interface Props { posts: CollectionEntry<'blog'>[]; category?: TopicSlug; tag?: string; }
+const { posts, category, tag } = Astro.props;
+const filter = tag ? getTag(tag) : category ? getTopic(category) : undefined;
+const featured = !filter ? posts[0] : undefined;
+const rest = featured ? posts.slice(1) : posts;
+const heading = filter?.label ?? 'Blog';
+const description = filter ? `Scientific and technical articles tagged ${filter.label}.` : 'Waves, signals, and computational engineering: explanations, experiments, and interactive explorations.';
 ---
-
 <BaseLayout title={`${heading} — ${siteName}`} description={description}>
-  <div class="site-shell py-8 sm:py-10">
-    {topic ? <h1 class="text-2xl text-ink mb-6" style="font-family: 'Lora', Georgia, serif;">{topic.label}</h1> : <h1 class="sr-only">Articles</h1>}
-    {posts.length === 0 ? (
-      <p class="text-muted">No articles published yet.</p>
-    ) : (
-      <div class="article-grid grid sm:grid-cols-2" aria-label="Articles">
-        {posts.map(post => <PostCard title={post.data.title} date={post.data.date} category={post.data.category}
-          description={post.data.description} slug={post.id} demo={post.data.demo} />)}
+  <div class="site-shell blog-archive">
+    <h1 class="archive-heading">{heading}</h1>
+    {featured && <section class="featured-post" aria-label="Featured article">
+      <div class="featured-media"><ArticlePreview post={featured} eager interactive /></div>
+      <div class="featured-copy">
+        <p class="feature-eyebrow">{featured.data.demo ? 'Featured demo' : 'Latest article'}</p>
+        <div class="card-meta"><time datetime={featured.data.date.toISOString()}>{featured.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })}</time>{featured.data.demo && <span class="demo-badge">Demo</span>}</div>
+        <h2><a href={`/blog/${featured.id}`}>{featured.data.title}</a></h2>
+        <p class="featured-description">{featured.data.description}</p>
+        <TagBadges tags={featured.data.tags} />
       </div>
-    )}
+    </section>}
+    {posts.length === 0 ? <p class="text-muted">No articles published yet.</p> : <>
+      {featured && rest.length > 0 && <h2 class="archive-subheading">More articles</h2>}
+      <div class="article-grid" aria-label="Articles">
+        {rest.map(post => <PostCard post={post} headingLevel={featured ? 3 : 2} />)}
+      </div>
+    </>}
   </div>
 </BaseLayout>

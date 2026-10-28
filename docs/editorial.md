@@ -33,3 +33,5 @@ The owner chose to retain all five original articles as public demos. They use `
 ## Professional context
 
 About uses the FraH90 handle and the owner-confirmed background “electronic engineer,” with the stated interdisciplinary interests and exploratory agentic/IC-design direction. The owner does not want a personal name or contacts published. Do not restore a contact panel, email link, or GitHub profile contact link. Repository links may identify inspectable source code. Only list additional tools, experience or project outcomes the author confirms. CV publication remains deferred.
+
+Public classification uses multiple registered tags. The legacy category field only preserves URL grouping. Choose appropriate article-owned preview media and label calculated/illustrative material honestly; animated previews require deliberate playback and a static alternative. See [tags and previews](tags-and-previews.md).

@@ -42,7 +42,8 @@ The build runs Astro followed by Pagefind. Search requires this generated index:
 src/
   content/blog/<topic>/*.mdx    Articles and drafts
   content.config.ts            Typed article schema
-  lib/topics.ts                Stable slugs, display labels, colors, and order
+  lib/tags.ts                  Public tag labels, colors, and order
+  lib/topics.ts                Legacy URL groups and shared base accents
   lib/posts.ts                 Shared publication eligibility and queries
   lib/site.ts                  Public identity and build-time CV eligibility
   pages/                       Static routes
@@ -65,14 +66,15 @@ research/interests/            Unpublished interests and investigations
 ## Routes and navigation
 
 - `/` redirects to `/blog`, keeping writing first.
-- `/blog` starts directly with published article cards, without a hero or article count; `/blog/<topic>` filters the same listing by topic.
+- `/blog` has a compact Blog heading, featured latest eligible article, and a responsive media-card grid.
+- `/tags/<slug>` lists published articles carrying a tag. Legacy `/blog/<topic>` indexes redirect there.
 - `/blog/<topic>/<article>` is the article URL, for example `/blog/rf/transmission-line-theory`.
 - `/about` restores the earlier compact introduction and six subject/tool groups, presented as interests for study and exploration. The public identity is lowercase frah90; background is electronic engineer. Personal name and contacts are intentionally omitted.
-- `/search?q=beam+steering` searches published article text (JavaScript required; topics remain available without it).
+- `/search?q=beam+steering` searches published article text (JavaScript required; tag browsing remains available without it).
 - `/rss.xml` supplies the summary RSS feed.
 - `/projects` redirects to writing until actual case studies are available.
 
-Redirect aliases are excluded from the sitemap. The header keeps Writing/About and theme controls. Its icon-only menu control opens a full-height drawer from the right, with published-topic links and a magnifying-glass search form. Native dialog focus handling, Escape/backdrop dismissal and CSS slide/fade motion enhance the drawer; reduced motion is respected and native disclosure preserves topic browsing without JavaScript. The public identity is lowercase frah90; a personal name and contacts are deliberately omitted.
+Redirect aliases are excluded from the sitemap. The header keeps Writing/About and theme controls. Its icon-only menu control opens a full-height drawer from the right, with published-tag links and a magnifying-glass search form. Native dialog focus handling, Escape/backdrop dismissal and CSS slide/fade motion enhance the drawer; reduced motion is respected and native disclosure preserves tag browsing without JavaScript. The public identity is lowercase frah90; a personal name and contacts are deliberately omitted.
 
 ## Reading themes
 
@@ -92,12 +94,12 @@ title: A concrete engineering question
 date: 2026-10-20
 category: rf
 description: A concise description of the question and what the article explains.
-tags: [transmission-lines]
+tags: [rf, transmission-line, impedance]
 draft: true
 ---
 ```
 
-Required fields: `title`, `date`, `category`, and `description`. Optional fields: `tags`, `draft`, `demo`, and `coverImage`. The current schema defaults `draft` to false, so always start with `draft: true`. `coverImage` remains metadata only; use the `ScientificFigure` component for captioned inline or wide figures. The five original articles remain public with `demo: true` and explicit Demo labels; keep this separate from draft eligibility.
+Required fields: `title`, `date`, legacy URL group `category`, and `description`; published articles also need at least one registered tag. Optional fields include `draft`, `demo`, `preview`, and legacy `coverImage`. The current schema defaults `draft` to false, so always start with `draft: true`. `coverImage` is a basic card-image fallback; prefer typed `preview` metadata for accessible image/GIF/video media. Use `ScientificFigure` for captioned figures inside articles. The five original articles remain public with `demo: true` and explicit Demo labels; keep this separate from draft eligibility.
 
 Write prose and math in MDX:
 
@@ -121,11 +123,11 @@ Supported kinds are `array`, `fourier`, `gaussian`, and `transmission`. Each sup
 
 KaTeX renders MDX math at build time. The published demos use automatically loaded Plotly charts in small React roots; browser code remains outside static rendering. The unused `ModeProfileViewer` remains exploratory code, excluded from published bundles. The mode viewer's approximations are unvalidated; do not publish it as an optical solver.
 
-Review scientific claims, assumptions, figures/captions, units, references, links, and browser behavior before changing `draft` to false. Published articles appear automatically in their listing and topic route. Drafts are excluded through `src/lib/posts.ts`, including article-route generation. Search, RSS, related reading, and sitemap also exclude drafts.
+Review scientific claims, assumptions, figures/captions, units, references, links, and browser behavior before changing `draft` to false. Published articles appear automatically in their listing and matching tag routes. Drafts are excluded through `src/lib/posts.ts`, including article-route generation. Search, RSS, related reading, and sitemap also exclude drafts.
 
 ## Topics
 
-Edit `src/lib/topics.ts` to manage the taxonomy. The schema, filters, article labels, and ordering consume this registry. Current route slugs are `antennas`, `rf`, `optics`, `dsp`, `ml`, and `misc`. Only topics containing published articles receive public filter links and category pages. Use readable display labels without changing stable slugs. Treat slug changes as URL migrations.
+Edit `src/lib/tags.ts` to manage the public taxonomy. Registered tags have stable slugs, readable labels, order and colors; only tags used by published articles receive routes/navigation. `src/lib/topics.ts` retains the URL groups `antennas`, `rf`, `optics`, `dsp`, `ml`, and `misc` for compatibility and draft paths. An article can carry tags from any group. Treat slug changes as URL migrations.
 
 ## Assets and CV
 
@@ -150,3 +152,5 @@ Visual defaults are centralized in [settings.css](src/styles/settings.css): shar
 See [responsive plot expansion](docs/responsive-plots.md) for the fitting rule and viewport helper.
 
 Plotly geometry follows animated container dimensions through coalesced relayout updates rather than a delayed resize. Reference lists display linked titles/details without exposing internal citation keys.
+
+The archive now uses a compact Blog heading, featured latest eligible article and responsive media cards. Articles have multiple colored tag badges and canonical `/tags/<slug>` archives; old article URLs are preserved and category indexes redirect. [Tags and preview authoring](docs/tags-and-previews.md) covers the registry, image/GIF/video metadata, steering showcase and configurable media shape. The `category` field remains only for legacy URL grouping.

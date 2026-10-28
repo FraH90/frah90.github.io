@@ -1,16 +1,7 @@
 ---
-import PostListing from '../../../components/blog/PostListing.astro';
-import { getAllPosts, getAllCategories } from '../../../lib/posts';
-
+import { getAllCategories } from '../../../lib/posts';
 export async function getStaticPaths() {
-  const posts = await getAllPosts();
-  const categories = await getAllCategories();
-  return categories.map(category => ({
-    params: { category: category.slug },
-    props: { posts: posts.filter(post => post.data.category === category.slug), category: category.slug },
-  }));
+  return (await getAllCategories()).map(category => ({ params: { category: category.slug } }));
 }
-const { posts, category } = Astro.props;
+return Astro.redirect(`/tags/${Astro.params.category}`);
 ---
-
-<PostListing posts={posts} category={category} />

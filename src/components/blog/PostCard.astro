@@ -1,34 +1,18 @@
 ---
-import { getTopic, type TopicSlug } from '../../lib/topics';
+import type { CollectionEntry } from 'astro:content';
 import { demoLabel } from '../../lib/article-status';
-
-interface Props {
-  title: string;
-  date: Date;
-  category: TopicSlug;
-  description: string;
-  slug: string;
-  headingLevel?: 2 | 3;
-  demo?: boolean;
-}
-const { title, date, category, description, slug, headingLevel = 2, demo = false } = Astro.props;
-const topic = getTopic(category);
+import ArticlePreview from './ArticlePreview.astro';
+import TagBadges from './TagBadges.astro';
+interface Props { post: CollectionEntry<'blog'>; headingLevel?: 2 | 3; }
+const { post, headingLevel = 2 } = Astro.props;
+const { title, date, description, demo, tags } = post.data;
 const Heading = headingLevel === 3 ? 'h3' : 'h2';
-const formatted = new Intl.DateTimeFormat('en-US', {
-  year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC',
-}).format(date);
+const formatted = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' }).format(date);
 ---
-
-<article class="min-w-0 h-full">
-  <a href={`/blog/${slug}`} class="post-card group block h-full">
-    <div class="flex flex-wrap items-center gap-x-3 gap-y-2 mb-4 text-xs">
-      <span class:list={['font-medium', topic.color]}>{topic.label}</span>
-      {demo && <span class="demo-badge">{demoLabel}</span>}
-      <time datetime={date.toISOString()} class="text-muted">{formatted}</time>
-    </div>
-    <Heading class="post-card-title text-ink mb-3" style="font-family: 'Lora', Georgia, serif;">
-      {title}
-    </Heading>
-    <p class="text-sm leading-relaxed text-muted">{description}</p>
-  </a>
+<article class="post-card min-w-0">
+  <ArticlePreview post={post} />
+  <div class="card-meta"><time datetime={date.toISOString()}>{formatted}</time>{demo && <span class="demo-badge">{demoLabel}</span>}</div>
+  <Heading class="post-card-title"><a class="post-card-link" href={`/blog/${post.id}`}>{title}</a></Heading>
+  <p class="card-description">{description}</p>
+  <TagBadges tags={tags} />
 </article>

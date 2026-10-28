@@ -116,3 +116,7 @@ The owner clarified that 1.5× applies to both plot dimensions. `demo-expansion.
 The latest prose trial uses 18px/27px type. Plotly's debounced `Plots.resize` is replaced with requestAnimationFrame-coalesced explicit width/height relayout. One relayout runs at a time; later observations use the newest container dimensions, and a final equality check avoids idle redraws. The built-in responsive window handler is disabled so it does not compete with the shared container observer. Initial/control/theme renders use current container dimensions. Reduced motion and the proportional fitting rule remain in place; this changes geometry updates rather than scientific values or font scale.
 
 ArticleReferences retains its `ref-*` targets for citation links but stops displaying the internal reference keys. Linked titles and optional bibliographic details remain.
+
+## Multiple tags and media-led archive — 2026-10-28
+
+The owner requested replacing exclusive public categories with multiple colored tags, adding card media and a leading showcase inspired by the supplied Oxide/Google examples. The new public registry, tag routes, compatibility redirects, model-derived previews, media boundaries and latest-article feature are described in [tags and previews](tags-and-previews.md). This supersedes the prior no-feature archive rule. Existing article URLs, reading canvas, demo behavior, privacy and publication eligibility remain preserved. The final visual review remains open.

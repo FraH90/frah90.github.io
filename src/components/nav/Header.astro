@@ -10,7 +10,8 @@ const navLinks = [
   { href: '/about', label: 'About' },
 ];
 const current = Astro.url.pathname.replace(/\/$/, '') || '/';
-const isActive = (href: string) => current === href || current.startsWith(`${href}/`);
+const isActive = (href: string) => current === href || current.startsWith(`${href}/`)
+  || (href === '/blog' && current.startsWith('/tags/'));
 ---
 
 <header class="site-header sticky top-0 z-50 bg-page/95 border-b border-rule">

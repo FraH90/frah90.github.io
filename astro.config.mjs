@@ -14,7 +14,8 @@ export default defineConfig({
 
   integrations: [react(), mdx(), sitemap({
     // Redirect aliases are useful inbound links, not canonical content.
-    filter: page => !['/', '/projects', '/projects/'].includes(new URL(page).pathname),
+    filter: page => !['/', '/projects', '/projects/'].includes(new URL(page).pathname)
+      && !/^\/blog\/[^/]+\/?$/.test(new URL(page).pathname),
   })],
 
   markdown: {

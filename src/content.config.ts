@@ -1,6 +1,7 @@
 import { defineCollection, reference, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { topicSlugs } from './lib/topics';
+import { tagSlugs } from './lib/tags';
 import { isArticleLink } from './lib/article-links';
 
 const text = z.string().trim().min(1);
@@ -13,10 +14,15 @@ const blog = defineCollection({
     date:        z.coerce.date(),
     category:    z.enum(topicSlugs),
     description: z.string(),
-    tags:        z.array(z.string()).default([]),
+    tags:        z.array(z.enum(tagSlugs)).default([]),
     draft:       z.boolean().default(false),
     demo:        z.boolean().default(false),
-    coverImage:  z.string().optional(),
+    coverImage: link.optional(),
+    preview: z.discriminatedUnion('kind', [
+      z.object({ kind: z.literal('image'), src: link, alt: text, width: z.number().int().positive(), height: z.number().int().positive() }),
+      z.object({ kind: z.literal('gif'), src: link, poster: link, alt: text, width: z.number().int().positive(), height: z.number().int().positive() }),
+      z.object({ kind: z.literal('video'), src: link, poster: link, alt: text }),
+    ]).optional(),
     learningGoals: z.array(text).default([]),
     prerequisites: z.array(text).default([]),
     takeaways: z.array(text).default([]),
@@ -33,6 +39,8 @@ const blog = defineCollection({
       url: link.optional(),
     })).default([]).refine(items => new Set(items.map(item => item.id)).size === items.length,
       'Reference IDs must be unique within an article.'),
+  }).refine(data => data.draft || data.tags.length > 0, {
+    path: ['tags'], message: 'Published articles need at least one registered tag.',
   }),
 });
 

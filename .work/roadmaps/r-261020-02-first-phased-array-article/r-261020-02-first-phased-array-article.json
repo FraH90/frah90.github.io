@@ -401,6 +401,27 @@
           "commits": [
             "f57a8bd1059b030f7ec0427b8ed688e15b615bed"
           ]
+        },
+        {
+          "id": "r-261020-02-first-phased-array-article-design-9",
+          "text": "Replace public categories with multi-tag discovery, introduce media article cards and trial a latest-article showcase with a lightweight interactive scientific preview.",
+          "kind": "build",
+          "status": "done",
+          "evidence": [
+            {
+              "kind": "measurement",
+              "value": "Production build, 33-page route/link/fragment/discovery/privacy checks, independent models and payload budget pass (5024317 decoded / 1534488 gzip application JS bytes; demo controller 2483 gzip bytes). A newer temporary draft with a unique misc tag was excluded from the feature, article/tag routes, discovery, RSS and sitemap; fixture was removed after review. All five original article URLs remain; old category indexes redirect and are absent from the sitemap. ML appears in both ML and DSP tag archives; RSS and Pagefind results carry multiple tags."
+            },
+            {
+              "kind": "measurement",
+              "value": "Local Chromium at 320/390/1024/1440px in dark/light verifies feature plus four media cards, one/two/three-column layouts, multiple independently clickable tag badges, no nested links/overflow, keyboard steering/card/tag navigation, current-tag and Writing states and axe WCAG A/AA. No-JavaScript tag navigation and old-route redirects pass; search returns tagged results. Archive requests no Plotly/demo engine. Configurable square media also fits phone/desktop. Screenshots inspected; phone steering controls moved below the figure to avoid axis overlap. Physical Safari not tested."
+            },
+            {
+              "kind": "document",
+              "value": "docs/tags-and-previews.md documents the taxonomy, compatibility field/redirects, model-derived and illustrative preview provenance, image/GIF/video schema, controlled motion and custom browser-safe renderers. The draft command seeds a registered broad tag and retains draft status; verified generated fixture removed. Typed GIF/video branches are implemented but playback with owner-supplied media assets has not been reviewed. Final feature/media shape approval remains open; latest-article/landscape are the stated initial trial."
+            }
+          ],
+          "closed_at": "2026-10-28"
         }
       ]
     },

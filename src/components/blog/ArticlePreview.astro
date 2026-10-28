@@ -1,0 +1,92 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { demoExamples } from '../../lib/demo-examples';
+import { computeArray } from '../../lib/demo-models';
+import { arrayChart } from '../../lib/demo-charts';
+import { chartGeometry } from '../../lib/chart-geometry';
+interface Props { post: CollectionEntry<'blog'>; eager?: boolean; interactive?: boolean; }
+const { post, eager = false, interactive = false } = Astro.props;
+const preview = post.data.preview;
+const demoById = {
+  'antennas/phased-array-basics': 'array', 'rf/transmission-line-theory': 'transmission',
+  'optics/gaussian-beam-intuition': 'gaussian', 'dsp/spectral-leakage': 'fourier',
+} as const;
+const kind = demoById[post.id as keyof typeof demoById];
+const example = kind ? demoExamples[kind] : undefined;
+const spec = example?.charts[kind === 'fourier' ? 1 : 0];
+const geometry = spec ? chartGeometry(spec) : undefined;
+const isWorkflow = post.id === 'ml/ml-for-signal-data';
+const steering = interactive && kind === 'array' && !preview && !post.data.coverImage
+  ? [45, 60, 75, 90, 105, 120, 135].map(angle => {
+    const chart = arrayChart(computeArray(8, .5, -Math.PI * Math.cos(angle * Math.PI / 180)));
+    chart.traces = chart.traces.map(trace => ({ ...trace, x: trace.x.filter((_, i) => i % 10 === 0), y: trace.y.filter((_, i) => i % 10 === 0) }));
+    return chartGeometry(chart).paths[0].path;
+  }) : undefined;
+const image = preview?.kind === 'image' ? preview.src : preview?.kind === 'gif' ? preview.poster : post.data.coverImage;
+---
+<div class:list={["preview-media", { "preview-interactive": !!steering }]}>
+  {preview?.kind === 'video' ? <video controls playsinline preload="metadata" poster={preview.poster} aria-label={preview.alt}><source src={preview.src} /><a href={preview.src}>Open video preview</a></video>
+    : image ? <>
+      <img src={image} alt={preview?.alt ?? `Article preview: ${post.data.title}`} width={preview && 'width' in preview ? preview.width : 960} height={preview && 'height' in preview ? preview.height : 600} loading={eager ? 'eager' : 'lazy'} decoding="async" data-motion-src={preview?.kind === 'gif' ? preview.src : undefined} data-still-src={preview?.kind === 'gif' ? preview.poster : undefined} />
+      {preview?.kind === 'gif' && <button type="button" class="preview-toggle" data-preview-toggle aria-pressed="false" hidden>Play preview</button>}
+    </>
+    : spec && geometry ? <>
+      <svg viewBox="0 0 960 600" role="img" aria-label={`${spec.title}. ${spec.description} ${example!.parameters}`}>
+        <text x="60" y="70" class="preview-figure-name">{spec.title}</text>
+        <g transform="translate(0 95)">
+          {geometry.xTicks.map(tick => <><path d={`M${tick.position} 20V296`} class="preview-grid" /><text x={tick.position} y="332" text-anchor="middle" class="preview-tick">{tick.label}</text></>)}
+          {geometry.yTicks.map(tick => <><path d={`M74 ${tick.position}H940`} class="preview-grid" /><text x="60" y={tick.position + 8} text-anchor="end" class="preview-tick">{tick.label}</text></>)}
+          {geometry.paths.map(trace => <path d={trace.path} fill="none" stroke={trace.color} stroke-width="3" stroke-linejoin="round" data-steering-trace={steering ? true : undefined} />)}
+          <text x="74" y="0" class="preview-axis">{spec.yLabel}</text>
+          <text x="510" y="386" text-anchor="middle" class="preview-axis">{spec.xLabel}</text>
+        </g>
+      </svg>
+      <span class="preview-context">Calculated demo preview</span>
+    </>
+    : isWorkflow ? <>
+      <svg viewBox="0 0 960 600" role="img" aria-label="Illustrative signal machine-learning workflow: signal, features, model, evaluation. This is a conceptual diagram, not a measured result.">
+        <text x="60" y="70" class="preview-figure-name">Learning from signal data</text>
+        <path d="M80 280h70l15-50 20 100 20-90 20 80 20-45h65M345 280h90m180 0h90" class="workflow-line" />
+        <rect x="435" y="225" width="180" height="110" rx="8" class="workflow-box" />
+        <rect x="705" y="225" width="180" height="110" rx="8" class="workflow-box" />
+        <text x="525" y="290" text-anchor="middle" class="workflow-label">Features</text>
+        <text x="795" y="290" text-anchor="middle" class="workflow-label">Model</text>
+        <path d="M795 335v100H190v-90" class="workflow-line workflow-feedback" />
+        <text x="480" y="480" text-anchor="middle" class="preview-axis">Evaluate across sessions and hardware</text>
+      </svg>
+      <span class="preview-context">Illustrative workflow</span>
+    </> : <div class="preview-placeholder"><span>Technical notes</span><p>{post.data.title}</p></div>}
+</div>
+{steering && <div class="steering-preview" data-steering-preview hidden>
+  <label for="featured-steering">Steer the beam <output for="featured-steering">90°</output></label>
+  <input id="featured-steering" type="range" min="0" max="6" value="3" step="1" aria-valuetext="90 degrees from the array axis" data-paths={JSON.stringify(steering)} />
+</div>}
+<script>
+  for (const controls of document.querySelectorAll<HTMLElement>('[data-steering-preview]')) {
+    const input = controls.querySelector<HTMLInputElement>('input')!;
+    const output = controls.querySelector('output')!;
+    const preview = controls.previousElementSibling!;
+    const trace = preview.querySelector('[data-steering-trace]')!;
+    const paths: string[] = JSON.parse(input.dataset.paths!);
+    controls.hidden = false;
+    input.addEventListener('input', () => {
+      const index = Number(input.value), angle = 45 + index * 15;
+      trace.setAttribute('d', paths[index]);
+      output.textContent = `${angle}°`;
+      input.setAttribute('aria-valuetext', `${angle} degrees from the array axis`);
+      preview.querySelector('svg')!.setAttribute('aria-label', `Calculated uniform eight-element isotropic array, half-wavelength spacing, steered to ${angle} degrees from the array axis. Normalized magnitude versus angle.`);
+    });
+  }
+
+  for (const button of document.querySelectorAll<HTMLButtonElement>('[data-preview-toggle]')) {
+    const image = button.parentElement!.querySelector<HTMLImageElement>('img')!;
+    button.hidden = false;
+    const stop = () => { image.src = image.dataset.stillSrc!; button.textContent = 'Play preview'; button.setAttribute('aria-pressed', 'false'); };
+    button.addEventListener('click', () => {
+      if (button.getAttribute('aria-pressed') === 'true') stop();
+      else { image.src = image.dataset.motionSrc!; button.textContent = 'Pause preview'; button.setAttribute('aria-pressed', 'true'); }
+    });
+    matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', stop);
+    document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
+  }
+</script>

@@ -1,0 +1,8 @@
+---
+import { getTag } from '../../lib/tags';
+interface Props { tags: string[]; }
+const { tags } = Astro.props;
+---
+<ul class="tag-badges" aria-label="Article tags">
+  {[...new Set(tags)].map(slug => { const tag = getTag(slug); return <li><a href={`/tags/${slug}`} class:list={['tag-badge', tag.color]}>{tag.label}</a></li>; })}
+</ul>

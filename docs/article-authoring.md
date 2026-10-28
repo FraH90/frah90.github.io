@@ -122,3 +122,7 @@ Review the article on mobile and desktop in both themes, including contents, equ
 Demo articles retain their badge and discovery metadata. The article badge reveals the explanation on hover or focus (tap on touchscreens); Escape dismisses it. No persistent demo notice appears below the description. The tooltip also works without JavaScript through hover/focus; Escape dismissal is an enhancement.
 
 Reference IDs are internal citation targets and are not displayed in the References list. Readers see the descriptive linked title and optional details; keep IDs stable for existing citation links.
+
+## Tags and archive previews
+
+Use canonical tag slugs from `src/lib/tags.ts`; each article can carry multiple subjects and methods. The ML demo uses both `ml` and `dsp`, for example. `category` remains solely as a legacy URL-group field. The draft command seeds the group as a broad tag; edit/add tags before publishing. Unknown tags fail schema validation. [Tags and previews](tags-and-previews.md) documents image/GIF/video metadata and custom interactive media boundaries.

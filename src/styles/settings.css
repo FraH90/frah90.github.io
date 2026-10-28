@@ -63,3 +63,9 @@
 
 /* This breakpoint also informs the controller through --panel-docked. */
 @media (min-width: 1024px) { :root { --panel-docked: 1; } }
+
+:root {
+  /* Change this to 1 / 1 to try square card media. */
+  --card-media-ratio: 8 / 5;
+  --archive-width: 76rem;
+}

@@ -1,0 +1,10 @@
+---
+import PostListing from '../../components/blog/PostListing.astro';
+import { getAllPosts, getAllTags } from '../../lib/posts';
+export async function getStaticPaths() {
+  const posts = await getAllPosts();
+  return (await getAllTags()).map(tag => ({ params: { tag: tag.slug }, props: { posts: posts.filter(post => post.data.tags.includes(tag.slug)), tag: tag.slug } }));
+}
+const { posts, tag } = Astro.props;
+---
+<PostListing posts={posts} tag={tag} />

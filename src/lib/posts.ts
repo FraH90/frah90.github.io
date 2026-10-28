@@ -1,5 +1,6 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { topics } from './topics';
+import { tags, getPostTags } from './tags';
 
 /** Shared eligibility for routes and every published-content discovery surface. */
 export function isPublishedPost(post: Pick<CollectionEntry<'blog'>, 'data'>) {
@@ -22,6 +23,15 @@ export async function getAllCategories() {
   return topics.filter(topic => populated.has(topic.slug));
 }
 
+export async function getAllTags() {
+  const posts = await getAllPosts();
+  const populated = new Set(posts.flatMap(post => getPostTags(post).map(tag => tag.slug)));
+  return tags.filter(tag => populated.has(tag.slug));
+}
+export async function getPostsByTag(slug: string) {
+  return (await getAllPosts()).filter(post => post.data.tags.includes(slug));
+}
+
 /** Curated links first, then genuinely overlapping topics/tags. Never expose drafts. */
 export async function getRelatedPosts(post: CollectionEntry<'blog'>, limit = 3) {
   const all = await getCollection('blog');
@@ -33,8 +43,7 @@ export async function getRelatedPosts(post: CollectionEntry<'blog'>, limit = 3) 
   }).filter(entry => entry.id !== post.id && isPublishedPost(entry));
   const tags = new Set(post.data.tags.map(tag => tag.toLowerCase()));
   const candidates = all.filter(entry => entry.id !== post.id && isPublishedPost(entry))
-    .map(entry => ({ entry, score: (entry.data.category === post.data.category ? 3 : 0)
-      + new Set(entry.data.tags.map(tag => tag.toLowerCase()).filter(tag => tags.has(tag))).size }))
+    .map(entry => ({ entry, score: new Set(entry.data.tags.map(tag => tag.toLowerCase()).filter(tag => tags.has(tag))).size }))
     .filter(candidate => candidate.score > 0)
     .sort((a, b) => b.score - a.score || b.entry.data.date.valueOf() - a.entry.data.date.valueOf()
       || a.entry.id.localeCompare(b.entry.id));
