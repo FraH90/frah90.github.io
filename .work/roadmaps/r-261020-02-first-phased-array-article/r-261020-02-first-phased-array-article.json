@@ -277,7 +277,10 @@
               "value": "No-JavaScript phone/desktop review verifies native disclosure, section fragment links, closing summary and no page overflow. Without scripts the phone outline is closed manually through its summary."
             }
           ],
-          "closed_at": "2026-10-28"
+          "closed_at": "2026-10-28",
+          "commits": [
+            "621e4acdc05facc3cf4de08ff8f666bbc15c6ba3"
+          ]
         }
       ]
     },
