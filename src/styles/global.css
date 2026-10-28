@@ -229,7 +229,7 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 .site-footer .footer-link { display: inline-flex; align-items: center; min-height: 44px; }
 
 .interactive-demo { overflow: clip; width: 100%; margin-left: 0; transition: width var(--panel-duration) var(--panel-easing), margin-left var(--panel-duration) var(--panel-easing); }
-.interactive-demo.demo-expanded { width: min(var(--plot-expanded-width), calc(var(--available-width) - var(--page-gutter) * 2)); margin-left: calc((100% - min(var(--plot-expanded-width), calc(var(--available-width) - var(--page-gutter) * 2))) / 2); }
+.interactive-demo.demo-expanded { width: min(var(--plot-fitted-width, 100%), calc(var(--available-width) - var(--page-gutter) * 2)); margin-left: calc((100% - min(var(--plot-fitted-width, 100%), calc(var(--available-width) - var(--page-gutter) * 2))) / 2); }
 .demo-expand { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 44px; height: 44px; margin: -.5rem -.5rem -.5rem auto; border-radius: 50%; color: var(--muted); cursor: pointer; }
 .demo-expand[hidden] { display: none; }
 .demo-expand:hover { color: var(--ink); background: var(--elevated); }
@@ -242,4 +242,6 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 @media (min-width: 640px) { .plotly-chart { --normal-plot-height: var(--plot-height-desktop); } }
 .plotly-chart.h-48 { --normal-plot-height: var(--plot-height-fourier-time); }
 .plotly-chart.h-64 { --normal-plot-height: var(--plot-height-fourier-spectrum); }
-.demo-expanded { --plot-height-scale: var(--plot-expanded-height-scale); }
+.demo-expanded { --plot-height-scale: var(--plot-fitted-scale, 1); }
+
+.demo-expand:disabled { opacity: .4; cursor: default; }

@@ -23,8 +23,8 @@
   --article-width: 55rem;
   --article-font-size: 1.125rem;
   --article-line-height: 1.5625rem;
-  --plot-expanded-width: 80rem;
-  --plot-expanded-height-scale: 1.5;
+  --plot-max-scale: 1.5;
+  --plot-viewport-padding: 1.25rem;
   --plot-height-phone: 18rem;
   --plot-height-desktop: 24rem;
   --plot-height-fourier-time: 12rem;
