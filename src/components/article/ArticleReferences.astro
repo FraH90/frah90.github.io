@@ -9,7 +9,6 @@ const { references } = Astro.props;
     <ul class="reference-list">
       {references.map(reference => (
         <li id={`ref-${reference.id}`} tabindex="-1">
-          <span class="reference-key">[{reference.id}]</span>
           <div>
             {reference.url ? <a href={reference.url}>{reference.title}</a> : <span class="text-ink">{reference.title}</span>}
             {reference.detail && <p class="text-muted mt-1">{reference.detail}</p>}

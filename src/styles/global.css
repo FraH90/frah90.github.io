@@ -150,7 +150,6 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 .reference-list { display: grid; gap: 1.25rem; }
 .reference-list > li { display: flex; align-items: baseline; gap: 0.75rem; }
 .reference-list > li > div { min-width: 0; }
-.reference-key { max-width: 8rem; overflow-wrap: anywhere; flex-shrink: 0; font-size: 0.75rem; color: var(--muted); }
 .reference-list a, .scientific-figure a { color: var(--accent); text-decoration: underline; text-underline-offset: 0.2em; }
 .article-content > figure.scientific-figure:not(.figure-wide) { max-width: var(--reading-width); }
 .scientific-figure { margin-block: 2.5rem; }
@@ -228,7 +227,7 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 .site-footer .footer-row { min-height: 44px; }
 .site-footer .footer-link { display: inline-flex; align-items: center; min-height: 44px; }
 
-.interactive-demo { overflow: clip; width: 100%; margin-left: 0; transition: width var(--panel-duration) var(--panel-easing), margin-left var(--panel-duration) var(--panel-easing); }
+.interactive-demo { overflow: clip; width: 100%; margin-left: 0; transition: width var(--plot-duration) var(--plot-easing), margin-left var(--plot-duration) var(--plot-easing); }
 .interactive-demo.demo-expanded { width: min(var(--plot-fitted-width, 100%), calc(var(--available-width) - var(--page-gutter) * 2)); margin-left: calc((100% - min(var(--plot-fitted-width, 100%), calc(var(--available-width) - var(--page-gutter) * 2))) / 2); }
 .demo-expand { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 44px; height: 44px; margin: -.5rem -.5rem -.5rem auto; border-radius: 50%; color: var(--muted); cursor: pointer; }
 .demo-expand[hidden] { display: none; }
@@ -238,7 +237,7 @@ body { font-family: 'Inter', system-ui, sans-serif; }
 .demo-expanded .collapse-icon { display: block; }
 
 /* Expansion changes plot geometry, not text/label scale or scientific data. */
-.plotly-chart { --normal-plot-height: var(--plot-height-phone); height: calc(var(--normal-plot-height) * var(--plot-height-scale, 1)); transition: height var(--panel-duration) var(--panel-easing); }
+.plotly-chart { --normal-plot-height: var(--plot-height-phone); height: calc(var(--normal-plot-height) * var(--plot-height-scale, 1)); transition: height var(--plot-duration) var(--plot-easing); }
 @media (min-width: 640px) { .plotly-chart { --normal-plot-height: var(--plot-height-desktop); } }
 .plotly-chart.h-48 { --normal-plot-height: var(--plot-height-fourier-time); }
 .plotly-chart.h-64 { --normal-plot-height: var(--plot-height-fourier-spectrum); }

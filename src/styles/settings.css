@@ -22,8 +22,10 @@
   /* Reading canvas, type and interaction dimensions. */
   --article-width: 55rem;
   --article-font-size: 1.125rem;
-  --article-line-height: 1.5625rem;
+  --article-line-height: 1.6875rem;
   --plot-max-scale: 1.5;
+  --plot-duration: 420ms;
+  --plot-easing: ease-in-out;
   --plot-viewport-padding: 1.25rem;
   --plot-height-phone: 18rem;
   --plot-height-desktop: 24rem;

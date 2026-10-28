@@ -377,6 +377,27 @@
           "commits": [
             "5ddd9216a48ee11a826b19b987d8d2873493c359"
           ]
+        },
+        {
+          "id": "r-261020-02-first-phased-array-article-design-8",
+          "text": "Replace discontinuous debounced plot resizing with coalesced relayout, try 27px prose line spacing and hide internal reference keys.",
+          "kind": "build",
+          "status": "done",
+          "evidence": [
+            {
+              "kind": "measurement",
+              "value": "Production build, 15-page output/discovery/privacy checks, independent models and payload budget pass (5020051 decoded / 1532575 gzip application JS bytes; controller 2483 gzip bytes). Local Chromium samples four demos/five plots in both themes through expansion/collapse: 8–19 distinct geometry redraws during each 420ms transition and final chart/container agreement within 1px. The coalesced relayout path replaces delayed Plots.resize; separate ease-in-out plot timing reduces abrupt initial movement. This is measured local Chromium behavior, not a 60fps or universal-device guarantee."
+            },
+            {
+              "kind": "measurement",
+              "value": "27px prose line height, hidden reference keys with retained ref-* IDs/descriptive links, keyboard sliders, panel resizing, phone resize, reduced motion and representative axe WCAG A/AA pass. Rapid reversal and theme change during resizing settle correctly without page errors. Viewport/short-window fit, slider persistence, no-JavaScript and blocked-engine static alternatives also pass. Reference screenshot inspected; physical Safari not tested."
+            },
+            {
+              "kind": "document",
+              "value": "README, architecture, authoring and responsive-plot guidance document 18px/27px prose, hidden bibliography keys and serialized resize updates. Mirrored AGENTS.md/CLAUDE.md remain identical. Final owner design approval remains open."
+            }
+          ],
+          "closed_at": "2026-10-28"
         }
       ]
     },

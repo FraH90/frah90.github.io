@@ -29,19 +29,28 @@ export default function PlotlyChart({ data, layout, className = 'w-full h-72 sm:
     const update = () => setThemeVersion(version => version + 1);
     window.addEventListener('themechange', update);
     const element = ref.current;
-    // A reading panel changes the chart container without resizing the window.
-    // Plotly's responsive option alone only handles window resize events.
+    // Plots.resize debounces redraws; relayout follows the actual animated size.
+    // Keep one resize in flight and coalesce later observations to the newest size.
     let frame = 0;
     let disposed = false;
-    const observer = new ResizeObserver(() => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        if (!element || !element.clientWidth || element.dataset.plotReady !== 'true') return;
-        plotly.current?.Plots.resize(element).catch(() => {
-          if (!disposed) setError(true);
-        });
-      });
-    });
+    let resizing = false;
+    const schedule = () => {
+      if (!disposed && !frame) frame = requestAnimationFrame(resize);
+    };
+    const resize = () => {
+      frame = 0;
+      if (disposed || resizing || !element || element.dataset.plotReady !== 'true') return;
+      const width = element.clientWidth, height = element.clientHeight;
+      const engine = plotly.current;
+      if (!engine || !width || !height) return;
+      const current = (element as any)._fullLayout;
+      if (current?.width === width && current?.height === height) return;
+      resizing = true;
+      Promise.resolve(engine.relayout(element, { width, height, autosize: false }))
+        .catch(() => { if (!disposed) setError(true); })
+        .finally(() => { resizing = false; schedule(); });
+    };
+    const observer = new ResizeObserver(schedule);
     if (element) observer.observe(element);
     return () => {
       disposed = true;
@@ -81,6 +90,7 @@ export default function PlotlyChart({ data, layout, className = 'w-full h-72 sm:
         // Theme updates preserve the reader's zoom and legend selection.
         uirevision: 'preserve-view',
         ...user,
+        autosize: false, width: element.clientWidth, height: element.clientHeight,
         title: { text: '' },
         dragmode: false,
         font: { ...font, ...user.font },
@@ -96,7 +106,7 @@ export default function PlotlyChart({ data, layout, className = 'w-full h-72 sm:
         legend: { ...user.legend, font: { ...font, ...user.legend?.font } },
         hoverlabel: { bgcolor: color('--surface'), bordercolor: color('--rule-strong'), font, ...user.hoverlabel },
       };
-      await engine.react(element, resolveColors(data, styles), themedLayout, { responsive: true, displayModeBar: false });
+      await engine.react(element, resolveColors(data, styles), themedLayout, { responsive: false, displayModeBar: false });
       if (!cancelled) {
         setError(false);
         element.dataset.plotReady = 'true';
