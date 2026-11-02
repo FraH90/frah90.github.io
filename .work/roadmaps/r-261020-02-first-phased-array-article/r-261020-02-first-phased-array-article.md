@@ -182,9 +182,9 @@ The owner writes the article; no manuscript, measurements, code results or publi
 **Depends on:** none
 
 - ✅ **done** · **migration** — Migrate the blog ledger from separate ideas/proposals to proposal v3 and current archive conventions without changing publication/design scope.
-  - ID `r-261020-02-first-phased-array-article-ledger-1` · closed 2026-11-02
+  - ID `r-261020-02-first-phased-array-article-ledger-1` · closed 2026-11-02 · commits `79c0693d23770146978ffdb12ef5838508113ed0`
   - Evidence (measurement): Current LifeOS reader/validator and running GET /api/code/ledger read four proposals and two live roadmaps. All eight data JSON files pass vendored schemas; all four original-thought blocks, both former proposal bodies, idea notes, original roadmap/item states and 26 historical commit references are preserved. Documentation links and byte-identical AGENTS.md/CLAUDE.md pass. The upstream migration dry-run is a no-op after conversion.
-  - Evidence (document): .work/README.md records mixed entity versions, original IDs, source provenance, closure/archive behavior, the unscheduled IC-design draft correction and preserved article/deployment priorities. Implementation commit evidence is attached after committing. No website source/build configuration or LifeOS files were edited.
+  - Evidence (document): .work/README.md records mixed entity versions, original IDs, source provenance, closure/archive behavior, the unscheduled IC-design draft correction and preserved article/deployment priorities. The commits field records the actual migration implementation. No website source/build configuration or LifeOS files were edited.
 <!-- ledger-phases:end -->
 
 ## Risks

@@ -535,8 +535,11 @@
             },
             {
               "kind": "document",
-              "value": ".work/README.md records mixed entity versions, original IDs, source provenance, closure/archive behavior, the unscheduled IC-design draft correction and preserved article/deployment priorities. Implementation commit evidence is attached after committing. No website source/build configuration or LifeOS files were edited."
+              "value": ".work/README.md records mixed entity versions, original IDs, source provenance, closure/archive behavior, the unscheduled IC-design draft correction and preserved article/deployment priorities. The commits field records the actual migration implementation. No website source/build configuration or LifeOS files were edited."
             }
+          ],
+          "commits": [
+            "79c0693d23770146978ffdb12ef5838508113ed0"
           ]
         }
       ]
