@@ -1,43 +1,48 @@
 {
-  "$schema": "../../schema/roadmap.v2.json",
+  "$schema": "../../../schema/roadmap.v2.json",
   "version": 2,
   "kind": "roadmap",
-  "order": 2,
+  "order": 1,
   "id": "r-261020-03-deployment-checks",
   "title": "Publishing safeguards and deployment checks",
   "why": "Owner resumed this follow-up on 2026-11-02: validate public output and demo models/payloads before deploying, using supported integration permissions.",
-  "status": "active",
+  "status": "done",
   "primary": false,
   "done_when": "Supported workflow permissions are configured, both output and demo checks run before Pages artifact upload, and a real valid deployment plus failing-check behavior verify the gate.",
   "created_at": "2026-10-20",
-  "closed_at": null,
+  "closed_at": "2026-11-02",
   "phases": [
     {
       "id": "r-261020-03-deployment-checks-p1",
       "title": "Supported workflow permission",
-      "status": "active",
+      "status": "done",
       "useful_alone": "The integration can publish authorized workflow edits without adding credentials to the checkout.",
-      "done_when": "The owner’s supported LifeOS/GitHub configuration authorizes workflow edits.",
+      "done_when": "The owner\u2019s supported LifeOS/GitHub configuration authorizes workflow edits.",
       "depends_on": [],
       "items": [
         {
           "id": "r-261020-03-deployment-checks-p1-1",
           "text": "Resolve the GitHub integration workflows permission using the supported LifeOS/GitHub configuration; do not add credentials to this repository.",
-          "status": "active",
+          "status": "done",
           "kind": "decision",
           "evidence": [
             {
               "kind": "observation",
               "value": "2026-11-02: supported git_push rejected f8565b26e18c52ccb4b03322a3e57290abe01930: GitHub App cannot update .github/workflows/deploy.yml without workflows permission. No remote update or deployment occurred. Owner must enable permission through the supported LifeOS/GitHub integration configuration; no shell credentials or permission bypass attempted."
+            },
+            {
+              "kind": "observation",
+              "value": "Owner confirmed the GitHub App permission update. Supported git_push successfully advanced main from 4b18bdc to 5294325e9100203a0aceecbfda106880be900d70, including .github/workflows/deploy.yml. GitHub Actions run 41495431814 started for that exact SHA. No repository credentials or LifeOS code changes were needed."
             }
-          ]
+          ],
+          "closed_at": "2026-11-02"
         }
       ]
     },
     {
       "id": "r-261020-03-deployment-checks-p2",
       "title": "CI build and demo gates",
-      "status": "active",
+      "status": "done",
       "useful_alone": "Broken public output or demo/model/payload regressions prevent deployment.",
       "done_when": "Both checks run before artifact upload; invalid output is blocked and a real valid workflow run passes.",
       "depends_on": [
@@ -47,7 +52,7 @@
         {
           "id": "r-261020-03-deployment-checks-p2-1",
           "text": "Add npm run check:build and npm run check:demos after the Astro/Pagefind build and before GitHub Pages artifact upload; verify broken output/model or payload regressions block deployment and a valid deployment passes.",
-          "status": "active",
+          "status": "done",
           "kind": "build",
           "evidence": [
             {
@@ -57,17 +62,20 @@
             {
               "kind": "observation",
               "value": "Workflow implementation and local passing/negative checks are committed in f8565b26e18c52ccb4b03322a3e57290abe01930. GitHub rejected the push for missing App workflows permission; real remote success and deployment remain unverified. This item stays active."
+            },
+            {
+              "kind": "observation",
+              "value": "GitHub Actions https://github.com/FraH90/frah90.github.io/actions/runs/41495431814 for 5294325e9100203a0aceecbfda106880be900d70 completed successfully: Check published output, Check demo models and payload budgets, artifact upload, build job and deploy job all success. Public https://frah90.github.io/blog/ returns HTTP 200 and contains the new preview-chart-thumbnail markup. Local deliberate broken-link, oversized-payload and wrong-normalization failures were verified in the implementation session; no failing code was deployed."
             }
           ],
           "commits": [
             "f8565b26e18c52ccb4b03322a3e57290abe01930"
-          ]
+          ],
+          "closed_at": "2026-11-02"
         }
       ]
     }
   ],
-  "open_questions": [
-    "Can the current supported push integration authorize the workflow edit?",
-    "Will a real GitHub Actions run pass both checks and deploy the reviewed commit?"
-  ]
+  "open_questions": [],
+  "archived_at": "2026-11-02T17:55:44.169Z"
 }

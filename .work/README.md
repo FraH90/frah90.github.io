@@ -8,7 +8,7 @@ The [scientific blog foundation](archive/roadmaps/r-261020-01-scientific-blog-fo
 
 The only primary roadmap remains [the first phased-array article](roadmaps/r-261020-02-first-phased-array-article/r-261020-02-first-phased-array-article.md). Final visual review and the owner-written manuscript remain open. The owner favors a series whose first two or three installments are didactic; the saved beam-squint brief is a possible later study, not a completed manuscript or final outline.
 
-[Workflow permissions and deployment checks](roadmaps/r-261020-03-deployment-checks/r-261020-03-deployment-checks.md) are active and non-primary after the owner resumed this work on 2026-11-02. Both checks are being added before artifact upload; supported workflow permission and a successful GitHub run must still be verified.
+[Publishing safeguards and deployment checks](archive/roadmaps/r-261020-03-deployment-checks/r-261020-03-deployment-checks.md) are done and archived. After the owner updated the GitHub App permission, run [41495431814](https://github.com/FraH90/frah90.github.io/actions/runs/41495431814) passed both checks before artifact upload and deployed successfully. Local negative fixtures verified rejection of broken output, oversized payload and incorrect model normalization.
 
 Proposals preserve the sources and elaboration:
 

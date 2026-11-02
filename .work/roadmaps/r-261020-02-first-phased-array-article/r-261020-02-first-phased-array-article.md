@@ -220,7 +220,7 @@ A notification time/timezone has not been supplied; no timed reminder has been s
 
 ## Working notes
 
-This is the only primary roadmap. The foundation roadmap remains closed. [Workflow permissions/checks](../r-261020-03-deployment-checks/r-261020-03-deployment-checks.md) remain separately paused under the owner’s earlier deferral. The brief is saved as a persistent reminder; no timed notification has been created.
+This is the only primary roadmap. The foundation roadmap remains closed. [Workflow permissions/checks](../../archive/roadmaps/r-261020-03-deployment-checks/r-261020-03-deployment-checks.md) are now verified and archived after the owner resumed the work. The brief is saved as a persistent reminder; no timed notification has been created.
 
 ### Owner visual feedback — 2026-10-21
 

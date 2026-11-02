@@ -12,7 +12,7 @@ A content-first engineering blog built with Astro and MDX, hosted at **https://f
 
 The ledger records what is implemented. Light/dark switching is implemented. Collapsed contents, article metadata, scientific figure/citation components, related reading, and draft scaffolding are implemented. Static full-text search and a summary RSS feed are implemented; see [discovery behavior and checks](docs/search-and-rss.md).
 
-The website foundation roadmap is closed. The current priority is [the first substantive phased-array article](.work/roadmaps/r-261020-02-first-phased-array-article/r-261020-02-first-phased-array-article.md); deployment checks are being resumed in a separate roadmap, with remote verification tracked in the ledger.
+The website foundation roadmap is closed. The current priority is [the first substantive phased-array article](.work/roadmaps/r-261020-02-first-phased-array-article/r-261020-02-first-phased-array-article.md); publishing safeguards are verified and their roadmap is archived in the ledger.
 
 ## Local development
 
