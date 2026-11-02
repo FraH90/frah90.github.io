@@ -3,21 +3,21 @@ import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from './PostCard.astro';
 import ArticlePreview from './ArticlePreview.astro';
-import TagBadges from './TagBadges.astro';
 import ArticleMeta from './ArticleMeta.astro';
 import { getTopic, type TopicSlug } from '../../lib/topics';
 import { getTag } from '../../lib/tags';
 import { siteName } from '../../lib/site';
 interface Props { posts: CollectionEntry<'blog'>[]; category?: TopicSlug; tag?: string; }
 const { posts, category, tag } = Astro.props;
-const filter = tag ? getTag(tag) : category ? getTopic(category) : undefined;
+const filter = tag ? (tag === 'demo' ? { label: 'Demo' } : getTag(tag)) : category ? getTopic(category) : undefined;
 const featured = !filter ? posts[0] : undefined;
 const rest = featured ? posts.slice(1) : posts;
 const heading = filter?.label ?? 'Blog';
-const description = filter ? `Scientific and technical articles ${category ? "in" : "tagged"} ${filter.label}.` : 'Waves, signals, and computational engineering: explanations, experiments, and interactive explorations.';
+const description = filter ? `Scientific and technical articles ${category ? `in ${getTopic(category).label}, filtered by` : "tagged"} ${filter.label}.` : 'Waves, signals, and computational engineering: explanations, experiments, and interactive explorations.';
 ---
 <BaseLayout title={`${heading} — ${siteName}`} description={description}>
   <div class="site-shell blog-archive">
+    {category && tag && <a class="category-breadcrumb" href={`/categories/${category}`}>{getTopic(category).label}</a>}
     <h1 class="archive-heading">{heading}</h1>
     {featured && <section class="featured-post" aria-label="Featured article">
       <div class="featured-media"><ArticlePreview post={featured} eager interactive /></div>
@@ -25,7 +25,6 @@ const description = filter ? `Scientific and technical articles ${category ? "in
         <ArticleMeta post={featured} />
         <h2><a href={`/blog/${featured.id}`}>{featured.data.title}</a></h2>
         <p class="featured-description">{featured.data.description}</p>
-        <TagBadges tags={featured.data.tags} />
       </div>
     </section>}
     {posts.length === 0 ? <p class="text-muted">No articles published yet.</p> : <>

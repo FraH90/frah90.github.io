@@ -1,0 +1,16 @@
+---
+import PostListing from '../../../components/blog/PostListing.astro';
+import { getAllCategories, getAllPosts, getCategoryRefinements } from '../../../lib/posts';
+export async function getStaticPaths() {
+  const posts = await getAllPosts();
+  return (await getAllCategories()).flatMap(category => {
+    const members = posts.filter(post => post.data.category === category.slug);
+    return getCategoryRefinements(category.slug, members).map(tag => ({
+      params: { category: category.slug, tag: tag.slug },
+      props: { category: category.slug, tag: tag.slug, posts: members.filter(post => tag.slug === 'demo' ? post.data.demo : post.data.tags.includes(tag.slug)) },
+    }));
+  });
+}
+const { posts, category, tag } = Astro.props;
+---
+<PostListing posts={posts} category={category} tag={tag} />

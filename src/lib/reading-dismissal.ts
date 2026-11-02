@@ -3,7 +3,7 @@
 document.addEventListener('click', event => {
   const target = event.target;
   if (!(target instanceof Element) || event.defaultPrevented) return;
-  if (target.closest('.panel-drawer, .interactive-demo, .reading-panel, a, button, input, select, textarea, label, summary')) return;
+  if (target.closest('.panel-drawer, .interactive-demo, .reading-panel, .category-menu, a, button, input, select, textarea, label, summary')) return;
   if (!getSelection()?.isCollapsed) return;
   document.dispatchEvent(new Event('reading-reset'));
 });

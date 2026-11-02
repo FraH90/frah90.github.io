@@ -1,7 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
-import TagBadges from '../components/blog/TagBadges.astro';
 import ArticleMeta from '../components/blog/ArticleMeta.astro';
 import { getPostTags } from '../lib/tags';
 import { siteName } from '../lib/site';
@@ -41,7 +40,6 @@ const contents = [
       <p class="text-base text-muted leading-relaxed" style="font-family: 'Lora', Georgia, serif; font-style: italic;">
         {description}
       </p>
-      <TagBadges tags={post.data.tags} />
     </header>
 
     {(learningGoals.length > 0 || prerequisites.length > 0) && (

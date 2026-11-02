@@ -128,3 +128,7 @@ Opening a native dialog focuses its first control while the right drawer is tran
 ## Archive and metadata refinement — 2026-11-02
 
 The owner requested contextual header alignment, better scientific previews, quieter metadata, broad categories alongside specific tags and removal of large green focus frames. [Visual guidelines](visual-guidelines.md) define the trial; [taxonomy/media guidance](tags-and-previews.md) documents routes, compatibility and rendering. Category is public again, while existing article URLs and broad-tag associations remain. The feature renderer uses consistent model sampling and integrated controls. Final owner review stays open.
+
+## Hierarchical refinement and category disclosure — 2026-11-02
+
+The owner refined the taxonomy: specific tags belong below a category and narrow its articles. Shared publication helpers drive nested Explore controls and static category/refinement routes, including a derived Demo filter. Shared category disclosures hide tags and Demo until mouse hover or native click/tap/keyboard activation; dynamically generated search results use the same delegated controller. The canonical demo boolean, legacy tag paths and original article URLs remain. Icon focus uses internal marks rather than rings, while native dialog focus handling stays intact. This supersedes the visible-tag-row trial; final visual review remains open.

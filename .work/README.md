@@ -18,6 +18,8 @@ Proposals preserve the sources and elaboration:
 
 [Archive and metadata refinement](proposals/p-261102-01-refine-archive-proportions-scientific-previews-and-q/p-261102-01-refine-archive-proportions-scientific-previews-and-q.md) captures the owner’s 2026-11-02 design feedback. The implemented trial is recorded in the primary roadmap; final owner visual review remains open.
 
+[Category-owned refinements](proposals/p-261102-02-category-owned-refinements-and-a-single-article-badg/p-261102-02-category-owned-refinements-and-a-single-article-badg.md) records the subsequent instruction to nest tags under categories, put article tags and Demo inside one colored badge, and remove icon focus rings. It supersedes the visible-tag-row trial; final visual review remains open.
+
 Article Studio is planned in **LifeOS's own ledger**, not this blog ledger. Continue its implementation from a LifeOS session.
 
 ## Structure and ownership

@@ -74,7 +74,7 @@ research/interests/            Unpublished interests and investigations
 - `/rss.xml` supplies the summary RSS feed.
 - `/projects` redirects to writing until actual case studies are available.
 
-Redirect aliases are excluded from the sitemap. The header keeps Writing/About and theme controls. Its icon-only menu control opens a full-height drawer from the right, with a short category list, collapsed specific tags and a magnifying-glass search form. Native dialog focus handling, Escape/backdrop dismissal and CSS slide/fade motion enhance the drawer; reduced motion is respected and native disclosure preserves tag browsing without JavaScript. The public identity is lowercase frah90; a personal name and contacts are deliberately omitted.
+Redirect aliases are excluded from the sitemap. The header keeps Writing/About and theme controls. Its icon-only menu control opens a full-height drawer from the right, with expandable categories containing their specific refinements and a magnifying-glass search form. Native dialog focus handling, Escape/backdrop dismissal and CSS slide/fade motion enhance the drawer; reduced motion is respected and native disclosure preserves tag browsing without JavaScript. The public identity is lowercase frah90; a personal name and contacts are deliberately omitted.
 
 ## Reading themes
 
@@ -153,6 +153,8 @@ See [responsive plot expansion](docs/responsive-plots.md) for the fitting rule a
 
 Plotly geometry follows animated container dimensions through coalesced relayout updates rather than a delayed resize. Reference lists display linked titles/details without exposing internal citation keys.
 
-The archive now uses a compact Blog heading, featured latest eligible article and responsive media cards. Articles have compact category/date/Demo metadata, sparse neutral tag pills and category/tag archives; old article URLs are preserved and legacy indexes redirect. [Tags and preview authoring](docs/tags-and-previews.md) covers the registry, image/GIF/video metadata, steering showcase and configurable media shape. The `category` field supplies the primary public subject and preserves the URL group.
+The archive now uses a compact Blog heading, featured latest eligible article and responsive media cards. Articles have one colored category badge and date, with their specific tags and Demo status inside its disclosure; old article URLs are preserved and legacy indexes redirect. [Tags and preview authoring](docs/tags-and-previews.md) covers the registry, image/GIF/video metadata, steering showcase and configurable media shape. The `category` field supplies the primary public subject and preserves the URL group.
 
-Visual authoring conventions: [shared visual guidelines](docs/visual-guidelines.md) cover header/canvas alignment, sparse categories/tags, reusable media slots and quiet keyboard focus. [Tags and previews](docs/tags-and-previews.md) documents primary categories, compatibility routes and image/GIF/video authoring.
+Visual authoring conventions: [shared visual guidelines](docs/visual-guidelines.md) cover header/canvas alignment, category-owned tag refinements, reusable media slots and ring-free icon focus with visible keyboard markers. [Tags and previews](docs/tags-and-previews.md) documents primary categories, compatibility routes and image/GIF/video authoring.
+
+Specific tag filters use `/categories/<category>/<tag>`; category Demo filters derive from `demo: true` at `/categories/<category>/demo`. Assign specific tags under their registered parent in `src/lib/tags.ts`; keep `demo` as a boolean, not a manual tag. Native click/tap/keyboard activation works without JavaScript; mouse hover is a progressive enhancement.

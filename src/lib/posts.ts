@@ -1,6 +1,6 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { topics } from './topics';
-import { tags, getPostTags } from './tags';
+import { topics, type TopicSlug } from './topics';
+import { tags, getPostTags, getCategoryTags } from './tags';
 
 /** Shared eligibility for routes and every published-content discovery surface. */
 export function isPublishedPost(post: Pick<CollectionEntry<'blog'>, 'data'>) {
@@ -49,4 +49,13 @@ export async function getRelatedPosts(post: CollectionEntry<'blog'>, limit = 3) 
       || a.entry.id.localeCompare(b.entry.id));
   return [...new Map([...curated, ...candidates.map(candidate => candidate.entry)]
     .map(entry => [entry.id, entry])).values()].slice(0, limit);
+}
+
+/** Publication-scoped refinement options, shared by Explore and static routes. */
+export function getCategoryRefinements(category: TopicSlug, posts: CollectionEntry<'blog'>[]) {
+  const published = posts.filter(post => isPublishedPost(post) && post.data.category === category);
+  return [
+    ...getCategoryTags(published.flatMap(post => post.data.tags), category).map(tag => ({ slug: tag.slug, label: tag.label })),
+    ...(published.some(post => post.data.demo) ? [{ slug: 'demo', label: 'Demo' }] : []),
+  ];
 }

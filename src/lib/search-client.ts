@@ -1,6 +1,6 @@
-import { getDetailTags } from './tags';
+import { getCategoryTags, retiredTagCategories } from './tags';
 import { topics } from './topics';
-import { demoLabel } from './article-status';
+import { demoLabel, demoNotice } from './article-status';
 // Native form/link navigation remains available; the search engine loads on demand.
 type ResultData = { url: string; meta: { title?: string; tagIds?: string; tags?: string; topic?: string; status?: string }; excerpt: string };
 type Result = { data: () => Promise<ResultData> };
@@ -38,27 +38,32 @@ async function showBatch(version: number, focusNew = false) {
       if (url.origin !== location.origin || !/^\/blog\/[^/]+\/[^/]+\/?$/.test(url.pathname)) continue;
       const item = document.createElement('li');
       const topic = document.createElement('div');
-      topic.className = 'tag-badges text-sm text-muted mb-2';
+      topic.className = 'card-meta';
       const ids = result.meta.tagIds?.split(/\s+/).filter(Boolean) ?? [];
       const category = topics.find(topic => topic.slug === url.pathname.split('/')[2]);
       if (category) {
-        const label = document.createElement('a');
-        label.className = `category-label ${category.color}`; label.href = `/categories/${category.slug}`; label.textContent = category.label;
-        topic.append(label);
-      }
-      const details = ids.flatMap(id => { try { return getDetailTags([id]); } catch { return []; } });
-      for (const tag of details) {
-        const badge = document.createElement('a');
-        badge.className = 'tag-badge'; badge.href = `/tags/${tag.slug}`; badge.textContent = tag.label;
-        topic.append(badge);
-      }
-      if (!topic.childNodes.length) topic.textContent = result.meta.tags ?? result.meta.topic ?? '';
-      if (result.meta.status === demoLabel) {
-        const badge = document.createElement('span');
-        badge.className = 'demo-badge ml-3';
-        badge.textContent = demoLabel;
-        topic.append(badge);
-      }
+        const menu = document.createElement('details'); menu.className = 'category-menu';
+        menu.style.setProperty('--category-color', `var(${category.tone})`);
+        const summary = document.createElement('summary'); summary.className = 'category-badge'; summary.textContent = category.label;
+        summary.setAttribute('aria-label', `${category.label} — show article tags`);
+        const popover = document.createElement('div'); popover.className = 'category-popover';
+        const all = document.createElement('a'); all.className = 'category-all'; all.href = `/categories/${category.slug}`; all.textContent = `All ${category.label} articles`;
+        const tags = document.createElement('ul'); tags.className = 'tag-badges'; tags.setAttribute('aria-label', 'Article tags');
+        const details = ids.flatMap(id => { try { return getCategoryTags([id], category.slug); } catch { return []; } });
+        for (const tag of details) {
+          const li = document.createElement('li'), badge = document.createElement('a');
+          badge.className = 'tag-badge'; badge.href = retiredTagCategories[tag.slug] ? `/tags/${tag.slug}` : `/categories/${category.slug}/${tag.slug}`; badge.textContent = tag.label;
+          li.append(badge); tags.append(li);
+        }
+        if (result.meta.status === demoLabel) {
+          const info = document.createElement('li'); info.className = 'demo-info';
+          const badge = document.createElement('button'); badge.type = 'button'; badge.className = 'tag-badge demo-badge'; badge.textContent = demoLabel;
+          const explanation = document.createElement('span'); explanation.id = `search-demo-${url.pathname.replaceAll('/', '-')}`;
+          explanation.className = 'demo-tooltip'; explanation.setAttribute('role', 'tooltip'); explanation.textContent = demoNotice;
+          badge.setAttribute('aria-describedby', explanation.id); info.append(badge, explanation); tags.append(info);
+        }
+        popover.append(all, tags); menu.append(summary, popover); topic.append(menu);
+      } else topic.textContent = result.meta.topic ?? '';
       const heading = document.createElement('h2');
       const link = document.createElement('a');
       link.href = url.pathname + url.hash;

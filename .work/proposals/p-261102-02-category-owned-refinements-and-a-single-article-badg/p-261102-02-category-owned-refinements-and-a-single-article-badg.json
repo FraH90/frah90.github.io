@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/proposal.v3.json",
+  "version": 3,
+  "kind": "proposal",
+  "order": 5,
+  "id": "p-261102-02-category-owned-refinements-and-a-single-article-badg",
+  "title": "Category-owned refinements and a single article badge",
+  "status": "draft",
+  "captured_at": "2026-11-02",
+  "updated_at": "2026-11-02",
+  "source": "manual",
+  "related": [
+    "p-261102-01-refine-archive-proportions-scientific-previews-and-q"
+  ],
+  "roadmaps": [],
+  "formerly": [],
+  "summary": "Specific tags refine their parent category; one colored category badge reveals article tags and Demo, while Explore nests refinements and icon focus uses no rings."
+}

@@ -1,7 +1,7 @@
 import { topics, getTopic, type TopicSlug } from './topics';
 
 /** Specific tags plus broad slugs retained for legacy cross-subject links. */
-const detail = (slug: string, label: string, group: TopicSlug) => ({ slug, label, color: getTopic(group).color });
+const detail = (slug: string, label: string, group: TopicSlug) => ({ slug, label, category: group, color: getTopic(group).color });
 export const tags = [
   ...topics,
   detail('phased-array', 'Phased arrays', 'antennas'),
@@ -36,3 +36,8 @@ export const retiredTagCategories: Record<string, TopicSlug> = {
   beamforming: 'antennas', 'spectral-leakage': 'dsp', 'transmission-line': 'rf',
   vswr: 'rf', laser: 'optics', photonics: 'optics', 'feature-engineering': 'ml', pytorch: 'ml',
 };
+
+/** Specific tags refine their registered parent category; broad legacy slugs stay separate. */
+export function getCategoryTags(slugs: string[], category: TopicSlug) {
+  return getDetailTags(slugs).filter(tag => 'category' in tag && tag.category === category);
+}

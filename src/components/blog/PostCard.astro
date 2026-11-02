@@ -2,10 +2,9 @@
 import type { CollectionEntry } from 'astro:content';
 import ArticleMeta from './ArticleMeta.astro';
 import ArticlePreview from './ArticlePreview.astro';
-import TagBadges from './TagBadges.astro';
 interface Props { post: CollectionEntry<'blog'>; headingLevel?: 2 | 3; }
 const { post, headingLevel = 2 } = Astro.props;
-const { title, description, tags } = post.data;
+const { title, description } = post.data;
 const Heading = headingLevel === 3 ? 'h3' : 'h2';
 ---
 <article class="post-card min-w-0">
@@ -13,5 +12,4 @@ const Heading = headingLevel === 3 ? 'h3' : 'h2';
   <ArticleMeta post={post} />
   <Heading class="post-card-title"><a class="post-card-link" href={`/blog/${post.id}`}>{title}</a></Heading>
   <p class="card-description">{description}</p>
-  <TagBadges tags={tags} />
 </article>

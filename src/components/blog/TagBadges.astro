@@ -1,8 +1,11 @@
 ---
-import { getDetailTags } from '../../lib/tags';
-interface Props { tags: string[]; }
-const { tags } = Astro.props;
+import { getCategoryTags } from '../../lib/tags';
+import type { TopicSlug } from '../../lib/topics';
+import { demoNotice } from '../../lib/article-status';
+interface Props { tags: string[]; category: TopicSlug; demo?: boolean; demoTooltip?: string; }
+const { tags, category, demo = false, demoTooltip } = Astro.props;
 ---
 <ul class="tag-badges" aria-label="Article tags">
-  {getDetailTags(tags).map(tag => <li><a href={`/tags/${tag.slug}`} class="tag-badge">{tag.label}</a></li>)}
+  {getCategoryTags(tags, category).map(tag => <li><a href={`/categories/${category}/${tag.slug}`} class="tag-badge">{tag.label}</a></li>)}
+  {demo && <li class="demo-info"><button type="button" class="tag-badge demo-badge" aria-describedby={demoTooltip}>Demo</button><span id={demoTooltip} class="demo-tooltip" role="tooltip">{demoNotice}</span></li>}
 </ul>
