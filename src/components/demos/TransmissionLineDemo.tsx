@@ -1,3 +1,4 @@
+import { demoColors } from '../../lib/demo-colors';
 import { useState, useMemo } from 'react';
 import Slider from '../ui/Slider';
 import PlotlyChart from '../ui/PlotlyChart';
@@ -39,7 +40,7 @@ export default function TransmissionLineDemo() {
           y: V,
           type: 'scatter',
           mode: 'lines',
-          line: { color: 'var(--plot-blue)', width: 1.5 },
+          line: { color: demoColors.transmission, width: 1.5 },
           name: '|V(z)|',
         }]}
         layout={{

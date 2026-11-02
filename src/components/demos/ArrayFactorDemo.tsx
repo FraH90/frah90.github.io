@@ -1,3 +1,4 @@
+import { demoColors } from '../../lib/demo-colors';
 import { useState, useMemo } from 'react';
 import Slider from '../ui/Slider';
 import PlotlyChart from '../ui/PlotlyChart';
@@ -58,7 +59,7 @@ export default function ArrayFactorDemo() {
           y: yData,
           type: 'scatter',
           mode: 'lines',
-          line: { color: 'var(--plot-green)', width: 1.5 },
+          line: { color: demoColors.array, width: 1.5 },
           name: yLabel,
         }]}
         layout={{

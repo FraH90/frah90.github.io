@@ -126,3 +126,7 @@ Reference IDs are internal citation targets and are not displayed in the Referen
 ## Tags and archive previews
 
 Use canonical tag slugs from `src/lib/tags.ts`; each article can carry multiple subjects and methods. The ML demo uses both `ml` and `dsp`, for example. `category` remains solely as a legacy URL-group field. The draft command seeds the group as a broad tag; edit/add tags before publishing. Unknown tags fail schema validation. [Tags and previews](tags-and-previews.md) documents image/GIF/video metadata and custom interactive media boundaries.
+
+## Article color
+
+The primary category supplies the article accent automatically: links, demo controls/readouts, the takeaway edge and active Contents use its theme-aware token. Keep prose, headings and equations neutral. Scientific quantities need stable role colors across article figures and preview media, with labels or line styles as well as hue. Shared demos use `src/lib/demo-colors.ts`; do not hardcode independent preview/live colors. Preserve established scientific conventions and externally sourced figure palettes. See [visual color rules](visual-guidelines.md#color-roles).

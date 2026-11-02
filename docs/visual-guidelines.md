@@ -14,6 +14,14 @@ Keep controls within the interactive preview frame. Use compact labels, thin tra
 
 Do not autoplay GIF/video or decorative motion. Keep a still/no-JavaScript alternative and playback controls independent of the article link. Source figures from the work, not invented measurements. Label calculated and illustrative material honestly. Keep heavyweight Plotly/React demo engines off the archive unless justified by a measured need. Article demos keep their established Plotly presentation and scientific models.
 
+## Color roles
+
+Global navigation, theme controls, prose, headings, equations, grid lines and axes stay neutral in both themes. Article identity comes from its primary category in `src/lib/topics.ts`, never from an arbitrary child tag. Article links, controls/readouts, closing takeaway border and the active Contents entry use that category accent. The category token is available on the page root so the Contents drawer retains it when moved into its dialog. Demo remains neutral gray. Related-card metadata and preview controls retain the related article’s own category identity.
+
+Scientific color expresses a quantity or comparison. Use the category hue for the primary result where no scientific convention takes precedence; choose distinguishable secondary hues from the shared theme palette. Keep each role consistent across previews, static fallbacks and live plots through `src/lib/demo-colors.ts`. DSP uses pink for spectra and blue for the time-domain signal; optics uses orange for +w and dashed blue for −w. Labels, sign conventions and line styles distinguish traces in addition to hue. Never force externally sourced figures, syntax highlighting, scientific conventions or every comparison curve into one category color. Do not recolor numerical data or imply a new scientific meaning.
+
+Keep palette values in `src/styles/settings.css`. The global accent is neutral; `BlogPostLayout` scopes its article accent without recoloring the header or Explore. Scientific renderers resolve their registered theme colors and redraw on explicit theme changes without resetting controls. Test text contrast, category/neutral separation and trace consistency in light/dark, live/fallback and mobile/desktop views.
+
 ## Category-owned refinements
 
 Show one colored, outlined category badge beside the date. Tags and Demo must not form extra visible rows on articles, cards, the feature or search results. The badge is a native disclosure: mouse hover reveals its contents when scripts are available; click/tap and Enter/Space work with or without scripts. Show only the specific tags of this article registered under that category and its independent Demo status; do not add an All [category] articles row. Close when pointer hover and keyboard focus have left, or on Escape/outside interaction. Keep its width within the metadata row and preserve independently operable links.

@@ -140,3 +140,7 @@ The owner removed redundant All articles/category rows and Demo filtering. Explo
 ## Deployment gates — 2026-11-02
 
 The owner resumed the deferred publishing safeguards. The Pages build job now runs `npm run check:build` and `npm run check:demos` after the complete Astro/Pagefind build and before artifact upload. Their nonzero exit prevents upload and the dependent deployment job. These cover generated links/metadata/discovery boundaries, analytical model identities and payload budgets; they do not replace browser or scientific review. Local negative fixtures verify broken output, an oversized bundle and incorrect array normalization fail. Supported workflow-edit permission and the real GitHub run are tracked separately in the deployment roadmap.
+
+## Category accents and scientific colors — 2026-11-02
+
+`BaseLayout` receives an optional article category and exposes its registry token at the root for the portaled Contents panel. Only the article canvas scopes `--accent`/`--color-accent` to that value; global navigation and discovery remain neutral. Preview controls bind to their own article category. `src/lib/demo-colors.ts` owns scientific trace roles shared by chart specifications, static previews/fallbacks and React/Plotly demos. DSP spectra use pink with blue time-domain signals; optics uses orange/blue envelopes with a dashed negative envelope. Theme changes preserve the same roles and control state. Palette values remain centralized in settings.css.

@@ -1,3 +1,4 @@
+import { demoColors } from './demo-colors';
 import type { ChartSpec } from "./chart-geometry";
 import {
   computeArray,
@@ -26,7 +27,7 @@ export function arrayChart(
           ? model.y.map((v) => 20 * Math.log10(Math.max(v, 1e-6)))
           : model.y,
         label: dB ? "Normalized array factor (dB)" : "Normalized array factor",
-        color: "var(--plot-green)",
+        color: demoColors.array,
       },
     ],
   };
@@ -46,7 +47,7 @@ export function transmissionChart(
         x: model.x,
         y: model.y,
         label: "Voltage magnitude",
-        color: "var(--plot-blue)",
+        color: demoColors.transmission,
       },
     ],
   };
@@ -61,12 +62,12 @@ export function gaussianChart(
     xLabel: "z (mm)",
     yLabel: "Radius (µm)",
     traces: [
-      { x: model.x, y: model.y, label: "+w(z)", color: "var(--plot-orange)" },
+      { x: model.x, y: model.y, label: "+w(z)", color: demoColors.gaussian.upper },
       {
         x: model.x,
         y: model.y.map((v) => -v),
         label: "−w(z)",
-        color: "var(--plot-blue)",
+        color: demoColors.gaussian.lower,
         dashed: true,
       },
     ],
@@ -89,7 +90,7 @@ export function fourierCharts(
           x: model.time.slice(0, 200),
           y: model.signal.slice(0, 200),
           label: "Unwindowed signal",
-          color: "var(--plot-green)",
+          color: demoColors.fourier.signal,
         },
       ],
     },
@@ -106,7 +107,7 @@ export function fourierCharts(
           x: model.x,
           y: model.y,
           label: `${window} spectrum`,
-          color: "var(--plot-purple)",
+          color: demoColors.fourier.spectrum,
         },
       ],
     },

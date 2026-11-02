@@ -1,3 +1,4 @@
+import { demoColors } from '../../lib/demo-colors';
 import { useState, useMemo } from 'react';
 import Slider from '../ui/Slider';
 import PlotlyChart from '../ui/PlotlyChart';
@@ -29,8 +30,8 @@ export default function GaussianBeamDemo() {
 
       <PlotlyChart
         data={[
-          { x: z, y: w,  type: 'scatter', mode: 'lines', line: { color: 'var(--plot-orange)', width: 2 }, name: '+w(z)', fill: 'none' },
-          { x: z, y: w.map(v => -v), type: 'scatter', mode: 'lines', line: { color: 'var(--plot-orange)', width: 2 }, name: '-w(z)', fill: 'tonexty', fillcolor: 'rgba(251,146,60,0.08)' },
+          { x: z, y: w,  type: 'scatter', mode: 'lines', line: { color: demoColors.gaussian.upper, width: 2 }, name: '+w(z)', fill: 'none' },
+          { x: z, y: w.map(v => -v), type: 'scatter', mode: 'lines', line: { color: demoColors.gaussian.lower, dash: 'dash', width: 2 }, name: '-w(z)', fill: 'tonexty', fillcolor: demoColors.gaussian.fill },
         ]}
         layout={{
           title: { text: 'Gaussian Beam Envelope w(z)', font: { size: 13 } },

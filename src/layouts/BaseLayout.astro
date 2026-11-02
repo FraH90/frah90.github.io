@@ -2,12 +2,14 @@
 import '../styles/global.css';
 import Header from '../components/nav/Header.astro';
 import { cvUrl, siteName, siteDescription } from '../lib/site';
+import { getTopic, type TopicSlug } from '../lib/topics';
 
 interface Props {
   title: string;
   description?: string;
   ogImage?: string;
   articleContents?: { depth: number; slug: string; text: string }[];
+  articleCategory?: TopicSlug;
 }
 
 const {
@@ -15,13 +17,14 @@ const {
   description = siteDescription,
   ogImage = '/og-default.png',
   articleContents = [],
+  articleCategory,
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth" data-theme="dark">
+<html lang="en" class="scroll-smooth" data-theme="dark" data-article-category={articleCategory} style={articleCategory ? `--article-accent: var(${getTopic(articleCategory).tone})` : undefined}>
   <head>
     <meta charset="UTF-8" />
     <!-- Apply the explicit preference before CSS or body content can paint. -->

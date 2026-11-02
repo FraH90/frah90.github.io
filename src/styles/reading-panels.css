@@ -35,7 +35,7 @@ body { --available-width: 100vw; }
 .contents-drawer ul { display: grid; gap: .25rem; }
 .contents-drawer a { display: block; padding: .65rem .75rem; min-height: 44px; border-radius: .3rem; overflow-wrap: anywhere; font-size: .875rem; line-height: 1.5; }
 .contents-drawer a:hover { color: var(--ink); background: var(--elevated); }
-.contents-drawer a[aria-current] { color: var(--accent); background: var(--elevated); }
+.contents-drawer a[aria-current] { color: var(--article-accent, var(--accent)); background: var(--elevated); }
 .contents-subsection { padding-left: .85rem; }
 @keyframes panel-dim { from { opacity: 0; } to { opacity: 1; } }
 @media (max-width: 639px) {

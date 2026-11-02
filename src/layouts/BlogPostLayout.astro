@@ -26,7 +26,7 @@ const contents = [
 
 ---
 
-<BaseLayout articleContents={contents} title={`${articleDisplayTitle(title, demo)} — ${siteName}`} description={demo ? `${demoNotice} ${description}` : description}>
+<BaseLayout articleCategory={post.data.category} articleContents={contents} title={`${articleDisplayTitle(title, demo)} — ${siteName}`} description={demo ? `${demoNotice} ${description}` : description}>
   <article class="site-shell article-layout py-12 sm:py-16" data-pagefind-body data-article-demo={demo ? "true" : undefined}>
     <header class="reading-width mb-8">
       <span class="sr-only" data-pagefind-meta="tagIds">{post.data.tags.join(' ')}</span>

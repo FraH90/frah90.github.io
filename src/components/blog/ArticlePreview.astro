@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import { demoExamples } from '../../lib/demo-examples';
 import { chartGeometry } from '../../lib/chart-geometry';
+import { getTopic } from '../../lib/topics';
 interface Props { post: CollectionEntry<'blog'>; eager?: boolean; interactive?: boolean; }
 const { post, eager = false, interactive = false } = Astro.props;
 const preview = post.data.preview;
@@ -18,7 +19,7 @@ const isWorkflow = post.id === 'ml/ml-for-signal-data';
 const steering = interactive && kind === 'array' && !preview && !post.data.coverImage;
 const image = preview?.kind === 'image' ? preview.src : preview?.kind === 'gif' ? preview.poster : post.data.coverImage;
 ---
-<div class:list={["preview-media", { "preview-interactive": !!steering }]}>
+<div class:list={["preview-media", { "preview-interactive": !!steering }]} style={`--accent: var(${getTopic(post.data.category).tone}); --color-accent: var(--accent)`}>
   {preview?.kind === 'video' ? <video controls playsinline preload="metadata" poster={preview.poster} aria-label={preview.alt}><source src={preview.src} /><a href={preview.src}>Open video preview</a></video>
     : image ? <>
       <img src={image} alt={preview?.alt ?? `Article preview: ${post.data.title}`} width={preview && 'width' in preview ? preview.width : 960} height={preview && 'height' in preview ? preview.height : 600} loading={eager ? 'eager' : 'lazy'} decoding="async" data-motion-src={preview?.kind === 'gif' ? preview.src : undefined} data-still-src={preview?.kind === 'gif' ? preview.poster : undefined} />
@@ -30,7 +31,7 @@ const image = preview?.kind === 'image' ? preview.src : preview?.kind === 'gif' 
         <g transform="translate(0 65)">
           {geometry.xTicks.filter((_, index) => steering || index % 2 === 0).map(tick => <><path d={`M${tick.position} 20V356`} class="preview-grid" />{steering && <text x={tick.position} y="386" text-anchor="middle" class="preview-tick">{tick.label}</text>}</>)}
           {geometry.yTicks.filter((_, index) => steering || index % 2 === 0).map(tick => <><path d={`M74 ${tick.position}H940`} class="preview-grid" />{steering && <text x="66" y={tick.position + 7} text-anchor="end" class="preview-tick">{Number(tick.label) === 0 ? '' : tick.label}</text>}</>)}
-          {geometry.paths.map(trace => <path d={trace.path} fill="none" stroke={trace.color} stroke-width="2.5" stroke-linejoin="round" data-steering-trace={steering ? true : undefined} />)}
+          {geometry.paths.map(trace => <path d={trace.path} fill="none" stroke={trace.color} stroke-width="2.5" stroke-dasharray={trace.dashed ? '10 7' : undefined} stroke-linejoin="round" data-steering-trace={steering ? true : undefined} />)}
           <text x="74" y="0" class="preview-axis">{kind === 'array' ? '|AF|' : spec.yLabel}</text>
           <text x="510" y={steering ? 440 : 425} text-anchor="middle" class="preview-axis">{spec.xLabel}</text>
         </g>

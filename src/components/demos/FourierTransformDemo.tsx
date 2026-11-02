@@ -1,3 +1,4 @@
+import { demoColors } from '../../lib/demo-colors';
 import { useState, useMemo } from 'react';
 import Slider from '../ui/Slider';
 import PlotlyChart from '../ui/PlotlyChart';
@@ -47,7 +48,7 @@ export default function FourierTransformDemo() {
             onClick={() => setWindow(w)}
             className={`text-xs font-mono px-2.5 py-1 rounded transition-colors ${
               window === w
-                ? 'bg-accent/20 text-accent'
+                ? 'bg-elevated text-accent underline underline-offset-4'
                 : 'bg-elevated text-muted hover:text-ink'
             }`}
           >
@@ -58,14 +59,14 @@ export default function FourierTransformDemo() {
 
       <PlotlyChart
         data={[{ x: t.slice(0, 200), y: timeSig.slice(0, 200), type: 'scatter', mode: 'lines',
-                 line: { color: 'var(--plot-green)', width: 1 }, name: 'signal' }]}
+                 line: { color: demoColors.fourier.signal, width: 1 }, name: 'signal' }]}
         layout={{ title: { text: 'Time Domain', font: { size: 12 } },
                   xaxis: { title: 'time (s)' }, yaxis: { title: 'Amplitude (a.u.)' } }}
         className="w-full h-48"
       />
 
       <PlotlyChart
-        data={[{ x: freqs, y: mag, type: 'bar', marker: { color: 'var(--plot-purple)' }, name: '|X[f]|' }]}
+        data={[{ x: freqs, y: mag, type: 'bar', marker: { color: demoColors.fourier.spectrum }, name: '|X[f]|' }]}
         layout={{ title: { text: 'Magnitude Spectrum', font: { size: 12 } },
                   xaxis: { title: 'frequency (Hz)', range: [0, 500] },
                   yaxis: { title: '|X| (a.u.)', range: [0, (Math.max(...mag) || 1) * 1.05] },

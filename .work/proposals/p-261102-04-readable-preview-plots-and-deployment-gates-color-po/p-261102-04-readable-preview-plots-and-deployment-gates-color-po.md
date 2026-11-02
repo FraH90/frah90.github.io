@@ -24,4 +24,8 @@ Decide how neutral chrome, global interaction accents, category identity and sci
 
 ## Boundaries
 Do not change article plot data, layout or public demo status. Do not add credentials to bypass workflow-edit permissions. Keep physical-device and remote workflow verification limitations explicit.
+
+## Owner-approved color direction — 2026-11-02
+
+After reviewing the proposed color table, the owner said “ok go”. Implement neutral global chrome/prose/headings/equations; primary-category article links, controls/readouts, takeaways and Contents; neutral Demo; and shared scientific role colors across preview/static/live plots. Multiple curves remain distinguishable with labels/line styles; preserve external scientific conventions. Implementation is recorded in the primary article roadmap design item r-261020-02-first-phased-array-article-design-apply-owne. This resolves the earlier open color-policy discussion without claiming final design acceptance.
 <!-- proposal-body:end -->
