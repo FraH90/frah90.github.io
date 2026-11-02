@@ -564,7 +564,10 @@
               "value": "docs/visual-guidelines.md records accepted color roles, scientific exceptions and theme rules. Shared src/lib/demo-colors.ts prevents preview/static/live color drift; category tokens still originate in topics.ts and settings.css. Updated authoring/architecture docs and byte-identical AGENTS.md/CLAUDE.md preserve the rule for future articles. Owner approval is recorded separately from immutable original words in proposal p-261102-04-readable-preview-plots-and-deployment-gates-color-po. Final overall design review remains open."
             }
           ],
-          "closed_at": "2026-11-02"
+          "closed_at": "2026-11-02",
+          "commits": [
+            "e59ede2522b29f221c709e95fec9f7289b23f525"
+          ]
         }
       ]
     },
