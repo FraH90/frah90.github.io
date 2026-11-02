@@ -588,7 +588,10 @@
               "value": "Proposal p-261102-05-category-colored-curves-pale-text-selection-and-cont preserves the owner's correction. Updated visual/authoring/architecture guidance and byte-identical AGENTS.md/CLAUDE.md clarify category-default curves, permissible distinct scientific comparison colors, pale category selection and structural versus local focus cues. Final overall design approval remains open."
             }
           ],
-          "closed_at": "2026-11-02"
+          "closed_at": "2026-11-02",
+          "commits": [
+            "e3aa2991d5ade3eda034f09a6b1aa4357ad8ec4d"
+          ]
         }
       ]
     },
