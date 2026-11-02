@@ -124,3 +124,7 @@ The owner requested replacing exclusive public categories with multiple colored 
 ## Mobile drawer clipping correction — 2026-10-28
 
 Opening a native dialog focuses its first control while the right drawer is translated off-screen. The dialog previously used `overflow: hidden`, so this could create a transient horizontal scroll offset equal to the drawer width (320px reproduced during opening in Chromium). The owner's iPhone screenshot shows the right edge of a shifted drawer at the opposite side of the viewport. The dialog now uses `overflow: clip`, preventing the wrapper from becoming a scroll container; only the inner drawer scrolls. The controller also clears wrapper scroll offsets after focus and before the slide starts. This keeps the opening/closing motion and native modality while avoiding dependence on browser scroll-offset clamping after the transition.
+
+## Archive and metadata refinement — 2026-11-02
+
+The owner requested contextual header alignment, better scientific previews, quieter metadata, broad categories alongside specific tags and removal of large green focus frames. [Visual guidelines](visual-guidelines.md) define the trial; [taxonomy/media guidance](tags-and-previews.md) documents routes, compatibility and rendering. Category is public again, while existing article URLs and broad-tag associations remain. The feature renderer uses consistent model sampling and integrated controls. Final owner review stays open.

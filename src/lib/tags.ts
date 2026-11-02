@@ -1,6 +1,6 @@
 import { topics, getTopic, type TopicSlug } from './topics';
 
-/** One public taxonomy; legacy topic slugs remain valid tags and URL groups. */
+/** Specific tags plus broad slugs retained for legacy cross-subject links. */
 const detail = (slug: string, label: string, group: TopicSlug) => ({ slug, label, color: getTopic(group).color });
 export const tags = [
   ...topics,
@@ -27,3 +27,12 @@ export function getTag(slug: string) {
 export function getPostTags(post: { data: { tags: string[] } }) {
   return [...new Set(post.data.tags)].map(getTag);
 }
+
+export function getDetailTags(slugs: string[]) {
+  return [...new Set(slugs)].filter(slug => !topics.some(topic => topic.slug === slug)).map(getTag);
+}
+/** Previously public, over-specific demo tags retain inbound URLs. */
+export const retiredTagCategories: Record<string, TopicSlug> = {
+  beamforming: 'antennas', 'spectral-leakage': 'dsp', 'transmission-line': 'rf',
+  vswr: 'rf', laser: 'optics', photonics: 'optics', 'feature-engineering': 'ml', pytorch: 'ml',
+};

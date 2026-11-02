@@ -1,0 +1,11 @@
+---
+import PostListing from '../../components/blog/PostListing.astro';
+import { getAllCategories, getPostsByCategory } from '../../lib/posts';
+export async function getStaticPaths() {
+  return Promise.all((await getAllCategories()).map(async category => ({
+    params: { category: category.slug }, props: { posts: await getPostsByCategory(category.slug), category: category.slug },
+  })));
+}
+const { posts, category } = Astro.props;
+---
+<PostListing posts={posts} category={category} />

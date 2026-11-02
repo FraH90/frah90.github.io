@@ -1,10 +1,15 @@
 ---
 import PostListing from '../../components/blog/PostListing.astro';
-import { getAllPosts, getAllTags } from '../../lib/posts';
+import { retiredTagCategories } from '../../lib/tags';
+import { getAllPosts, getAllTags, getAllCategories } from '../../lib/posts';
 export async function getStaticPaths() {
   const posts = await getAllPosts();
-  return (await getAllTags()).map(tag => ({ params: { tag: tag.slug }, props: { posts: posts.filter(post => post.data.tags.includes(tag.slug)), tag: tag.slug } }));
+  const tags = await getAllTags();
+  const categories = new Set((await getAllCategories()).map(category => category.slug));
+  const redirects = Object.entries(retiredTagCategories).filter(([slug, category]) => !tags.some(tag => tag.slug === slug) && categories.has(category)).map(([slug, category]) => ({ params: { tag: slug }, props: { posts: [], tag: slug, redirect: `/categories/${category}` } }));
+  return [...redirects, ...tags.map(tag => ({ params: { tag: tag.slug }, props: { posts: posts.filter(post => post.data.tags.includes(tag.slug)), tag: tag.slug } }))];
 }
-const { posts, tag } = Astro.props;
+const { posts, tag, redirect } = Astro.props;
+if (redirect) return Astro.redirect(redirect);
 ---
 <PostListing posts={posts} tag={tag} />

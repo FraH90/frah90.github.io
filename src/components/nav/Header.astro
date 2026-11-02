@@ -9,15 +9,16 @@ const navLinks = [
   { href: '/blog', label: 'Writing' },
   { href: '/about', label: 'About' },
 ];
+const archive = /^\/(blog\/?$|tags\/|categories\/)/.test(Astro.url.pathname);
 const current = Astro.url.pathname.replace(/\/$/, '') || '/';
 const isActive = (href: string) => current === href || current.startsWith(`${href}/`)
-  || (href === '/blog' && current.startsWith('/tags/'));
+  || (href === '/blog' && (current.startsWith('/tags/') || current.startsWith('/categories/')));
 ---
 
-<header class="site-header sticky top-0 z-50 bg-page/95 border-b border-rule">
+<header data-canvas={archive ? "archive" : "article"} class="site-header sticky top-0 z-50 bg-page/95 border-b border-rule">
   <nav aria-label="Main navigation" class="header-nav">
     {articleContents.length >= 2 ? <TableOfContents headings={articleContents} /> : <span aria-hidden="true" />}
-    <div class="header-center site-shell">
+    <div class="header-center">
     <a href="/" class="inline-flex min-h-11 items-center font-medium tracking-tight text-ink" aria-label={`${siteName} — home`}>
       {siteName}<span class="ml-1 text-accent" aria-hidden="true">.</span>
     </a>

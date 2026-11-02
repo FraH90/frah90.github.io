@@ -16,6 +16,8 @@ Proposals preserve the sources and elaboration:
 - [CV publication](proposals/p-261020-02-cv-link-or-controlled-publication/p-261020-02-cv-link-or-controlled-publication.md): draft, with the original request and publication options; still deferred.
 - [Agentic programming and IC design](proposals/p-261020-03-agentic-programming-and-ic-design/p-261020-03-agentic-programming-and-ic-design.md): draft, exploratory interests with no scheduled roadmap or claim of expertise.
 
+[Archive and metadata refinement](proposals/p-261102-01-refine-archive-proportions-scientific-previews-and-q/p-261102-01-refine-archive-proportions-scientific-previews-and-q.md) captures the owner’s 2026-11-02 design feedback. The implemented trial is recorded in the primary roadmap; final owner visual review remains open.
+
 Article Studio is planned in **LifeOS's own ledger**, not this blog ledger. Continue its implementation from a LifeOS session.
 
 ## Structure and ownership

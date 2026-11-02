@@ -1,8 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { demoExamples } from '../../lib/demo-examples';
-import { computeArray } from '../../lib/demo-models';
-import { arrayChart } from '../../lib/demo-charts';
 import { chartGeometry } from '../../lib/chart-geometry';
 interface Props { post: CollectionEntry<'blog'>; eager?: boolean; interactive?: boolean; }
 const { post, eager = false, interactive = false } = Astro.props;
@@ -13,15 +11,11 @@ const demoById = {
 } as const;
 const kind = demoById[post.id as keyof typeof demoById];
 const example = kind ? demoExamples[kind] : undefined;
-const spec = example?.charts[kind === 'fourier' ? 1 : 0];
+const sourceSpec = example?.charts[kind === 'fourier' ? 1 : 0];
+const spec = sourceSpec ? { ...sourceSpec, height: 420 } : undefined;
 const geometry = spec ? chartGeometry(spec) : undefined;
 const isWorkflow = post.id === 'ml/ml-for-signal-data';
-const steering = interactive && kind === 'array' && !preview && !post.data.coverImage
-  ? [45, 60, 75, 90, 105, 120, 135].map(angle => {
-    const chart = arrayChart(computeArray(8, .5, -Math.PI * Math.cos(angle * Math.PI / 180)));
-    chart.traces = chart.traces.map(trace => ({ ...trace, x: trace.x.filter((_, i) => i % 10 === 0), y: trace.y.filter((_, i) => i % 10 === 0) }));
-    return chartGeometry(chart).paths[0].path;
-  }) : undefined;
+const steering = interactive && kind === 'array' && !preview && !post.data.coverImage;
 const image = preview?.kind === 'image' ? preview.src : preview?.kind === 'gif' ? preview.poster : post.data.coverImage;
 ---
 <div class:list={["preview-media", { "preview-interactive": !!steering }]}>
@@ -31,17 +25,17 @@ const image = preview?.kind === 'image' ? preview.src : preview?.kind === 'gif' 
       {preview?.kind === 'gif' && <button type="button" class="preview-toggle" data-preview-toggle aria-pressed="false" hidden>Play preview</button>}
     </>
     : spec && geometry ? <>
-      <svg viewBox="0 0 960 600" role="img" aria-label={`${spec.title}. ${spec.description} ${example!.parameters}`}>
-        <text x="60" y="70" class="preview-figure-name">{spec.title}</text>
-        <g transform="translate(0 95)">
-          {geometry.xTicks.map(tick => <><path d={`M${tick.position} 20V296`} class="preview-grid" /><text x={tick.position} y="332" text-anchor="middle" class="preview-tick">{tick.label}</text></>)}
-          {geometry.yTicks.map(tick => <><path d={`M74 ${tick.position}H940`} class="preview-grid" /><text x="60" y={tick.position + 8} text-anchor="end" class="preview-tick">{tick.label}</text></>)}
-          {geometry.paths.map(trace => <path d={trace.path} fill="none" stroke={trace.color} stroke-width="3" stroke-linejoin="round" data-steering-trace={steering ? true : undefined} />)}
-          <text x="74" y="0" class="preview-axis">{spec.yLabel}</text>
-          <text x="510" y="386" text-anchor="middle" class="preview-axis">{spec.xLabel}</text>
+      <svg viewBox={steering ? "0 0 960 540" : "0 0 960 600"} role="img" aria-label={`${spec.title}. ${spec.description} ${example!.parameters}`}>
+        <text x="74" y="32" class="preview-figure-name">{kind === 'array' ? 'Calculated · 8 elements · d/λ = 0.5' : spec.title}</text>
+        <g transform="translate(0 65)">
+          {geometry.xTicks.map(tick => <><path d={`M${tick.position} 20V356`} class="preview-grid" /><text x={tick.position} y="386" text-anchor="middle" class="preview-tick">{tick.label}</text></>)}
+          {geometry.yTicks.map(tick => <><path d={`M74 ${tick.position}H940`} class="preview-grid" /><text x="66" y={tick.position + 7} text-anchor="end" class="preview-tick">{Number(tick.label) === 0 ? '' : tick.label}</text></>)}
+          {geometry.paths.map(trace => <path d={trace.path} fill="none" stroke={trace.color} stroke-width="2.5" stroke-linejoin="round" data-steering-trace={steering ? true : undefined} />)}
+          <text x="74" y="0" class="preview-axis">{kind === 'array' ? '|AF|' : spec.yLabel}</text>
+          <text x="510" y="440" text-anchor="middle" class="preview-axis">{spec.xLabel}</text>
         </g>
       </svg>
-      <span class="preview-context">Calculated demo preview</span>
+      {!steering && <span class="preview-context">Calculated reference</span>}
     </>
     : isWorkflow ? <>
       <svg viewBox="0 0 960 600" role="img" aria-label="Illustrative signal machine-learning workflow: signal, features, model, evaluation. This is a conceptual diagram, not a measured result.">
@@ -56,25 +50,36 @@ const image = preview?.kind === 'image' ? preview.src : preview?.kind === 'gif' 
       </svg>
       <span class="preview-context">Illustrative workflow</span>
     </> : <div class="preview-placeholder"><span>Technical notes</span><p>{post.data.title}</p></div>}
-</div>
 {steering && <div class="steering-preview" data-steering-preview hidden>
-  <label for="featured-steering">Steer the beam <output for="featured-steering">90°</output></label>
-  <input id="featured-steering" type="range" min="0" max="6" value="3" step="1" aria-valuetext="90 degrees from the array axis" data-paths={JSON.stringify(steering)} />
+  <div class="steering-caption"><label for="featured-steering">Steering angle</label><output for="featured-steering">90°</output></div>
+  <input id="featured-steering" type="range" min="45" max="135" value="90" step="1" aria-valuetext="90 degrees from the array axis" />
+  <div class="steering-limits" aria-hidden="true"><span>45°</span><span>135°</span></div>
 </div>}
+</div>
 <script>
+  import { computeArray } from '../../lib/demo-models';
+  import { arrayChart } from '../../lib/demo-charts';
+  import { chartGeometry } from '../../lib/chart-geometry';
   for (const controls of document.querySelectorAll<HTMLElement>('[data-steering-preview]')) {
     const input = controls.querySelector<HTMLInputElement>('input')!;
     const output = controls.querySelector('output')!;
-    const preview = controls.previousElementSibling!;
+    const preview = controls.closest('.preview-media')!;
     const trace = preview.querySelector('[data-steering-trace]')!;
-    const paths: string[] = JSON.parse(input.dataset.paths!);
     controls.hidden = false;
+    let pending = false;
     input.addEventListener('input', () => {
-      const index = Number(input.value), angle = 45 + index * 15;
-      trace.setAttribute('d', paths[index]);
+      const angle = Number(input.value);
       output.textContent = `${angle}°`;
       input.setAttribute('aria-valuetext', `${angle} degrees from the array axis`);
-      preview.querySelector('svg')!.setAttribute('aria-label', `Calculated uniform eight-element isotropic array, half-wavelength spacing, steered to ${angle} degrees from the array axis. Normalized magnitude versus angle.`);
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(() => {
+        pending = false;
+        const angle = Number(input.value);
+        const spec = { ...arrayChart(computeArray(8, .5, -Math.PI * Math.cos(angle * Math.PI / 180))), height: 420 };
+        trace.setAttribute('d', chartGeometry(spec).paths[0].path);
+        preview.querySelector('svg')!.setAttribute('aria-label', `Calculated uniform eight-element isotropic array, half-wavelength spacing, steered to ${angle} degrees from the array axis. Normalized magnitude versus angle.`);
+      });
     });
   }
 

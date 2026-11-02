@@ -24,7 +24,8 @@ assert.ok(
   `Application JS ${gzip} bytes exceeds 1800 KiB gzip budget`,
 );
 // Owner chose the original Plotly renderer on 2026-10-21. Keep its cost explicit.
-const engine = sizes.filter(file => /plotly/i.test(file.file));
+// Count the distribution chunk, not the separately shared PlotlyChart wrapper.
+const engine = sizes.filter(file => /^plotly[.-]/i.test(file.file));
 assert.equal(engine.length, 1, 'Expected one shared Plotly engine chunk');
 assert.ok(engine[0].raw <= 5 * 1024 * 1024 && engine[0].gzip <= 1600 * 1024, 'Plotly engine exceeds its restored-renderer budget');
 const controller = sizes.find((file) =>

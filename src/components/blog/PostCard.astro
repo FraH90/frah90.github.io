@@ -1,17 +1,16 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { demoLabel } from '../../lib/article-status';
+import ArticleMeta from './ArticleMeta.astro';
 import ArticlePreview from './ArticlePreview.astro';
 import TagBadges from './TagBadges.astro';
 interface Props { post: CollectionEntry<'blog'>; headingLevel?: 2 | 3; }
 const { post, headingLevel = 2 } = Astro.props;
-const { title, date, description, demo, tags } = post.data;
+const { title, description, tags } = post.data;
 const Heading = headingLevel === 3 ? 'h3' : 'h2';
-const formatted = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' }).format(date);
 ---
 <article class="post-card min-w-0">
   <ArticlePreview post={post} />
-  <div class="card-meta"><time datetime={date.toISOString()}>{formatted}</time>{demo && <span class="demo-badge">{demoLabel}</span>}</div>
+  <ArticleMeta post={post} />
   <Heading class="post-card-title"><a class="post-card-link" href={`/blog/${post.id}`}>{title}</a></Heading>
   <p class="card-description">{description}</p>
   <TagBadges tags={tags} />

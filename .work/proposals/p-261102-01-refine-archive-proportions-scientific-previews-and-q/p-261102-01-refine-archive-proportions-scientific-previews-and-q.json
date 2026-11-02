@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/proposal.v3.json",
+  "version": 3,
+  "kind": "proposal",
+  "order": 4,
+  "id": "p-261102-01-refine-archive-proportions-scientific-previews-and-q",
+  "title": "Refine archive proportions, scientific previews and quiet metadata",
+  "status": "draft",
+  "captured_at": "2026-11-02",
+  "updated_at": "2026-11-02",
+  "source": "manual",
+  "related": [
+    "p-261020-04-research-oriented-phased-array-article"
+  ],
+  "roadmaps": [],
+  "formerly": [],
+  "summary": "Refine header alignment, homepage scientific media, category/tag hierarchy and focus styling, then review the design with the owner."
+}

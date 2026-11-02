@@ -6,6 +6,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import { retiredTagCategories } from './src/lib/tags.ts';
 import rehypeAccessibleHeadings from './src/lib/rehype-accessible-headings.mjs';
 
 export default defineConfig({
@@ -15,7 +16,8 @@ export default defineConfig({
   integrations: [react(), mdx(), sitemap({
     // Redirect aliases are useful inbound links, not canonical content.
     filter: page => !['/', '/projects', '/projects/'].includes(new URL(page).pathname)
-      && !/^\/blog\/[^/]+\/?$/.test(new URL(page).pathname),
+      && !/^\/blog\/[^/]+\/?$/.test(new URL(page).pathname)
+      && !Object.keys(retiredTagCategories).some(slug => new URL(page).pathname.replace(/\/$/, '') === `/tags/${slug}`),
   })],
 
   markdown: {

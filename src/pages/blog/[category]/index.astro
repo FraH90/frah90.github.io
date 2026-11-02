@@ -3,5 +3,5 @@ import { getAllCategories } from '../../../lib/posts';
 export async function getStaticPaths() {
   return (await getAllCategories()).map(category => ({ params: { category: category.slug } }));
 }
-return Astro.redirect(`/tags/${Astro.params.category}`);
+return Astro.redirect(`/categories/${Astro.params.category}`);
 ---

@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import TagBadges from '../components/blog/TagBadges.astro';
+import ArticleMeta from '../components/blog/ArticleMeta.astro';
 import { getPostTags } from '../lib/tags';
 import { siteName } from '../lib/site';
 import ArticleReferences from '../components/article/ArticleReferences.astro';
@@ -14,7 +15,7 @@ interface Props {
   relatedPosts: CollectionEntry<'blog'>[];
 }
 const { post, headings, relatedPosts } = Astro.props;
-const { demo, title, date, category, description, learningGoals, prerequisites, takeaways, resources, references } = post.data;
+const { demo, title, description, learningGoals, prerequisites, takeaways, resources, references } = post.data;
 const contents = [
   ...headings,
   ...(takeaways.length ? [{ depth: 2, slug: 'article-tools-takeaways', text: 'Key takeaways' }] : []),
@@ -23,26 +24,16 @@ const contents = [
   ...(relatedPosts.length ? [{ depth: 2, slug: 'article-tools-related', text: 'Related reading' }] : []),
 ];
 
-const formatted = new Intl.DateTimeFormat('en-US', {
-  year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC',
-}).format(date);
 
 ---
 
 <BaseLayout articleContents={contents} title={`${articleDisplayTitle(title, demo)} — ${siteName}`} description={demo ? `${demoNotice} ${description}` : description}>
   <article class="site-shell article-layout py-12 sm:py-16" data-pagefind-body data-article-demo={demo ? "true" : undefined}>
     <header class="reading-width mb-8">
-      <div class="flex flex-wrap items-center gap-x-3 gap-y-1 mb-6">
-        <span class="sr-only" data-pagefind-meta="tagIds">{post.data.tags.join(' ')}</span>
-        <span class="sr-only" data-pagefind-meta="tags">{getPostTags(post).map(tag => tag.label).join(', ')}</span>
-        <TagBadges tags={post.data.tags} />
-        {demo && <span class="demo-info">
-          <button type="button" class="demo-badge" aria-describedby="demo-explanation" data-pagefind-meta="status">{demoLabel}</button>
-          <span id="demo-explanation" class="demo-tooltip" role="tooltip" data-pagefind-ignore>{demoNotice}</span>
-        </span>}
-        <span class="text-muted">·</span>
-        <time datetime={date.toISOString()} class="text-sm text-muted">{formatted}</time>
-      </div>
+      <span class="sr-only" data-pagefind-meta="tagIds">{post.data.tags.join(' ')}</span>
+      <span class="sr-only" data-pagefind-meta="tags">{getPostTags(post).map(tag => tag.label).join(', ')}</span>
+      {demo && <span class="sr-only" data-pagefind-meta="status">{demoLabel}</span>}
+      <ArticleMeta post={post} longDate />
       <h1 data-pagefind-meta="title" class="page-title text-3xl sm:text-4xl text-ink leading-tight mb-4"
         style="font-family: 'Lora', Georgia, serif; font-weight: 400;">
         {title}
@@ -50,6 +41,7 @@ const formatted = new Intl.DateTimeFormat('en-US', {
       <p class="text-base text-muted leading-relaxed" style="font-family: 'Lora', Georgia, serif; font-style: italic;">
         {description}
       </p>
+      <TagBadges tags={post.data.tags} />
     </header>
 
     {(learningGoals.length > 0 || prerequisites.length > 0) && (
@@ -89,16 +81,6 @@ const formatted = new Intl.DateTimeFormat('en-US', {
 </BaseLayout>
 
 <script>
-  for (const info of document.querySelectorAll<HTMLElement>('.demo-info')) {
-    const badge = info.querySelector<HTMLButtonElement>('button')!;
-    const reset = () => { delete info.dataset.dismissed; };
-    info.addEventListener('mouseleave', reset);
-    info.addEventListener('focusout', reset);
-    badge.addEventListener('keydown', event => {
-      if (event.key === 'Escape') info.dataset.dismissed = 'true';
-    });
-  }
-
   // Wide scientific material scrolls locally and remains reachable by keyboard.
   for (const [selector, label] of [['pre', 'Code block'], ['table', 'Table'], ['.katex-display', 'Equation']]) {
     for (const element of document.querySelectorAll<HTMLElement>(`.article-content ${selector}`)) {

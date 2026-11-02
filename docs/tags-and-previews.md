@@ -1,22 +1,24 @@
 # Tags, media cards and the featured article
 
-## Public taxonomy
+## Categories and specific tags
 
-Articles use multiple canonical slugs in `tags`. `src/lib/tags.ts` owns readable labels, ordering and colors; broad tags reuse the established zinc-theme topic accents. Add a registry entry before using a new tag. The schema rejects unknown slugs and published articles without tags. The former `signal-processing` alias in the ML demo is normalized to `dsp`, so there is one Signal Processing destination. Drafts may not populate public tag navigation or generate tag pages.
+`category` is now the primary public subject as well as the stable URL group. `src/lib/topics.ts` owns category labels/colors; category archives live at `/categories/<slug>`. Original article URLs remain unchanged. The draft command still uses `<url-group>/<slug>` and seeds the broad topic slug for compatibility. Public articles require at least one registered tag in the existing schema; that can be their broad topic slug, with no specific tags shown.
 
-`/tags/<slug>` lists every published article carrying that tag, regardless of its legacy URL group. Explore, cards, article headers, related content, search metadata/results and RSS consume the same tags. RSS uses repeated standard category elements for tags and retains the independent Demo label.
+`src/lib/tags.ts` owns canonical tag labels and colors. Broad topic slugs remain valid for existing `/tags/<slug>` links and cross-subject classification; only specific tags appear in the small visual tag row. The ML demo retains its legacy DSP association, while its primary category is Machine Learning. Category archives use the primary category; legacy broad tag archives may span categories. Search shows the primary category and specific tags; related content and RSS retain canonical metadata.
 
-The `category` field is retained solely for compatibility/authoring URL groups, and original article IDs/URLs remain unchanged. Old `/blog/<category>` index routes redirect to their corresponding tag archives and are excluded from the sitemap. The draft command retains its `<url-group>/<slug>` path and seeds a matching broad tag; authors can add any other registered tags. Related reading now ranks shared tags rather than assigning extra weight to one category.
+The demo tags were pruned to one specific tag for array/RF/optics, FFT and windowing for DSP, and no specific tags for ML. Eight previously public, redundant tags redirect to the corresponding populated category through `retiredTagCategories`. Explicitly reusing a registered tag takes precedence over its retirement redirect. Unpopulated categories and draft-only tags do not create public archives. Redirects are excluded from the sitemap; old `/blog/<category>` indexes now redirect to category archives. Preserve these compatibility paths when evolving the taxonomy.
+
+Explore shows search, five populated category links and a collapsed specific-tag disclosure. Small colored category links, neutral tag pills and shared date/Demo metadata replace the previous dense badge rows. See [visual guidelines](visual-guidelines.md).
 
 ## Archive hierarchy
 
-The archive has a compact Blog heading, then the latest eligible article as a larger feature, followed by the remaining articles in a three-column media grid (two columns on tablets, one on phones). The feature is selected by the existing deterministic date/ID ordering, never from a draft. It is labeled Featured demo when appropriate; this does not claim peer review or original research. There is no author/CV introduction, article count or horizontal topic strip.
+The archive has a compact Blog heading, then the latest eligible article as a larger feature, followed by the remaining articles in a three-column media grid (two columns on tablets, one on phones). The feature is selected by the existing deterministic date/ID ordering, never from a draft. A small Demo label identifies demo status without repeating a featured-demo heading; it does not claim peer review or original research. There is no author/CV introduction, article count or horizontal topic strip.
 
-The array feature offers a lightweight steering preview, precomputed from the existing uniform-array model at seven scan angles. Its native slider swaps build-time SVG paths; no Plotly or React engine is loaded on the archive. The static 90° reference remains with scripts disabled. This is a preview of the retained demo, not a new substantive article or measurement. When a different article becomes latest, its own media takes this position.
+The array feature offers a lightweight steering preview from the existing uniform-array model, using all 721 samples for its initial reference and every update. Its integrated thin native slider selects 45–135° in one-degree steps; drawing is coalesced to animation frames. No Plotly or React engine is loaded on the archive. The static 90° reference remains with scripts disabled. This is a preview of the retained demo, not a new substantive article or measurement. When a different article becomes latest, its own media takes this position.
 
 Current landscape preview proportions are a trial: `--card-media-ratio: 8 / 5` in `src/styles/settings.css`; `1 / 1` tries square media without changing the card structure. `--archive-width` controls the archive canvas independently of the 880px reading canvas. Article typography, Plotly demos and the About page retain their existing design.
 
-Cards show date, Demo status, title, description and colored outlined tag badges. One title link covers the card; individual tag links and media controls remain separate keyboard/pointer targets, avoiding nested links. Tag pages omit the feature and show all matching articles. The final design decision remains open for owner review.
+Cards show category/date/Demo metadata, title, description and sparse neutral tag pills. One title link covers the card; individual tag links and media controls remain separate keyboard/pointer targets, avoiding nested links. Tag pages omit the feature and show all matching articles. The final design decision remains open for owner review.
 
 ## Media authoring
 

@@ -1,5 +1,7 @@
 .header-nav { display: grid; grid-template-columns: 44px minmax(0,1fr) 44px; align-items: center; min-height: calc(var(--header-height) - 1px); padding: 4px 8px; gap: 4px; }
-.header-center { max-width: var(--article-width); display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+.site-header { --header-canvas: var(--article-width); }
+.site-header[data-canvas="archive"] { --header-canvas: var(--archive-width); }
+.header-center { max-width: 100%; width: min(calc(100vw - var(--page-gutter) * 2), var(--header-canvas)); margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
 .reading-panel summary, .panel-close { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; color: var(--muted); list-style: none; cursor: pointer; }
 .reading-panel summary::-webkit-details-marker { display: none; }
 .reading-panel summary:hover, .reading-panel summary[aria-expanded="true"], .panel-close:hover { color: var(--ink); background: var(--elevated); }
@@ -23,6 +25,8 @@ body:has(.reading-dialog:modal) { overflow: hidden; }
 body { --available-width: 100vw; }
 #main-content { transition: margin var(--panel-duration) var(--panel-easing); }
 @media (min-width: 1024px) {
+  body[data-active-panel="left"] .header-center { transform: translateX(calc(var(--contents-width) / 2)); width: min(calc(100vw - var(--contents-width) - var(--page-gutter) * 2), var(--header-canvas)); }
+  body[data-active-panel="right"] .header-center { transform: translateX(calc(var(--explore-width) / -2)); width: min(calc(100vw - var(--explore-width) - var(--page-gutter) * 2), var(--header-canvas)); }
   body[data-active-panel="left"] { --available-width: calc(100vw - var(--contents-width)); }
   body[data-active-panel="right"] { --available-width: calc(100vw - var(--explore-width)); }
   body[data-active-panel="left"] #main-content, body:has(.article-contents[open]) #main-content { margin-left: var(--contents-width); }

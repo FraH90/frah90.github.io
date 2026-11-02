@@ -448,6 +448,31 @@
           "commits": [
             "ad132946d24037769c1eda9b5b82ae677a5c84ce"
           ]
+        },
+        {
+          "id": "r-261020-02-first-phased-array-article-design-refine-con",
+          "text": "Refine contextual header alignment, integrated scientific archive previews, sparse category/tag metadata, Explore navigation and neutral keyboard focus under the owner’s 2026-11-02 design feedback.",
+          "status": "done",
+          "kind": "build",
+          "evidence": [
+            {
+              "kind": "measurement",
+              "value": "Production build and output checks pass for 38 pages. Independent scientific model checks and payload budgets pass: 5,027,560 decoded / 1,536,120 gzip application JS bytes; demo controller 2,499 gzip bytes. Corrected the budget matcher to count the actual Plotly distribution, not its small separately emitted PlotlyChart wrapper. Five category routes and eight retired-tag redirects preserve inbound links; redirects stay out of the sitemap. A future-dated draft with unique misc category/tag is absent from routes, discovery, RSS, sitemap and public sentinel text; temporary source removed."
+            },
+            {
+              "kind": "measurement",
+              "value": "Production Chromium at 320/390/768/1024/1440/1920px in dark/light passes overflow, contextual roomy-desktop header alignment (including docked Explore), integrated slider bounds, 721-point initial/update/broadside round-trip, sparse metadata, keyboard focus, category/tag disclosure, modal Escape and article/drawer axe WCAG A/AA. Screenshots inspected. No-JavaScript category navigation, reduced motion, bounded Demo tooltip/Escape, Pagefind category/tag results and search failure browsing pass. Blocked Plotly and no-script article math/static alternatives pass. Archive requests no Plotly engine."
+            },
+            {
+              "kind": "measurement",
+              "value": "Temporary article/media fixtures verify image loading, GIF still poster and explicit play/pause source changes, and actual short VP8 video playback with native controls and no autoplay at phone width. Fixtures are removed and absent from final output. Physical iPhone/WebKit and owner-supplied artwork remain unreviewed; browser checks are Chromium, not a universal-device claim."
+            },
+            {
+              "kind": "document",
+              "value": "docs/visual-guidelines.md and updated taxonomy/media, authoring, README, architecture and mirrored AGENTS.md/CLAUDE.md record contextual canvases, media renderer boundaries, primary public category plus sparse specific tags, compatibility links and neutral keyboard focus. Owner request is captured in proposal p-261102-01-refine-archive-proportions-scientific-previews-and-q. This is a reviewable trial; final design-2 remains todo. Actual implementation SHA is attached after committing."
+            }
+          ],
+          "closed_at": "2026-11-02"
         }
       ]
     },
