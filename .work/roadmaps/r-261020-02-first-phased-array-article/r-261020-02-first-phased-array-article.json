@@ -497,10 +497,13 @@
             },
             {
               "kind": "document",
-              "value": "The owner’s exact refinement is captured in p-261102-02-category-owned-refinements-and-a-single-article-badg. Updated visual/taxonomy/editorial/architecture/README and mirrored AGENTS.md/CLAUDE.md supersede the preceding visible-tag-row trial. Shared parent registry and publication helper own the taxonomy, delegated disclosure behavior supports server and search markup, and native controls preserve no-JavaScript access. Final design-2 remains todo. Implementation SHA is attached after commit."
+              "value": "The owner’s exact refinement is captured in p-261102-02-category-owned-refinements-and-a-single-article-badg. Updated visual/taxonomy/editorial/architecture/README and mirrored AGENTS.md/CLAUDE.md supersede the preceding visible-tag-row trial. Shared parent registry and publication helper own the taxonomy, delegated disclosure behavior supports server and search markup, and native controls preserve no-JavaScript access. Final design-2 remains todo. The commits field records the actual implementation SHA."
             }
           ],
-          "closed_at": "2026-11-02"
+          "closed_at": "2026-11-02",
+          "commits": [
+            "28368f1b956249269ed47cc3187be8fd26861825"
+          ]
         }
       ]
     },
