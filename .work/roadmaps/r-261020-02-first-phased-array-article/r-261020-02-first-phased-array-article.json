@@ -469,10 +469,13 @@
             },
             {
               "kind": "document",
-              "value": "docs/visual-guidelines.md and updated taxonomy/media, authoring, README, architecture and mirrored AGENTS.md/CLAUDE.md record contextual canvases, media renderer boundaries, primary public category plus sparse specific tags, compatibility links and neutral keyboard focus. Owner request is captured in proposal p-261102-01-refine-archive-proportions-scientific-previews-and-q. This is a reviewable trial; final design-2 remains todo. Actual implementation SHA is attached after committing."
+              "value": "docs/visual-guidelines.md and updated taxonomy/media, authoring, README, architecture and mirrored AGENTS.md/CLAUDE.md record contextual canvases, media renderer boundaries, primary public category plus sparse specific tags, compatibility links and neutral keyboard focus. Owner request is captured in proposal p-261102-01-refine-archive-proportions-scientific-previews-and-q. This is a reviewable trial; final design-2 remains todo. The commits field records the verified implementation SHA."
             }
           ],
-          "closed_at": "2026-11-02"
+          "closed_at": "2026-11-02",
+          "commits": [
+            "ce10a77cc3bb5f14d20b076ca5231916c67e1d03"
+          ]
         }
       ]
     },
