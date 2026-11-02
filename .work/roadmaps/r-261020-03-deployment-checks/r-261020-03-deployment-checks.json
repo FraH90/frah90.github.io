@@ -15,7 +15,7 @@
     {
       "id": "r-261020-03-deployment-checks-p1",
       "title": "Supported workflow permission",
-      "status": "todo",
+      "status": "active",
       "useful_alone": "The integration can publish authorized workflow edits without adding credentials to the checkout.",
       "done_when": "The owner’s supported LifeOS/GitHub configuration authorizes workflow edits.",
       "depends_on": [],
@@ -23,9 +23,14 @@
         {
           "id": "r-261020-03-deployment-checks-p1-1",
           "text": "Resolve the GitHub integration workflows permission using the supported LifeOS/GitHub configuration; do not add credentials to this repository.",
-          "status": "todo",
+          "status": "active",
           "kind": "decision",
-          "evidence": []
+          "evidence": [
+            {
+              "kind": "observation",
+              "value": "2026-11-02: supported git_push rejected f8565b26e18c52ccb4b03322a3e57290abe01930: GitHub App cannot update .github/workflows/deploy.yml without workflows permission. No remote update or deployment occurred. Owner must enable permission through the supported LifeOS/GitHub integration configuration; no shell credentials or permission bypass attempted."
+            }
+          ]
         }
       ]
     },
@@ -48,7 +53,14 @@
             {
               "kind": "measurement",
               "value": "Workflow now runs check:build and check:demos after Astro/Pagefind and before artifact upload; deploy still needs build. Local valid production output and scientific models/payload budgets pass. Temporary broken internal link, 7 MiB extra JS chunk and isolated incorrect array normalization each fail the respective command with nonzero exit. All fixtures restored/removed. Remote workflow permission and a real Actions deployment are not yet verified."
+            },
+            {
+              "kind": "observation",
+              "value": "Workflow implementation and local passing/negative checks are committed in f8565b26e18c52ccb4b03322a3e57290abe01930. GitHub rejected the push for missing App workflows permission; real remote success and deployment remain unverified. This item stays active."
             }
+          ],
+          "commits": [
+            "f8565b26e18c52ccb4b03322a3e57290abe01930"
           ]
         }
       ]

@@ -544,7 +544,10 @@
               "value": "docs/visual-guidelines.md records simplified thumbnails versus detailed article figures; proposal p-261102-04-readable-preview-plots-and-deployment-gates-color-po preserves the owner's request and deferred color-policy discussion."
             }
           ],
-          "closed_at": "2026-11-02"
+          "closed_at": "2026-11-02",
+          "commits": [
+            "f8565b26e18c52ccb4b03322a3e57290abe01930"
+          ]
         }
       ]
     },

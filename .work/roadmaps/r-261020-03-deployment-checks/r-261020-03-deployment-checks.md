@@ -29,7 +29,7 @@ The owner explicitly resumed this work on 2026-11-02; it remains non-primary. Ch
 <!-- ledger-phases:start -->
 ### Phase 1 — Supported workflow permission
 
-**Status:** todo · **ID:** `r-261020-03-deployment-checks-p1`
+**Status:** active · **ID:** `r-261020-03-deployment-checks-p1`
 
 **Useful alone:** The integration can publish authorized workflow edits without adding credentials to the checkout.
 
@@ -37,8 +37,9 @@ The owner explicitly resumed this work on 2026-11-02; it remains non-primary. Ch
 
 **Depends on:** none
 
-- ⬜ **todo** · **decision** — Resolve the GitHub integration workflows permission using the supported LifeOS/GitHub configuration; do not add credentials to this repository.
+- ▶️ **active** · **decision** — Resolve the GitHub integration workflows permission using the supported LifeOS/GitHub configuration; do not add credentials to this repository.
   - ID `r-261020-03-deployment-checks-p1-1`
+  - Evidence (observation): 2026-11-02: supported git_push rejected f8565b26e18c52ccb4b03322a3e57290abe01930: GitHub App cannot update .github/workflows/deploy.yml without workflows permission. No remote update or deployment occurred. Owner must enable permission through the supported LifeOS/GitHub integration configuration; no shell credentials or permission bypass attempted.
 
 ### Phase 2 — CI build and demo gates
 
@@ -51,8 +52,9 @@ The owner explicitly resumed this work on 2026-11-02; it remains non-primary. Ch
 **Depends on:** `r-261020-03-deployment-checks-p1`
 
 - ▶️ **active** · **build** — Add npm run check:build and npm run check:demos after the Astro/Pagefind build and before GitHub Pages artifact upload; verify broken output/model or payload regressions block deployment and a valid deployment passes.
-  - ID `r-261020-03-deployment-checks-p2-1`
+  - ID `r-261020-03-deployment-checks-p2-1` · commits `f8565b26e18c52ccb4b03322a3e57290abe01930`
   - Evidence (measurement): Workflow now runs check:build and check:demos after Astro/Pagefind and before artifact upload; deploy still needs build. Local valid production output and scientific models/payload budgets pass. Temporary broken internal link, 7 MiB extra JS chunk and isolated incorrect array normalization each fail the respective command with nonzero exit. All fixtures restored/removed. Remote workflow permission and a real Actions deployment are not yet verified.
+  - Evidence (observation): Workflow implementation and local passing/negative checks are committed in f8565b26e18c52ccb4b03322a3e57290abe01930. GitHub rejected the push for missing App workflows permission; real remote success and deployment remain unverified. This item stays active.
 <!-- ledger-phases:end -->
 
 ## Risks
