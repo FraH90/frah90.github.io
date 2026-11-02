@@ -4,9 +4,9 @@
   "kind": "roadmap",
   "order": 2,
   "id": "r-261020-03-deployment-checks",
-  "title": "Deferred workflow permissions and deployment checks",
-  "why": "Preserve the unfinished CI/workflow follow-up outside the completed website foundation without bypassing the owner’s explicit deferral.",
-  "status": "paused",
+  "title": "Publishing safeguards and deployment checks",
+  "why": "Owner resumed this follow-up on 2026-11-02: validate public output and demo models/payloads before deploying, using supported integration permissions.",
+  "status": "active",
   "primary": false,
   "done_when": "Supported workflow permissions are configured, both output and demo checks run before Pages artifact upload, and a real valid deployment plus failing-check behavior verify the gate.",
   "created_at": "2026-10-20",
@@ -32,7 +32,7 @@
     {
       "id": "r-261020-03-deployment-checks-p2",
       "title": "CI build and demo gates",
-      "status": "todo",
+      "status": "active",
       "useful_alone": "Broken public output or demo/model/payload regressions prevent deployment.",
       "done_when": "Both checks run before artifact upload; invalid output is blocked and a real valid workflow run passes.",
       "depends_on": [
@@ -42,14 +42,20 @@
         {
           "id": "r-261020-03-deployment-checks-p2-1",
           "text": "Add npm run check:build and npm run check:demos after the Astro/Pagefind build and before GitHub Pages artifact upload; verify broken output/model or payload regressions block deployment and a valid deployment passes.",
-          "status": "todo",
+          "status": "active",
           "kind": "build",
-          "evidence": []
+          "evidence": [
+            {
+              "kind": "measurement",
+              "value": "Workflow now runs check:build and check:demos after Astro/Pagefind and before artifact upload; deploy still needs build. Local valid production output and scientific models/payload budgets pass. Temporary broken internal link, 7 MiB extra JS chunk and isolated incorrect array normalization each fail the respective command with nonzero exit. All fixtures restored/removed. Remote workflow permission and a real Actions deployment are not yet verified."
+            }
+          ]
         }
       ]
     }
   ],
   "open_questions": [
-    "The owner has deferred this work until later. Resume only when the owner returns to workflow permissions."
+    "Can the current supported push integration authorize the workflow edit?",
+    "Will a real GitHub Actions run pass both checks and deploy the reviewed commit?"
   ]
 }

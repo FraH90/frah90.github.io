@@ -136,3 +136,7 @@ The owner refined the taxonomy: specific tags belong below a category and narrow
 ## Category navigation correction — 2026-11-02
 
 The owner removed redundant All articles/category rows and Demo filtering. Explore uses sibling direct category links and native full-row tag disclosures, with the text link layered only over its own hit area. Plus/blank space expands specific tags; category text navigates and marks the current category with an underline. Demo stays neutral gray editorial status inside article/search disclosures. Earlier category/Demo URLs redirect to their parent and leave the sitemap. Native no-script behavior and ring-free keyboard cues remain; final owner visual review is still open.
+
+## Deployment gates — 2026-11-02
+
+The owner resumed the deferred publishing safeguards. The Pages build job now runs `npm run check:build` and `npm run check:demos` after the complete Astro/Pagefind build and before artifact upload. Their nonzero exit prevents upload and the dependent deployment job. These cover generated links/metadata/discovery boundaries, analytical model identities and payload budgets; they do not replace browser or scientific review. Local negative fixtures verify broken output, an oversized bundle and incorrect array normalization fail. Supported workflow-edit permission and the real GitHub run are tracked separately in the deployment roadmap.

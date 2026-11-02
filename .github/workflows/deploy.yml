@@ -33,6 +33,12 @@ jobs:
       - name: Build Astro site
         run: npm run build
 
+      - name: Check published output
+        run: npm run check:build
+
+      - name: Check demo models and payload budgets
+        run: npm run check:demos
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

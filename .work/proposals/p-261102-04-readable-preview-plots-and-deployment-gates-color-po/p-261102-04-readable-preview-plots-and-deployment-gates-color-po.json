@@ -1,0 +1,16 @@
+{
+  "$schema": "../../schema/proposal.v3.json",
+  "version": 3,
+  "kind": "proposal",
+  "order": 7,
+  "id": "p-261102-04-readable-preview-plots-and-deployment-gates-color-po",
+  "title": "Readable preview plots and deployment gates; color policy follow-up",
+  "status": "draft",
+  "captured_at": "2026-11-02",
+  "updated_at": "2026-11-02",
+  "source": "manual",
+  "related": [],
+  "roadmaps": [],
+  "formerly": [],
+  "summary": "Simplify static card plots, run existing output/model/payload checks before deployment, then discuss shared versus category-specific color use."
+}

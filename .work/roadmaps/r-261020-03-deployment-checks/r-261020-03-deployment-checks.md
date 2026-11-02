@@ -1,4 +1,4 @@
-# Deferred workflow permissions and deployment checks
+# Publishing safeguards and deployment checks
 
 <!-- ledger-template: roadmap.v2 -->
 
@@ -10,7 +10,7 @@ Ok. Reminds me this. But the roadmap has been finished? We need to close it. The
 
 ## Goal
 
-Preserve the unfinished CI/workflow follow-up outside the completed website foundation without bypassing the owner’s explicit deferral.
+Owner resumed this follow-up on 2026-11-02: validate public output and demo models/payloads before deploying, using supported integration permissions.
 
 ## Context and rationale
 
@@ -22,7 +22,7 @@ The sandbox push shim rejected workflow-file changes earlier because the GitHub 
 
 ## Decisions and trade-offs
 
-Paused and non-primary because the owner explicitly deferred permissions. The article does not technically depend on this configuration, so there is no artificial cross-roadmap dependency. No workflow or credential is changed during documentation closeout.
+The owner explicitly resumed this work on 2026-11-02; it remains non-primary. Checks run after the complete Astro/Pagefind build and before artifact upload. A failed check prevents upload and the dependent deployment job. Local validation and workflow edits do not by themselves prove remote permission or successful deployment. No credentials are added to the checkout.
 
 ## Delivery plan
 
@@ -42,7 +42,7 @@ Paused and non-primary because the owner explicitly deferred permissions. The ar
 
 ### Phase 2 — CI build and demo gates
 
-**Status:** todo · **ID:** `r-261020-03-deployment-checks-p2`
+**Status:** active · **ID:** `r-261020-03-deployment-checks-p2`
 
 **Useful alone:** Broken public output or demo/model/payload regressions prevent deployment.
 
@@ -50,8 +50,9 @@ Paused and non-primary because the owner explicitly deferred permissions. The ar
 
 **Depends on:** `r-261020-03-deployment-checks-p1`
 
-- ⬜ **todo** · **build** — Add npm run check:build and npm run check:demos after the Astro/Pagefind build and before GitHub Pages artifact upload; verify broken output/model or payload regressions block deployment and a valid deployment passes.
+- ▶️ **active** · **build** — Add npm run check:build and npm run check:demos after the Astro/Pagefind build and before GitHub Pages artifact upload; verify broken output/model or payload regressions block deployment and a valid deployment passes.
   - ID `r-261020-03-deployment-checks-p2-1`
+  - Evidence (measurement): Workflow now runs check:build and check:demos after Astro/Pagefind and before artifact upload; deploy still needs build. Local valid production output and scientific models/payload budgets pass. Temporary broken internal link, 7 MiB extra JS chunk and isolated incorrect array normalization each fail the respective command with nonzero exit. All fixtures restored/removed. Remote workflow permission and a real Actions deployment are not yet verified.
 <!-- ledger-phases:end -->
 
 ## Risks

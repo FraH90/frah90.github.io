@@ -25,28 +25,27 @@ const image = preview?.kind === 'image' ? preview.src : preview?.kind === 'gif' 
       {preview?.kind === 'gif' && <button type="button" class="preview-toggle" data-preview-toggle aria-pressed="false" hidden>Play preview</button>}
     </>
     : spec && geometry ? <>
-      <svg viewBox={steering ? "0 0 960 540" : "0 0 960 600"} role="img" aria-label={`${spec.title}. ${spec.description} ${example!.parameters}`}>
-        <text x="74" y="32" class="preview-figure-name">{kind === 'array' ? 'Calculated · 8 elements · d/λ = 0.5' : spec.title}</text>
+      <svg class:list={{ 'preview-chart-thumbnail': !steering }} viewBox={steering ? "0 0 960 540" : "0 0 960 600"} role="img" aria-label={`${spec.title}. ${spec.description} ${example!.parameters}`}>
+        {steering && <text x="74" y="32" class="preview-figure-name">Calculated · 8 elements · d/λ = 0.5</text>}
         <g transform="translate(0 65)">
-          {geometry.xTicks.map(tick => <><path d={`M${tick.position} 20V356`} class="preview-grid" /><text x={tick.position} y="386" text-anchor="middle" class="preview-tick">{tick.label}</text></>)}
-          {geometry.yTicks.map(tick => <><path d={`M74 ${tick.position}H940`} class="preview-grid" /><text x="66" y={tick.position + 7} text-anchor="end" class="preview-tick">{Number(tick.label) === 0 ? '' : tick.label}</text></>)}
+          {geometry.xTicks.filter((_, index) => steering || index % 2 === 0).map(tick => <><path d={`M${tick.position} 20V356`} class="preview-grid" />{steering && <text x={tick.position} y="386" text-anchor="middle" class="preview-tick">{tick.label}</text>}</>)}
+          {geometry.yTicks.filter((_, index) => steering || index % 2 === 0).map(tick => <><path d={`M74 ${tick.position}H940`} class="preview-grid" />{steering && <text x="66" y={tick.position + 7} text-anchor="end" class="preview-tick">{Number(tick.label) === 0 ? '' : tick.label}</text>}</>)}
           {geometry.paths.map(trace => <path d={trace.path} fill="none" stroke={trace.color} stroke-width="2.5" stroke-linejoin="round" data-steering-trace={steering ? true : undefined} />)}
           <text x="74" y="0" class="preview-axis">{kind === 'array' ? '|AF|' : spec.yLabel}</text>
-          <text x="510" y="440" text-anchor="middle" class="preview-axis">{spec.xLabel}</text>
+          <text x="510" y={steering ? 440 : 425} text-anchor="middle" class="preview-axis">{spec.xLabel}</text>
         </g>
       </svg>
       {!steering && <span class="preview-context">Calculated reference</span>}
     </>
     : isWorkflow ? <>
       <svg viewBox="0 0 960 600" role="img" aria-label="Illustrative signal machine-learning workflow: signal, features, model, evaluation. This is a conceptual diagram, not a measured result.">
-        <text x="60" y="70" class="preview-figure-name">Learning from signal data</text>
         <path d="M80 280h70l15-50 20 100 20-90 20 80 20-45h65M345 280h90m180 0h90" class="workflow-line" />
         <rect x="435" y="225" width="180" height="110" rx="8" class="workflow-box" />
         <rect x="705" y="225" width="180" height="110" rx="8" class="workflow-box" />
         <text x="525" y="290" text-anchor="middle" class="workflow-label">Features</text>
         <text x="795" y="290" text-anchor="middle" class="workflow-label">Model</text>
         <path d="M795 335v100H190v-90" class="workflow-line workflow-feedback" />
-        <text x="480" y="480" text-anchor="middle" class="preview-axis">Evaluate across sessions and hardware</text>
+        <text x="480" y="480" text-anchor="middle" class="workflow-label">Evaluate</text>
       </svg>
       <span class="preview-context">Illustrative workflow</span>
     </> : <div class="preview-placeholder"><span>Technical notes</span><p>{post.data.title}</p></div>}

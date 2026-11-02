@@ -12,7 +12,7 @@ A content-first engineering blog built with Astro and MDX, hosted at **https://f
 
 The ledger records what is implemented. Light/dark switching is implemented. Collapsed contents, article metadata, scientific figure/citation components, related reading, and draft scaffolding are implemented. Static full-text search and a summary RSS feed are implemented; see [discovery behavior and checks](docs/search-and-rss.md).
 
-The website foundation roadmap is closed. The current priority is [the first substantive phased-array article](.work/roadmaps/r-261020-02-first-phased-array-article/r-261020-02-first-phased-array-article.md); deferred workflow permissions and automatic CI checks remain a separate follow-up in the ledger.
+The website foundation roadmap is closed. The current priority is [the first substantive phased-array article](.work/roadmaps/r-261020-02-first-phased-array-article/r-261020-02-first-phased-array-article.md); deployment checks are being resumed in a separate roadmap, with remote verification tracked in the ledger.
 
 ## Local development
 
@@ -137,7 +137,7 @@ CV links appear only if `public/cv.pdf` exists when the site builds. CV publicat
 
 ## Deployment
 
-`.github/workflows/deploy.yml` installs dependencies, builds, uploads `dist/`, and deploys to GitHub Pages on pushes to `main` or manual workflow dispatch. GitHub Pages must use **GitHub Actions** as its publishing source. Environment-specific commit/push instructions are in `CLAUDE.md` and `AGENTS.md`.
+`.github/workflows/deploy.yml` installs dependencies, builds, runs `check:build` and `check:demos`, then uploads `dist/` and deploys to GitHub Pages on pushes to `main` or manual workflow dispatch. GitHub Pages must use **GitHub Actions** as its publishing source. Environment-specific commit/push instructions are in `CLAUDE.md` and `AGENTS.md`.
 
 Tables are centered automatically, with local scrolling for wide tables. Displayed equations use `$$` delimiters on separate lines and are centered globally; single-line `$...$` stays inline. See [math authoring](docs/article-authoring.md#displayed-equations).
 

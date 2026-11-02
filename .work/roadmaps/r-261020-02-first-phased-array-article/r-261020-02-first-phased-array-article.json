@@ -528,6 +528,23 @@
           "commits": [
             "54fb399470aa4a5b4379ac3979a7449d8495b98b"
           ]
+        },
+        {
+          "id": "r-261020-02-first-phased-array-article-design-simplify-s",
+          "text": "Simplify small static article-preview plots: retain correct curves and readable axes/units, remove miniature numeric ticks/redundant headings, preserve detailed article figures; verify desktop/mobile and both themes.",
+          "status": "done",
+          "kind": "build",
+          "evidence": [
+            {
+              "kind": "measurement",
+              "value": "Production build and 48-page output/model/payload checks pass. Chromium at 320/390/768/1440px in dark/light verifies three static card plots omit miniature ticks/title, retain six grid lines and full accessible context, use >=11 CSS-pixel axis text with no clipping/overflow, and preserve keyboard-controlled featured steering. Axe WCAG A/AA and no-JavaScript static previews pass; Gaussian phone screenshot inspected. Article plot components/models unchanged. Physical Safari untested."
+            },
+            {
+              "kind": "document",
+              "value": "docs/visual-guidelines.md records simplified thumbnails versus detailed article figures; proposal p-261102-04-readable-preview-plots-and-deployment-gates-color-po preserves the owner's request and deferred color-policy discussion."
+            }
+          ],
+          "closed_at": "2026-11-02"
         }
       ]
     },
