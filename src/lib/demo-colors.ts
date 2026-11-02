@@ -6,6 +6,6 @@ const primary = (category: TopicSlug) => `var(${getTopic(category).tone})`;
 export const demoColors = {
   array: primary('antennas'),
   transmission: primary('rf'),
-  gaussian: { upper: primary('optics'), lower: primary('rf'), fill: 'var(--plot-fill)' },
-  fourier: { signal: primary('rf'), spectrum: primary('dsp') },
+  gaussian: { upper: primary('optics'), lower: primary('optics'), fill: 'var(--plot-fill)' },
+  fourier: { signal: primary('dsp'), spectrum: primary('dsp') },
 } as const;

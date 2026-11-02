@@ -1,0 +1,16 @@
+{
+  "$schema": "../../schema/proposal.v3.json",
+  "version": 3,
+  "kind": "proposal",
+  "order": 8,
+  "id": "p-261102-05-category-colored-curves-pale-text-selection-and-cont",
+  "title": "Category-colored curves, pale text selection and contained focus cues",
+  "status": "draft",
+  "captured_at": "2026-11-02",
+  "updated_at": "2026-11-02",
+  "source": "manual",
+  "related": [],
+  "roadmaps": [],
+  "formerly": [],
+  "summary": "Make both DSP traces fuchsia and both Gaussian envelopes orange, add pale category selection, and remove structural focus frames while preserving local keyboard cues."
+}

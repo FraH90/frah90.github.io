@@ -568,6 +568,27 @@
           "commits": [
             "e59ede2522b29f221c709e95fec9f7289b23f525"
           ]
+        },
+        {
+          "id": "r-261020-02-first-phased-array-article-design-apply-owne-2",
+          "text": "Apply owner correction to category-colored DSP/Gaussian curves, pale category text selection and structural focus frames; preserve distinguishable scientific comparisons and local keyboard cues across live/static/preview renderers.",
+          "status": "done",
+          "kind": "build",
+          "evidence": [
+            {
+              "kind": "measurement",
+              "value": "Production build, 48-page output checks, numerical model checks and payload budgets pass (5,029,099 decoded / 1,536,822 gzip application JS bytes; controller 2,518 gzip). Chromium at 390/1440px in dark/light verifies DSP time/spectrum both fuchsia, Gaussian boundaries both orange with negative dashed, main/heading/live wrapper focus without outline/shadow, keyboard underlined links/window buttons, working slider keys and local neutral input cues; axe WCAG A/AA and overflow checks pass. Real text ranges on all five categories at 320px in both themes/no-JavaScript have measured 30% category/70% white selection, dark selected text and >=4.5:1 contrast. Selection and optics phone screenshots inspected."
+            },
+            {
+              "kind": "measurement",
+              "value": "Archive previews match corrected colors in both themes. Explore category disclosure and plot-expand keyboard focus use local marks with no outer outline. Blocked Plotly retains orange static Gaussian paths and keyboard horizontal scrolling with an inset bottom focus cue. No numerical/size/publication changes; physical Safari remains untested."
+            },
+            {
+              "kind": "document",
+              "value": "Proposal p-261102-05-category-colored-curves-pale-text-selection-and-cont preserves the owner's correction. Updated visual/authoring/architecture guidance and byte-identical AGENTS.md/CLAUDE.md clarify category-default curves, permissible distinct scientific comparison colors, pale category selection and structural versus local focus cues. Final overall design approval remains open."
+            }
+          ],
+          "closed_at": "2026-11-02"
         }
       ]
     },

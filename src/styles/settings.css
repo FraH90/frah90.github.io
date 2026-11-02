@@ -17,6 +17,10 @@
   --plot-purple: #a78bfa;
   --plot-fill: rgba(251, 146, 60, 0.08);
   --selection: #3f3f46;
+  --selection-ink: var(--ink);
+  --selection-paper: #ffffff;
+  --selection-category-share: 30%;
+  --article-selection-ink: #18181b;
   --reading-width: 46rem;
   --layout-width: 64rem;
   /* Reading canvas, type and interaction dimensions. */
