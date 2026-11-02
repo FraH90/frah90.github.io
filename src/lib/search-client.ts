@@ -47,7 +47,6 @@ async function showBatch(version: number, focusNew = false) {
         const summary = document.createElement('summary'); summary.className = 'category-badge'; summary.textContent = category.label;
         summary.setAttribute('aria-label', `${category.label} — show article tags`);
         const popover = document.createElement('div'); popover.className = 'category-popover';
-        const all = document.createElement('a'); all.className = 'category-all'; all.href = `/categories/${category.slug}`; all.textContent = `All ${category.label} articles`;
         const tags = document.createElement('ul'); tags.className = 'tag-badges'; tags.setAttribute('aria-label', 'Article tags');
         const details = ids.flatMap(id => { try { return getCategoryTags([id], category.slug); } catch { return []; } });
         for (const tag of details) {
@@ -62,7 +61,7 @@ async function showBatch(version: number, focusNew = false) {
           explanation.className = 'demo-tooltip'; explanation.setAttribute('role', 'tooltip'); explanation.textContent = demoNotice;
           badge.setAttribute('aria-describedby', explanation.id); info.append(badge, explanation); tags.append(info);
         }
-        popover.append(all, tags); menu.append(summary, popover); topic.append(menu);
+        popover.append(tags); menu.append(summary, popover); topic.append(menu);
       } else topic.textContent = result.meta.topic ?? '';
       const heading = document.createElement('h2');
       const link = document.createElement('a');

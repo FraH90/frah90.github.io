@@ -504,6 +504,27 @@
           "commits": [
             "28368f1b956249269ed47cc3187be8fd26861825"
           ]
+        },
+        {
+          "id": "r-261020-02-first-phased-array-article-design-make-explo",
+          "text": "Make Explore category text navigate directly while plus/blank row space expands tags; remove redundant all-article links and Demo filters, and restore neutral-gray article Demo status.",
+          "status": "done",
+          "kind": "build",
+          "evidence": [
+            {
+              "kind": "measurement",
+              "value": "Production build and 48-page output checks pass, along with independent demo-model checks and payload budget (5,028,727 decoded / 1,536,529 gzip application JS bytes; controller 2,499 gzip bytes). Five old category/Demo URLs redirect to their populated category, have no public UI links and are excluded from the sitemap. RSS/search Demo metadata and original article/tag links remain intact."
+            },
+            {
+              "kind": "measurement",
+              "value": "Chromium at 320/390/1440px in both themes verifies no All articles/category helper rows or Demo in Explore; category text navigates, current category is underlined, plus/blank space and keyboard Space toggle specific tags, and no overflow or axe WCAG A/AA violations. Touch taps and no-script scoped navigation pass. Article and dynamic search disclosures omit the redundant all-category link; article Demo computes the neutral muted color and its transient explanation still appears. Physical iPhone/WebKit untested."
+            },
+            {
+              "kind": "document",
+              "value": "Owner correction is captured in p-261102-03-direct-category-navigation-and-neutral-demo-status. Updated architecture, editorial taxonomy/visual guidance, README and byte-identical AGENTS.md/CLAUDE.md distinguish status from selectable tags and use sibling navigation/disclosure controls. Final design-2 remains open. Actual implementation SHA is attached after commit."
+            }
+          ],
+          "closed_at": "2026-11-02"
         }
       ]
     },

@@ -9,7 +9,7 @@ import { getTag } from '../../lib/tags';
 import { siteName } from '../../lib/site';
 interface Props { posts: CollectionEntry<'blog'>[]; category?: TopicSlug; tag?: string; }
 const { posts, category, tag } = Astro.props;
-const filter = tag ? (tag === 'demo' ? { label: 'Demo' } : getTag(tag)) : category ? getTopic(category) : undefined;
+const filter = tag ? getTag(tag) : category ? getTopic(category) : undefined;
 const featured = !filter ? posts[0] : undefined;
 const rest = featured ? posts.slice(1) : posts;
 const heading = filter?.label ?? 'Blog';

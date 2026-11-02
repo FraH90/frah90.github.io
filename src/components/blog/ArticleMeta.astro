@@ -10,7 +10,6 @@ const tooltip = longDate ? 'demo-explanation' : `demo-${post.id.replaceAll('/', 
   <details class="category-menu" style={`--category-color: var(${category.tone})`}>
     <summary class="category-badge" aria-label={`${category.label} — show article tags`}>{category.label}</summary>
     <div class="category-popover">
-      <a class="category-all" href={`/categories/${category.slug}`}>All {category.label} articles</a>
       <TagBadges category={category.slug} tags={post.data.tags} demo={post.data.demo} demoTooltip={tooltip} />
     </div>
   </details>

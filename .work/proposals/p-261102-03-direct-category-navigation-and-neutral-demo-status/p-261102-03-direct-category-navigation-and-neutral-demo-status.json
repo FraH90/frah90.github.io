@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/proposal.v3.json",
+  "version": 3,
+  "kind": "proposal",
+  "order": 6,
+  "id": "p-261102-03-direct-category-navigation-and-neutral-demo-status",
+  "title": "Direct category navigation and neutral Demo status",
+  "status": "draft",
+  "captured_at": "2026-11-02",
+  "updated_at": "2026-11-02",
+  "source": "manual",
+  "related": [
+    "p-261102-02-category-owned-refinements-and-a-single-article-badg"
+  ],
+  "roadmaps": [],
+  "formerly": [],
+  "summary": "Category text links navigate; plus/empty row space expands refinements. Remove all-articles links and Demo filtering; keep Demo as gray article status."
+}

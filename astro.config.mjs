@@ -17,6 +17,7 @@ export default defineConfig({
     // Redirect aliases are useful inbound links, not canonical content.
     filter: page => !['/', '/projects', '/projects/'].includes(new URL(page).pathname)
       && !/^\/blog\/[^/]+\/?$/.test(new URL(page).pathname)
+      && !/^\/categories\/[^/]+\/demo\/?$/.test(new URL(page).pathname)
       && !Object.keys(retiredTagCategories).some(slug => new URL(page).pathname.replace(/\/$/, '') === `/tags/${slug}`),
   })],
 

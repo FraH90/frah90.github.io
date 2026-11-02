@@ -132,3 +132,7 @@ The owner requested contextual header alignment, better scientific previews, qui
 ## Hierarchical refinement and category disclosure — 2026-11-02
 
 The owner refined the taxonomy: specific tags belong below a category and narrow its articles. Shared publication helpers drive nested Explore controls and static category/refinement routes, including a derived Demo filter. Shared category disclosures hide tags and Demo until mouse hover or native click/tap/keyboard activation; dynamically generated search results use the same delegated controller. The canonical demo boolean, legacy tag paths and original article URLs remain. Icon focus uses internal marks rather than rings, while native dialog focus handling stays intact. This supersedes the visible-tag-row trial; final visual review remains open.
+
+## Category navigation correction — 2026-11-02
+
+The owner removed redundant All articles/category rows and Demo filtering. Explore uses sibling direct category links and native full-row tag disclosures, with the text link layered only over its own hit area. Plus/blank space expands specific tags; category text navigates and marks the current category with an underline. Demo stays neutral gray editorial status inside article/search disclosures. Earlier category/Demo URLs redirect to their parent and leave the sitemap. Native no-script behavior and ring-free keyboard cues remain; final owner visual review is still open.

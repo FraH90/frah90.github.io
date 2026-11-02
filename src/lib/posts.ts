@@ -56,6 +56,5 @@ export function getCategoryRefinements(category: TopicSlug, posts: CollectionEnt
   const published = posts.filter(post => isPublishedPost(post) && post.data.category === category);
   return [
     ...getCategoryTags(published.flatMap(post => post.data.tags), category).map(tag => ({ slug: tag.slug, label: tag.label })),
-    ...(published.some(post => post.data.demo) ? [{ slug: 'demo', label: 'Demo' }] : []),
   ];
 }

@@ -157,4 +157,6 @@ The archive now uses a compact Blog heading, featured latest eligible article an
 
 Visual authoring conventions: [shared visual guidelines](docs/visual-guidelines.md) cover header/canvas alignment, category-owned tag refinements, reusable media slots and ring-free icon focus with visible keyboard markers. [Tags and previews](docs/tags-and-previews.md) documents primary categories, compatibility routes and image/GIF/video authoring.
 
-Specific tag filters use `/categories/<category>/<tag>`; category Demo filters derive from `demo: true` at `/categories/<category>/demo`. Assign specific tags under their registered parent in `src/lib/tags.ts`; keep `demo` as a boolean, not a manual tag. Native click/tap/keyboard activation works without JavaScript; mouse hover is a progressive enhancement.
+Specific tag filters use `/categories/<category>/<tag>`; Demo is gray article status, not an available filter; old category/Demo URLs redirect to the category. Assign specific tags under their registered parent in `src/lib/tags.ts`; keep `demo` as a boolean, not a manual tag. Native click/tap/keyboard activation works without JavaScript; mouse hover is a progressive enhancement.
+
+Explore category text navigates directly; its plus sign and empty row space expand specific tags. There are no All articles / All [category] articles rows, and no Demo option in Explore.

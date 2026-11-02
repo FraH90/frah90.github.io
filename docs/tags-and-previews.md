@@ -8,7 +8,7 @@
 
 The demo tags were pruned to one specific tag for array/RF/optics, FFT and windowing for DSP, and no specific tags for ML. Eight previously public, redundant tags redirect to the corresponding populated category through `retiredTagCategories`. Explicitly reusing a registered tag takes precedence over its retirement redirect. Unpopulated categories and draft-only tags do not create public archives. Redirects are excluded from the sitemap; old `/blog/<category>` indexes now redirect to category archives. Preserve these compatibility paths when evolving the taxonomy.
 
-Explore shows search and five expandable categories, each with its own published refinements. Cards/articles/search show only a colored category badge and date. The badge reveals this article’s tags and Demo status, tinted toward theme ink. Specific links narrow the category through `/categories/<category>/<tag>`; a derived `demo` refinement uses the existing boolean editorial status. Mouse hover enhances native click/tap/keyboard disclosure; all links work without JavaScript. See [visual guidelines](visual-guidelines.md).
+Explore shows search and five category-name links; clicking their plus sign or blank row area expands the specific published tags. Remove redundant All articles / All [category] articles rows. Cards/articles/search show only a colored category badge and date. The badge reveals this article’s category-tinted specific tags and neutral-gray Demo status. Specific links narrow the category through `/categories/<category>/<tag>`; Demo remains neutral gray editorial status inside the article disclosure and is not an available refinement. Mouse hover enhances native click/tap/keyboard disclosure; all links work without JavaScript. See [visual guidelines](visual-guidelines.md).
 
 ## Archive hierarchy
 
@@ -51,4 +51,4 @@ For a custom library-driven preview, extend the shared Astro media component wit
 
 ## Refinement generation
 
-`getCategoryRefinements` shares publication-scoped category options between Explore and static routes. Draft-only tags, empty categories and Demo flags on drafts do not create filter pages. The tag registry owns parent categories; the topic registry owns category colors/tokens. Demo remains a derived status filter, never a free-floating registry tag. Legacy broad tags remain compatible metadata and global archives, but are not displayed as specific child tags.
+`getCategoryRefinements` shares publication-scoped category options between Explore and static routes. Draft-only tags, empty categories do not create filter pages. The tag registry owns parent categories; the topic registry owns category colors/tokens. Demo is a special status, never a selectable filter or category-owned tag. Earlier category/Demo filter URLs redirect to the parent category and are absent from the sitemap. Legacy broad tags remain compatible metadata and global archives, but are not displayed as specific child tags.

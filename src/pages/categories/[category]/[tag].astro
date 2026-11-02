@@ -5,12 +5,15 @@ export async function getStaticPaths() {
   const posts = await getAllPosts();
   return (await getAllCategories()).flatMap(category => {
     const members = posts.filter(post => post.data.category === category.slug);
-    return getCategoryRefinements(category.slug, members).map(tag => ({
+    return [
+      { params: { category: category.slug, tag: 'demo' }, props: { category: category.slug, tag: 'demo', posts: [], redirect: `/categories/${category.slug}` } },
+      ...getCategoryRefinements(category.slug, members).map(tag => ({
       params: { category: category.slug, tag: tag.slug },
-      props: { category: category.slug, tag: tag.slug, posts: members.filter(post => tag.slug === 'demo' ? post.data.demo : post.data.tags.includes(tag.slug)) },
-    }));
+      props: { category: category.slug, tag: tag.slug, posts: members.filter(post => post.data.tags.includes(tag.slug)) },
+    }))];
   });
 }
-const { posts, category, tag } = Astro.props;
+const { posts, category, tag, redirect } = Astro.props;
+if (redirect) return Astro.redirect(redirect);
 ---
 <PostListing posts={posts} category={category} tag={tag} />
