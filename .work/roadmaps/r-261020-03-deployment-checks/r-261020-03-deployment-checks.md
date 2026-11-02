@@ -14,7 +14,7 @@ Preserve the unfinished CI/workflow follow-up outside the completed website foun
 
 ## Context and rationale
 
-Transferred from Phase 7 of [website foundation](../r-261020-01-scientific-blog-foundation/r-261020-01-scientific-blog-foundation.md). The owner previously said to deal with permission work later; this migration preserves that instruction rather than pretending the work was completed.
+Transferred from Phase 7 of [website foundation](../../archive/roadmaps/r-261020-01-scientific-blog-foundation/r-261020-01-scientific-blog-foundation.md). The owner previously said to deal with permission work later; this migration preserves that instruction rather than pretending the work was completed.
 
 ## Research and evidence
 

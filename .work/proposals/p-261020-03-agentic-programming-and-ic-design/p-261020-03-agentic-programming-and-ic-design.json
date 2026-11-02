@@ -1,0 +1,18 @@
+{
+  "$schema": "../../schema/proposal.v3.json",
+  "version": 3,
+  "kind": "proposal",
+  "order": 2,
+  "id": "p-261020-03-agentic-programming-and-ic-design",
+  "title": "Agentic programming and integrated circuit design",
+  "status": "draft",
+  "summary": "Explore agents as programming assistants and active participants in engineering workflows, including integrated circuit design with an open-source ecosystem.",
+  "captured_at": "2026-10-20",
+  "updated_at": "2026-10-20",
+  "source": "chat",
+  "related": [],
+  "roadmaps": [],
+  "formerly": [
+    "i-261020-03-agentic-programming-and-ic-design"
+  ]
+}

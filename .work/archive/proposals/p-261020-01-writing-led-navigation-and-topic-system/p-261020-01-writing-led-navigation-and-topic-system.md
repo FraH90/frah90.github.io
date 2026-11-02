@@ -1,6 +1,6 @@
-# A content-first scientific and technical blog
+# Writing-led navigation and a shared topic system
 
-<!-- ledger-template: idea.v2 -->
+<!-- ledger-template: proposal.v3 -->
 
 ## Original thought
 
@@ -22,6 +22,39 @@ PS: another thing i'm interested is the use of agentic programming and shit both
 
 btw. read the .work folder inside lifeos repo, i ve gave u access to it (read only, dont modify the fuckin repo); u can read source code of the ledger if needed to understand. and then.. u can write all the shit we've said here in ideas, proposal, roadmaps etc etc etc. this will be the structured way of working here.. it gives us possibility to do a structured thing
 <!-- original-thought:end -->
+
+## Proposal
+
+<!-- proposal-body:start -->
+## Problem
+
+The current entry point goes straight to an article list with little author identity. Mobile header links disappear. Topic pages change layout and terminology, and category labels/styles are duplicated.
+
+## Proposed approach
+
+Keep writing as the main destination. Add a compact site identity and About access. Use a shared topic registry for slugs, labels, ordering, schema choices, filters, badges, and discovery. Reuse a common listing shell for all writing and topic views. Retain article URLs. Resolve the entry route explicitly before changing it.
+
+## UI direction
+
+A restrained header with site identity/home, Writing, About, Search, and a theme control as features land. Keep all primary destinations usable on mobile. Lead the entry page with selected/latest articles and scientific figures; keep the author introduction compact. Topics are filters with readable labels. Projects appears only when it contains useful work. Contact and later CV are available through About. Contents is collapsed on article pages.
+
+## Alternatives and tradeoffs
+
+Keep /blog as the archive and add a writing-led root, or make the root the canonical writing index with a compatible /blog route. Both fit the content-first decision. A large portfolio hero would displace content and does not fit the owner's clarified priority. Full topic labels improve clarity but need wrapping on mobile.
+
+## Risks
+
+Route duplication, inconsistent active states, mobile crowding, accidental URL breakage, and creating empty categories for future interests.
+
+## Open questions
+
+- Resolved in Phase 1: retain `/` → `/blog` and existing article URLs.
+- What public site name and author display name should be used?
+- Resolved in Phase 1: use the ordered registry at `src/lib/topics.ts`; labels match the readable names above.
+
+## Status boundary
+
+The overall content-first direction is agreed. This detailed UI/routing proposal remains draft; the roadmap is directly derived from the owner's idea, not from an invented acceptance of this proposal.
 
 ## What the thing is
 
@@ -45,4 +78,5 @@ The requested documentation and ledger foundation is now recorded. Next implemen
 
 ## Working notes
 
-Executable work: [scientific blog foundation](../../roadmaps/r-261020-01-scientific-blog-foundation/r-261020-01-scientific-blog-foundation.md). Architecture: [docs/architecture.md](../../../docs/architecture.md). CV automation and agentic IC design remain separate ideas. The full originating owner message is retained above; trailing whitespace is normalized according to ledger convention.
+Executable work: [scientific blog foundation](../../roadmaps/r-261020-01-scientific-blog-foundation/r-261020-01-scientific-blog-foundation.md). Architecture: [docs/architecture.md](../../../../docs/architecture.md). CV automation and agentic IC design remain separate ideas. The full originating owner message is retained above; trailing whitespace is normalized according to ledger convention.
+<!-- proposal-body:end -->

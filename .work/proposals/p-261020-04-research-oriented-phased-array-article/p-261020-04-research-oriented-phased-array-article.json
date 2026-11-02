@@ -1,0 +1,21 @@
+{
+  "$schema": "../../schema/proposal.v3.json",
+  "version": 3,
+  "kind": "proposal",
+  "order": 3,
+  "id": "p-261020-04-research-oriented-phased-array-article",
+  "title": "A research-oriented first article on phased arrays",
+  "status": "planned",
+  "summary": "The owner wants to write the first substantive article on phased arrays, with more depth and a research orientation than the existing demonstration article. The owner will write it; no publication or completed research result is implied.",
+  "captured_at": "2026-10-20",
+  "updated_at": "2026-10-20",
+  "source": "chat",
+  "related": [],
+  "roadmaps": [
+    "r-261020-01-scientific-blog-foundation",
+    "r-261020-02-first-phased-array-article"
+  ],
+  "formerly": [
+    "i-261020-04-research-oriented-phased-array-article"
+  ]
+}

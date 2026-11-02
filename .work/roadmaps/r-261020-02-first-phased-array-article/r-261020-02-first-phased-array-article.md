@@ -14,11 +14,11 @@ Turn the saved beam-squint writing brief into an owner-written, reproducible pha
 
 ## Context and rationale
 
-The owner has closed [website foundation](../r-261020-01-scientific-blog-foundation/r-261020-01-scientific-blog-foundation.md) and made the first article the priority. This replaces unfinished foundation item r-261020-01-scientific-blog-foundation-p6-3; first-manuscript validation is carried here as well.
+The owner has closed [website foundation](../../archive/roadmaps/r-261020-01-scientific-blog-foundation/r-261020-01-scientific-blog-foundation.md) and made the first article the priority. This replaces unfinished foundation item r-261020-01-scientific-blog-foundation-p6-3; first-manuscript validation is carried here as well.
 
 ## Research and evidence
 
-The [saved writing brief](../../ideas/i-261020-04-research-oriented-phased-array-article/i-261020-04-research-oriented-phased-array-article.md) contains the proposed bandwidth/aperture study, three scientific figures, primary reading and explicit limitations. It is a brief, not an experiment or completed article.
+The [saved writing brief](../../proposals/p-261020-04-research-oriented-phased-array-article/p-261020-04-research-oriented-phased-array-article.md) contains the proposed bandwidth/aperture study, three scientific figures, primary reading and explicit limitations. It is a brief, not an experiment or completed article.
 
 ## Decisions and trade-offs
 
@@ -170,6 +170,21 @@ The owner writes the article; no manuscript, measurements, code results or publi
   - ID `r-261020-02-first-phased-array-article-p2-1`
 - ⬜ **todo** · **build** — With owner approval, prepare final MDX and a genuine publication date; verify figures, math, mobile/desktop, keyboard, themes, draft exclusion and search/RSS/related/sitemap, then publish.
   - ID `r-261020-02-first-phased-array-article-p2-2`
+
+### Phase 5 — Ledger compatibility maintenance
+
+**Status:** done · **ID:** `r-261020-02-first-phased-array-article-ledger`
+
+**Useful alone:** The current LifeOS Code app can read this repository’s existing plans and their preserved history.
+
+**Done when:** Proposal v3 bundles, source links, archived closure, schemas/templates and working instructions validate with the current reader and the running Code backend.
+
+**Depends on:** none
+
+- ✅ **done** · **migration** — Migrate the blog ledger from separate ideas/proposals to proposal v3 and current archive conventions without changing publication/design scope.
+  - ID `r-261020-02-first-phased-array-article-ledger-1` · closed 2026-11-02
+  - Evidence (measurement): Current LifeOS reader/validator and running GET /api/code/ledger read four proposals and two live roadmaps. All eight data JSON files pass vendored schemas; all four original-thought blocks, both former proposal bodies, idea notes, original roadmap/item states and 26 historical commit references are preserved. Documentation links and byte-identical AGENTS.md/CLAUDE.md pass. The upstream migration dry-run is a no-op after conversion.
+  - Evidence (document): .work/README.md records mixed entity versions, original IDs, source provenance, closure/archive behavior, the unscheduled IC-design draft correction and preserved article/deployment priorities. Implementation commit evidence is attached after committing. No website source/build configuration or LifeOS files were edited.
 <!-- ledger-phases:end -->
 
 ## Risks

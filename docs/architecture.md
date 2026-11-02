@@ -34,7 +34,7 @@ Phase 1 now shares topic metadata and listing components, keeps navigation visib
 | `public/` | Deliberately public figures, generated datasets, icons, future CV asset |
 | `scripts/` | Reproducible figure/data generation and maintenance tools |
 | `docs/` | Architecture and editorial guidance |
-| `.work/` | Ideas, proposals, executable roadmaps, evidence, and history |
+| `.work/` | Proposals (original words and elaboration), executable roadmaps, evidence, and history |
 | `research/interests/` | Unpublished personal interests and possible investigations |
 
 ## Content and taxonomy

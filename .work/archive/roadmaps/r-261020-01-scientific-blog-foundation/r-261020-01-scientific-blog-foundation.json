@@ -1,12 +1,11 @@
 {
-  "$schema": "../../schema/roadmap.v2.json",
+  "$schema": "../../../schema/roadmap.v2.json",
   "version": 2,
   "kind": "roadmap",
   "order": 0,
   "id": "r-261020-01-scientific-blog-foundation",
   "title": "Scientific blog foundation and professional reading experience",
   "why": "Create a content-first scientific and technical blog with consistent navigation, rigorous figures and articles, accessible reading, discovery, and an honest interdisciplinary author profile.",
-  "from_idea": "i-261020-01-content-first-scientific-blog",
   "status": "done",
   "primary": false,
   "done_when": "The static blog foundation, navigation, themes, article tools, discovery, demos, confirmed About and demo labels are delivered and verified. Owner article publication and deferred workflow checks are explicitly transferred to separate roadmaps.",
@@ -601,7 +600,7 @@
           "evidence": [
             {
               "kind": "document",
-              "value": "Owner plans to write a deeper, research-oriented phased-array article. Idea i-261020-04-research-oriented-phased-array-article preserves the request and proposes a bounded beam-squint bandwidth/aperture study, primary starting sources, assumptions, three scientific figures and reproducibility checks. The exact subtopic is a suggestion, with no manuscript, new calculation, novelty claim or publication approval fabricated."
+              "value": "Owner plans to write a deeper, research-oriented phased-array article. Idea p-261020-04-research-oriented-phased-array-article preserves the request and proposes a bounded beam-squint bandwidth/aperture study, primary starting sources, assumptions, three scientific figures and reproducibility checks. The exact subtopic is a suggestion, with no manuscript, new calculation, novelty claim or publication approval fabricated."
             },
             {
               "kind": "decision",
@@ -699,5 +698,7 @@
   ],
   "open_questions": [
     "CV source and publication mechanism remain deferred in their existing idea/proposal; no CV integration was implemented."
-  ]
+  ],
+  "from_proposal": "p-261020-01-writing-led-navigation-and-topic-system",
+  "archived_at": "2026-11-02T14:21:41.188Z"
 }

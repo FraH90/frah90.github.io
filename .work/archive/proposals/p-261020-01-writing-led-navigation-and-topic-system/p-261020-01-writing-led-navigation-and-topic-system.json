@@ -1,0 +1,21 @@
+{
+  "$schema": "../../../schema/proposal.v3.json",
+  "version": 3,
+  "kind": "proposal",
+  "order": 0,
+  "id": "p-261020-01-writing-led-navigation-and-topic-system",
+  "title": "Writing-led navigation and a shared topic system",
+  "status": "archived",
+  "summary": "The current entry point goes straight to an article list with little author identity. Mobile header links disappear. Topic pages change layout and terminology, and category labels/styles are duplicated.",
+  "captured_at": "2026-10-20",
+  "updated_at": "2026-11-02",
+  "source": "chat",
+  "related": [],
+  "roadmaps": [
+    "r-261020-01-scientific-blog-foundation"
+  ],
+  "formerly": [
+    "i-261020-01-content-first-scientific-blog"
+  ],
+  "archived_at": "2026-11-02T14:21:41.190Z"
+}

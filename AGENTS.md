@@ -11,7 +11,7 @@ The author has broad engineering interests and is developing depth through study
 ## Start here
 
 - Read `docs/architecture.md`, `docs/editorial.md`, and `.work/README.md` before relevant changes.
-- Read the primary roadmap bundle under `.work/roadmaps/`; select its next actionable item. Ideas are capture, proposals explore options, and roadmaps schedule agreed work. Do not implement a raw idea automatically.
+- Read the primary roadmap bundle under `.work/roadmaps/`; select its next actionable item. Proposals hold captured words and elaboration; roadmaps schedule agreed work. Do not implement a raw proposal automatically.
 - `research/interests/` contains development and research notes, not published articles or proof of expertise.
 - LifeOS repositories attached to this session are reference material only. Never modify them for this project's tasks.
 
@@ -51,9 +51,9 @@ The author has broad engineering interests and is developing depth through study
 
 ## Ledger and delivery discipline
 
-- Use LifeOS ledger v2 bundles: stable dated IDs, matching directory/JSON/Markdown names, vendored schemas, and required template sections. JSON owns lifecycle, links, ordering, phases, and items; Markdown owns rationale and original words.
-- Preserve original-thought blocks verbatim. Keep roadmap delivery-plan projections synchronized with JSON using LifeOS ledger operations when available. Do not create a second task list in `docs/` or `research/`.
-- Keep at most one primary roadmap. Use real dependency gates and independently useful phases. Record open questions without guessing answers.
+- Use LifeOS ledger bundles (manifest/roadmap v2, proposal v3): stable dated IDs, matching directory/JSON/Markdown names, vendored schemas, and required template sections. JSON owns lifecycle, links, ordering, phases, and items; Markdown owns rationale and original words.
+- Capture new thoughts as proposals with immutable original words and a separate editable body; use `formerly` for migrated IDs and `from_proposal` for roadmap provenance. Never recreate `ideas/` or write `from_idea`. Preserve original-thought blocks verbatim. Keep roadmap delivery-plan projections synchronized with JSON using LifeOS ledger operations when available. Do not create a second task list in `docs/` or `research/`.
+- Keep at most one primary roadmap. Closed roadmaps belong in `archive/roadmaps/`; use named close/archive operations and preserve links/history. Archive a planned proposal when all of its roadmaps are archived. Use real dependency gates and independently useful phases. Record open questions without guessing answers.
 - Update the affected roadmap JSON and Markdown for every implementation. Mark only verified work done, with `closed_at` and actual commit or typed document/decision/measurement evidence. Never invent a commit SHA or mark the entire redesign complete because planning is finished.
 - Validate bundles against vendored schemas and the LifeOS ledger reader when available. These are this repository's bundles; do not write to the LifeOS ledger while validating them.
 - Inspect the working tree and staged paths. Stage explicit owned paths; preserve other edits and agent session files. Never use broad staging or destructive cleanup to make the tree appear clean.

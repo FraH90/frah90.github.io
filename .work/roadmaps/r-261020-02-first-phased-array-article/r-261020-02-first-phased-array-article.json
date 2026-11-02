@@ -6,7 +6,6 @@
   "id": "r-261020-02-first-phased-array-article",
   "title": "First substantive phased-array article",
   "why": "Turn the saved beam-squint writing brief into an owner-written, reproducible phased-array study and publish it after scientific and editorial review.",
-  "from_idea": "i-261020-04-research-oriented-phased-array-article",
   "status": "active",
   "primary": true,
   "done_when": "The owner-written article, reproducible code and scientific figures are reviewed, its model assumptions and limitations are explicit, the owner approves publication, and the published article passes site/discovery checks.",
@@ -513,11 +512,40 @@
           "evidence": []
         }
       ]
+    },
+    {
+      "id": "r-261020-02-first-phased-array-article-ledger",
+      "title": "Ledger compatibility maintenance",
+      "status": "done",
+      "useful_alone": "The current LifeOS Code app can read this repository’s existing plans and their preserved history.",
+      "done_when": "Proposal v3 bundles, source links, archived closure, schemas/templates and working instructions validate with the current reader and the running Code backend.",
+      "depends_on": [],
+      "closed_at": "2026-11-02",
+      "items": [
+        {
+          "id": "r-261020-02-first-phased-array-article-ledger-1",
+          "text": "Migrate the blog ledger from separate ideas/proposals to proposal v3 and current archive conventions without changing publication/design scope.",
+          "kind": "migration",
+          "status": "done",
+          "closed_at": "2026-11-02",
+          "evidence": [
+            {
+              "kind": "measurement",
+              "value": "Current LifeOS reader/validator and running GET /api/code/ledger read four proposals and two live roadmaps. All eight data JSON files pass vendored schemas; all four original-thought blocks, both former proposal bodies, idea notes, original roadmap/item states and 26 historical commit references are preserved. Documentation links and byte-identical AGENTS.md/CLAUDE.md pass. The upstream migration dry-run is a no-op after conversion."
+            },
+            {
+              "kind": "document",
+              "value": ".work/README.md records mixed entity versions, original IDs, source provenance, closure/archive behavior, the unscheduled IC-design draft correction and preserved article/deployment priorities. Implementation commit evidence is attached after committing. No website source/build configuration or LifeOS files were edited."
+            }
+          ]
+        }
+      ]
     }
   ],
   "open_questions": [
     "When will the owner provide the first manuscript and its code/figures?",
     "A notification time/timezone has not been supplied; no timed reminder has been scheduled.",
     "Which reference direction should guide the next grid/article design pass? Final visual review remains open before publication."
-  ]
+  ],
+  "from_proposal": "p-261020-04-research-oriented-phased-array-article"
 }

@@ -1,6 +1,6 @@
 # Agentic programming and integrated circuit design
 
-<!-- ledger-template: idea.v2 -->
+<!-- ledger-template: proposal.v3 -->
 
 ## Original thought
 
@@ -8,6 +8,9 @@
 PS: another thing i'm interested is the use of agentic programming and shit both as assister (for example writing scripts, python tools, etc) and as main actor also in INTEGRATED CIRCUIT DESIGN. using maybe all the opensource ecosystem shit.. ps. maybe we should make a folder... that is not about the website.. but contains different shit.. dunno.. how to call it. service maybe.. find better name. but inside this folder i would put a subfolder called "interests" that will collect maybe different md files w my interests..
 <!-- original-thought:end -->
 
+## Proposal
+
+<!-- proposal-body:start -->
 ## What the thing is
 
 Explore agents as programming assistants and active participants in engineering workflows, including integrated circuit design with an open-source ecosystem.
@@ -31,3 +34,4 @@ Choose one small candidate task and research current primary tool documentation;
 ## Working notes
 
 See [research notebook](../../../research/README.md), [agentic programming](../../../research/interests/agentic-programming.md), and [IC design](../../../research/interests/agentic-ic-design.md). This idea is not scheduled by the website roadmap.
+<!-- proposal-body:end -->

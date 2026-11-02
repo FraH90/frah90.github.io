@@ -1,13 +1,16 @@
 {
-  "$schema": "../../schema/proposal.v2.json",
-  "version": 2,
+  "$schema": "../../schema/proposal.v3.json",
+  "version": 3,
   "kind": "proposal",
   "order": 0,
-  "id": "p-261016-01-human-readable-title",
+  "id": "p-261102-01-human-readable-title",
   "title": "Proposal title",
-  "status": "draft",
-  "created_at": "2026-10-16",
-  "updated_at": "2026-10-16",
-  "idea_ids": [],
-  "roadmaps": []
+  "status": "raw",
+  "summary": "One or two sentences for the card.",
+  "captured_at": "2026-11-02",
+  "updated_at": "2026-11-02",
+  "source": "chat",
+  "related": [],
+  "roadmaps": [],
+  "formerly": []
 }

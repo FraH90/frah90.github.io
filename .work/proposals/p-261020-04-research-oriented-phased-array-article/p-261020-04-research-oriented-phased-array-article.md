@@ -1,6 +1,6 @@
 # A research-oriented first article on phased arrays
 
-<!-- ledger-template: idea.v2 -->
+<!-- ledger-template: proposal.v3 -->
 
 ## Original thought
 
@@ -13,6 +13,9 @@ Leave the demo articles , label them as demo
 First article: something about the phased array. But more in depth and more research oriented than current shit. Gimme idea, I’ll write it tomorrow or this week.
 <!-- original-thought:end -->
 
+## Proposal
+
+<!-- proposal-body:start -->
 ## What the thing is
 
 The owner wants to write the first substantive article on phased arrays, with more depth and a research orientation than the existing demonstration article. The owner will write it; no publication or completed research result is implied.
@@ -73,3 +76,4 @@ Keep a small broadside control case and the monochromatic limit, and compare dir
 ### Suggested narrative
 
 Open with the engineering requirement, specify the model, derive the frequency dependence, describe the experiment, interpret the three figures, compare the ideal architectures, and end with model limitations plus a reproducible notebook/script. Write the takeaway after inspecting actual results. No finished manuscript, plots, novelty claim, publication date, or owner endorsement of this exact subtopic is recorded here.
+<!-- proposal-body:end -->
