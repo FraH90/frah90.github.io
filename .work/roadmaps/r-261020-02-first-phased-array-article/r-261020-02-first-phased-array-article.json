@@ -521,10 +521,13 @@
             },
             {
               "kind": "document",
-              "value": "Owner correction is captured in p-261102-03-direct-category-navigation-and-neutral-demo-status. Updated architecture, editorial taxonomy/visual guidance, README and byte-identical AGENTS.md/CLAUDE.md distinguish status from selectable tags and use sibling navigation/disclosure controls. Final design-2 remains open. Actual implementation SHA is attached after commit."
+              "value": "Owner correction is captured in p-261102-03-direct-category-navigation-and-neutral-demo-status. Updated architecture, editorial taxonomy/visual guidance, README and byte-identical AGENTS.md/CLAUDE.md distinguish status from selectable tags and use sibling navigation/disclosure controls. Final design-2 remains open. The commits field records the actual implementation SHA."
             }
           ],
-          "closed_at": "2026-11-02"
+          "closed_at": "2026-11-02",
+          "commits": [
+            "54fb399470aa4a5b4379ac3979a7449d8495b98b"
+          ]
         }
       ]
     },
