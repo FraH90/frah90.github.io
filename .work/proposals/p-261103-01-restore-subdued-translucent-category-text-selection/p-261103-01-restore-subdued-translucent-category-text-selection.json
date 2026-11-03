@@ -1,0 +1,16 @@
+{
+  "$schema": "../../schema/proposal.v3.json",
+  "version": 3,
+  "kind": "proposal",
+  "order": 9,
+  "id": "p-261103-01-restore-subdued-translucent-category-text-selection",
+  "title": "Restore subdued translucent category text selection",
+  "status": "draft",
+  "captured_at": "2026-11-03",
+  "updated_at": "2026-11-03",
+  "source": "manual",
+  "related": [],
+  "roadmaps": [],
+  "formerly": [],
+  "summary": "Restore the subdued historical selection treatment, using translucent category colors and theme-readable text instead of the pale white blend."
+}

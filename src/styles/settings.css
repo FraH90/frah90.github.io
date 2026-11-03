@@ -18,9 +18,7 @@
   --plot-fill: rgba(251, 146, 60, 0.08);
   --selection: #3f3f46;
   --selection-ink: var(--ink);
-  --selection-paper: #ffffff;
-  --selection-category-share: 30%;
-  --article-selection-ink: #18181b;
+  --selection-category-share: 34%;
   --reading-width: 46rem;
   --layout-width: 64rem;
   /* Reading canvas, type and interaction dimensions. */
@@ -62,6 +60,7 @@
   --plot-purple: #6b489d;
   --plot-fill: rgba(133, 88, 23, 0.08);
   --selection: #d4d4d8;
+  --selection-category-share: 18%;
 }
 
 

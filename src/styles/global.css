@@ -48,8 +48,7 @@ a:focus { outline: none; }
 .article-layout {
   --accent: var(--article-accent, var(--body));
   --color-accent: var(--accent);
-  --selection: color-mix(in srgb, var(--accent) var(--selection-category-share), var(--selection-paper));
-  --selection-ink: var(--article-selection-ink);
+  --selection: color-mix(in srgb, var(--accent) var(--selection-category-share), transparent);
 }
 .page-title { overflow-wrap: anywhere; font-family: 'Lora', Georgia, serif; font-weight: 400; text-wrap: balance; }
 
