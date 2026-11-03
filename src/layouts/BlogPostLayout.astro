@@ -7,14 +7,18 @@ import { siteName } from '../lib/site';
 import ArticleReferences from '../components/article/ArticleReferences.astro';
 import PostCard from '../components/blog/PostCard.astro';
 import { articleDisplayTitle, demoLabel, demoNotice } from '../lib/article-status';
+import { endMatterOf } from '../lib/end-matter';
 
 interface Props {
   post: CollectionEntry<'blog'>;
   headings: { depth: number; slug: string; text: string }[];
   relatedPosts: CollectionEntry<'blog'>[];
+  /** `render(post).remarkPluginFrontmatter`: the article's end blocks. */
+  remarkPluginFrontmatter?: Record<string, unknown>;
 }
-const { post, headings, relatedPosts } = Astro.props;
-const { demo, title, description, learningGoals, prerequisites, takeaways, resources, references } = post.data;
+const { post, headings, relatedPosts, remarkPluginFrontmatter } = Astro.props;
+const { demo, title, description, learningGoals, prerequisites, resources } = post.data;
+const { takeaways, references } = endMatterOf(remarkPluginFrontmatter);
 const contents = [
   ...headings,
   ...(takeaways.length ? [{ depth: 2, slug: 'article-tools-takeaways', text: 'Key takeaways' }] : []),

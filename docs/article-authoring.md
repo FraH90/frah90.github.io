@@ -21,19 +21,12 @@ learningGoals:
   - Explain the question the article answers.
 prerequisites:
   - Complex numbers
-takeaways:
-  - Summarize a conclusion supported by the article.
 relatedPosts:
   - rf/transmission-line-theory
 resources:
   - label: Source code
     url: https://github.com/FraH90/frah90.github.io
     kind: code
-references:
-  - id: astro
-    title: Astro content collections
-    detail: Documentation for the publishing framework; replace with the actual source for a scientific claim.
-    url: https://docs.astro.build/en/guides/content-collections/
 ```
 
 `learningGoals` renders as “What you’ll learn”; `prerequisites` is a compact line below it. `takeaways` renders a closing “Key takeaways” callout before supporting material and references. Write model assumptions and conventions naturally in the body before using them; there is no automatic opening assumptions box. Omit these fields when they add nothing; do not add empty placeholders to a published article.
@@ -105,7 +98,31 @@ import Citation from '../../../components/article/Citation.astro';
 Explain a sourced claim <Citation reference="astro" />.
 ```
 
-The key must exist in the article's `references` array. It renders as `[astro]`, links to `#ref-astro`, and moves focus to that reference. Use short source keys or quoted numeric string IDs if numerical citations are preferred. The references section is generated automatically after the article and omitted when empty. The build-output check catches missing citation/contents/figure targets and duplicate IDs in rendered HTML.
+The key must exist in a closing `<References>` block as a `<Ref id="…" title="…" />` entry. It renders as `[astro]`, links to `#ref-astro`, and moves focus to that reference. Use short source keys or quoted numeric string IDs if numerical citations are preferred. The references section is generated automatically after the article and omitted when empty. The build-output check catches missing citation/contents/figure targets and duplicate IDs in rendered HTML.
+
+## Closing sections in source
+
+Takeaways and references are written after the prose, rather than in YAML. They
+need no imports; the MDX compiler validates them and the layout keeps the existing
+callout, bibliography, Contents entries and citation anchors.
+
+```mdx
+<Takeaways>
+
+- A plain-text conclusion supported by the article.
+
+</Takeaways>
+
+<References>
+  <Ref id="astro" title="Astro content collections" detail="Framework documentation" url="https://docs.astro.build/" />
+</References>
+```
+
+Use one plain-text bullet list in Takeaways (no math, links or formatting). Ref
+attributes are quoted strings; id and title are required, detail and url optional.
+Duplicate ids, unsafe links, missing citation targets, legacy YAML fields and prose
+after these blocks fail the build. Takeaways precedes References. Empty sections
+can be omitted. Studio edits the same blocks in Visual or Source.
 
 ## Before publishing
 

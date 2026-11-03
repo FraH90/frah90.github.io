@@ -8,6 +8,7 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import { retiredTagCategories } from './src/lib/tags.ts';
 import rehypeAccessibleHeadings from './src/lib/rehype-accessible-headings.mjs';
+import remarkEndMatter from './src/lib/remark-end-matter.mjs';
 
 export default defineConfig({
   output: 'static',
@@ -26,7 +27,7 @@ export default defineConfig({
       themes: { light: 'github-light-default', dark: 'github-dark-default' },
       defaultColor: false,
     },
-    remarkPlugins: [remarkMath],
+    remarkPlugins: [remarkMath, remarkEndMatter],
     rehypePlugins: [rehypeKatex, rehypeAccessibleHeadings],
   },
 

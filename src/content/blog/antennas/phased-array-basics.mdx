@@ -6,17 +6,6 @@ description: A first-principles walkthrough of the array factor and how progress
 tags: [antennas, phased-array]
 draft: false
 demo: true
-takeaways:
-  - "Progressive phase offsets steer the visible in-phase directions of an array."
-  - "At fixed spacing, more uniformly weighted elements narrow the main lobe without eliminating sidelobes."
-  - "Grating lobes depend on spacing and scan direction; check every visible in-phase solution."
-references:
-  - id: uniform-array
-    title: "Peter J. Bevelacqua — Analysis of Uniform Arrays"
-    url: https://www.antenna-theory.com/arrays/weights/uniform.php
-  - id: grating-lobes
-    title: "Peter J. Bevelacqua — Grating Lobes"
-    url: https://www.antenna-theory.com/arrays/weights/gratinglobes.php
 ---
 
 import InteractiveDemo from '../../../components/ui/InteractiveDemo.astro';
@@ -65,3 +54,16 @@ Try changing $N$, spacing $d/\lambda$, and phase shift $\beta$ below and watch h
 | Increase $N$ | Narrower beam at fixed spacing; more hardware; sidelobe level still depends on weights |
 | Increase $d$ beyond $\lambda/2$ | Grating lobes become possible; depends on scan angle |
 | Change $\beta$ | Changes visible in-phase directions; the ψ = 0 solution can leave the visible range |
+
+<Takeaways>
+
+- Progressive phase offsets steer the visible in-phase directions of an array.
+- At fixed spacing, more uniformly weighted elements narrow the main lobe without eliminating sidelobes.
+- Grating lobes depend on spacing and scan direction; check every visible in-phase solution.
+
+</Takeaways>
+
+<References>
+  <Ref id="uniform-array" title="Peter J. Bevelacqua — Analysis of Uniform Arrays" url="https://www.antenna-theory.com/arrays/weights/uniform.php" />
+  <Ref id="grating-lobes" title="Peter J. Bevelacqua — Grating Lobes" url="https://www.antenna-theory.com/arrays/weights/gratinglobes.php" />
+</References>

@@ -84,7 +84,7 @@ Semantic color and layout tokens live in `src/styles/global.css`. Article prose,
 
 ## Write an article
 
-Use `npm run new:post -- rf/my-article` to create a draft safely, or copy the [article template](docs/templates/article.mdx). See the [full authoring guide](docs/article-authoring.md) for learning goals, prerequisites, closing takeaways, figures, references, supporting material, and related reading.
+Use `npm run new:post -- rf/my-article` to create a draft safely, or copy the [article template](docs/templates/article.mdx). Write closing `<Takeaways>` and `<References>` blocks at the bottom of the MDX body, not YAML. See the [full authoring guide](docs/article-authoring.md) for learning goals, prerequisites, closing takeaways, figures, references, supporting material, and related reading.
 
 Create `src/content/blog/rf/my-article.mdx` with explicit draft status:
 

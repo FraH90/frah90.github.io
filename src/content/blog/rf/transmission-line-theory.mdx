@@ -6,17 +6,6 @@ description: Why impedance mismatch causes reflections, what the reflection coef
 tags: [rf, impedance]
 draft: false
 demo: true
-takeaways:
-  - "Impedance mismatch produces a reflected wave and a standing-wave envelope."
-  - "VSWR is 1 for a matched load and tends to infinity for total reflection."
-  - "On a mismatched lossless line, adjacent voltage minima are half a wavelength apart."
-references:
-  - id: standing-waves
-    title: "Steven W. Ellingson — Standing Waves"
-    url: https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Electromagnetics_I_(Ellingson)/03%3A_Transmission_Lines/3.13%3A_Standing_Waves
-  - id: standing-wave-ratio
-    title: "Steven W. Ellingson — Standing Wave Ratio"
-    url: https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Electromagnetics_I_(Ellingson)/03%3A_Transmission_Lines/3.14%3A_Standing_Wave_Ratio
 ---
 
 import InteractiveDemo from '../../../components/ui/InteractiveDemo.astro';
@@ -65,3 +54,19 @@ Change the load impedance and line length. Watch the standing wave pattern shift
 For a mismatched lossless line, adjacent voltage-envelope minima are separated by $\lambda/2$. A matched line has a constant envelope and no distinct minima.
 
 A short circuit has a voltage **minimum at the load** and a **maximum** $\lambda/4$ toward the source. An ideal shorted quarter-wave line presents an open input impedance. A quarter-wave impedance transformer instead uses a suitable characteristic impedance to match a specified load.
+
+<Takeaways>
+
+- Impedance mismatch produces a reflected wave and a standing-wave envelope.
+- VSWR is 1 for a matched load and tends to infinity for total reflection.
+- On a mismatched lossless line, adjacent voltage minima are half a wavelength apart.
+
+</Takeaways>
+
+<References>
+  <Ref id="standing-waves" title="Steven W. Ellingson — Standing Waves" url="https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Electromagnetics_I_(Ellingson)/03%3A_Transmission_Lines/3.13%3A_Standing_Waves">
+
+  </Ref>
+
+  <Ref id="standing-wave-ratio" title="Steven W. Ellingson — Standing Wave Ratio" url="https://phys.libretexts.org/Bookshelves/Electricity_and_Magnetism/Electromagnetics_I_(Ellingson)/03%3A_Transmission_Lines/3.14%3A_Standing_Wave_Ratio" />
+</References>

@@ -6,14 +6,6 @@ description: The three numbers that define a Gaussian beam and why you can't min
 tags: [optics, gaussian-beam]
 draft: false
 demo: true
-takeaways:
-  - "At a fixed wavelength, a smaller ideal Gaussian waist means greater divergence."
-  - "The Rayleigh range marks where the beam area reaches twice its waist value."
-  - "Use consistent radius or diameter definitions; size matching alone does not guarantee fiber coupling."
-references:
-  - id: gaussian-mit
-    title: "MIT 6.974 — Paraxial Wave Equation and Gaussian Beams"
-    url: https://ocw.mit.edu/courses/6-974-fundamentals-of-photonics-quantum-electronics-spring-2006/871c32e6e4a44cbb1546741ef06f0f2f_parax_wav_eq_gau.pdf
 ---
 
 import InteractiveDemo from '../../../components/ui/InteractiveDemo.astro';
@@ -57,3 +49,15 @@ Sweep $w_0$ and $\lambda$ and watch the beam envelope evolve. Notice how tighten
 The Rayleigh range $z_R$ is the key quantity to internalize. It tells you how long your beam stays "focused" before it starts spreading significantly. A short-wavelength, large-waist beam has a long $z_R$ — this is why collimated laser beams at 532 nm can travel meters before visibly spreading.
 
 For fiber coupling, compare compatible size definitions: a Gaussian waist **radius** should be compared with the fiber mode-field **radius**, or compare the diameter $2w_0$ with the mode-field diameter at the intended wavelength. Size matching alone is not sufficient; alignment, phase curvature, polarization, and the actual mode profile also affect coupling.
+
+<Takeaways>
+
+- At a fixed wavelength, a smaller ideal Gaussian waist means greater divergence.
+- The Rayleigh range marks where the beam area reaches twice its waist value.
+- Use consistent radius or diameter definitions; size matching alone does not guarantee fiber coupling.
+
+</Takeaways>
+
+<References>
+  <Ref id="gaussian-mit" title="MIT 6.974 — Paraxial Wave Equation and Gaussian Beams" url="https://ocw.mit.edu/courses/6-974-fundamentals-of-photonics-quantum-electronics-spring-2006/871c32e6e4a44cbb1546741ef06f0f2f_parax_wav_eq_gau.pdf" />
+</References>

@@ -1,6 +1,6 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-interface Props { references: CollectionEntry<'blog'>['data']['references']; }
+import type { ArticleReference } from '../../lib/end-matter';
+interface Props { references: ArticleReference[]; }
 const { references } = Astro.props;
 ---
 {references.length > 0 && (

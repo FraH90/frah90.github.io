@@ -8,11 +8,8 @@ draft: true
 learningGoals:
   - "Replace with a concrete learning goal."
 prerequisites: []
-takeaways:
-  - "Replace with a concise conclusion supported by the article."
 relatedPosts: []
 resources: []
-references: []
 ---
 
 import ScientificFigure from '../../../components/article/ScientificFigure.astro';
@@ -50,7 +47,7 @@ before publishing. A figure example (uncomment only when its asset exists):
   wide={true}
 />
 
-Add a references entry in frontmatter before citing it:
+Add a <Ref> entry in the closing <References> block before citing it:
 <Citation reference="source-key" />
 */}
 
@@ -58,6 +55,12 @@ Add a references entry in frontmatter before citing it:
 
 Explain where the model or evidence stops being reliable, including uncertainty.
 
-The `takeaways` frontmatter renders a closing Key takeaways callout automatically.
-Replace its placeholder with conclusions supported by the article. Supporting
-material and references render after it.
+<Takeaways>
+
+- Replace with a concise conclusion supported by the article.
+
+</Takeaways>
+
+<References>
+  <Ref id="source-key" title="Replace with the actual source" />
+</References>

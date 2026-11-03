@@ -6,6 +6,10 @@ import { isArticleLink } from './lib/article-links';
 
 const text = z.string().trim().min(1);
 const link = text.refine(isArticleLink, 'Use an HTTP(S) URL or a root-relative public path.');
+/** Takeaways and references live at the end of the body (src/lib/remark-end-matter.mjs). */
+const movedToBody = (field: string, block: string) => z.unknown()
+  .refine(value => value === undefined, `\`${field}\` moved out of the frontmatter: write a ${block} block at the end of the article.`)
+  .optional();
 
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
@@ -25,20 +29,14 @@ const blog = defineCollection({
     ]).optional(),
     learningGoals: z.array(text).default([]),
     prerequisites: z.array(text).default([]),
-    takeaways: z.array(text).default([]),
+    takeaways: movedToBody('takeaways', '<Takeaways>'),
     relatedPosts: z.array(reference('blog')).default([]),
     resources: z.array(z.object({
       label: text,
       url: link,
       kind: z.enum(['code', 'notebook', 'project', 'data', 'report', 'other']).default('other'),
     })).default([]),
-    references: z.array(z.object({
-      id: text.regex(/^[a-z0-9][a-z0-9-]*$/, 'Reference IDs use lowercase letters, numbers, and hyphens.'),
-      title: text,
-      detail: text.optional(),
-      url: link.optional(),
-    })).default([]).refine(items => new Set(items.map(item => item.id)).size === items.length,
-      'Reference IDs must be unique within an article.'),
+    references: movedToBody('references', '<References>'),
   }).refine(data => data.draft || data.tags.length > 0, {
     path: ['tags'], message: 'Published articles need at least one registered tag.',
   }),

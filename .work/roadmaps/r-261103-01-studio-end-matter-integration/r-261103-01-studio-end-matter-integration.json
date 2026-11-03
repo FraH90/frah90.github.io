@@ -1,0 +1,63 @@
+{
+  "$schema": "../../schema/roadmap.v2.json",
+  "version": 2,
+  "kind": "roadmap",
+  "order": 2,
+  "id": "r-261103-01-studio-end-matter-integration",
+  "title": "Studio end-matter integration",
+  "why": "Implement the owner-approved blog side of LifeOS Article Studio Phase 10: closing sections belong in MDX where they render, preserving existing article output and validating citation targets. The main Studio roadmap remains in LifeOS; this bounded blog record tracks its repository-specific implementation evidence.",
+  "status": "active",
+  "primary": false,
+  "done_when": "Five original articles migrate without changing prose or rendered content; compiler rejects malformed end matter/citations; authoring template/docs and local build/link/draft/demo checks pass; implementation evidence recorded.",
+  "created_at": "2026-11-03",
+  "closed_at": null,
+  "phases": [
+    {
+      "id": "r-261103-01-studio-end-matter-integration-mdx-closing-se",
+      "title": "MDX closing sections",
+      "status": "done",
+      "useful_alone": "Articles are authored in display order with compiler-validated references and unchanged rendering.",
+      "done_when": "Migration, parser validation, documentation and output comparison pass.",
+      "depends_on": [],
+      "items": [
+        {
+          "id": "r-261103-01-studio-end-matter-integration-mdx-closing-se-2",
+          "text": "Complete the end-matter compiler/layout integration, migrate all five original demo articles, and document the new format without changing site layout or publication eligibility.",
+          "status": "done",
+          "kind": "build",
+          "evidence": [
+            {
+              "kind": "measurement",
+              "value": "Completed five original MDX migrations with unchanged prose/metadata values. Compared all five rendered article pages with /tmp/blog-base/dist: byte-identical HTML after normalizing the generated CSS filename only. Parser validates structural errors, duplicate ids/attributes, unsafe links and missing citations. npm run build, check:build (including parser checks) and check:demos pass; 48 pages built. Physical browser/theme acceptance is not inferred."
+            },
+            {
+              "kind": "document",
+              "value": "Updated authoring guide, architecture, README and article template. Recovered Claude partial code from active JSONL and finished its parser/schema/layout/route migration. Main product integration is tracked by LifeOS r-261029-01 Phase 10. Implementation commit evidence follows after commit."
+            }
+          ],
+          "closed_at": "2026-11-03"
+        },
+        {
+          "id": "r-261103-01-studio-end-matter-integration-mdx-closing-se-3",
+          "text": "Verify invalid-input/citation checks, compare article output with the original baseline, and run full build/link/draft/demo checks.",
+          "status": "done",
+          "kind": "build",
+          "evidence": [
+            {
+              "kind": "measurement",
+              "value": "Completed five original MDX migrations with unchanged prose/metadata values. Compared all five rendered article pages with /tmp/blog-base/dist: byte-identical HTML after normalizing the generated CSS filename only. Parser validates structural errors, duplicate ids/attributes, unsafe links and missing citations. npm run build, check:build (including parser checks) and check:demos pass; 48 pages built. Physical browser/theme acceptance is not inferred."
+            },
+            {
+              "kind": "document",
+              "value": "Updated authoring guide, architecture, README and article template. Recovered Claude partial code from active JSONL and finished its parser/schema/layout/route migration. Main product integration is tracked by LifeOS r-261029-01 Phase 10. Implementation commit evidence follows after commit."
+            }
+          ],
+          "closed_at": "2026-11-03"
+        }
+      ],
+      "closed_at": "2026-11-03"
+    }
+  ],
+  "success_metrics": [],
+  "kill_conditions": []
+}

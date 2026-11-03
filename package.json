@@ -10,7 +10,7 @@
     "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro",
-    "check:build": "node scripts/check-build.mjs",
+    "check:build": "node --experimental-strip-types scripts/check-end-matter.mjs && node scripts/check-build.mjs",
     "new:post": "node --experimental-strip-types scripts/new-post.mjs",
     "check:demos": "node --experimental-strip-types scripts/check-demo-models.mjs && node scripts/check-demo-budget.mjs"
   },

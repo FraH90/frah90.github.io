@@ -6,17 +6,6 @@ description: What spectral leakage is, why it happens in the DFT, and how window
 tags: [dsp, fft, windowing]
 draft: false
 demo: true
-takeaways:
-  - "Off-bin tones spread energy across DFT bins through spectral leakage."
-  - "Window choice trades main-lobe width against sidelobe suppression."
-  - "Coherent-gain correction does not remove off-bin scalloping loss."
-references:
-  - id: scipy-spectral
-    title: "SciPy Signal Processing Tutorial — Spectral Analysis"
-    url: https://docs.scipy.org/doc/scipy/tutorial/signal.html#spectral-analysis
-  - id: scipy-hann
-    title: "SciPy — Hann window"
-    url: https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.windows.hann.html
 ---
 
 import InteractiveDemo from '../../../components/ui/InteractiveDemo.astro';
@@ -64,3 +53,16 @@ For these windows, lower distant sidelobes come with broader main lobes. Choose 
 ## Practical rule
 
 For isolated bin-centered tones in a noiseless coherent record, a rectangular window can preserve narrow spectral lines without leakage into other DFT bins. For off-bin tones, a Hann window is a useful starting point, but the choice depends on dynamic range, resolution, amplitude accuracy, and noise. Correcting coherent gain does not remove scalloping loss.
+
+<Takeaways>
+
+- Off-bin tones spread energy across DFT bins through spectral leakage.
+- Window choice trades main-lobe width against sidelobe suppression.
+- Coherent-gain correction does not remove off-bin scalloping loss.
+
+</Takeaways>
+
+<References>
+  <Ref id="scipy-spectral" title="SciPy Signal Processing Tutorial — Spectral Analysis" url="https://docs.scipy.org/doc/scipy/tutorial/signal.html#spectral-analysis" />
+  <Ref id="scipy-hann" title="SciPy — Hann window" url="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.windows.hann.html" />
+</References>
