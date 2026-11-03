@@ -612,7 +612,10 @@
               "value": "Proposal p-261103-01-restore-subdued-translucent-category-text-selection preserves the owner's exact correction. Visual/authoring guidance and byte-identical AGENTS.md/CLAUDE.md supersede the pale-white selection direction while retaining its historical evidence."
             }
           ],
-          "closed_at": "2026-11-03"
+          "closed_at": "2026-11-03",
+          "commits": [
+            "43ca92edf91cdf39aff50602039254373ce5f3e7"
+          ]
         }
       ]
     },
