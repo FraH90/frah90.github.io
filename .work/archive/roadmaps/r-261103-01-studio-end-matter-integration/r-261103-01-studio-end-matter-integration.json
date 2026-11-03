@@ -1,16 +1,16 @@
 {
-  "$schema": "../../schema/roadmap.v2.json",
+  "$schema": "../../../schema/roadmap.v2.json",
   "version": 2,
   "kind": "roadmap",
   "order": 2,
   "id": "r-261103-01-studio-end-matter-integration",
   "title": "Studio end-matter integration",
   "why": "Implement the owner-approved blog side of LifeOS Article Studio Phase 10: closing sections belong in MDX where they render, preserving existing article output and validating citation targets. The main Studio roadmap remains in LifeOS; this bounded blog record tracks its repository-specific implementation evidence.",
-  "status": "active",
+  "status": "done",
   "primary": false,
   "done_when": "Five original articles migrate without changing prose or rendered content; compiler rejects malformed end matter/citations; authoring template/docs and local build/link/draft/demo checks pass; implementation evidence recorded.",
   "created_at": "2026-11-03",
-  "closed_at": null,
+  "closed_at": "2026-11-03",
   "phases": [
     {
       "id": "r-261103-01-studio-end-matter-integration-mdx-closing-se",
@@ -33,9 +33,16 @@
             {
               "kind": "document",
               "value": "Updated authoring guide, architecture, README and article template. Recovered Claude partial code from active JSONL and finished its parser/schema/layout/route migration. Main product integration is tracked by LifeOS r-261029-01 Phase 10. Implementation commit evidence follows after commit."
+            },
+            {
+              "kind": "document",
+              "value": "Blog implementation committed as 38a090a51302b1e4ebc6b1316d59b9387081234c. Build, parser/citation invalid-input checks, output comparison and publication/demo checks passed. This completes the bounded blog compatibility record; the Studio product roadmap remains active in LifeOS."
             }
           ],
-          "closed_at": "2026-11-03"
+          "closed_at": "2026-11-03",
+          "commits": [
+            "38a090a51302b1e4ebc6b1316d59b9387081234c"
+          ]
         },
         {
           "id": "r-261103-01-studio-end-matter-integration-mdx-closing-se-3",
@@ -50,14 +57,22 @@
             {
               "kind": "document",
               "value": "Updated authoring guide, architecture, README and article template. Recovered Claude partial code from active JSONL and finished its parser/schema/layout/route migration. Main product integration is tracked by LifeOS r-261029-01 Phase 10. Implementation commit evidence follows after commit."
+            },
+            {
+              "kind": "document",
+              "value": "Blog implementation committed as 38a090a51302b1e4ebc6b1316d59b9387081234c. Build, parser/citation invalid-input checks, output comparison and publication/demo checks passed. This completes the bounded blog compatibility record; the Studio product roadmap remains active in LifeOS."
             }
           ],
-          "closed_at": "2026-11-03"
+          "closed_at": "2026-11-03",
+          "commits": [
+            "38a090a51302b1e4ebc6b1316d59b9387081234c"
+          ]
         }
       ],
       "closed_at": "2026-11-03"
     }
   ],
   "success_metrics": [],
-  "kill_conditions": []
+  "kill_conditions": [],
+  "archived_at": "2026-11-03T19:25:25.676Z"
 }

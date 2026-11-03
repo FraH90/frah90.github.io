@@ -38,13 +38,15 @@ _Not documented yet._
 **Depends on:** none
 
 - ✅ **done** · **build** — Complete the end-matter compiler/layout integration, migrate all five original demo articles, and document the new format without changing site layout or publication eligibility.
-  - ID `r-261103-01-studio-end-matter-integration-mdx-closing-se-2` · closed 2026-11-03
+  - ID `r-261103-01-studio-end-matter-integration-mdx-closing-se-2` · closed 2026-11-03 · commits `38a090a51302b1e4ebc6b1316d59b9387081234c`
   - Evidence (measurement): Completed five original MDX migrations with unchanged prose/metadata values. Compared all five rendered article pages with /tmp/blog-base/dist: byte-identical HTML after normalizing the generated CSS filename only. Parser validates structural errors, duplicate ids/attributes, unsafe links and missing citations. npm run build, check:build (including parser checks) and check:demos pass; 48 pages built. Physical browser/theme acceptance is not inferred.
   - Evidence (document): Updated authoring guide, architecture, README and article template. Recovered Claude partial code from active JSONL and finished its parser/schema/layout/route migration. Main product integration is tracked by LifeOS r-261029-01 Phase 10. Implementation commit evidence follows after commit.
+  - Evidence (document): Blog implementation committed as 38a090a51302b1e4ebc6b1316d59b9387081234c. Build, parser/citation invalid-input checks, output comparison and publication/demo checks passed. This completes the bounded blog compatibility record; the Studio product roadmap remains active in LifeOS.
 - ✅ **done** · **build** — Verify invalid-input/citation checks, compare article output with the original baseline, and run full build/link/draft/demo checks.
-  - ID `r-261103-01-studio-end-matter-integration-mdx-closing-se-3` · closed 2026-11-03
+  - ID `r-261103-01-studio-end-matter-integration-mdx-closing-se-3` · closed 2026-11-03 · commits `38a090a51302b1e4ebc6b1316d59b9387081234c`
   - Evidence (measurement): Completed five original MDX migrations with unchanged prose/metadata values. Compared all five rendered article pages with /tmp/blog-base/dist: byte-identical HTML after normalizing the generated CSS filename only. Parser validates structural errors, duplicate ids/attributes, unsafe links and missing citations. npm run build, check:build (including parser checks) and check:demos pass; 48 pages built. Physical browser/theme acceptance is not inferred.
   - Evidence (document): Updated authoring guide, architecture, README and article template. Recovered Claude partial code from active JSONL and finished its parser/schema/layout/route migration. Main product integration is tracked by LifeOS r-261029-01 Phase 10. Implementation commit evidence follows after commit.
+  - Evidence (document): Blog implementation committed as 38a090a51302b1e4ebc6b1316d59b9387081234c. Build, parser/citation invalid-input checks, output comparison and publication/demo checks passed. This completes the bounded blog compatibility record; the Studio product roadmap remains active in LifeOS.
 <!-- ledger-phases:end -->
 
 ## Risks
