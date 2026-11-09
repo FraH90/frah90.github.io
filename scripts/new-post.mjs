@@ -1,9 +1,9 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { topicSlugs } from '../src/lib/topics.ts';
 
 // An article is a folder: blog/<YYYY-MM-DD>-<slug>/index.mdx, with figures/ and data/ beside it.
+const topicSlugs = JSON.parse(readFileSync(new URL('../blog/taxonomy.json', import.meta.url), 'utf8')).categories.map((c) => c.slug);
 const [name, ...extra] = process.argv.slice(2);
 const match = name?.match(/^([a-z]+)\/([a-z0-9]+(?:-[a-z0-9]+)*)$/);
 if (!match || extra.length || !topicSlugs.includes(match[1])) {

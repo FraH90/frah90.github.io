@@ -1,0 +1,35 @@
+{
+  "categories": [
+    { "slug": "antennas", "label": "Antennas & Arrays", "tone": "--plot-green" },
+    { "slug": "rf", "label": "RF & Microwave", "tone": "--plot-blue" },
+    { "slug": "optics", "label": "Optics & Photonics", "tone": "--plot-orange" },
+    { "slug": "dsp", "label": "Signal Processing", "tone": "--plot-rose" },
+    { "slug": "ml", "label": "Machine Learning", "tone": "--plot-purple" },
+    { "slug": "misc", "label": "Other Topics", "tone": "--muted" }
+  ],
+  "tags": [
+    { "slug": "phased-array", "label": "Phased arrays", "category": "antennas" },
+    { "slug": "beamforming", "label": "Beamforming", "category": "antennas" },
+    { "slug": "fft", "label": "FFT", "category": "dsp" },
+    { "slug": "windowing", "label": "Windowing", "category": "dsp" },
+    { "slug": "spectral-leakage", "label": "Spectral leakage", "category": "dsp" },
+    { "slug": "transmission-line", "label": "Transmission lines", "category": "rf" },
+    { "slug": "impedance", "label": "Impedance", "category": "rf" },
+    { "slug": "vswr", "label": "VSWR", "category": "rf" },
+    { "slug": "laser", "label": "Lasers", "category": "optics" },
+    { "slug": "gaussian-beam", "label": "Gaussian beams", "category": "optics" },
+    { "slug": "photonics", "label": "Photonics", "category": "optics" },
+    { "slug": "feature-engineering", "label": "Feature engineering", "category": "ml" },
+    { "slug": "pytorch", "label": "PyTorch", "category": "ml" }
+  ],
+  "retiredTags": {
+    "beamforming": "antennas",
+    "spectral-leakage": "dsp",
+    "transmission-line": "rf",
+    "vswr": "rf",
+    "laser": "optics",
+    "photonics": "optics",
+    "feature-engineering": "ml",
+    "pytorch": "ml"
+  }
+}

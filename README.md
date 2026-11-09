@@ -43,8 +43,9 @@ blog/
   <YYYY-MM-DD>-<slug>/         One article per folder: index.mdx + figures/, data/, scripts/
 src/
   content.config.ts            Typed article schema
-  lib/tags.ts                  Public tag labels, colors, and order
-  lib/topics.ts                Legacy URL groups and shared base accents
+  lib/taxonomy.ts              Reads and checks blog/taxonomy.json
+  lib/tags.ts                  Tag helpers over the taxonomy
+  lib/topics.ts                Category helpers over the taxonomy
   lib/posts.ts                 Shared publication eligibility and queries
   lib/site.ts                  Public identity and build-time CV eligibility
   pages/                       Static routes
@@ -128,7 +129,7 @@ Review scientific claims, assumptions, figures/captions, units, references, link
 
 ## Topics
 
-Edit `src/lib/tags.ts` to manage the public taxonomy. Registered tags have stable slugs, readable labels, order and colors; only tags used by published articles receive content archives; explicit retired-tag redirects preserve former links. `src/lib/topics.ts` owns the broad categories `antennas`, `rf`, `optics`, `dsp`, `ml`, and `misc`. An article can carry tags from any group. Treat slug changes as URL migrations.
+Edit `blog/taxonomy.json` (by hand or from Article Studio) to manage the public taxonomy: categories with their label and accent tone, tags with their parent category, and retired-tag redirects. No code change is needed. Registered tags have stable slugs, readable labels and order; only tags used by published articles receive content archives; explicit retired-tag redirects preserve former links. The categories are currently `antennas`, `rf`, `optics`, `dsp`, `ml`, and `misc`; category and tag slugs share one namespace, and the build fails with a sentence if the file is inconsistent. An article can carry tags from any group. Treat slug changes as URL migrations.
 
 ## Assets and CV
 
@@ -158,6 +159,6 @@ The archive now uses a compact Blog heading, featured latest eligible article an
 
 Visual authoring conventions: [shared visual guidelines](docs/visual-guidelines.md) cover header/canvas alignment, category-owned tag refinements, reusable media slots and ring-free icon focus with visible keyboard markers. [Tags and previews](docs/tags-and-previews.md) documents primary categories, compatibility routes and image/GIF/video authoring.
 
-Specific tag filters use `/categories/<category>/<tag>`; Demo is gray article status, not an available filter; old category/Demo URLs redirect to the category. Assign specific tags under their registered parent in `src/lib/tags.ts`; keep `demo` as a boolean, not a manual tag. Native click/tap/keyboard activation works without JavaScript; mouse hover is a progressive enhancement.
+Specific tag filters use `/categories/<category>/<tag>`; Demo is gray article status, not an available filter; old category/Demo URLs redirect to the category. Assign specific tags under their registered parent in `blog/taxonomy.json`; keep `demo` as a boolean, not a manual tag. Native click/tap/keyboard activation works without JavaScript; mouse hover is a progressive enhancement.
 
 Explore category text navigates directly; its plus sign and empty row space expand specific tags. There are no All articles / All [category] articles rows, and no Demo option in Explore.

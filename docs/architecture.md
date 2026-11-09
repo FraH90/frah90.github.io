@@ -39,7 +39,7 @@ Phase 1 now shares topic metadata and listing components, keeps navigation visib
 
 ## Content and taxonomy
 
-The shared topic registry at `src/lib/topics.ts` is implemented, with stable machine slugs, human labels, order, and presentation metadata. Existing slugs are retained; future changes need a deliberate migration. Current labels for stable slugs: Antennas & Arrays (`antennas`), RF & Microwave (`rf`), Optics & Photonics (`optics`), Signal Processing (`dsp`), Machine Learning (`ml`), and Other Topics (`misc`). The registry defines display order; new interests do not automatically become empty public categories.
+The category and tag registry is data, in `blog/taxonomy.json` (stable machine slugs, human labels, order, accent tone, tag parents and retired-tag redirects). `src/lib/taxonomy.ts` validates it at build time; `src/lib/topics.ts` and `src/lib/tags.ts` are helpers over it. Existing slugs are retained; future changes need a deliberate migration. Current labels for stable slugs: Antennas & Arrays (`antennas`), RF & Microwave (`rf`), Optics & Photonics (`optics`), Signal Processing (`dsp`), Machine Learning (`ml`), and Other Topics (`misc`). The registry defines display order; new interests do not automatically become empty public categories.
 
 The collection schema, topic filters, article labels, and category routes consume this vocabulary. `src/lib/posts.ts` provides shared publication eligibility for listings and article routes. Related reading and RSS use these helpers; search indexes only generated published article routes. Future discovery surfaces must preserve the same eligibility rule.
 

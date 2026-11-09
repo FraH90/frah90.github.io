@@ -8,7 +8,7 @@ The article tools are optional and render as static HTML. The five original arti
 npm run new:post -- rf/my-article
 ```
 
-Use a category from `src/lib/topics.ts`. The command creates the folder `blog/<today>-my-article/` with an `index.mdx` copied from [the article template](templates/article.mdx), sets the category and current UTC date, and keeps `draft: true`. It rejects invalid paths, unknown topics, and existing files. Edit the working title, description, and learning goal before publishing. The template is outside the content loader and never becomes an article by itself.
+Use a category from `blog/taxonomy.json`. The command creates the folder `blog/<today>-my-article/` with an `index.mdx` copied from [the article template](templates/article.mdx), sets the category and current UTC date, and keeps `draft: true`. It rejects invalid paths, unknown topics, and existing files. Edit the working title, description, and learning goal before publishing. The template is outside the content loader and never becomes an article by itself.
 
 An article is a folder: `blog/2026-11-09-my-article/index.mdx` becomes `/blog/2026/my-article` — the publication year from `date`, then the folder name without its date prefix. Category comes from the `category:` field, not from the folder, and is not part of the address. Keep everything the article alone uses inside its folder:
 
@@ -152,7 +152,7 @@ Reference IDs are internal citation targets and are not displayed in the Referen
 
 ## Tags and archive previews
 
-Use canonical tag slugs from `src/lib/tags.ts`; each article can carry multiple subjects and methods. The ML demo uses both `ml` and `dsp`, for example. `category` remains solely as a legacy URL-group field. The draft command seeds the group as a broad tag; edit/add tags before publishing. Unknown tags fail schema validation. [Tags and previews](tags-and-previews.md) documents image/GIF/video metadata and custom interactive media boundaries.
+Use canonical tag slugs from `blog/taxonomy.json` (add a new one there, or from Article Studio); each article can carry multiple subjects and methods. The ML demo uses both `ml` and `dsp`, for example. `category` remains solely as a legacy URL-group field. The draft command seeds the group as a broad tag; edit/add tags before publishing. Unknown tags fail schema validation. [Tags and previews](tags-and-previews.md) documents image/GIF/video metadata and custom interactive media boundaries.
 
 ## Article color
 
