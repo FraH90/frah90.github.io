@@ -8,9 +8,19 @@ The article tools are optional and render as static HTML. The five original arti
 npm run new:post -- rf/my-article
 ```
 
-Use a topic from `src/lib/topics.ts`. The command copies [the article template](templates/article.mdx), sets the topic and current UTC date, and keeps `draft: true`. It rejects invalid paths, unknown topics, and existing files. Edit the working title, description, and learning goal before publishing. The template is outside the content loader and never becomes an article by itself.
+Use a category from `src/lib/topics.ts`. The command creates the folder `blog/<today>-my-article/` with an `index.mdx` copied from [the article template](templates/article.mdx), sets the category and current UTC date, and keeps `draft: true`. It rejects invalid paths, unknown topics, and existing files. Edit the working title, description, and learning goal before publishing. The template is outside the content loader and never becomes an article by itself.
 
-A file at `src/content/blog/rf/my-article.mdx` becomes `/blog/rf/my-article`. Set a genuine publication date when ready; only this published date is displayed. No updated date is rendered.
+An article is a folder: `blog/2026-11-09-my-article/index.mdx` becomes `/blog/2026/my-article` — the publication year from `date`, then the folder name without its date prefix. Category comes from the `category:` field, not from the folder, and is not part of the address. Keep everything the article alone uses inside its folder:
+
+```text
+blog/2026-11-09-my-article/
+  index.mdx
+  figures/      images and SVGs: import fig from './figures/x.svg', then <ScientificFigure src={fig} …/>
+  data/         JSON/CSV: import points from './data/points.json'
+  scripts/      the scripts that produce its figures/data
+```
+
+Imported figures carry their own size, so `width`/`height` are optional for them. Components are imported from `../../src/components/…`. Set a genuine publication date when ready; only this published date is displayed. No updated date is rendered.
 
 ## Metadata
 
@@ -22,7 +32,7 @@ learningGoals:
 prerequisites:
   - Complex numbers
 relatedPosts:
-  - rf/transmission-line-theory
+  - transmission-line-theory
 resources:
   - label: Source code
     url: https://github.com/FraH90/frah90.github.io

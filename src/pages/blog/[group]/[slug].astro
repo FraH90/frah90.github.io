@@ -1,0 +1,29 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import { getAllPosts, getRelatedPosts, postUrl } from '../../../lib/posts';
+import BlogPostLayout from '../../../layouts/BlogPostLayout.astro';
+
+/** Articles live at /blog/<year>/<slug>. The same shape also answers the old
+ *  /blog/<category>/<slug> addresses, which forward to the article. */
+export async function getStaticPaths() {
+  const posts = await getAllPosts();
+  const articles = posts.map(post => ({
+    params: { group: String(post.data.date.getUTCFullYear()), slug: post.id },
+    props: { post, forward: false },
+  }));
+  const legacy = posts.map(post => ({
+    params: { group: post.data.category, slug: post.id },
+    props: { post, forward: true },
+  }));
+  return [...articles, ...legacy];
+}
+
+const { post, forward } = Astro.props as { post: CollectionEntry<'blog'>; forward: boolean };
+if (forward) return Astro.redirect(postUrl(post), 301);
+const { Content, headings, remarkPluginFrontmatter } = await render(post);
+const relatedPosts = await getRelatedPosts(post);
+---
+
+<BlogPostLayout post={post} headings={headings} relatedPosts={relatedPosts} remarkPluginFrontmatter={remarkPluginFrontmatter}>
+  <Content />
+</BlogPostLayout>

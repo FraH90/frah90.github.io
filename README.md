@@ -39,8 +39,9 @@ The build runs Astro followed by Pagefind. Search requires this generated index:
 ## Structure
 
 ```text
+blog/
+  <YYYY-MM-DD>-<slug>/         One article per folder: index.mdx + figures/, data/, scripts/
 src/
-  content/blog/<topic>/*.mdx    Articles and drafts
   content.config.ts            Typed article schema
   lib/tags.ts                  Public tag labels, colors, and order
   lib/topics.ts                Legacy URL groups and shared base accents
@@ -67,8 +68,8 @@ research/interests/            Unpublished interests and investigations
 
 - `/` redirects to `/blog`, keeping writing first.
 - `/blog` has a compact Blog heading, featured latest eligible article, and a responsive media-card grid.
-- `/categories/<slug>` lists the primary subject; `/tags/<slug>` retains specific and legacy broad-tag archives. Legacy `/blog/<topic>` indexes redirect to categories, and retired demo tags redirect to their category.
-- `/blog/<topic>/<article>` is the article URL, for example `/blog/rf/transmission-line-theory`.
+- `/categories/<slug>` lists the primary subject; `/tags/<slug>` retains specific and legacy broad-tag archives. Legacy `/blog/<topic>` indexes redirect to categories, legacy `/blog/<topic>/<article>` addresses forward to the article, and retired demo tags redirect to their category.
+- `/blog/<year>/<article>` is the article URL, for example `/blog/2026/transmission-line-theory`.
 - `/about` restores the earlier compact introduction and six subject/tool groups, presented as interests for study and exploration. The public identity is lowercase frah90; background is electronic engineer. Personal name and contacts are intentionally omitted.
 - `/search?q=beam+steering` searches published article text (JavaScript required; tag browsing remains available without it).
 - `/rss.xml` supplies the summary RSS feed.
@@ -86,7 +87,7 @@ Semantic color and layout tokens live in `src/styles/global.css`. Article prose,
 
 Use `npm run new:post -- rf/my-article` to create a draft safely, or copy the [article template](docs/templates/article.mdx). Write closing `<Takeaways>` and `<References>` blocks at the bottom of the MDX body, not YAML. See the [full authoring guide](docs/article-authoring.md) for learning goals, prerequisites, closing takeaways, figures, references, supporting material, and related reading.
 
-Create `src/content/blog/rf/my-article.mdx` with explicit draft status:
+Create `blog/2026-10-20-my-article/index.mdx` with explicit draft status:
 
 ```yaml
 ---
@@ -127,11 +128,11 @@ Review scientific claims, assumptions, figures/captions, units, references, link
 
 ## Topics
 
-Edit `src/lib/tags.ts` to manage the public taxonomy. Registered tags have stable slugs, readable labels, order and colors; only tags used by published articles receive content archives; explicit retired-tag redirects preserve former links. `src/lib/topics.ts` owns the broad categories and stable URL groups `antennas`, `rf`, `optics`, `dsp`, `ml`, and `misc`. An article can carry tags from any group. Treat slug changes as URL migrations.
+Edit `src/lib/tags.ts` to manage the public taxonomy. Registered tags have stable slugs, readable labels, order and colors; only tags used by published articles receive content archives; explicit retired-tag redirects preserve former links. `src/lib/topics.ts` owns the broad categories `antennas`, `rf`, `optics`, `dsp`, `ml`, and `misc`. An article can carry tags from any group. Treat slug changes as URL migrations.
 
 ## Assets and CV
 
-Put intentional public assets in `public/`; store reproducible data-generation scripts in `scripts/`. Existing generated datasets are under `public/data/`. The default social preview is `public/og-default.png`, with its editable vector source at `public/branding/social-card.svg`. It is a typographic site card, not scientific evidence.
+Keep an article's figures, data and the scripts that make them inside its own `blog/<date>-<slug>/` folder. `public/` is for site-wide files only. The default social preview is `public/og-default.png`, with its editable vector source at `public/branding/social-card.svg`. It is a typographic site card, not scientific evidence.
 
 CV links appear only if `public/cv.pdf` exists when the site builds. CV publication from its source repository is deferred; do not commit private source or credentials to make the link appear. See the ledger proposal before choosing automation.
 

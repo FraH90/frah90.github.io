@@ -1,0 +1,8 @@
+---
+import { getAllCategories } from '../../../lib/posts';
+// Legacy /blog/<category> indexes forward to the category archive.
+export async function getStaticPaths() {
+  return (await getAllCategories()).map(category => ({ params: { group: category.slug } }));
+}
+return Astro.redirect(`/categories/${Astro.params.group}`);
+---

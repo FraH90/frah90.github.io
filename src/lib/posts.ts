@@ -2,6 +2,12 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import { topics, type TopicSlug } from './topics';
 import { tags, getPostTags, getCategoryTags } from './tags';
 
+/** An article's public address: `/blog/<publication year>/<slug>`. Category is not part of it,
+ *  so recategorising an article never moves it. */
+export function postUrl(post: Pick<CollectionEntry<'blog'>, 'id' | 'data'>) {
+  return `/blog/${post.data.date.getUTCFullYear()}/${post.id}`;
+}
+
 /** Shared eligibility for routes and every published-content discovery surface. */
 export function isPublishedPost(post: Pick<CollectionEntry<'blog'>, 'data'>) {
   return !post.data.draft;

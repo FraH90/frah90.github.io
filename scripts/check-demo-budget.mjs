@@ -36,10 +36,10 @@ assert.ok(
   "Initial demo controller exceeds 3 KiB gzip budget",
 );
 const articles = [
-  "antennas/phased-array-basics",
-  "dsp/spectral-leakage",
-  "optics/gaussian-beam-intuition",
-  "rf/transmission-line-theory",
+  "2026/phased-array-basics",
+  "2026/spectral-leakage",
+  "2026/gaussian-beam-intuition",
+  "2026/transmission-line-theory",
 ];
 for (const article of articles) {
   const html = readFileSync(`dist/blog/${article}/index.html`, "utf8");

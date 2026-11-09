@@ -4,16 +4,11 @@
 
 `npm run check:demos` runs independent analytical model checks and the built payload budget. Run `npm run build` first for the budget check. No Python or external numerical package is needed in CI. The model checks use Node's built-in TypeScript stripping (Node 22.12+); they cover array closed-form identities, transmission-line boundaries, Gaussian beam identities, DFT amplitude/window behavior, and a local 50 ms p95 computation ceiling.
 
-`npm run new:post -- rf/my-article` safely creates a draft. See [the authoring guide](../docs/article-authoring.md).
+`npm run new:post -- rf/my-article` safely creates a draft folder `blog/<today>-my-article/`. See [the authoring guide](../docs/article-authoring.md).
 
-## Reference datasets
+## Article data
 
-These Python scripts use only the standard library and write deliberately public reference JSON. They are examples of a precomputation workflow, not dependencies fetched by the current demos. Static figures and interactive controls share `src/lib/demo-models.ts` instead.
-
-| Command | Output |
-| --- | --- |
-| `python3 scripts/generate_array_factor.py` | `public/data/array-factor/default.json` |
-| `python3 scripts/generate_gaussian_beam.py` | `public/data/gaussian-beam/default.json` |
+Scripts that produce one article's figures or datasets live in that article's folder (`blog/<date>-<slug>/scripts/`), beside the files they write. The current demos compute from `src/lib/demo-models.ts` and need no precomputed data.
 
 Inspect generated changes and commit explicit paths. Push according to [the environment-specific project instructions](../CLAUDE.md); sandbox pushes use the LifeOS tool.
 

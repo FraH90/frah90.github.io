@@ -3,6 +3,7 @@ import { glob } from 'astro/loaders';
 import { topicSlugs } from './lib/topics';
 import { tagSlugs } from './lib/tags';
 import { isArticleLink } from './lib/article-links';
+import { articleSlug } from './lib/article-folders';
 
 const text = z.string().trim().min(1);
 const link = text.refine(isArticleLink, 'Use an HTTP(S) URL or a root-relative public path.');
@@ -12,7 +13,11 @@ const movedToBody = (field: string, block: string) => z.unknown()
   .optional();
 
 const blog = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
+  // One article = one folder: blog/<YYYY-MM-DD>-<slug>/index.mdx, with its figures and data beside it.
+  loader: glob({
+    pattern: '*/index.{md,mdx}', base: './blog',
+    generateId: ({ entry }) => articleSlug(entry.split('/')[0]),
+  }),
   schema: z.object({
     title:       z.string(),
     date:        z.coerce.date(),

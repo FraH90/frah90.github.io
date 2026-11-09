@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { getAllPosts } from '../lib/posts';
+import { getAllPosts, postUrl } from '../lib/posts';
 import { getPostTags } from '../lib/tags';
 import { getTopic } from '../lib/topics';
 import { siteName, siteDescription } from '../lib/site';
@@ -13,7 +13,7 @@ export const GET: APIRoute = async ({ site }) => {
   if (!site) throw new Error('RSS requires the canonical site URL');
   const posts = await getAllPosts();
   const items = posts.map(post => {
-    const url = new URL(`/blog/${post.id}`, site).href;
+    const url = new URL(postUrl(post), site).href;
     return `<item><title>${xml(articleDisplayTitle(post.data.title, post.data.demo))}</title><link>${xml(url)}</link><guid isPermaLink="true">${xml(url)}</guid><description>${xml(post.data.demo ? `${demoNotice} ${post.data.description}` : post.data.description)}</description><pubDate>${post.data.date.toUTCString()}</pubDate>${[...new Set([getTopic(post.data.category).label, ...getPostTags(post).map(tag => tag.label)])].map(label => `<category>${xml(label)}</category>`).join('')}${post.data.demo ? `<category>${demoLabel}</category>` : ''}</item>`;
   }).join('');
   return new Response(`<?xml version="1.0" encoding="UTF-8"?>
