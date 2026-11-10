@@ -1,0 +1,44 @@
+{
+  "$comment": "What Article Studio's / menu offers, besides the article's own files and citations. Content, not code: add, remove or reword entries here and Studio follows on its next menu open. Each snippet is generic — personalise it after inserting. `components` maps a component name used in a snippet to its path from blog/<folder>/index.mdx; Studio adds that import once.",
+  "version": 1,
+  "components": {
+    "ScientificFigure": "../../src/components/article/ScientificFigure.astro",
+    "Citation": "../../src/components/article/Citation.astro",
+    "Embed": "../../src/components/article/Embed.astro",
+    "InteractiveDemo": "../../src/components/ui/InteractiveDemo.astro",
+    "InteractiveFrame": "../../src/components/ui/InteractiveFrame.astro",
+    "PlotlyChart": "../../src/components/ui/PlotlyChart"
+  },
+  "groups": ["Text", "Callouts", "Math", "Code", "Media", "Structure"],
+  "blocks": [
+    { "id": "heading", "label": "Heading", "group": "Text", "detail": "Section heading (appears in Contents)", "snippet": "\n## Heading\n\n" },
+    { "id": "subheading", "label": "Subheading", "group": "Text", "detail": "Heading inside a section", "snippet": "\n### Subheading\n\n" },
+    { "id": "bullets", "label": "Bulleted list", "group": "Text", "snippet": "\n- Item\n- Item\n\n" },
+    { "id": "numbered", "label": "Numbered list", "group": "Text", "snippet": "\n1. Step\n2. Step\n\n" },
+    { "id": "quote", "label": "Quote", "group": "Text", "detail": "Quoted passage", "snippet": "\n> Quoted text.\n\n" },
+    { "id": "table", "label": "Table", "group": "Text", "detail": "Rows and columns", "snippet": "\n| Column | Column |\n| --- | --- |\n| Value | Value |\n\n" },
+    { "id": "footnote", "label": "Footnote", "group": "Text", "detail": "Numbered note at the end of the article", "snippet": "[^note]\n\n[^note]: Footnote text.\n" },
+    { "id": "collapsible", "label": "Collapsible section", "group": "Text", "detail": "Hidden until the reader opens it", "snippet": "\n<details>\n<summary>Title</summary>\n\nContent.\n\n</details>\n\n" },
+    { "id": "divider", "label": "Divider", "group": "Text", "detail": "Horizontal rule", "snippet": "\n---\n\n" },
+
+    { "id": "note", "label": "Note", "group": "Callouts", "detail": "Callout: background or context", "snippet": "\n> [!NOTE]\n> Text.\n\n" },
+    { "id": "tip", "label": "Tip", "group": "Callouts", "detail": "Callout: advice", "snippet": "\n> [!TIP]\n> Text.\n\n" },
+    { "id": "important", "label": "Important", "group": "Callouts", "detail": "Callout: must-know", "snippet": "\n> [!IMPORTANT]\n> Text.\n\n" },
+    { "id": "warning", "label": "Warning", "group": "Callouts", "detail": "Callout: pitfall or limitation", "snippet": "\n> [!WARNING]\n> Text.\n\n" },
+    { "id": "caution", "label": "Caution", "group": "Callouts", "detail": "Callout: risk of harm or damage", "snippet": "\n> [!CAUTION]\n> Text.\n\n" },
+
+    { "id": "eq-inline", "label": "Inline equation", "group": "Math", "detail": "Math inside a sentence", "snippet": "$x$" },
+    { "id": "eq-block", "label": "Equation", "group": "Math", "detail": "Displayed, centred", "snippet": "\n$$\nx\n$$\n" },
+    { "id": "eq-lines", "label": "Multi-line equation", "group": "Math", "detail": "Several lines aligned at &", "snippet": "\n$$\n\\begin{aligned}\nx &= y \\\\\n  &= z\n\\end{aligned}\n$$\n" },
+
+    { "id": "code", "label": "Code block", "group": "Code", "detail": "Write the language after the backticks", "snippet": "\n```text\ncode\n```\n" },
+
+    { "id": "image-link", "label": "Image from a link", "group": "Media", "detail": "An image hosted elsewhere (files from this article are under Resources)", "snippet": "\n<ScientificFigure\n  id=\"figure\"\n  src=\"https://\"\n  alt=\"What the image shows\"\n  width=\"1200\"\n  height=\"800\"\n  caption=\"Caption.\"\n  kind=\"illustration\"\n  source=\"Where it comes from\"\n/>\n" },
+    { "id": "embed", "label": "Embed", "group": "Media", "detail": "Video player, map, slides or a web page (https)", "snippet": "\n<Embed src=\"https://\" title=\"What it shows\" />\n" },
+    { "id": "chart", "label": "Chart", "group": "Media", "detail": "Interactive plot from numbers", "snippet": "\n<InteractiveFrame label=\"Chart\">\n  <PlotlyChart client:visible data={[{ x: [0, 1, 2], y: [0, 1, 4], type: \"scatter\", mode: \"lines\" }]} layout={{ xaxis: { title: { text: \"x\" }, automargin: true }, yaxis: { title: { text: \"y\" }, automargin: true } }} />\n</InteractiveFrame>\n" },
+
+    { "id": "takeaways", "label": "Takeaways", "group": "Structure", "detail": "Closing summary (end of the article)", "snippet": "\n<Takeaways>\n\n- Takeaway.\n\n</Takeaways>\n\n" },
+    { "id": "references", "label": "References", "group": "Structure", "detail": "Sources list (end of the article); cite them with /Cite", "snippet": "\n<References>\n  <Ref id=\"source\" title=\"Author — Title\" url=\"https://\" />\n</References>\n" },
+    { "id": "reference", "label": "Reference entry", "group": "Structure", "detail": "One more source inside References", "snippet": "\n  <Ref id=\"source\" title=\"Author — Title\" url=\"https://\" />\n" }
+  ]
+}

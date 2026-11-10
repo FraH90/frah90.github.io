@@ -1,0 +1,38 @@
+---
+/**
+ * An external page or player in the article (a YouTube or Vimeo video, a
+ * map, a slide deck, someone else's demo), sized to the reading column with
+ * a fixed aspect ratio so it never overflows a phone screen.
+ *
+ *   <Embed src="https://www.youtube-nocookie.com/embed/<id>" title="What it shows" caption="Optional caption" />
+ *
+ * `title` is required: it is what a screen reader announces for the frame.
+ * Only https addresses are accepted.
+ */
+interface Props {
+  src: string;
+  title: string;
+  caption?: string;
+  /** Width:height, e.g. "16:9" (default), "4:3", "1:1". */
+  ratio?: string;
+}
+const { src, title, caption, ratio = '16:9' } = Astro.props;
+if (!/^https:\/\//.test(src)) throw new Error(`<Embed src="${src}">: only https addresses can be embedded`);
+if (!title?.trim()) throw new Error(`<Embed src="${src}">: title is required`);
+const [w, h] = ratio.split(':').map(Number);
+if (!(w > 0 && h > 0)) throw new Error(`<Embed ratio="${ratio}">: write width:height, e.g. 16:9`);
+---
+
+<figure class="article-embed">
+  <div class="embed-frame" style={`aspect-ratio: ${w} / ${h}`}>
+    <iframe
+      src={src}
+      title={title}
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allow="fullscreen; picture-in-picture; encrypted-media"
+      allowfullscreen
+    ></iframe>
+  </div>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>

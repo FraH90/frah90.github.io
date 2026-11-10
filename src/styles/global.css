@@ -359,3 +359,25 @@ a:focus { outline: none; }
 :root:not([data-input="pointer"]) .drawer-category > summary:focus-visible .category-chevron { text-decoration: underline; text-underline-offset: .25em; color: var(--ink); }
 :root:not([data-input="pointer"]) .interactive-demo button:not(.demo-expand):focus-visible { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .2em; }
 :root:not([data-input="pointer"]) :is(.chart-scroll,.article-content pre,.article-content table,.article-content .katex-display):focus-visible { box-shadow: inset 0 -2px var(--muted); }
+
+/* Callouts (`> [!NOTE]` …, src/lib/remark-callouts.mjs): the brief's accent
+   edge, its colour naming the kind. Prose colours stay neutral. */
+.callout { margin-block: 1.75rem; padding: 1rem 1.25rem; border-left: 2px solid var(--rule); background: var(--surface); color: var(--body); font-size: 0.9375rem; line-height: 1.7; overflow-wrap: anywhere; }
+.callout > :first-child { margin-top: 0; }
+.callout > :last-child { margin-bottom: 0; }
+.callout .callout-title { margin-bottom: 0.35rem; font-family: 'Inter', system-ui, sans-serif; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.02em; color: var(--ink); }
+.callout-note { border-left-color: var(--muted); }
+.callout-tip, .callout-important { border-left-color: var(--accent); }
+.callout-warning { border-left-color: #d97706; }
+.callout-caution { border-left-color: #dc2626; }
+
+/* Embedded external frames (src/components/article/Embed.astro). */
+.article-embed { margin-block: 2.5rem; max-width: var(--reading-width); }
+.embed-frame { overflow: hidden; border: 1px solid var(--rule); border-radius: 0.5rem; background: var(--surface); }
+.embed-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
+.article-embed figcaption { margin-top: 1rem; font-family: 'Inter', system-ui, sans-serif; font-size: 0.875rem; line-height: 1.65; color: var(--body); }
+
+/* Collapsible sections (<details>) in articles. */
+.article-content details { margin-block: 1.5rem; padding: 0.75rem 1rem; border: 1px solid var(--rule); border-radius: 0.5rem; background: var(--surface); }
+.article-content details > summary { cursor: pointer; font-family: 'Inter', system-ui, sans-serif; font-size: 0.9375rem; color: var(--ink); }
+.article-content details[open] > summary { margin-bottom: 0.75rem; }

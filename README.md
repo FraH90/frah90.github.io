@@ -41,6 +41,8 @@ The build runs Astro followed by Pagefind. Search requires this generated index:
 ```text
 blog/
   <YYYY-MM-DD>-<slug>/         One article per folder: index.mdx + figures/, data/, scripts/
+  taxonomy.json                Categories and tags
+  blocks.json                  What Article Studio's / menu offers
 src/
   content.config.ts            Typed article schema
   lib/taxonomy.ts              Reads and checks blog/taxonomy.json
@@ -121,6 +123,10 @@ import InteractiveDemo from '../../src/components/ui/InteractiveDemo.astro';
 ```
 
 `src/lib/remark-article-demos.mjs` fails the build when the component or its reference is missing, and the loader finds each component by that path, so there is no list of demos in `src/`. Shared plumbing stays in `src/`: the frame, `PlotlyChart`/`Slider`, `demo-colors.ts`, `chart-geometry.ts` and the `DemoReference` type (`demo-charts.ts`). Each article's maths lives with it: `demos/model.ts` (pure, checked by `npm run check:demos`) and `demos/chart.ts` (its chart specifications). Each reference supplies a calculated static figure, units, model assumptions, and a reference observation before scripts load. Interactive controls start automatically on page entry without moving focus. Errors or a 15-second stalled load leave the reference visible and offer Retry demo. No interactive JavaScript or plotting library is needed to read the example. The original compact Plotly layouts and plot types are restored, with named axes and units. Heights are 384px desktop / 288px phones, or 192/256px for the Fourier pair. All live plots use short horizontal y-axis labels, tight margins and no redundant chart titles. The y-axis zero label is hidden while data and gridlines remain intact. Static SVG reference plots remain available when scripts fail.
+
+Callouts use GitHub's syntax — a quote whose first line is `[!NOTE]`, `[!TIP]`, `[!IMPORTANT]`, `[!WARNING]` or `[!CAUTION]`, optionally followed by a title — and `src/lib/remark-callouts.mjs` renders them (an unknown kind fails the build). `<Embed src="https://…" title="…" />` places an external player, map or page in a fixed-ratio frame; `<details><summary>` makes a collapsible section; tables and `[^note]` footnotes are plain Markdown.
+
+**Article Studio's `/` menu is content:** `blog/blocks.json` lists every generic block it offers (text, callouts, math, code, media, structure) and the component imports they need. Add or reword an entry there — no Studio code change — and it appears in the menu on its next open. The article's own files and citations are added by Studio itself.
 
 KaTeX renders MDX math at build time. The published demos use automatically loaded Plotly charts in small React roots; browser code remains outside static rendering.
 
