@@ -8,7 +8,7 @@
 
 ## Article data
 
-Scripts that produce one article's figures or datasets live in that article's folder (`blog/<date>-<slug>/scripts/`), beside the files they write. The current demos compute from `src/lib/demo-models.ts` and need no precomputed data.
+Scripts that produce one article's figures or datasets live in that article's folder (`blog/<date>-<slug>/scripts/`), beside the files they write. The current demos compute from each article's own `demos/model.ts` and need no precomputed data.
 
 Inspect generated changes and commit explicit paths. Push according to [the environment-specific project instructions](../CLAUDE.md); sandbox pushes use the LifeOS tool.
 

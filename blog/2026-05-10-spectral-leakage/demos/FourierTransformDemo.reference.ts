@@ -1,5 +1,6 @@
-import { fourierCharts, type DemoReference } from '../../../src/lib/demo-charts';
-import { computeFourier } from '../../../src/lib/demo-models';
+import type { DemoReference } from '../../../src/lib/demo-charts';
+import { fourierCharts } from './chart';
+import { computeFourier } from './model';
 
 export default {
   label: 'Fourier transform',

@@ -2,7 +2,7 @@
 
 ## Where a demo lives — 2026-11-10
 
-Demos belong to their article (owner, via Article Studio's roadmap r-261110-01): `blog/<folder>/demos/<Name>.tsx` holds the live component and `<Name>.reference.ts` its build-time reference (label, parameters, observation, charts, and optional preview-card hints). Articles write `<InteractiveDemo src="./demos/<Name>.tsx" />`. The move changed no rendered output: article, archive and home HTML were diffed before/after with identical results apart from the `data-demo` key. Models, chart specifications, colors, the frame and the Plotly wrapper remain shared in `src/`.
+Demos belong to their article (owner, via Article Studio's roadmap r-261110-01): `blog/<folder>/demos/<Name>.tsx` holds the live component and `<Name>.reference.ts` its build-time reference (label, parameters, observation, charts, and optional preview-card hints). Articles write `<InteractiveDemo src="./demos/<Name>.tsx" />`. The move changed no rendered output: article, archive and home HTML were diffed before/after with identical results apart from the `data-demo` key. Since 2026-11-10 each article also owns its maths: `demos/model.ts` (pure, import-free, checked by `npm run check:demos`) and `demos/chart.ts` (the chart specifications built from it, plus `steer()` when the preview card has a steering slider). Only colors, chart geometry, the `DemoReference` type, the frame and the Plotly wrapper remain shared in `src/`.
 
 ## Current owner decision — original Plotly presentation
 
@@ -24,7 +24,6 @@ The following records the earlier SVG replacement and its measurements. Its rend
 
 Four published trial articles use `InteractiveDemo.astro`: array factor, transmission line, ideal Gaussian propagation, and spectral leakage. The frame renders calculated reference figures and observations at build time. The same pure TypeScript models and chart specifications drive optional React controls. No measured dataset or validated engineering design is implied. Keep model assumptions, units, normalization and angle conventions next to the example.
 
-The unused `ModeProfileViewer.tsx` is an exploratory fixture with unvalidated Bessel/eigenvalue approximations. It is not imported by public routes, indexed, or treated as a solver. Its legacy Plotly wrapper remains in source but is absent from the published JavaScript. Publishing a mode solver requires separate numerical/reference work.
 
 ## Measured baseline and optimization decision
 

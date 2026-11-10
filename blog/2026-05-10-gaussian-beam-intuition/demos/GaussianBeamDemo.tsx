@@ -2,7 +2,7 @@ import { demoColors } from '../../../src/lib/demo-colors';
 import { useState, useMemo } from 'react';
 import Slider from '../../../src/components/ui/Slider';
 import PlotlyChart from '../../../src/components/ui/PlotlyChart';
-import { computeGaussian } from '../../../src/lib/demo-models';
+import { computeGaussian } from './model';
 
 export default function GaussianBeamDemo() {
   const [w0um, setW0um]   = useState(5);    // beam waist in µm

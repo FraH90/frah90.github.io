@@ -3,7 +3,7 @@ import { useState, useMemo } from 'react';
 import Slider from '../../../src/components/ui/Slider';
 import PlotlyChart from '../../../src/components/ui/PlotlyChart';
 
-import { computeFourier, type WindowType } from '../../../src/lib/demo-models';
+import { computeFourier, type WindowType } from './model';
 
 export default function FourierTransformDemo() {
   const [f1, setF1]   = useState(50);

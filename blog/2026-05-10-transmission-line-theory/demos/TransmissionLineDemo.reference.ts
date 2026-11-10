@@ -1,5 +1,6 @@
-import { transmissionChart, type DemoReference } from '../../../src/lib/demo-charts';
-import { computeTransmission } from '../../../src/lib/demo-models';
+import type { DemoReference } from '../../../src/lib/demo-charts';
+import { transmissionChart } from './chart';
+import { computeTransmission } from './model';
 
 export default {
   label: 'Transmission line',

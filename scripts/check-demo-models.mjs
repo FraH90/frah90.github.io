@@ -1,17 +1,11 @@
 /** Independent identities and known boundary values, not copies of the models. */
 import assert from "node:assert/strict";
 import { performance } from "node:perf_hooks";
-import {
-  arrayFactorAt,
-  computeArray,
-  reflection,
-  voltageAt,
-  computeTransmission,
-  gaussianRadius,
-  computeGaussian,
-  spectrum,
-  computeFourier,
-} from "../src/lib/demo-models.ts";
+// Each article owns its model (blog/<article>/demos/model.ts).
+import { arrayFactorAt, computeArray } from "../blog/2026-05-10-phased-array-basics/demos/model.ts";
+import { reflection, voltageAt, computeTransmission } from "../blog/2026-05-10-transmission-line-theory/demos/model.ts";
+import { gaussianRadius, computeGaussian } from "../blog/2026-05-10-gaussian-beam-intuition/demos/model.ts";
+import { spectrum, computeFourier } from "../blog/2026-05-10-spectral-leakage/demos/model.ts";
 const close = (actual, expected, tolerance = 1e-10) =>
   assert.ok(
     Math.abs(actual - expected) < tolerance,

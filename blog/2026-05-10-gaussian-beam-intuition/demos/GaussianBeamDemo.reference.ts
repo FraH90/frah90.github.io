@@ -1,5 +1,6 @@
-import { gaussianChart, type DemoReference } from '../../../src/lib/demo-charts';
-import { computeGaussian } from '../../../src/lib/demo-models';
+import type { DemoReference } from '../../../src/lib/demo-charts';
+import { gaussianChart } from './chart';
+import { computeGaussian } from './model';
 
 export default {
   label: 'Gaussian beam',

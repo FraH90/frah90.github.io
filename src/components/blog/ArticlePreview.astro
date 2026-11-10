@@ -7,12 +7,13 @@ interface Props { post: CollectionEntry<'blog'>; eager?: boolean; interactive?: 
 const { post, eager = false, interactive = false } = Astro.props;
 const preview = post.data.preview;
 // The article's own demo (blog/<folder>/demos/) draws its card.
-const example = post.filePath ? articleDemo(post.filePath.split('/').at(-2)!) : undefined;
+const folder = post.filePath?.split('/').at(-2);
+const example = folder ? articleDemo(folder) : undefined;
 const sourceSpec = example?.charts[example.previewChart ?? 0];
 const spec = sourceSpec ? { ...sourceSpec, height: 420 } : undefined;
 const geometry = spec ? chartGeometry(spec) : undefined;
 const isWorkflow = post.id === 'ml-for-signal-data';
-const steering = interactive && !!example?.previewSteering && !preview && !post.data.coverImage;
+const steering = interactive && !preview && !post.data.coverImage ? example?.previewSteering : undefined;
 const image = preview?.kind === 'image' ? preview.src : preview?.kind === 'gif' ? preview.poster : post.data.coverImage;
 ---
 <div class:list={["preview-media", { "preview-interactive": !!steering }]} style={`--accent: var(${getTopic(post.data.category).tone}); --color-accent: var(--accent)`}>
@@ -23,7 +24,7 @@ const image = preview?.kind === 'image' ? preview.src : preview?.kind === 'gif' 
     </>
     : spec && geometry ? <>
       <svg class:list={{ 'preview-chart-thumbnail': !steering }} viewBox={steering ? "0 0 960 540" : "0 0 960 600"} role="img" aria-label={`${spec.title}. ${spec.description} ${example!.parameters}`}>
-        {steering && <text x="74" y="32" class="preview-figure-name">Calculated · 8 elements · d/λ = 0.5</text>}
+        {steering && <text x="74" y="32" class="preview-figure-name">{steering.caption}</text>}
         <g transform="translate(0 65)">
           {geometry.xTicks.filter((_, index) => steering || index % 2 === 0).map(tick => <><path d={`M${tick.position} 20V356`} class="preview-grid" />{steering && <text x={tick.position} y="386" text-anchor="middle" class="preview-tick">{tick.label}</text>}</>)}
           {geometry.yTicks.filter((_, index) => steering || index % 2 === 0).map(tick => <><path d={`M74 ${tick.position}H940`} class="preview-grid" />{steering && <text x="66" y={tick.position + 7} text-anchor="end" class="preview-tick">{Number(tick.label) === 0 ? '' : tick.label}</text>}</>)}
@@ -46,17 +47,22 @@ const image = preview?.kind === 'image' ? preview.src : preview?.kind === 'gif' 
       </svg>
       <span class="preview-context">Illustrative workflow</span>
     </> : <div class="preview-placeholder"><span>Technical notes</span><p>{post.data.title}</p></div>}
-{steering && <div class="steering-preview" data-steering-preview hidden>
-  <div class="steering-caption"><label for="featured-steering">Steering angle</label><output for="featured-steering">90°</output></div>
-  <input id="featured-steering" type="range" min="45" max="135" value="90" step="1" aria-valuetext="90 degrees from the array axis" />
-  <div class="steering-limits" aria-hidden="true"><span>45°</span><span>135°</span></div>
+{steering && <div class="steering-preview" data-steering-preview={`/blog/${folder}/demos/chart.ts`} data-unit={steering.unit} data-value-text={steering.valueText} hidden>
+  <div class="steering-caption"><label for="featured-steering">{steering.label}</label><output for="featured-steering">{steering.value}{steering.unit}</output></div>
+  <input id="featured-steering" type="range" min={steering.min} max={steering.max} value={steering.value} step="1" aria-valuetext={`${steering.value} ${steering.valueText}`} />
+  <div class="steering-limits" aria-hidden="true"><span>{steering.min}{steering.unit}</span><span>{steering.max}{steering.unit}</span></div>
 </div>}
 </div>
 <script>
-  import { computeArray } from '../../lib/demo-models';
-  import { arrayChart } from '../../lib/demo-charts';
-  import { chartGeometry } from '../../lib/chart-geometry';
+  import { chartGeometry, type ChartSpec } from '../../lib/chart-geometry';
+  // Each article's own model, loaded only for the card that steers it.
+  type Steer = (value: number) => { chart: ChartSpec; label: string };
+  const models = import.meta.glob<Steer>('/blog/*/demos/chart.ts', { import: 'steer' });
   for (const controls of document.querySelectorAll<HTMLElement>('[data-steering-preview]')) {
+    const load = models[controls.dataset.steeringPreview!];
+    if (!load) continue;
+    const { unit = '', valueText = '' } = controls.dataset;
+    let steer: Steer | undefined;
     const input = controls.querySelector<HTMLInputElement>('input')!;
     const output = controls.querySelector('output')!;
     const preview = controls.closest('.preview-media')!;
@@ -65,16 +71,16 @@ const image = preview?.kind === 'image' ? preview.src : preview?.kind === 'gif' 
     let pending = false;
     input.addEventListener('input', () => {
       const angle = Number(input.value);
-      output.textContent = `${angle}°`;
-      input.setAttribute('aria-valuetext', `${angle} degrees from the array axis`);
+      output.textContent = `${angle}${unit}`;
+      input.setAttribute('aria-valuetext', `${angle} ${valueText}`);
       if (pending) return;
       pending = true;
-      requestAnimationFrame(() => {
+      requestAnimationFrame(async () => {
+        steer ??= await load();
         pending = false;
-        const angle = Number(input.value);
-        const spec = { ...arrayChart(computeArray(8, .5, -Math.PI * Math.cos(angle * Math.PI / 180))), height: 420 };
-        trace.setAttribute('d', chartGeometry(spec).paths[0].path);
-        preview.querySelector('svg')!.setAttribute('aria-label', `Calculated uniform eight-element isotropic array, half-wavelength spacing, steered to ${angle} degrees from the array axis. Normalized magnitude versus angle.`);
+        const { chart, label } = steer(Number(input.value));
+        trace.setAttribute('d', chartGeometry({ ...chart, height: 420 }).paths[0].path);
+        preview.querySelector('svg')!.setAttribute('aria-label', label);
       });
     });
   }
