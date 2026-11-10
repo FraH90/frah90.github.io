@@ -7,7 +7,21 @@ import {
   computeTransmission,
   type WindowType,
 } from "./demo-models";
-export type DemoKind = "array" | "fourier" | "gaussian" | "transmission";
+/** An article demo's build-time reference: the calculated case shown before
+ *  (and without) JavaScript, and on the article's preview card. It lives beside
+ *  the demo, in the article's `demos/<Name>.reference.ts`. */
+export interface DemoReference {
+  label: string;
+  parameters: string;
+  observation: string;
+  charts: ChartSpec[];
+  /** Which chart the preview card draws (default 0). */
+  previewChart?: number;
+  /** Short y-axis name for the preview card (default: the chart's own). */
+  previewAxis?: string;
+  /** The preview card animates a steering sweep (the array factor only). */
+  previewSteering?: boolean;
+}
 export function arrayChart(
   model: ReturnType<typeof computeArray>,
   dB = false,

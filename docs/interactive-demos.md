@@ -1,5 +1,9 @@
 # Interactive demos
 
+## Where a demo lives — 2026-11-10
+
+Demos belong to their article (owner, via Article Studio's roadmap r-261110-01): `blog/<folder>/demos/<Name>.tsx` holds the live component and `<Name>.reference.ts` its build-time reference (label, parameters, observation, charts, and optional preview-card hints). Articles write `<InteractiveDemo src="./demos/<Name>.tsx" />`. The move changed no rendered output: article, archive and home HTML were diffed before/after with identical results apart from the `data-demo` key. Models, chart specifications, colors, the frame and the Plotly wrapper remain shared in `src/`.
+
 ## Current owner decision — original Plotly presentation
 
 On 2026-10-21 the owner reviewed an equal-width comparison and explicitly chose the original demo design for all demos, requesting only missing axis names. Live controls now use the original compact arrangement, thin sliders, monospace readouts and Plotly plot types. Standard plots are 384px tall on desktop / 288px on phones; Fourier retains 192px time and 256px bar-spectrum panels. No added explanatory paragraphs or standalone legends sit inside the live boxes. Existing article assumptions/references remain.

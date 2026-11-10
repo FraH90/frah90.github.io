@@ -29,7 +29,7 @@ Phase 1 now shares topic metadata and listing components, keeps navigation visib
 | `src/content.config.ts` | Content schema; extend deliberately for learning statements and prerequisites |
 | `src/lib/` | Publication eligibility, topic registry, discovery helpers |
 | `src/layouts/` | Site shell and article structure |
-| `src/components/` | Navigation, article elements, controls, interactive demos |
+| `src/components/` | Navigation, article elements, controls, the interactive-demo frame (demos themselves live in their article's `demos/`) |
 | `src/styles/` | Shared design tokens, theme, typography, responsive rules |
 | `public/` | Deliberately public figures, generated datasets, icons, future CV asset |
 | `scripts/` | Reproducible figure/data generation and maintenance tools |
@@ -57,7 +57,7 @@ Article prose and interactive frames share aligned edges. Long words wrap; wide 
 
 Search uses Pagefind after the Astro build, scoped to published article bodies; its engine is loaded only on query submission. RSS is generated from the same eligible posts through a summary-only static endpoint. See [the discovery decision, measurements, and behavior](search-and-rss.md). No server is required.
 
-Demos use shared pure models and chart specifications for build-time examples and optional React controls. The small loader automatically imports the renderer and chosen demo on page entry; import/render/timeout failure retains the static case. See [the measured baseline, budgets, scientific checks, and fallback design](interactive-demos.md).
+Each demo lives in its article's `demos/` folder (`<Name>.tsx` component, `<Name>.reference.ts` static case) and is referenced as `<InteractiveDemo src="./demos/<Name>.tsx" />`; `remark-article-demos.mjs` validates and resolves the path, `src/lib/article-demos.ts` reads the references and the loader globs `blog/*/demos/*.tsx`. They use shared pure models and chart specifications for build-time examples and optional React controls. The small loader automatically imports the renderer and chosen demo on page entry; import/render/timeout failure retains the static case. See [the measured baseline, budgets, scientific checks, and fallback design](interactive-demos.md).
 
 ## Deferred integrations
 

@@ -33,7 +33,7 @@ adjacent bins through these sidelobes.
 
 Set three sinusoidal components and switch between window types. Notice how the rectangular window leaks badly when a frequency sits between bins, and how Hann/Blackman suppresses the sidelobes at the cost of wider peaks:
 
-<InteractiveDemo kind="fourier" />
+<InteractiveDemo src="./demos/FourierTransformDemo.tsx" />
 
 The spectrum shows one-sided peak amplitude, normalized by the sum of window coefficients. This corrects coherent gain; off-bin tones still suffer scalloping and nearby components can interfere. DC and Nyquist bins are not doubled. The default frequencies are deliberately off-bin.
 

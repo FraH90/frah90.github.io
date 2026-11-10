@@ -1,17 +1,17 @@
 ---
 import StaticChart from "./StaticChart.astro";
-import { demoExamples } from "../../lib/demo-examples";
-import type { DemoKind } from "../../lib/demo-charts";
+import { demoReference } from "../../lib/article-demos";
 interface Props {
-  kind: DemoKind;
+  /** `./demos/<Name>.tsx` in the article; remark-article-demos.mjs makes it `/blog/<folder>/demos/<Name>.tsx`. */
+  src: string;
 }
-const { kind } = Astro.props;
-const example = demoExamples[kind];
+const { src } = Astro.props;
+const example = demoReference(src);
 ---
 
 <section
   class="interactive-demo not-prose my-8 rounded-xl border border-rule bg-surface/60"
-  data-demo={kind}
+  data-demo={src}
   data-pagefind-ignore
   aria-label={`${example.label} example`}
 >

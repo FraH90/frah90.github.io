@@ -1,12 +1,8 @@
 // Start each small demo automatically; the static reference remains until it is ready.
-const demos = {
-  array: () => import('../components/demos/ArrayFactorDemo'),
-  fourier: () => import('../components/demos/FourierTransformDemo'),
-  gaussian: () => import('../components/demos/GaussianBeamDemo'),
-  transmission: () => import('../components/demos/TransmissionLineDemo'),
-};
+// Each demo lives in its article: blog/<folder>/demos/<Name>.tsx, one lazy chunk each.
+const demos = import.meta.glob<{ default: import('react').ComponentType }>('/blog/*/demos/*.tsx');
 for (const frame of document.querySelectorAll<HTMLElement>('[data-demo]')) {
-  const kind = frame.dataset.demo as keyof typeof demos;
+  const demo = demos[frame.dataset.demo ?? ''];
   const actions = frame.querySelector<HTMLElement>('[data-demo-actions]')!;
   const retry = frame.querySelector<HTMLButtonElement>('[data-demo-retry]')!;
   const reference = frame.querySelector<HTMLElement>('[data-demo-static]')!;
@@ -41,7 +37,7 @@ for (const frame of document.querySelectorAll<HTMLElement>('[data-demo]')) {
     live.setAttribute('aria-busy', 'true');
     timer = setTimeout(() => failed(version), 15000);
     try {
-      const [{ mountDemo }, module] = await Promise.all([import('./demo-mount'), demos[kind]()]);
+      const [{ mountDemo }, module] = await Promise.all([import('./demo-mount'), demo()]);
       if (version !== generation) return;
       live.hidden = false;
       const ready = () => {

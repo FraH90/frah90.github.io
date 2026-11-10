@@ -1,22 +1,18 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { demoExamples } from '../../lib/demo-examples';
+import { articleDemo } from '../../lib/article-demos';
 import { chartGeometry } from '../../lib/chart-geometry';
 import { getTopic } from '../../lib/topics';
 interface Props { post: CollectionEntry<'blog'>; eager?: boolean; interactive?: boolean; }
 const { post, eager = false, interactive = false } = Astro.props;
 const preview = post.data.preview;
-const demoById = {
-  'phased-array-basics': 'array', 'transmission-line-theory': 'transmission',
-  'gaussian-beam-intuition': 'gaussian', 'spectral-leakage': 'fourier',
-} as const;
-const kind = demoById[post.id as keyof typeof demoById];
-const example = kind ? demoExamples[kind] : undefined;
-const sourceSpec = example?.charts[kind === 'fourier' ? 1 : 0];
+// The article's own demo (blog/<folder>/demos/) draws its card.
+const example = post.filePath ? articleDemo(post.filePath.split('/').at(-2)!) : undefined;
+const sourceSpec = example?.charts[example.previewChart ?? 0];
 const spec = sourceSpec ? { ...sourceSpec, height: 420 } : undefined;
 const geometry = spec ? chartGeometry(spec) : undefined;
 const isWorkflow = post.id === 'ml-for-signal-data';
-const steering = interactive && kind === 'array' && !preview && !post.data.coverImage;
+const steering = interactive && !!example?.previewSteering && !preview && !post.data.coverImage;
 const image = preview?.kind === 'image' ? preview.src : preview?.kind === 'gif' ? preview.poster : post.data.coverImage;
 ---
 <div class:list={["preview-media", { "preview-interactive": !!steering }]} style={`--accent: var(${getTopic(post.data.category).tone}); --color-accent: var(--accent)`}>
@@ -32,7 +28,7 @@ const image = preview?.kind === 'image' ? preview.src : preview?.kind === 'gif' 
           {geometry.xTicks.filter((_, index) => steering || index % 2 === 0).map(tick => <><path d={`M${tick.position} 20V356`} class="preview-grid" />{steering && <text x={tick.position} y="386" text-anchor="middle" class="preview-tick">{tick.label}</text>}</>)}
           {geometry.yTicks.filter((_, index) => steering || index % 2 === 0).map(tick => <><path d={`M74 ${tick.position}H940`} class="preview-grid" />{steering && <text x="66" y={tick.position + 7} text-anchor="end" class="preview-tick">{Number(tick.label) === 0 ? '' : tick.label}</text>}</>)}
           {geometry.paths.map(trace => <path d={trace.path} fill="none" stroke={trace.color} stroke-width="2.5" stroke-dasharray={trace.dashed ? '10 7' : undefined} stroke-linejoin="round" data-steering-trace={steering ? true : undefined} />)}
-          <text x="74" y="0" class="preview-axis">{kind === 'array' ? '|AF|' : spec.yLabel}</text>
+          <text x="74" y="0" class="preview-axis">{example!.previewAxis ?? spec.yLabel}</text>
           <text x="510" y={steering ? 440 : 425} text-anchor="middle" class="preview-axis">{spec.xLabel}</text>
         </g>
       </svg>

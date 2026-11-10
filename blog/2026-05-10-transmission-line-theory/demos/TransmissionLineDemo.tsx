@@ -1,8 +1,8 @@
-import { demoColors } from '../../lib/demo-colors';
+import { demoColors } from '../../../src/lib/demo-colors';
 import { useState, useMemo } from 'react';
-import Slider from '../ui/Slider';
-import PlotlyChart from '../ui/PlotlyChart';
-import { computeTransmission } from '../../lib/demo-models';
+import Slider from '../../../src/components/ui/Slider';
+import PlotlyChart from '../../../src/components/ui/PlotlyChart';
+import { computeTransmission } from '../../../src/lib/demo-models';
 
 export default function TransmissionLineDemo() {
   const [Z0, setZ0]     = useState(50);

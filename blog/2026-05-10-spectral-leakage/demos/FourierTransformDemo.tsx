@@ -1,9 +1,9 @@
-import { demoColors } from '../../lib/demo-colors';
+import { demoColors } from '../../../src/lib/demo-colors';
 import { useState, useMemo } from 'react';
-import Slider from '../ui/Slider';
-import PlotlyChart from '../ui/PlotlyChart';
+import Slider from '../../../src/components/ui/Slider';
+import PlotlyChart from '../../../src/components/ui/PlotlyChart';
 
-import { computeFourier, type WindowType } from '../../lib/demo-models';
+import { computeFourier, type WindowType } from '../../../src/lib/demo-models';
 
 export default function FourierTransformDemo() {
   const [f1, setF1]   = useState(50);

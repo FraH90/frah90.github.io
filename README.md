@@ -53,7 +53,7 @@ src/
   components/blog/             Shared listing and article cards
   components/article/          Contents, scientific figures, citations/references
   components/nav/              Persistent navigation
-  components/demos/            Automatically mounted React controls and Plotly charts
+  components/demos/            Exploratory fixtures only (ModeProfileViewer); article demos live in their article
   components/ui/               Chart, slider, equation, and demo wrappers
   styles/global.css            Tailwind, KaTeX, shared interaction styles
 public/                        Deliberately public assets and datasets
@@ -113,15 +113,15 @@ $$
 $$
 ```
 
-For an existing analytical example, import from a category-level article:
+A demo belongs to its article, like its figures: `blog/<folder>/demos/<Name>.tsx` is the live React component and `<Name>.reference.ts` beside it the calculated case shown before scripts load (also the article's preview card). The article refers to it relatively:
 
 ```mdx
-import InteractiveDemo from '../../../components/ui/InteractiveDemo.astro';
+import InteractiveDemo from '../../src/components/ui/InteractiveDemo.astro';
 
-<InteractiveDemo kind="transmission" />
+<InteractiveDemo src="./demos/TransmissionLineDemo.tsx" />
 ```
 
-Supported kinds are `array`, `fourier`, `gaussian`, and `transmission`. Each supplies a calculated static figure, units, model assumptions, and a reference observation before scripts load. Interactive controls start automatically on page entry without moving focus. Errors or a 15-second stalled load leave the reference visible and offer Retry demo. No interactive JavaScript or plotting library is needed to read the example. The original compact Plotly layouts and plot types are restored, with named axes and units. Heights are 384px desktop / 288px phones, or 192/256px for the Fourier pair. All live plots use short horizontal y-axis labels, tight margins and no redundant chart titles. The y-axis zero label is hidden while data and gridlines remain intact. Static SVG reference plots remain available when scripts fail.
+`src/lib/remark-article-demos.mjs` fails the build when the component or its reference is missing, and the loader finds each component by that path, so there is no list of demos in `src/`. Shared plumbing stays in `src/`: the frame, `PlotlyChart`/`Slider`, the checked models and chart specifications (`src/lib/demo-models.ts`, `demo-charts.ts`) and `demo-colors.ts`. Each reference supplies a calculated static figure, units, model assumptions, and a reference observation before scripts load. Interactive controls start automatically on page entry without moving focus. Errors or a 15-second stalled load leave the reference visible and offer Retry demo. No interactive JavaScript or plotting library is needed to read the example. The original compact Plotly layouts and plot types are restored, with named axes and units. Heights are 384px desktop / 288px phones, or 192/256px for the Fourier pair. All live plots use short horizontal y-axis labels, tight margins and no redundant chart titles. The y-axis zero label is hidden while data and gridlines remain intact. Static SVG reference plots remain available when scripts fail.
 
 KaTeX renders MDX math at build time. The published demos use automatically loaded Plotly charts in small React roots; browser code remains outside static rendering. The unused `ModeProfileViewer` remains exploratory code, excluded from published bundles. The mode viewer's approximations are unvalidated; do not publish it as an optical solver.
 
